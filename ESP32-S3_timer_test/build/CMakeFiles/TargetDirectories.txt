@@ -1,0 +1,2 @@
+/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/ESP32-S3_timer_test/build/CMakeFiles/edit_cache.dir
+/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/ESP32-S3_timer_test/build/CMakeFiles/rebuild_cache.dir
