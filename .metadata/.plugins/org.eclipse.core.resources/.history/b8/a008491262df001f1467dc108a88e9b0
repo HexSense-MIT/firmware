@@ -1,0 +1,25 @@
+/*
+ * HS_system.c
+ *
+ *  Created on: Jan 30, 2025
+ *      Author: l1534
+ */
+
+
+
+
+#include "HS_system.h"
+
+void blink_led(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, int interval) {
+    // if interval > 0,blink
+	if (interval) {
+		HAL_GPIO_WritePin(GPIOA, UWB_PWR_EN_Pin|LED_PIN_B_Pin, GPIO_PIN_RESET);
+
+		/*Configure GPIO pin Output Level */
+		HAL_GPIO_WritePin(LED_PIN_G_GPIO_Port, LED_PIN_G_Pin, GPIO_PIN_RESET);
+	}
+	// if interval > 0,blink
+	else {
+		;
+	}
+}

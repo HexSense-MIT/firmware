@@ -1,0 +1,23 @@
+/*
+ * HS_system.c
+ *
+ *  Created on: Jan 30, 2025
+ *      Author: l1534
+ */
+
+
+
+
+#include "HS_system.h"
+
+void blink_led(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, int interval) {
+    // if interval > 0, blink
+	if (interval) {
+		HAL_GPIO_WritePin(GPIOx, GPIO_Pin, GPIO_PIN_SET);
+
+	}
+	// if interval == 0, always on
+	else {
+		;
+	}
+}
