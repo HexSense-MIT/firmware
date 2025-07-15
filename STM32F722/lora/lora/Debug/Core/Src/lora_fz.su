@@ -19,6 +19,6 @@
 ../Core/Src/lora_fz.c:212:6:RF95_implicitHeaderMode	8	static
 ../Core/Src/lora_fz.c:216:6:RF95_explicitHeaderMode	8	static
 ../Core/Src/lora_fz.c:220:5:RF95_beginPacket	32	static
-../Core/Src/lora_fz.c:248:5:RF95_sendPacket	16	static
-../Core/Src/lora_fz.c:264:6:RF95_setreceiver	16	static
-../Core/Src/lora_fz.c:278:6:HAL_GPIO_EXTI_Callback	24	static
+../Core/Src/lora_fz.c:247:5:RF95_sendPacket	16	static
+../Core/Src/lora_fz.c:263:6:RF95_setreceiver	16	static
+../Core/Src/lora_fz.c:277:6:HAL_GPIO_EXTI_Callback	24	static

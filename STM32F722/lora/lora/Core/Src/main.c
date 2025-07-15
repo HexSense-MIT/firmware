@@ -133,10 +133,13 @@ int main(void) {
       if (RF95_RX_DONE_FLAG) {
         RF95_RX_DONE_FLAG = false; // Reset the RX done flag
 
+        RF95_WriteReg(REG_FIFO_ADDR_PTR, 0);
+        int size = RF95_ReadReg(REG_RX_NB_BYTES); // Read number of bytes received
+        printf("Received packet size: %d\n", size);
+
         printf("Received packet: ");
-        // print data received in the packet
-        for (int i = 0; i < sizeof(data2send); i++) {
-          printf("%02X ", data2send[i]);
+        for (int i = 0; i < size; i++) {
+          printf("%02X ", RF95_ReadReg(REG_FIFO)); // Read from FIFO and print
         }
         printf("\n");
 

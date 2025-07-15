@@ -232,7 +232,6 @@ int RF95_beginPacket(int implicitHeader, uint8_t *data2send, int size) {
     RF95_explicitHeaderMode();
   }
 
-  // reset FIFO address and set the payload length
   RF95_WriteReg(REG_FIFO_ADDR_PTR, RF95_ReadReg(REG_FIFO_TX_BASE_ADDR));
 
   // Write payload data to FIFO
