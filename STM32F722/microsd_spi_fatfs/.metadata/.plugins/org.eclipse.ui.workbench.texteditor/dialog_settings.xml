@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="hasShownOverlayPopupBefore" value="true"/>
+	<item key="replaceBarOpen" value="false"/>
+	<list key="searchhistory">
+		<item value="FCLK_SLOW"/>
+		<item value="48"/>
+		<item value="BaudRatePrescaler"/>
+		<item value="128"/>
+		<item value="current_baudrate"/>
+		<item value="SD_CS"/>
+		<item value="CS_HIGH"/>
+		<item value="USER_ioctl"/>
+	</list>
+</section>

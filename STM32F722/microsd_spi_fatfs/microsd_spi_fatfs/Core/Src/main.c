@@ -125,9 +125,10 @@ int main(void)
   FATFS* getFreeFs;
 
   fres = f_getfree("", &free_clusters, &getFreeFs);
+
   if (fres != FR_OK) {
-  printf("f_getfree error (%i)\r\n", fres);
-  while(1);
+    printf("f_getfree error (%i)\r\n", fres);
+    while(1);
   }
 
   //Formula comes from ChaN's documentation
@@ -139,8 +140,8 @@ int main(void)
   //Now let's try to open file "test.txt"
   fres = f_open(&fil, "test.txt", FA_READ);
   if (fres != FR_OK) {
-  printf("f_open error (%i)\r\n", fres);
-  while(1);
+    printf("f_open error (%i)\r\n", fres);
+    while(1);
   }
   printf("I was able to open 'test.txt' for reading!\r\n");
 
@@ -150,10 +151,11 @@ int main(void)
   //We can either use f_read OR f_gets to get data out of files
   //f_gets is a wrapper on f_read that does some string formatting for us
   TCHAR* rres = f_gets((TCHAR*)readBuf, 30, &fil);
+
   if(rres != 0) {
-  printf("Read string from 'test.txt' contents: %s\r\n", readBuf);
+    printf("Read string from 'test.txt' contents: %s\r\n", readBuf);
   } else {
-  printf("f_gets error (%i)\r\n", fres);
+    printf("f_gets error (%i)\r\n", fres);
   }
 
   //Be a tidy kiwi - don't forget to close your file!
@@ -161,20 +163,25 @@ int main(void)
 
   //Now let's try and write a file "write.txt"
   fres = f_open(&fil, "write.txt", FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
+
   if(fres == FR_OK) {
-  printf("I was able to open 'write.txt' for writing\r\n");
-  } else {
-  printf("f_open error (%i)\r\n", fres);
+    printf("I was able to open 'write.txt' for writing\r\n");
+  }
+  else {
+    printf("f_open error (%i)\r\n", fres);
   }
 
   //Copy in a string
   strncpy((char*)readBuf, "a new file is made! - FZ", 24);
+
   UINT bytesWrote;
+
   fres = f_write(&fil, readBuf, 19, &bytesWrote);
   if(fres == FR_OK) {
-  printf("Wrote %i bytes to 'write.txt'!\r\n", bytesWrote);
-  } else {
-  printf("f_write error (%i)\r\n", fres);
+    printf("Wrote %i bytes to 'write.txt'!\r\n", bytesWrote);
+  }
+  else {
+    printf("f_write error (%i)\r\n", fres);
   }
 
   //Be a tidy kiwi - don't forget to close your file!
@@ -193,7 +200,6 @@ int main(void)
     /* USER CODE BEGIN 3 */
     //Toogle the LED every second
     HAL_GPIO_TogglePin(PIN_LED1_GPIO_Port, PIN_LED1_Pin);
-    printf("in while loop!\r\n");
     HAL_Delay(500);
   }
   /* USER CODE END 3 */

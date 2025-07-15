@@ -1,0 +1,61 @@
+/*
+ * lora_fz.c
+ *
+ *  Created on: Jul 15, 2025
+ *      Author: liufangzheng
+ */
+
+#include "lora_fz.h"
+
+volatile bool RF95_TX_DONE_FLAG = false;
+volatile bool RF95_RX_DONE_FLAG = false;
+volatile bool RF95_CAD_DONE_FLAG = false;
+
+LORA_SPI_HANDLE = hspi1;
+
+void LORA_CS_LOW(void) {
+  HAL_GPIO_WritePin(LORA_CS_GPIO_Port, LORA_CS_Pin, GPIO_PIN_RESET);
+}
+
+void LORA_CS_HIGH(void) {
+  HAL_GPIO_WritePin(LORA_CS_GPIO_Port, LORA_CS_Pin, GPIO_PIN_SET);
+}
+
+void LORA_RESET_LOW(void) {
+  HAL_GPIO_WritePin(LORA_RESET_GPIO_Port, LORA_RESET_Pin, GPIO_PIN_RESET);
+}
+
+void LORA_RESET_HIGH(void) {
+  HAL_GPIO_WritePin(LORA_RESET_GPIO_Port, LORA_RESET_Pin, GPIO_PIN_SET);
+}
+
+uint8_t RF95_ReadReg(uint8_t addr) {
+  uint8_t data = 0;
+  uint8_t read_address = addr & 0x7F;
+
+  LORA_CS_LOW();
+  HAL_SPI_TransmitReceive(&LORA_SPI_HANDLE, &read_address, &data, 1, HAL_MAX_DELAY);
+  LORA_CS_HIGH();
+
+  return data;
+}
+
+void RF95_WriteReg(uint8_t addr, uint8_t data) {
+  uint8_t read_address = addr | 0x80;
+
+  LORA_CS_LOW();
+  HAL_SPI_Transmit(&LORA_SPI_HANDLE, &read_address, 1, HAL_MAX_DELAY);
+  HAL_SPI_Transmit(&LORA_SPI_HANDLE, &data, 1, HAL_MAX_DELAY);
+  LORA_CS_HIGH();
+}
+
+void RF95_SetTxDoneFlag(void) {
+  RF95_TX_DONE_FLAG = true;
+}
+void RF95_SetRxDoneFlag(void) {
+  RF95_RX_DONE_FLAG = true;
+}
+void RF95_SetCadDoneFlag(void) {
+  RF95_CAD_DONE_FLAG = true;
+}
+
