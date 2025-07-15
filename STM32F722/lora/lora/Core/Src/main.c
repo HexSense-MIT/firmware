@@ -62,7 +62,7 @@ static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_SPI2_Init(void);
 /* USER CODE BEGIN PFP */
-
+Role node_role = ROLE_RX; // Set the role of the device
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -74,9 +74,7 @@ static void MX_SPI2_Init(void);
   * @brief  The application entry point.
   * @retval int
   */
-int main(void)
-{
-
+int main(void) {
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -105,11 +103,12 @@ int main(void)
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
   // Initialize LoRa module
-  if (RF95_Init(ROLE_TX, 915000000, 500, 17)) {
-    printf("LoRa initialized successfully!\n");
-  } else {
-    printf("LoRa initialization failed!\n");
+  if (!RF95_Init(915000000, 500, 17)) {
     while (1); // Stay here if initialization fails
+  }
+
+  if (node_role == ROLE_RX) {
+    RF95_setreceiver(0); // Set to receive mode with no implicit header
   }
 
   /* USER CODE END 2 */
@@ -118,19 +117,40 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1) {
     /* USER CODE END WHILE */
-    RF95_beginPacket(0, data2send, sizeof(data2send));
-    RF95_sendPacket(true);
-    printf("Packet sent!\n");
-    HAL_Delay(900); // Wait for a second before sending the next packet
+    if (node_role == ROLE_TX) {
+      RF95_beginPacket(0, data2send, sizeof(data2send));
+      RF95_sendPacket(true);
+      HAL_Delay(990); // Wait for a second before sending the next packet
 
-    if (RF95_TX_DONE_FLAG) {
-      RF95_TX_DONE_FLAG = false; // Reset the TX done flag
-      HAL_GPIO_TogglePin(PIN_LED1_GPIO_Port, PIN_LED1_Pin); // Toggle LED to indicate TX done
+      if (RF95_TX_DONE_FLAG) {
+        RF95_TX_DONE_FLAG = false; // Reset the TX done flag
+        HAL_GPIO_WritePin(PIN_LED1_GPIO_Port, PIN_LED1_Pin, GPIO_PIN_SET); // Toggle LED to indicate TX done
+        HAL_Delay(10); // Short delay to indicate TX done
+        HAL_GPIO_WritePin(PIN_LED1_GPIO_Port, PIN_LED1_Pin, GPIO_PIN_RESET); // Reset LED
+      }
+    } else if (node_role == ROLE_RX) {
+      // Handle RX logic here
+      if (RF95_RX_DONE_FLAG) {
+        RF95_RX_DONE_FLAG = false; // Reset the RX done flag
+
+        printf("Received packet: ");
+        // print data received in the packet
+        for (int i = 0; i < sizeof(data2send); i++) {
+          printf("%02X ", data2send[i]);
+        }
+        printf("\n");
+
+        HAL_GPIO_WritePin(PIN_LED2_GPIO_Port, PIN_LED2_Pin, GPIO_PIN_SET); // Toggle LED to indicate RX done
+        HAL_Delay(10); // Short delay to indicate RX done
+        HAL_GPIO_WritePin(PIN_LED2_GPIO_Port, PIN_LED2_Pin, GPIO_PIN_RESET); // Reset LED
+      }
+    } else {
+      // No role set, do nothing or handle as needed
     }
-
     /* USER CODE BEGIN 3 */
+
+    /* USER CODE END 3 */
   }
-  /* USER CODE END 3 */
 }
 
 /**

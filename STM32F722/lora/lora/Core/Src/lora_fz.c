@@ -144,7 +144,7 @@ void RF95_reset(void) {
   HAL_Delay(10); // Allow time for the radio to reset
 }
 
-int RF95_Init(Role role, unsigned int frequency, unsigned int BW, int power) {
+int RF95_Init(unsigned int frequency, unsigned int BW, int power) {
   RF95_reset();
 
   // set SPI speed
@@ -259,6 +259,20 @@ int RF95_sendPacket(bool async) {
   }
 
   return 1;
+}
+
+void RF95_setreceiver(int size) {
+  RF95_WriteReg(REG_DIO_MAPPING_1, 0x00); // DIO0 => RXDONE
+
+  if (size > 0) {
+    RF95_implicitHeaderMode();
+
+    RF95_WriteReg(REG_PAYLOAD_LENGTH, size & 0xff);
+  } else {
+    RF95_explicitHeaderMode();
+  }
+
+  RF95_WriteReg(REG_OP_MODE, MODE_LONG_RANGE_MODE | MODE_RX_CONTINUOUS);
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {

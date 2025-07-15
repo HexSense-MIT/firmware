@@ -36,12 +36,13 @@ void RF95_setTxPower(int power, int outputPin);
 void RF95_setOCP(uint8_t mA);
 bool RF95_isTransmitting(void);
 
-extern int RF95_Init(Role role, unsigned int frequency, unsigned int BW, int power);
+extern int RF95_Init(unsigned int frequency, unsigned int BW, int power);
 extern void RF95_sleep(void);
 extern void RF95_idle(void);
 extern void RF95_reset(void);
 extern int RF95_beginPacket(int implicitHeader, uint8_t *data2send, int size);
 extern int RF95_sendPacket(bool async);
+extern void RF95_setreceiver(int size);
 
 extern void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
 
