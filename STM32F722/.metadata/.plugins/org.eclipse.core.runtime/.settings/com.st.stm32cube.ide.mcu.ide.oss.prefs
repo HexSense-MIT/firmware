@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 eclipse.preferences.version=1
 project_presentation/setHierarchicalMode=false
+=======
+eclipse.preferences.version=1
+project_presentation/setHierarchicalMode=false
+>>>>>>> da50fa3 (mac: microsd card working, there is hardware problem in the microsd card hodler conenction)

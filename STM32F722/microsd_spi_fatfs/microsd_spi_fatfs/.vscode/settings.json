@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "main.h": "c",
+        "fatfs.h": "c",
+        "usb_device.h": "c",
+        "cstdint": "c"
+    }
+}

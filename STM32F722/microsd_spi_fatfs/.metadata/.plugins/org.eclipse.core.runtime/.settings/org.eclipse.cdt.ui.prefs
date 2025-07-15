@@ -1,0 +1,7 @@
+content_assist_autoactivation_delay=100
+content_assist_order_proposals=true
+content_assist_proposals_timeout=5000
+eclipse.preferences.version=1
+spelling_locale_initialized=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true

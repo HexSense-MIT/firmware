@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 eclipse.preferences.version=1
 showIntro=false
+=======
+eclipse.preferences.version=1
+showIntro=false
+>>>>>>> da50fa3 (mac: microsd card working, there is hardware problem in the microsd card hodler conenction)
