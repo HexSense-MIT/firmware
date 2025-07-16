@@ -316,7 +316,13 @@ static int8_t CDC_TransmitCplt_FS(uint8_t *Buf, uint32_t *Len, uint8_t epnum)
 }
 
 /* USER CODE BEGIN PRIVATE_FUNCTIONS_IMPLEMENTATION */
-
+int __io_putchar(int ch) {
+    uint8_t c = ch;
+    while (CDC_Transmit_FS(&c, 1) == USBD_BUSY) {
+        HAL_Delay(1);
+    }
+    return ch;
+}
 /* USER CODE END PRIVATE_FUNCTIONS_IMPLEMENTATION */
 
 /**

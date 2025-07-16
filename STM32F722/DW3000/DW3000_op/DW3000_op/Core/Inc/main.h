@@ -61,6 +61,8 @@ void Error_Handler(void);
 #define LORA_RESET_GPIO_Port GPIOC
 #define LORA_CS_Pin GPIO_PIN_0
 #define LORA_CS_GPIO_Port GPIOA
+#define UWB_PWR_EN_Pin GPIO_PIN_1
+#define UWB_PWR_EN_GPIO_Port GPIOA
 #define UWB_IRQ_Pin GPIO_PIN_2
 #define UWB_IRQ_GPIO_Port GPIOA
 #define UWB_IRQ_EXTI_IRQn EXTI2_IRQn
@@ -76,10 +78,10 @@ void Error_Handler(void);
 #define SD_CS_Pin GPIO_PIN_6
 #define SD_CS_GPIO_Port GPIOC
 #define UWB_CS_Pin GPIO_PIN_9
-#define UWB_CS_GPIO_Port GPIOA
+#define UWB_CS_GPIO_Port GPIOC
 
 /* USER CODE BEGIN Private defines */
-
+#define UWB_SPI_HANDLE hspi1
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

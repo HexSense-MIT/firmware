@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "stdbool.h": "c",
+        "dw3000_fz.h": "c",
+        "main.h": "c"
+    }
+}

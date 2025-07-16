@@ -23,6 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "DW3000_FZ.h"
 
 /* USER CODE END Includes */
 
@@ -99,13 +100,73 @@ int main(void)
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
 
+  HAL_Delay(10);
+
+  DW3000poweron();
+  HAL_Delay(10);     // wait for the DW3000 to power on and stabilize
+  DW3000hardReset(); // with hard reset, no need for a softreset
+  HAL_Delay(10);     // wait for the DW3000 to wake up
+
+  set_SPI2lowspeed(&hspi1);
+
+  // Make sure the SPI is ready
+  while(!(DW3000readreg(SYS_STATUS_ID, 4) & SYS_STATUS_SPIRDY_BIT_MASK)) {
+    HAL_Delay(10);
+  }
+
+  // check if the DW3000 is present
+  uint32_t dev_id = DW3000readreg(DEV_ID_ID, 4);
+  printf("DW3000 Device ID: 0x%08X\r\n", dev_id);
+
+  if (dev_id == (uint32_t)DWT_DW3000_DEV_ID) {
+    blink_led(PIN_LED1_GPIO_Port, PIN_LED1_Pin, 50);
+  }
+  else {
+    while (1);
+  }
+
+  HAL_Delay(10);
+
+  if(DW3000check_IDLE_RC()) {
+    DW3000enter_IDLE_PLL(); // enter PLL mode
+    HAL_Delay(10); // wait for the PLL to lock
+  }
+  else {
+    while (1);
+  }
+
+  // wait until the PLL is locked and the DW3000 is in IDLE state
+  // actually this is redundant since PLL lock means IDLE_PLL state
+  if(DW3000check_IDLE_PLL() && DW3000check_IDLE()) {
+    HAL_GPIO_WritePin(PIN_LED1_GPIO_Port, PIN_LED1_Pin, GPIO_PIN_SET);
+  }
+  else {
+    HAL_GPIO_WritePin(PIN_LED1_GPIO_Port, PIN_LED1_Pin, GPIO_PIN_RESET);
+    while (1);
+  }
+
+  // after PLL locked, SPI can operate up to 38MHz.
+  set_SPI2highspeed(&hspi1);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+  while (1) {
     /* USER CODE END WHILE */
+    // send data
+    DW3000_writetxdata_FZ(data2send, 10);
+    DW3000_txcmd_FZ(0);
+
+    // waiting for the TX to complete
+    while (!DW3000_TXdone_FZ()) {
+      HAL_Delay(1);
+    }
+
+    HAL_GPIO_WritePin(LED_PIN_G_GPIO_Port, LED_PIN_G_Pin, GPIO_PIN_SET);
+    HAL_Delay(50);
+    HAL_GPIO_WritePin(LED_PIN_G_GPIO_Port, LED_PIN_G_Pin, GPIO_PIN_RESET);
+    HAL_Delay(1950);
 
     /* USER CODE BEGIN 3 */
   }
@@ -270,25 +331,35 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOC, LORA_RESET_Pin|PIN_LED2_Pin|SD_CS_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, LORA_CS_Pin|UWB_CS_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(LORA_CS_GPIO_Port, LORA_CS_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(UWB_RST_GPIO_Port, UWB_RST_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, UWB_PWR_EN_Pin|UWB_RST_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(PIN_LED1_GPIO_Port, PIN_LED1_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : LORA_RESET_Pin SD_CS_Pin */
-  GPIO_InitStruct.Pin = LORA_RESET_Pin|SD_CS_Pin;
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(UWB_CS_GPIO_Port, UWB_CS_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pins : LORA_RESET_Pin SD_CS_Pin UWB_CS_Pin */
+  GPIO_InitStruct.Pin = LORA_RESET_Pin|SD_CS_Pin|UWB_CS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : LORA_CS_Pin UWB_CS_Pin */
-  GPIO_InitStruct.Pin = LORA_CS_Pin|UWB_CS_Pin;
+  /*Configure GPIO pin : LORA_CS_Pin */
+  GPIO_InitStruct.Pin = LORA_CS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(LORA_CS_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : UWB_PWR_EN_Pin UWB_RST_Pin */
+  GPIO_InitStruct.Pin = UWB_PWR_EN_Pin|UWB_RST_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
@@ -297,13 +368,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(UWB_IRQ_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : UWB_RST_Pin */
-  GPIO_InitStruct.Pin = UWB_RST_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(UWB_RST_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : LORA_IRQ_Pin */
   GPIO_InitStruct.Pin = LORA_IRQ_Pin;
