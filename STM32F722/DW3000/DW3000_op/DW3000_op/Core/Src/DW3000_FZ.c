@@ -166,7 +166,7 @@ void set_SPI2lowspeed(SPI_HandleTypeDef *hspi) {
  */
 void set_SPI2highspeed(SPI_HandleTypeDef *hspi) {
   // set SPI speed to 20 MHz
-  hspi->Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_4;
+  hspi->Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
 
   if (HAL_SPI_Init(hspi) != HAL_OK) {
     Error_Handler();

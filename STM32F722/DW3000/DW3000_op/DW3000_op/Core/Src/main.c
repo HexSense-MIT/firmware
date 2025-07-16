@@ -24,6 +24,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "DW3000_FZ.h"
+#include "DW3000_send_test_FZ.h"
 
 /* USER CODE END Includes */
 
@@ -116,7 +117,7 @@ int main(void)
 
   // check if the DW3000 is present
   uint32_t dev_id = DW3000readreg(DEV_ID_ID, 4);
-  printf("DW3000 Device ID: 0x%08X\r\n", dev_id);
+  printf("DW3000 Device ID: 0x%08lX\r\n", dev_id);
 
   if (dev_id == (uint32_t)DWT_DW3000_DEV_ID) {
     blink_led(PIN_LED1_GPIO_Port, PIN_LED1_Pin, 50);
@@ -163,9 +164,9 @@ int main(void)
       HAL_Delay(1);
     }
 
-    HAL_GPIO_WritePin(LED_PIN_G_GPIO_Port, LED_PIN_G_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_SET);
     HAL_Delay(50);
-    HAL_GPIO_WritePin(LED_PIN_G_GPIO_Port, LED_PIN_G_Pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_RESET);
     HAL_Delay(1950);
 
     /* USER CODE BEGIN 3 */
