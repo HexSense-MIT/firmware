@@ -134,9 +134,12 @@ int main(void) {
         RF95_RX_DONE_FLAG = false; // Reset the RX done flag
 
         int size = RF95_ReadReg(REG_RX_NB_BYTES); // Read number of bytes received
-        uint8_t current_addr = RF95_ReadReg(REG_FIFO_RX_CURRENT_ADDR); // Get current FIFO address
-        RF95_WriteReg(REG_FIFO_ADDR_PTR, current_addr);
-        printf("Received packet size: %d, current address: %d\n", size, current_addr);
+        /*
+        Set FifoPtrAddr to FifoRxCurrentAddr.
+        This sets the FIFO pointer to the the location of the last packet received in the FIFO.
+        The payload can then be extracted by reading the RegFifo address RegNbRxBytes times.
+        */
+        RF95_WriteReg(REG_FIFO_ADDR_PTR, RF95_ReadReg(REG_FIFO_RX_CURRENT_ADDR));
 
         printf("Received packet: ");
         for (int i = 0; i < size; i++) {
