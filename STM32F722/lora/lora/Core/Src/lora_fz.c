@@ -274,6 +274,25 @@ void RF95_setreceiver(int size) {
   RF95_WriteReg(REG_OP_MODE, MODE_LONG_RANGE_MODE | MODE_RX_CONTINUOUS);
 }
 
+int RF95_get_recvbytenum(void) {
+  return RF95_ReadReg(REG_RX_NB_BYTES);
+}
+
+void RF95_recv(int size, uint8_t *datarecv) {
+  /*
+  Set FifoPtrAddr to FifoRxCurrentAddr.
+  This sets the FIFO pointer to the the location of the last packet received in the FIFO.
+  The payload can then be extracted by reading the RegFifo address RegNbRxBytes times.
+  */
+  // set FIFO pointer to the current RX address
+  RF95_WriteReg(REG_FIFO_ADDR_PTR, RF95_ReadReg(REG_FIFO_RX_CURRENT_ADDR));
+
+  // read all bytes received
+  for (int i = 0; i < size; i++) {
+    datarecv[i] = RF95_ReadReg(REG_FIFO);
+  }
+}
+
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
   UNUSED(GPIO_Pin); // Prevent unused variable warning
 

@@ -21,4 +21,6 @@
 ../Core/Src/lora_fz.c:220:5:RF95_beginPacket	4
 ../Core/Src/lora_fz.c:247:5:RF95_sendPacket	4
 ../Core/Src/lora_fz.c:263:6:RF95_setreceiver	2
-../Core/Src/lora_fz.c:277:6:HAL_GPIO_EXTI_Callback	5
+../Core/Src/lora_fz.c:277:5:RF95_get_recvbytenum	1
+../Core/Src/lora_fz.c:281:6:RF95_recv	2
+../Core/Src/lora_fz.c:296:6:HAL_GPIO_EXTI_Callback	5

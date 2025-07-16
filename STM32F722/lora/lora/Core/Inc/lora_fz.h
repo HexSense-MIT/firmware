@@ -44,6 +44,9 @@ extern int RF95_beginPacket(int implicitHeader, uint8_t *data2send, int size);
 extern int RF95_sendPacket(bool async);
 extern void RF95_setreceiver(int size);
 
+extern int RF95_get_recvbytenum(void);
+extern void RF95_recv(int size, uint8_t *datarecv);
+
 extern void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
 
 #endif /* INC_LORA_FZ_H_ */

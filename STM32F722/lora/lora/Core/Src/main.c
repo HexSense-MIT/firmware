@@ -34,7 +34,7 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 uint8_t data2send[10] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A};
-
+uint8_t datarecv[100] = {0};
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -133,17 +133,12 @@ int main(void) {
       if (RF95_RX_DONE_FLAG) {
         RF95_RX_DONE_FLAG = false; // Reset the RX done flag
 
-        int size = RF95_ReadReg(REG_RX_NB_BYTES); // Read number of bytes received
-        /*
-        Set FifoPtrAddr to FifoRxCurrentAddr.
-        This sets the FIFO pointer to the the location of the last packet received in the FIFO.
-        The payload can then be extracted by reading the RegFifo address RegNbRxBytes times.
-        */
-        RF95_WriteReg(REG_FIFO_ADDR_PTR, RF95_ReadReg(REG_FIFO_RX_CURRENT_ADDR));
+        int size = RF95_get_recvbytenum();
+        RF95_recv(size, datarecv); // Receive the data
 
-        printf("Received packet: ");
+        printf("Received byte: ");
         for (int i = 0; i < size; i++) {
-          printf("%02X ", RF95_ReadReg(REG_FIFO)); // Read from FIFO and print
+          printf("%02X ", datarecv[i]); // Print received data
         }
         printf("\n");
 
