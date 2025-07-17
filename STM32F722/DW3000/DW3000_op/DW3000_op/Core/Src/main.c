@@ -148,7 +148,7 @@ int main(void)
   }
 
   DW3000_irq_for_tx_done(); // enable the IRQ for TX done
-  DW3000set_TXLED(); // set TX_LED
+  // DW3000set_TXLED(); // set TX_LED
 
   // after PLL locked, SPI can operate up to 38MHz.
   set_SPI2highspeed(&hspi1);

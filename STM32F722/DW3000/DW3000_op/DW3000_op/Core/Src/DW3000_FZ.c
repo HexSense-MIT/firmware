@@ -302,15 +302,26 @@ uint8_t DW3000check_IDLE(void) {
   return (reg >> 16 & DW_SYS_STATE_IDLE) == DW_SYS_STATE_IDLE ? 1 : 0;
 }
 
+void enable_LED_blink(void) {
+  uint32_t current_ctrl = DW3000readreg(LED_CTRL_ID, 4);
+  current_ctrl |= (1 << LED_CTRL_BLINK_EN_BIT_OFFSET);
+  DW3000writereg(LED_CTRL_ID, (uint8_t*)&current_ctrl, 4);
+}
+
 /**
  * @brief Set the DW3000 TXLED pin
  * 
  */
 void DW3000set_TXLED(void) {
-  uint32_t current_mode = DW3000readreg(GPIO_MODE_ID, 4);
-  current_mode &= ~GPIO_MODE_MSGP3_MODE_BIT_MASK; // clear the MSGP3 mode bits
-  current_mode |= (0x01 << GPIO_MODE_MSGP3_MODE_BIT_OFFSET); // set the MSGP3 mode to 1 (TXLED)
-  DW3000writereg(GPIO_MODE_ID, (uint8_t*)&current_mode, 4); // write the new mode
+  enable_LED_blink();
+
+  uint32_t current_mode;
+
+  current_mode = DW3000readreg(GPIO_MODE_ID, 4);
+  current_mode &= ~GPIO_MODE_MSGP3_MODE_BIT_MASK; // Clear the bits
+  current_mode |= (0x01 << GPIO_MODE_MSGP3_MODE_BIT_OFFSET); // Set the TXLED mode bit
+
+  DW3000writereg(GPIO_MODE_ID, (uint8_t*)&current_mode, 4);
 }
 
 /**
