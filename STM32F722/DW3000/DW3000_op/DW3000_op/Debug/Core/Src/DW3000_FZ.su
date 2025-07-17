@@ -20,9 +20,9 @@
 ../Core/Src/DW3000_FZ.c:280:9:DW3000check_IDLE_RC	16	static
 ../Core/Src/DW3000_FZ.c:290:9:DW3000check_IDLE_PLL	16	static
 ../Core/Src/DW3000_FZ.c:300:9:DW3000check_IDLE	16	static
-../Core/Src/DW3000_FZ.c:311:6:DW3000set_GPIO	16	static
-../Core/Src/DW3000_FZ.c:326:10:DW3000readOTP	24	static
-../Core/Src/DW3000_FZ.c:342:6:DW3000_writefastCMD_FZ	24	static
-../Core/Src/DW3000_FZ.c:351:6:DW3000_clear_IRQ	16	static
-../Core/Src/DW3000_FZ.c:361:6:HAL_GPIO_EXTI_Callback	24	static
-../Core/Src/DW3000_FZ.c:370:6:DW3000_irq_for_tx_done	16	static
+../Core/Src/DW3000_FZ.c:309:6:DW3000set_TXLED	16	static
+../Core/Src/DW3000_FZ.c:322:10:DW3000readOTP	24	static
+../Core/Src/DW3000_FZ.c:338:6:DW3000_writefastCMD_FZ	24	static
+../Core/Src/DW3000_FZ.c:347:6:DW3000_clear_IRQ	16	static
+../Core/Src/DW3000_FZ.c:357:6:HAL_GPIO_EXTI_Callback	16	static
+../Core/Src/DW3000_FZ.c:365:6:DW3000_irq_for_tx_done	16	static

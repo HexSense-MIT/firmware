@@ -359,6 +359,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
   if (GPIO_Pin == UWB_IRQ_Pin) {
     DW3000_IRQ_flag = true;
+    uint32_t status = DW3000readreg(SYS_STATUS_ID, 4);
   }
 }
 

@@ -147,8 +147,8 @@ int main(void)
     while (1);
   }
 
-  DW3000_clear_IRQ(); // clear the IRQ flags, reset the IRQ pin.
   DW3000_irq_for_tx_done(); // enable the IRQ for TX done
+  DW3000set_TXLED(); // set TX_LED
 
   // after PLL locked, SPI can operate up to 38MHz.
   set_SPI2highspeed(&hspi1);
@@ -162,13 +162,11 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     // send data
+    DW3000_clear_IRQ(); // clear the IRQ flags, reset the IRQ pin.
     DW3000_writetxdata_FZ(data2send, 10);
     DW3000_txcmd_FZ(0);
 
-    // waiting for the TX to complete
-    // while (!DW3000_TXdone_FZ()) {
-    //   HAL_Delay(1);
-    // }
+    // wait for the IRQ to be triggered
     while (!DW3000_IRQ_flag) {;}
 
     DW3000_IRQ_flag = false; // reset the flag

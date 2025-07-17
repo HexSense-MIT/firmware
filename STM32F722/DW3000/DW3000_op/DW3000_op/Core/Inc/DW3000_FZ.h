@@ -83,7 +83,7 @@ extern uint8_t DW3000check_IDLE_RC(void);
 extern uint8_t DW3000check_IDLE_PLL(void);
 extern uint8_t DW3000check_IDLE(void);
 
-extern void DW3000set_GPIO(dw_gpio gpio, dw_gpio_mode mode);
+extern void DW3000set_TXLED(void);
 
 extern uint32_t DW3000readOTP(uint8_t addr);
 
