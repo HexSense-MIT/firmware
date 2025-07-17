@@ -22,17 +22,20 @@
 
 extern bool DW3000_IRQ_flag; // flag to indicate if the TX is done
 
+typedef enum {
+  tx_node = 0, //!< TX node
+  rx_node = 1  //!< RX node
+} node_type;
+
 // FZ stole from DecaWave API
-typedef enum
-{
+typedef enum {
   DWT_DW3000_DEV_ID       = (int)(0xDECA0302), //!< DW3000 (non PDOA) silicon device ID
   DWT_QM33110_DEV_ID      = (int)(0xDECA0304), //!< QM33110 (non PDOA) silicon device ID
   DWT_DW3000_PDOA_DEV_ID  = (int)(0xDECA0312), //!< DW3000 (with PDOA) silicon device ID
   DWT_QM33120_PDOA_DEV_ID = (int)(0xDECA0314) //!< QM33120 (with PDOA) silicon device ID
 } dw_chip_id_e;
 
-typedef enum
-{
+typedef enum {
   GPIO0 = 0x1,
   GPIO1 = 0x1 << 1,
   GPIO2 = 0x1 << 2,
@@ -44,11 +47,15 @@ typedef enum
   GPIO8 = 0x1 << 8
 } dw_gpio;
 
-typedef enum
-{
+typedef enum {
   OUTPUT_MODE = 0, //!< GPIO output mode
   INPUT_MODE  = 1  //!< GPIO input mode
 } dw_gpio_mode;
+
+typedef enum {
+  CH5 = 0, //!< GPIO output mode
+  CH9  = 1  //!< GPIO input mode
+} channel;
 
 #define GEN_CFG_AES_base 0x00
 #define DIG_DIAG_base    0x0F
@@ -83,13 +90,18 @@ extern uint8_t DW3000check_IDLE_RC(void);
 extern uint8_t DW3000check_IDLE_PLL(void);
 extern uint8_t DW3000check_IDLE(void);
 
+extern void DW3000config_CH(uint16_t RX_PCODE, uint16_t TX_PCODE, uint8_t SFD_TYP, channel CH);
 extern void DW3000set_TXLED(void);
 
 extern uint32_t DW3000readOTP(uint8_t addr);
 
 extern void DW3000_clear_IRQ(void);
+extern void DW3000_clear_all_events(void);
 
 extern void DW3000_writefastCMD_FZ(uint8_t cmd);
 extern void DW3000_irq_for_tx_done(void);
+extern void DW3000_irq_for_rx_done(void);
+
+extern void DW3000_disable_RX_timeout(void);
 
 #endif /* INC_DW3000_FZ_H_ */

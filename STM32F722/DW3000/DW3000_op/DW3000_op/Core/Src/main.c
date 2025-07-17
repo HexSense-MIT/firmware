@@ -25,12 +25,13 @@
 /* USER CODE BEGIN Includes */
 #include "DW3000_FZ.h"
 #include "DW3000_send_test_FZ.h"
+#include "DW3000_recv_test_FZ.h"
 
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+node_type current_node = rx_node; // current node type, default is TX node
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -127,6 +128,13 @@ int main(void)
     while (1);
   }
 
+  DW3000config_CH(0x09, 0x09, 0x00, CH5); // configure the channel
+  uint32_t chan_ctrl = DW3000readreg(CHAN_CTRL_ID, 4);
+  printf("DW3000 Channel Control: 0x%08lX\r\n", chan_ctrl);
+
+  uint32_t sys_cfg = DW3000readreg(SYS_CFG_ID, 4);
+  printf("DW3000 system configuration: 0x%08lX\r\n", sys_cfg);
+
   HAL_Delay(10);
 
   if(DW3000check_IDLE_RC()) {
@@ -147,8 +155,8 @@ int main(void)
     while (1);
   }
 
-  DW3000_irq_for_tx_done(); // enable the IRQ for TX done
-  // DW3000set_TXLED(); // set TX_LED
+  if (current_node == tx_node) DW3000_irq_for_tx_done(); // enable the IRQ for TX done
+  if (current_node == rx_node) DW3000_irq_for_rx_done(); // enable the IRQ for RX done
 
   // after PLL locked, SPI can operate up to 38MHz.
   set_SPI2highspeed(&hspi1);
@@ -161,29 +169,59 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    // send data
-    DW3000_clear_IRQ(); // clear the IRQ flags, reset the IRQ pin.
-    DW3000_writetxdata_FZ(data2send, 10);
-    DW3000_txcmd_FZ(0);
+    if (current_node == tx_node) {
+      // send data
+      DW3000_clear_IRQ(); // clear the IRQ flags, reset the IRQ pin.
+      DW3000_writetxdata_FZ(data2send, 10);
+      DW3000_txcmd_FZ(0);
 
-    // wait for the IRQ to be triggered
-    while (!DW3000_IRQ_flag) {;}
+      // wait for the IRQ to be triggered
+      while (!DW3000_IRQ_flag) {;}
 
-    DW3000_IRQ_flag = false; // reset the flag
-    uint32_t current_status = DW3000readreg(SYS_STATUS_ID, 4);
-    if (current_status & SYS_STATUS_TXFRS_BIT_MASK) {
-      // TX done
-      printf("TX done, SYS_STATUS: 0x%08lX\r\n", current_status);
-    } else {
-      // TX failed
-      printf("TX failed, SYS_STATUS: 0x%08lX\r\n", current_status);
+      DW3000_IRQ_flag = false; // reset the flag
+      uint32_t current_status = DW3000readreg(SYS_STATUS_ID, 4);
+
+      if (current_status & SYS_STATUS_TXFRS_BIT_MASK) {
+        printf("TX done, SYS_STATUS: 0x%08lX\r\n", current_status);
+        // clear the IRQ flags
+        DW3000_clear_IRQ();
+        HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_SET);
+        HAL_Delay(50);
+        HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_RESET);
+        HAL_Delay(950);
+      } else {
+        printf("TX failed, SYS_STATUS: 0x%08lX\r\n", current_status);
+        // clear the IRQ flags
+        DW3000_clear_IRQ();
+        HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_RESET);
+        HAL_Delay(1000);
+      }
     }
-    // clear the IRQ flags
-    DW3000_clear_IRQ();
-    HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_SET);
-    HAL_Delay(50);
-    HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_RESET);
-    HAL_Delay(950);
+    if (current_node == rx_node) {
+      // receive data
+      DW3000_clear_IRQ(); // clear the IRQ flags, reset the IRQ pin.
+      DW3000_start_receiver_FZ(); // start the receiver
+
+      // wait for the IRQ to be triggered
+      while (!DW3000_IRQ_flag) {;}
+
+      DW3000_IRQ_flag = false; // reset the flag
+      uint32_t current_status = DW3000readreg(SYS_STATUS_ID, 4);
+
+      if (current_status & SYS_STATUS_RXFR_BIT_MASK) {
+        DW3000_clear_IRQ();
+        HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_SET);
+        HAL_Delay(50);
+        HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_RESET);
+        printf("RX ready, SYS_STATUS: 0x%08lX\r\n", current_status);
+      } else {
+        DW3000_clear_IRQ();
+        HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_SET);
+        HAL_Delay(50);
+        HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_RESET);
+        printf("RX failed, SYS_STATUS: 0x%08lX\r\n", current_status);
+      }
+    }
   }
   /* USER CODE END 3 */
 }

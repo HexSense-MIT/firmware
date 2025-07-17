@@ -3,6 +3,10 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
+		<item value="node_role"/>
+		<item value="CDC"/>
+		<item value="RF95_SetRxDoneFlag"/>
+		<item value="RF95_RX_DONE_FLAG"/>
 		<item value="ROLE_RX"/>
 		<item value="SPI_BAUDRATEPRESCALER_32"/>
 	</list>

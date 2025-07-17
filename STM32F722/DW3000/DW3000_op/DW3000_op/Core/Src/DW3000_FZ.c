@@ -362,6 +362,40 @@ void DW3000_clear_IRQ(void) {
   DW3000_IRQ_flag = false;
 }
 
+void DW3000_clear_all_events(void) {
+  DW3000_writefastCMD_FZ(CMD_CLR_IRQS);
+}
+
+void DW3000config_CH(uint16_t RX_PCODE, uint16_t TX_PCODE, uint8_t SFD_TYP, channel CH) {
+  uint32_t chan_ctrl = 0;
+
+  chan_ctrl |= ((RX_PCODE << CHAN_CTRL_RX_PCODE_BIT_OFFSET) & CHAN_CTRL_RX_PCODE_BIT_MASK) |
+               ((TX_PCODE << CHAN_CTRL_TX_PCODE_BIT_OFFSET) & CHAN_CTRL_TX_PCODE_BIT_MASK) |
+               ((SFD_TYP  << CHAN_CTRL_SFD_TYPE_BIT_OFFSET) & CHAN_CTRL_SFD_TYPE_BIT_MASK) |
+               ((CH       << CHAN_CTRL_RF_CHAN_BIT_OFFSET) & CHAN_CTRL_RF_CHAN_BIT_MASK);
+
+  // FZ: write the channel control register
+  DW3000writereg(CHAN_CTRL_ID, (uint8_t*)&chan_ctrl, 4);
+}
+
+void DW3000_irq_for_tx_done(void) {
+  uint32_t sys_enable = DW3000readreg(SYS_ENABLE_LO_ID, 4);
+  sys_enable |= (1 << SYS_ENABLE_LO_TXFRS_ENABLE_BIT_OFFSET); // Enable TX done interrupt
+  DW3000writereg(SYS_ENABLE_LO_ID, (uint8_t*)&sys_enable, SYS_ENABLE_LO_LEN);
+}
+
+void DW3000_irq_for_rx_done(void) {
+  // uint32_t sys_enable = DW3000readreg(SYS_ENABLE_LO_ID, 4);
+  // sys_enable |= ((1 << SYS_ENABLE_LO_RXFR_ENABLE_BIT_OFFSET)  |
+  //                (1 << SYS_ENABLE_LO_RXPHD_ENABLE_BIT_OFFSET)); // Enable RX done interrupt
+  uint32_t sys_enable = SYS_ENABLE_LO_MASK;
+  DW3000writereg(SYS_ENABLE_LO_ID, (uint8_t*)&sys_enable, SYS_ENABLE_LO_LEN);
+}
+
+void DW3000_disable_RX_timeout(void) {
+  ;
+}
+
 // FZ: the IRQ will be triggered at the very beginning because
 // the SPI ready will cause an interrupt
 // so we need to clear the interrupt
@@ -371,11 +405,5 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
   if (GPIO_Pin == UWB_IRQ_Pin) {
     DW3000_IRQ_flag = true;
   }
-}
-
-void DW3000_irq_for_tx_done(void) {
-  uint32_t sys_enable = DW3000readreg(SYS_ENABLE_LO_ID, 4);
-  sys_enable |= SYS_ENABLE_LO_TXFRS_ENABLE_BIT_MASK; // Enable TX done interrupt
-  DW3000writereg(SYS_ENABLE_LO_ID, (uint8_t*)&sys_enable, SYS_ENABLE_LO_LEN);
 }
 

@@ -1528,3 +1528,727 @@ Finished building: default.size.stdout
  
 Finished building: DW3000_op.list
  
+12:42:17 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42248	    392	   8720	  51360	   c8a0	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+15:11:44 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42248	    392	   8720	  51360	   c8a0	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+15:11:49 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-size  DW3000_op.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42248	    392	   8720	  51360	   c8a0	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+16:26:15 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/DW3000_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_FZ.d" -MT"Core/Src/DW3000_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_FZ.o"
+arm-none-eabi-gcc "../Core/Src/DW3000_recv_test_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_recv_test_FZ.d" -MT"Core/Src/DW3000_recv_test_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_recv_test_FZ.o"
+arm-none-eabi-gcc "../Core/Src/DW3000_send_test_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_send_test_FZ.d" -MT"Core/Src/DW3000_send_test_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_send_test_FZ.o"
+arm-none-eabi-gcc "../Core/Src/HS_system.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/HS_system.d" -MT"Core/Src/HS_system.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/HS_system.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f7xx_hal_msp.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f7xx_hal_msp.d" -MT"Core/Src/stm32f7xx_hal_msp.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f7xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32f7xx_it.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f7xx_it.d" -MT"Core/Src/stm32f7xx_it.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f7xx_it.o"
+arm-none-eabi-gcc "../Core/Src/syscalls.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/syscalls.d" -MT"Core/Src/syscalls.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/syscalls.o"
+arm-none-eabi-gcc "../Core/Src/sysmem.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/sysmem.d" -MT"Core/Src/sysmem.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/sysmem.o"
+arm-none-eabi-gcc "../Core/Src/system_stm32f7xx.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/system_stm32f7xx.d" -MT"Core/Src/system_stm32f7xx.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/system_stm32f7xx.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:195:9: error: expected expression before 'node_type'
+  195 |     if (node_type == rx_node) {
+      |         ^~~~~~~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j15 all" terminated with exit code 2. Build might be incomplete.
+16:26:29 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42520	    392	   8720	  51632	   c9b0	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+16:26:33 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-size  DW3000_op.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42520	    392	   8720	  51632	   c9b0	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+16:28:22 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42520	    392	   8720	  51632	   c9b0	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+16:28:51 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  40692	    392	   8720	  49804	   c28c	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+16:29:08 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42520	    392	   8720	  51632	   c9b0	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+16:31:59 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/DW3000_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_FZ.d" -MT"Core/Src/DW3000_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_FZ.o"
+arm-none-eabi-gcc "../Core/Src/DW3000_recv_test_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_recv_test_FZ.d" -MT"Core/Src/DW3000_recv_test_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_recv_test_FZ.o"
+arm-none-eabi-gcc "../Core/Src/DW3000_send_test_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_send_test_FZ.d" -MT"Core/Src/DW3000_send_test_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_send_test_FZ.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42580	    392	   8720	  51692	   c9ec	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+16:49:23 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/DW3000_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_FZ.d" -MT"Core/Src/DW3000_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_FZ.o"
+arm-none-eabi-gcc "../Core/Src/DW3000_recv_test_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_recv_test_FZ.d" -MT"Core/Src/DW3000_recv_test_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_recv_test_FZ.o"
+arm-none-eabi-gcc "../Core/Src/DW3000_send_test_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_send_test_FZ.d" -MT"Core/Src/DW3000_send_test_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_send_test_FZ.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42692	    392	   8720	  51804	   ca5c	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+16:49:28 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-size  DW3000_op.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42692	    392	   8720	  51804	   ca5c	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+16:56:52 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/DW3000_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_FZ.d" -MT"Core/Src/DW3000_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_FZ.o"
+arm-none-eabi-gcc "../Core/Src/DW3000_recv_test_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_recv_test_FZ.d" -MT"Core/Src/DW3000_recv_test_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_recv_test_FZ.o"
+arm-none-eabi-gcc "../Core/Src/DW3000_send_test_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_send_test_FZ.d" -MT"Core/Src/DW3000_send_test_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_send_test_FZ.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42664	    392	   8720	  51776	   ca40	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+16:56:55 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-size  DW3000_op.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42664	    392	   8720	  51776	   ca40	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+16:57:59 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42664	    392	   8720	  51776	   ca40	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+16:58:21 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42664	    392	   8720	  51776	   ca40	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+16:58:40 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-size  DW3000_op.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42664	    392	   8720	  51776	   ca40	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+16:59:13 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42660	    392	   8720	  51772	   ca3c	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+16:59:48 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42712	    392	   8720	  51824	   ca70	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+17:00:43 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42692	    392	   8720	  51804	   ca5c	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+17:04:04 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/DW3000_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_FZ.d" -MT"Core/Src/DW3000_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_FZ.o"
+arm-none-eabi-gcc "../Core/Src/DW3000_recv_test_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_recv_test_FZ.d" -MT"Core/Src/DW3000_recv_test_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_recv_test_FZ.o"
+arm-none-eabi-gcc "../Core/Src/DW3000_send_test_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_send_test_FZ.d" -MT"Core/Src/DW3000_send_test_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_send_test_FZ.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:129:7: error: 'dev_id' undeclared (first use in this function)
+  129 |   if (dev_id == (uint32_t)DWT_DW3000_DEV_ID) {
+      |       ^~~~~~
+../Core/Src/main.c:129:7: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:185:16: warning: unused variable 'current_status' [-Wunused-variable]
+  185 |       uint32_t current_status = DW3000readreg(SYS_STATUS_ID, 4);
+      |                ^~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j15 all" terminated with exit code 2. Build might be incomplete.
+17:05:03 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:184:16: warning: unused variable 'current_status' [-Wunused-variable]
+  184 |       uint32_t current_status = DW3000readreg(SYS_STATUS_ID, 4);
+      |                ^~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  40804	    392	   8720	  49916	   c2fc	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+17:05:15 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-size  DW3000_op.elf 
+   text	   data	    bss	    dec	    hex	filename
+  40804	    392	   8720	  49916	   c2fc	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+17:11:41 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:200:7: error: too many arguments to function 'DW3000_start_receiver_FZ'
+  200 |       DW3000_start_receiver_FZ(0); // start the receiver
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../Core/Src/main.c:28:
+../Core/Inc/DW3000_recv_test_FZ.h:13:13: note: declared here
+   13 | extern void DW3000_start_receiver_FZ(void);
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:46: Core/Src/main.o] Error 1
+"make -j15 all" terminated with exit code 2. Build might be incomplete.
+17:11:57 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42536	    392	   8720	  51648	   c9c0	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+17:11:59 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-size  DW3000_op.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42536	    392	   8720	  51648	   c9c0	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+17:12:14 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-size  DW3000_op.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42536	    392	   8720	  51648	   c9c0	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+17:12:29 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-size  DW3000_op.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42536	    392	   8720	  51648	   c9c0	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+17:12:50 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-size  DW3000_op.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42536	    392	   8720	  51648	   c9c0	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+17:16:59 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/DW3000_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_FZ.d" -MT"Core/Src/DW3000_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_FZ.o"
+arm-none-eabi-gcc "../Core/Src/DW3000_recv_test_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_recv_test_FZ.d" -MT"Core/Src/DW3000_recv_test_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_recv_test_FZ.o"
+arm-none-eabi-gcc "../Core/Src/DW3000_send_test_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_send_test_FZ.d" -MT"Core/Src/DW3000_send_test_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_send_test_FZ.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42596	    392	   8720	  51708	   c9fc	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+17:19:45 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/DW3000_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_FZ.d" -MT"Core/Src/DW3000_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_FZ.o"
+arm-none-eabi-gcc "../Core/Src/DW3000_recv_test_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_recv_test_FZ.d" -MT"Core/Src/DW3000_recv_test_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_recv_test_FZ.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42596	    392	   8720	  51708	   c9fc	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+17:20:48 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42492	    392	   8720	  51604	   c994	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+17:21:52 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42524	    392	   8720	  51636	   c9b4	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+17:22:03 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-size  DW3000_op.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42524	    392	   8720	  51636	   c9b4	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+17:28:45 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/DW3000_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_FZ.d" -MT"Core/Src/DW3000_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_FZ.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42628	    392	   8720	  51740	   ca1c	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+17:29:00 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-size  DW3000_op.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42628	    392	   8720	  51740	   ca1c	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+17:36:27 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/DW3000_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_FZ.d" -MT"Core/Src/DW3000_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_FZ.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42636	    392	   8720	  51748	   ca24	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+17:38:43 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42636	    392	   8720	  51748	   ca24	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+17:39:56 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42720	    392	   8720	  51832	   ca78	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+17:40:08 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-size  DW3000_op.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42720	    392	   8720	  51832	   ca78	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+17:40:42 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42720	    392	   8720	  51832	   ca78	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+17:40:58 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-size  DW3000_op.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42720	    392	   8720	  51832	   ca78	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+17:45:59 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42780	    392	   8720	  51892	   cab4	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+17:53:52 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/DW3000_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_FZ.d" -MT"Core/Src/DW3000_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_FZ.o"
+arm-none-eabi-gcc "../Core/Src/DW3000_recv_test_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_recv_test_FZ.d" -MT"Core/Src/DW3000_recv_test_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_recv_test_FZ.o"
+arm-none-eabi-gcc "../Core/Src/DW3000_send_test_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_send_test_FZ.d" -MT"Core/Src/DW3000_send_test_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_send_test_FZ.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42720	    392	   8720	  51832	   ca78	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+17:53:55 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-size  DW3000_op.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42720	    392	   8720	  51832	   ca78	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+18:10:54 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42796	    392	   8720	  51908	   cac4	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+18:17:29 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/DW3000_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_FZ.d" -MT"Core/Src/DW3000_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_FZ.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42688	    392	   8720	  51800	   ca58	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+18:18:39 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/DW3000_FZ.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/DW3000_FZ.d" -MT"Core/Src/DW3000_FZ.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/DW3000_FZ.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42676	    392	   8720	  51788	   ca4c	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+18:19:42 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42736	    392	   8720	  51848	   ca88	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+18:23:01 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42736	    392	   8720	  51848	   ca88	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+18:58:16 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42736	    392	   8720	  51848	   ca88	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+19:04:56 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42736	    392	   8720	  51848	   ca88	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+19:05:34 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42736	    392	   8720	  51848	   ca88	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+19:08:52 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42800	    392	   8720	  51912	   cac8	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+19:09:25 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42800	    392	   8720	  51912	   cac8	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+19:13:36 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42800	    392	   8720	  51912	   cac8	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 
+19:13:59 **** Incremental Build of configuration Debug for project DW3000_op ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DW3000_op.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DW3000_op.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DW3000_op.elf
+ 
+arm-none-eabi-size  DW3000_op.elf 
+arm-none-eabi-objdump -h -S DW3000_op.elf  > "DW3000_op.list"
+   text	   data	    bss	    dec	    hex	filename
+  42800	    392	   8720	  51912	   cac8	DW3000_op.elf
+Finished building: default.size.stdout
+ 
+Finished building: DW3000_op.list
+ 

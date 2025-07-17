@@ -391,3 +391,29 @@ Could not read registers; remote failure reply 'E31'
 java.lang.Exception: Could not read registers; remote failure reply 'E31'
 	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1024)
 	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:853)
+!SESSION 2025-07-17 12:18:08.285 -----------------------------------------------
+eclipse.buildId=Version 1.19.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/liufangzheng/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/liufangzheng/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-07-17 12:18:31.495
+!MESSAGE Log4j2 initialized with config file /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/lora/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-07-17 12:18:38.404
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2025-07-17 12:45:01.925 -----------------------------------------------
+eclipse.buildId=Version 1.19.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/liufangzheng/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/liufangzheng/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-07-17 12:45:13.118
+!MESSAGE Log4j2 initialized with config file /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/lora/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-07-17 12:45:19.189
+!MESSAGE Started RMI Server, listening on port 41337
