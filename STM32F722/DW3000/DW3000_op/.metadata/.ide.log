@@ -1194,3 +1194,197 @@
 2025-07-16 17:54:51,641 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 906mS.
 2025-07-16 17:54:51,641 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
 2025-07-16 17:54:51,644 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-07-16 19:43:41,833 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 771027144 Bytes (1073741824)
+2025-07-16 19:43:41,995 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 797550112 Bytes (1073741824)
+2025-07-16 19:43:42,751 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 938567336 Bytes (1073741824)
+2025-07-16 19:43:43,468 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-16 19:43:43,468 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-16 19:43:43,469 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_DEVICE
+2025-07-16 19:43:43,469 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2025-07-16 19:43:43,469 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2025-07-16 19:43:43,469 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_OTG_FS
+2025-07-16 19:43:43,469 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2025-07-16 19:43:43,469 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2025-07-16 19:43:43,469 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: FATFS
+2025-07-16 19:43:43,470 [INFO] CodeGenerator:892 - code generatio: config db path: /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.common.mx_6.15.0.202507011659//db/
+2025-07-16 19:43:43,519 [WARN] IP:2250 - DEVICE_SERIAL0_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-16 19:43:43,519 [WARN] IP:2250 - DEVICE_SERIAL1_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-16 19:43:43,519 [WARN] IP:2250 - DEVICE_SERIAL2_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-16 19:43:43,606 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/license.tmp_save
+2025-07-16 19:43:43,817 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/license.tmp
+2025-07-16 19:43:43,906 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/gpio.tmp_save
+2025-07-16 19:43:44,024 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/gpio.tmp
+2025-07-16 19:43:44,158 [WARN] IPConfigManager:3238 - Warning: the RefConfig PWREx_EnableUSBVoltageDetector is not available in your config.xml file
+2025-07-16 19:43:44,164 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/usb_otg_fs_vars.tmp_save
+2025-07-16 19:43:44,256 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/usb_otg_fs_vars.tmp
+2025-07-16 19:43:44,259 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/usb_otg_fs_inc.tmp_save
+2025-07-16 19:43:44,334 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/usb_otg_fs_inc.tmp
+2025-07-16 19:43:44,338 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/usb_otg_fs_HalInit.tmp_save
+2025-07-16 19:43:44,466 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/usb_otg_fs_HalInit.tmp
+2025-07-16 19:43:44,469 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/usb_otg_fs_Msp.tmp_save
+2025-07-16 19:43:44,561 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/usb_otg_fs_Msp.tmp
+2025-07-16 19:43:45,009 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-16 19:43:45,013 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-16 19:43:45,081 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-16 19:43:45,083 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-16 19:43:45,149 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_vars.tmp
+2025-07-16 19:43:45,152 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-16 19:43:45,228 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-16 19:43:45,230 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-16 19:43:45,300 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_inc.tmp
+2025-07-16 19:43:45,322 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-16 19:43:45,326 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/cortex.tmp_save
+2025-07-16 19:43:45,396 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/cortex.tmp
+2025-07-16 19:43:45,401 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-16 19:43:45,406 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-16 19:43:45,478 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-16 19:43:45,481 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-16 19:43:45,546 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_vars.tmp
+2025-07-16 19:43:45,549 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-16 19:43:45,615 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-16 19:43:45,617 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-16 19:43:45,682 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_inc.tmp
+2025-07-16 19:43:45,685 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/FATFS/Target/ffconf.h_save
+2025-07-16 19:43:45,763 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/FATFS/Target/ffconf.h
+2025-07-16 19:43:45,766 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/FATFS/Target/user_diskio.c_save
+2025-07-16 19:43:45,834 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/FATFS/Target/user_diskio.c
+2025-07-16 19:43:45,837 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/FATFS/Target/user_diskio.h_save
+2025-07-16 19:43:45,907 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/FATFS/Target/user_diskio.h
+2025-07-16 19:43:45,911 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/FATFS/App/fatfs.c_save
+2025-07-16 19:43:45,983 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/FATFS/App/fatfs.c
+2025-07-16 19:43:45,986 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/FATFS/App/fatfs.h_save
+2025-07-16 19:43:46,059 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/FATFS/App/fatfs.h
+2025-07-16 19:43:46,077 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-16 19:43:46,084 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usb_device.c_save
+2025-07-16 19:43:46,161 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usb_device.c
+2025-07-16 19:43:46,164 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usb_device.h_save
+2025-07-16 19:43:46,236 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usb_device.h
+2025-07-16 19:43:46,239 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/Target/usbd_conf.h_save
+2025-07-16 19:43:46,305 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/Target/usbd_conf.h
+2025-07-16 19:43:46,309 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/Target/usbd_conf.c_save
+2025-07-16 19:43:46,389 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/Target/usbd_conf.c
+2025-07-16 19:43:46,392 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usbd_desc.h_save
+2025-07-16 19:43:46,457 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usbd_desc.h
+2025-07-16 19:43:46,461 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usbd_desc.c_save
+2025-07-16 19:43:46,535 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usbd_desc.c
+2025-07-16 19:43:46,539 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usbd_cdc_if.h_save
+2025-07-16 19:43:46,605 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usbd_cdc_if.h
+2025-07-16 19:43:46,609 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usbd_cdc_if.c_save
+2025-07-16 19:43:46,687 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usbd_cdc_if.c
+2025-07-16 19:43:46,697 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Src/stm32f7xx_it.c_save
+2025-07-16 19:43:46,952 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Src/stm32f7xx_it.c
+2025-07-16 19:43:46,955 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Inc/stm32f7xx_it.h_save
+2025-07-16 19:43:47,021 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Inc/stm32f7xx_it.h
+2025-07-16 19:43:47,035 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Src/stm32f7xx_hal_msp.c_save
+2025-07-16 19:43:47,133 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Src/stm32f7xx_hal_msp.c
+2025-07-16 19:43:47,135 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/system.tmp_save
+2025-07-16 19:43:47,199 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/system.tmp
+2025-07-16 19:43:47,207 [INFO] CodeEngine:321 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Inc/stm32f7xx_hal_conf.h_save
+2025-07-16 19:43:47,287 [INFO] CodeEngine:345 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Inc/stm32f7xx_hal_conf.h
+2025-07-16 19:43:47,331 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Inc/main.h_save
+2025-07-16 19:43:47,434 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Inc/main.h
+2025-07-16 19:43:47,438 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Src/main.c_save
+2025-07-16 19:43:47,547 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Src/main.c
+2025-07-16 19:43:47,784 [INFO] ProjectBuilder:3606 - Time for Copy HAL[2] : 0mS.
+2025-07-16 19:43:47,789 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
+2025-07-16 19:43:47,892 [INFO] ConfigFileManager:1595 - The Die is : DIE452
+2025-07-16 19:43:48,550 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 761mS.
+2025-07-16 19:43:48,551 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-07-16 19:43:48,552 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-07-16 19:59:11,084 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 614415552 Bytes (1073741824)
+2025-07-16 19:59:11,304 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 641156288 Bytes (1073741824)
+2025-07-16 19:59:12,202 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 746536128 Bytes (1073741824)
+2025-07-16 19:59:12,880 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-16 19:59:12,880 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-16 19:59:12,880 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_DEVICE
+2025-07-16 19:59:12,880 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2025-07-16 19:59:12,880 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2025-07-16 19:59:12,880 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_OTG_FS
+2025-07-16 19:59:12,881 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2025-07-16 19:59:12,881 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2025-07-16 19:59:12,881 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: FATFS
+2025-07-16 19:59:12,882 [INFO] CodeGenerator:892 - code generatio: config db path: /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.common.mx_6.15.0.202507011659//db/
+2025-07-16 19:59:12,922 [WARN] IP:2250 - DEVICE_SERIAL0_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-16 19:59:12,922 [WARN] IP:2250 - DEVICE_SERIAL1_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-16 19:59:12,922 [WARN] IP:2250 - DEVICE_SERIAL2_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-16 19:59:13,019 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/license.tmp_save
+2025-07-16 19:59:13,264 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/license.tmp
+2025-07-16 19:59:13,388 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/gpio.tmp_save
+2025-07-16 19:59:13,560 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/gpio.tmp
+2025-07-16 19:59:13,769 [WARN] IPConfigManager:3238 - Warning: the RefConfig PWREx_EnableUSBVoltageDetector is not available in your config.xml file
+2025-07-16 19:59:13,783 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/usb_otg_fs_vars.tmp_save
+2025-07-16 19:59:13,932 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/usb_otg_fs_vars.tmp
+2025-07-16 19:59:13,936 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/usb_otg_fs_inc.tmp_save
+2025-07-16 19:59:14,064 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/usb_otg_fs_inc.tmp
+2025-07-16 19:59:14,067 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/usb_otg_fs_HalInit.tmp_save
+2025-07-16 19:59:14,226 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/usb_otg_fs_HalInit.tmp
+2025-07-16 19:59:14,231 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/usb_otg_fs_Msp.tmp_save
+2025-07-16 19:59:14,387 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/usb_otg_fs_Msp.tmp
+2025-07-16 19:59:14,974 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-16 19:59:14,979 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-16 19:59:15,069 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-16 19:59:15,072 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-16 19:59:15,155 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_vars.tmp
+2025-07-16 19:59:15,158 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-16 19:59:15,244 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-16 19:59:15,248 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-16 19:59:15,331 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_inc.tmp
+2025-07-16 19:59:15,354 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-16 19:59:15,360 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/cortex.tmp_save
+2025-07-16 19:59:15,445 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/cortex.tmp
+2025-07-16 19:59:15,452 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-16 19:59:15,457 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-16 19:59:15,530 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-16 19:59:15,533 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-16 19:59:15,677 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_vars.tmp
+2025-07-16 19:59:15,681 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-16 19:59:15,769 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-16 19:59:15,771 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-16 19:59:15,858 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/fatfs_inc.tmp
+2025-07-16 19:59:15,862 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/FATFS/Target/ffconf.h_save
+2025-07-16 19:59:15,960 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/FATFS/Target/ffconf.h
+2025-07-16 19:59:15,965 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/FATFS/Target/user_diskio.c_save
+2025-07-16 19:59:16,058 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/FATFS/Target/user_diskio.c
+2025-07-16 19:59:16,062 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/FATFS/Target/user_diskio.h_save
+2025-07-16 19:59:16,234 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/FATFS/Target/user_diskio.h
+2025-07-16 19:59:16,240 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/FATFS/App/fatfs.c_save
+2025-07-16 19:59:16,327 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/FATFS/App/fatfs.c
+2025-07-16 19:59:16,331 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/FATFS/App/fatfs.h_save
+2025-07-16 19:59:16,418 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/FATFS/App/fatfs.h
+2025-07-16 19:59:16,438 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-16 19:59:16,448 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usb_device.c_save
+2025-07-16 19:59:16,541 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usb_device.c
+2025-07-16 19:59:16,545 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usb_device.h_save
+2025-07-16 19:59:16,632 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usb_device.h
+2025-07-16 19:59:16,636 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/Target/usbd_conf.h_save
+2025-07-16 19:59:16,721 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/Target/usbd_conf.h
+2025-07-16 19:59:16,724 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/Target/usbd_conf.c_save
+2025-07-16 19:59:16,834 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/Target/usbd_conf.c
+2025-07-16 19:59:16,837 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usbd_desc.h_save
+2025-07-16 19:59:16,919 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usbd_desc.h
+2025-07-16 19:59:16,923 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usbd_desc.c_save
+2025-07-16 19:59:17,028 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usbd_desc.c
+2025-07-16 19:59:17,033 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usbd_cdc_if.h_save
+2025-07-16 19:59:17,120 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usbd_cdc_if.h
+2025-07-16 19:59:17,123 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usbd_cdc_if.c_save
+2025-07-16 19:59:17,217 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/USB_DEVICE/App/usbd_cdc_if.c
+2025-07-16 19:59:17,230 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Src/stm32f7xx_it.c_save
+2025-07-16 19:59:17,509 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Src/stm32f7xx_it.c
+2025-07-16 19:59:17,515 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Inc/stm32f7xx_it.h_save
+2025-07-16 19:59:17,603 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Inc/stm32f7xx_it.h
+2025-07-16 19:59:17,623 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Src/stm32f7xx_hal_msp.c_save
+2025-07-16 19:59:17,749 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Src/stm32f7xx_hal_msp.c
+2025-07-16 19:59:17,752 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/system.tmp_save
+2025-07-16 19:59:17,837 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/MXTmpFiles/system.tmp
+2025-07-16 19:59:17,846 [INFO] CodeEngine:321 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Inc/stm32f7xx_hal_conf.h_save
+2025-07-16 19:59:17,942 [INFO] CodeEngine:345 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Inc/stm32f7xx_hal_conf.h
+2025-07-16 19:59:18,005 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Inc/main.h_save
+2025-07-16 19:59:18,163 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Inc/main.h
+2025-07-16 19:59:18,168 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Src/main.c_save
+2025-07-16 19:59:18,322 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3000/DW3000_op/DW3000_op/Core/Src/main.c
+2025-07-16 19:59:18,642 [INFO] ProjectBuilder:3606 - Time for Copy HAL[2] : 1mS.
+2025-07-16 19:59:18,650 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
+2025-07-16 19:59:18,788 [INFO] ConfigFileManager:1595 - The Die is : DIE452
+2025-07-16 19:59:19,680 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 1030mS.
+2025-07-16 19:59:19,680 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-07-16 19:59:19,682 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.

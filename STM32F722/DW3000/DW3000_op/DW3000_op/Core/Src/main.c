@@ -109,6 +109,7 @@ int main(void)
   HAL_Delay(10);     // wait for the DW3000 to wake up
 
   set_SPI2lowspeed(&hspi1);
+  // HAL_Delay(10);     // wait for the DW3000 to wake up
 
   // Make sure the SPI is ready
   while(!(DW3000readreg(SYS_STATUS_ID, 4) & SYS_STATUS_SPIRDY_BIT_MASK)) {
@@ -146,6 +147,9 @@ int main(void)
     while (1);
   }
 
+  DW3000_clear_IRQ(); // clear the IRQ flags, reset the IRQ pin.
+  DW3000_irq_for_tx_done(); // enable the IRQ for TX done
+
   // after PLL locked, SPI can operate up to 38MHz.
   set_SPI2highspeed(&hspi1);
 
@@ -155,21 +159,33 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1) {
     /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
     // send data
     DW3000_writetxdata_FZ(data2send, 10);
     DW3000_txcmd_FZ(0);
 
     // waiting for the TX to complete
-    while (!DW3000_TXdone_FZ()) {
-      HAL_Delay(1);
-    }
+    // while (!DW3000_TXdone_FZ()) {
+    //   HAL_Delay(1);
+    // }
+    while (!DW3000_IRQ_flag) {;}
 
+    DW3000_IRQ_flag = false; // reset the flag
+    uint32_t current_status = DW3000readreg(SYS_STATUS_ID, 4);
+    if (current_status & SYS_STATUS_TXFRS_BIT_MASK) {
+      // TX done
+      printf("TX done, SYS_STATUS: 0x%08lX\r\n", current_status);
+    } else {
+      // TX failed
+      printf("TX failed, SYS_STATUS: 0x%08lX\r\n", current_status);
+    }
+    // clear the IRQ flags
+    DW3000_clear_IRQ();
     HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_SET);
     HAL_Delay(50);
     HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_RESET);
-    HAL_Delay(1950);
-
-    /* USER CODE BEGIN 3 */
+    HAL_Delay(950);
   }
   /* USER CODE END 3 */
 }

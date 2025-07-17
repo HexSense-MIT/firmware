@@ -7,6 +7,8 @@
 
 #include "DW3000_FZ.h"
 
+bool DW3000_IRQ_flag = false; // flag to indicate if the TX is done
+
 // remember put this in the main.h: #define LORA_SPI_HANDLE hspi1
 extern SPI_HandleTypeDef UWB_SPI_HANDLE;
 
@@ -151,7 +153,7 @@ void reset_bits(uint32_t reg, uint32_t mask, uint8_t reg_width) {
  * @param hspi 
  */
 void set_SPI2lowspeed(SPI_HandleTypeDef *hspi) {
-  // set SPI speed to 5 MHz
+  // set SPI speed to 3 MHz
   hspi->Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_16;
 
   if (HAL_SPI_Init(hspi) != HAL_OK) {
@@ -165,8 +167,8 @@ void set_SPI2lowspeed(SPI_HandleTypeDef *hspi) {
  * @param hspi 
  */
 void set_SPI2highspeed(SPI_HandleTypeDef *hspi) {
-  // set SPI speed to 20 MHz
-  hspi->Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  // set SPI speed to 24 MHz
+  hspi->Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_8;
 
   if (HAL_SPI_Init(hspi) != HAL_OK) {
     Error_Handler();
@@ -345,6 +347,29 @@ void DW3000_writefastCMD_FZ(uint8_t cmd) {
   HAL_GPIO_WritePin(UWB_CS_GPIO_Port, UWB_CS_Pin, GPIO_PIN_SET);
 }
 
+// clear the IRQ flags
+void DW3000_clear_IRQ(void) {
+  uint32_t irqFlags = DW3000readreg(SYS_STATUS_ID, 4);
+    // FZ: Clear the interrupt flags
+  DW3000writereg(SYS_STATUS_ID, (uint8_t*)&irqFlags, 4);
+  DW3000_IRQ_flag = false;
+}
 
+// FZ: the IRQ will be triggered at the very beginning because
+// the SPI ready will cause an interrupt
+// so we need to clear the interrupt
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+  UNUSED(GPIO_Pin); // Prevent unused variable warning
 
+  if (GPIO_Pin == UWB_IRQ_Pin) {
+    DW3000_IRQ_flag = true;
+    uint32_t status = DW3000readreg(SYS_STATUS_ID, 4);
+  }
+}
+
+void DW3000_irq_for_tx_done(void) {
+  uint32_t sys_enable = DW3000readreg(SYS_ENABLE_LO_ID, 4);
+  sys_enable |= SYS_ENABLE_LO_TXFRS_ENABLE_BIT_MASK; // Enable TX done interrupt
+  DW3000writereg(SYS_ENABLE_LO_ID, (uint8_t*)&sys_enable, SYS_ENABLE_LO_LEN);
+}
 

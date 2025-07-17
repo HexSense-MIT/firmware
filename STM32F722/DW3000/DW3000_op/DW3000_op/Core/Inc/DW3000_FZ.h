@@ -20,6 +20,8 @@
 #include "dw3000_deca_vals.h"
 #include "HS_system.h"
 
+extern bool DW3000_IRQ_flag; // flag to indicate if the TX is done
+
 // FZ stole from DecaWave API
 typedef enum
 {
@@ -85,7 +87,9 @@ extern void DW3000set_GPIO(dw_gpio gpio, dw_gpio_mode mode);
 
 extern uint32_t DW3000readOTP(uint8_t addr);
 
-extern void DW3000_writefastCMD_FZ(uint8_t cmd);
+extern void DW3000_clear_IRQ(void);
 
+extern void DW3000_writefastCMD_FZ(uint8_t cmd);
+extern void DW3000_irq_for_tx_done(void);
 
 #endif /* INC_DW3000_FZ_H_ */
