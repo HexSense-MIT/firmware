@@ -168,7 +168,7 @@ void set_SPI2lowspeed(SPI_HandleTypeDef *hspi) {
  */
 void set_SPI2highspeed(SPI_HandleTypeDef *hspi) {
   // set SPI speed to 24 MHz
-  hspi->Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_8;
+  hspi->Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
 
   if (HAL_SPI_Init(hspi) != HAL_OK) {
     Error_Handler();
@@ -394,6 +394,120 @@ void DW3000_irq_for_rx_done(void) {
 
 void DW3000_disable_RX_timeout(void) {
   ;
+}
+
+void DW3000_set_max_sfd_timeout(void) {
+  // FZ: Set the maximum SFD timeout
+  uint16_t sfd_timeout = RX_SFD_TOC_MASK;
+  DW3000writereg(RX_SFD_TOC_ID, (uint8_t*)&sfd_timeout, 2);
+}
+
+void DW3000_debug_reg(uint32_t reg, uint8_t len) {
+  uint32_t reg_value = DW3000readreg(reg, len);
+  printf("DW3000 Register 0x%08lX: 0x%08lX\r\n", reg, reg_value);
+}
+
+/**
+ * @brief FZ: from: https://gist.github.com/egnor/455d510e11c22deafdec14b09da5bf54
+ * Things which are actually documented but easy to miss
+ * - If using a 16MHz PRF (PCODE 3 or 4), set RX_TUNE_EN in DGC_CFG
+ * - Always change THR_64 in DGC_CFG to 0x32
+ * - Always clear DT0B4 in DTUNE0
+ * - Always change COMP_DLY in RX_CAL to 0x2
+ * - Always change LDO_RLOAD to 0x14
+ * - Always change RF_TX_CTRL_1 to 0x0E
+ * - Always change RF_TX_CTRL_2 to 0x1C071134 (ch5) or 0x1C010034 (ch9)
+ * - Always change PLL_CFG to 0x1F3C (ch5) or 0x0F3C (ch9)
+ * - Always change PLL_CFG_LD in PLL_CAL to 0x8 (documented as 0x81 but that's the whole register)
+ */
+void DW3000_cfg_FZ(void) {
+  // Always change THR_64 in DGC_CFG to 0x32
+  uint32_t dgc_cfg = DW3000readreg(DGC_CFG_ID, 4);
+  dgc_cfg |= (1 << DGC_CFG_RX_TUNE_EN_BIT_OFFSET) |
+             (0x32 << DGC_CFG_THR_64_BIT_OFFSET); // Enable RX tuning
+  DW3000writereg(DGC_CFG_ID, (uint8_t*)&dgc_cfg, 4);
+
+  // Always clear DT0B4 in DTUNE0
+  uint32_t dtune0 = DW3000readreg(DTUNE0_ID, 4);
+  dtune0 &= ~DTUNE0_DT0B4_BIT_MASK; // Clear the DT0B4 bit
+  DW3000writereg(DTUNE0_ID, (uint8_t*)&dtune0, 4);
+
+  // Always change COMP_DLY in RX_CAL to 0x2
+  uint32_t rx_cal = DW3000readreg(RX_CAL_CFG_ID, 4);
+  rx_cal &= ~RX_CAL_CFG_COMP_DLY_BIT_MASK; // Clear the COMP_DLY
+  rx_cal |= (0x2 << RX_CAL_CFG_COMP_DLY_BIT_OFFSET); // Set COMP_DLY to 0x2
+  DW3000writereg(RX_CAL_CFG_ID, (uint8_t*)&rx_cal, 4);
+
+  // Always change LDO_RLOAD to 0x14
+  uint8_t ldo_cfg = 0x14; // LDO_RLOAD value
+  DW3000writereg(LDO_RLOAD_ID, &ldo_cfg, 1);
+
+  // Always change RF_TX_CTRL_1 to 0x0E
+  uint8_t rf_tx_ctrl_1 = 0x0E;
+  DW3000writereg(RF_TX_CTRL_1_ID, &rf_tx_ctrl_1, 1);
+
+  // Always change RF_TX_CTRL_2 to 0x1C071134 (ch5) or 0x1C010034 (ch9)
+  uint32_t channel_ctrl = DW3000readreg(CHAN_CTRL_ID, 4);
+  uint32_t channel_sel  = channel_ctrl & CHAN_CTRL_RF_CHAN_BIT_MASK; // Get the current channel
+  uint32_t rf_tx_ctrl_2 = (channel_sel == 0) ? 0x1C071134 : 0x1C010034; // Set RF_TX_CTRL_2 based on channel
+  DW3000writereg(TX_CTRL_HI_ID, (uint8_t*)&rf_tx_ctrl_2, 4);
+
+  // Always change PLL_CFG to 0x1F3C (ch5) or 0x0F3C (ch9)
+  uint16_t pll_cfg = (channel_sel == 0) ? 0x1F3C : 0x0F3C; // Set PLL_CFG based on channel
+  DW3000writereg(PLL_CFG_ID, (uint8_t*)&pll_cfg, 2);
+
+  // Always change PLL_CFG_LD in PLL_CAL to 0x8
+  uint32_t pll_cal = DW3000readreg(PLL_CAL_ID, 4);
+  pll_cal &= ~PLL_CAL_PLL_PLL_CFG_LD_MASK; // Clear the PLL_CFG_LD bits
+  pll_cal |= (0x8 << PLL_CAL_PLL_PLL_CFG_LD_OFFSET); // Set PLL_CFG_LD to 0x8
+  DW3000writereg(PLL_CAL_ID, (uint8_t*)&pll_cal, 4);
+}
+
+/**
+ * @brief from: https://gist.github.com/egnor/455d510e11c22deafdec14b09da5bf54
+ * Receiver calibration (aka "PGF calibration") must run successfully at startup
+ * (and after wakeup or 20°C temperature change) for decent performance.
+ * The manual describes how to start calibration with RX_CAL and check results
+ * in RX_CAL_RESI and RX_CAL_RESQ but misses some details:
+ * - Before running calibration, bits 0 (VDDMS1), 2 (VDDMS3), and 8 (VDDIF2) must be set in LDO_CTRL
+ * - Before reading RX_CAL_RESI/RESQ, bit 16 in RX_CAL_CFG (the low bit of COMP_DLY) must be set
+ * - (After calibration, the previous value of LDO_CTRL should be restored to save power.)
+ * - Without these steps, calibration will fail (missing LDOs) and the failure won't be noticed
+ *   (result values not being read properly), but the radio will perform very badly.
+ */
+void DW3000_pgf_cal(void) {
+  // pre calibration steps
+  uint32_t ldo_ctrl = DW3000readreg(LDO_CTRL_ID, 4);
+  uint32_t ldo_ctrl_restore = ldo_ctrl; // Save the original LDO_CTRL value
+
+  // Set VDDMS1, VDDMS3, and VDDIF2 bits in LDO_CTRL
+  ldo_ctrl |= (1 << LDO_CTRL_LDO_VDDMS1_EN_BIT_OFFSET) |
+              (1 << LDO_CTRL_LDO_VDDMS3_EN_BIT_OFFSET) |
+              (1 << LDO_CTRL_LDO_VDDIF2_EN_BIT_OFFSET);
+  DW3000writereg(LDO_CTRL_ID, (uint8_t*)&ldo_ctrl, 4);
+
+  // calibration steps
+  uint32_t rx_cal_cfg = DW3000readreg(RX_CAL_CFG_ID, 4);
+  rx_cal_cfg &= ~RX_CAL_CFG_CAL_MODE_BIT_MASK; // Set the CAL_MODE to 0
+  rx_cal_cfg |= (0x01 << RX_CAL_CFG_CAL_MODE_BIT_OFFSET); // set CAL_MODE to calibration mode
+  DW3000writereg(RX_CAL_CFG_ID, (uint8_t*)&rx_cal_cfg, 4);
+  // Start the calibration
+  rx_cal_cfg = DW3000readreg(RX_CAL_CFG_ID, 4);
+  rx_cal_cfg |= (0x01 << RX_CAL_CFG_CAL_EN_BIT_OFFSET);
+  DW3000writereg(RX_CAL_CFG_ID, (uint8_t*)&rx_cal_cfg, 4);
+
+  // Wait for calibration to complete
+  while (!(DW3000readreg(RX_CAL_STS_ID, 1) & 0x01)) {
+    HAL_Delay(1); // Delay to avoid busy-waiting
+  }
+
+  // back to normal mode
+  rx_cal_cfg = DW3000readreg(RX_CAL_CFG_ID, 4);
+  rx_cal_cfg &= ~RX_CAL_CFG_CAL_MODE_BIT_MASK; // Set the CAL_MODE to 0
+  DW3000writereg(RX_CAL_CFG_ID, (uint8_t*)&rx_cal_cfg, 4);
+
+  // LDO back to restored value to save power
+  DW3000writereg(LDO_CTRL_ID, (uint8_t*)&ldo_ctrl_restore, 4);
 }
 
 // FZ: the IRQ will be triggered at the very beginning because

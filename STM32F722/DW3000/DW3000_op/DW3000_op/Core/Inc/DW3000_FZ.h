@@ -8,6 +8,7 @@
 #ifndef INC_DW3000_FZ_H_
 #define INC_DW3000_FZ_H_
 
+#include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
@@ -103,5 +104,11 @@ extern void DW3000_irq_for_tx_done(void);
 extern void DW3000_irq_for_rx_done(void);
 
 extern void DW3000_disable_RX_timeout(void);
+extern void DW3000_set_max_sfd_timeout(void);
+
+extern void DW3000_debug_reg(uint32_t reg, uint8_t len);
+
+extern void DW3000_cfg_FZ(void); // all configuration for RX
+extern void DW3000_pgf_cal(void);
 
 #endif /* INC_DW3000_FZ_H_ */

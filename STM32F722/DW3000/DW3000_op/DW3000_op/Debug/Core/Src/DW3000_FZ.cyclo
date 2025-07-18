@@ -30,4 +30,8 @@
 ../Core/Src/DW3000_FZ.c:381:6:DW3000_irq_for_tx_done	1
 ../Core/Src/DW3000_FZ.c:387:6:DW3000_irq_for_rx_done	1
 ../Core/Src/DW3000_FZ.c:395:6:DW3000_disable_RX_timeout	1
-../Core/Src/DW3000_FZ.c:402:6:HAL_GPIO_EXTI_Callback	2
+../Core/Src/DW3000_FZ.c:399:6:DW3000_set_max_sfd_timeout	1
+../Core/Src/DW3000_FZ.c:405:6:DW3000_debug_reg	1
+../Core/Src/DW3000_FZ.c:423:6:DW3000_cfg_FZ	3
+../Core/Src/DW3000_FZ.c:478:6:DW3000_pgf_cal	2
+../Core/Src/DW3000_FZ.c:516:6:HAL_GPIO_EXTI_Callback	2

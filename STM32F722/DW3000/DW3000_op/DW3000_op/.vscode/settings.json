@@ -12,6 +12,8 @@
         "string": "c",
         "string_view": "c",
         "vector": "c",
-        "dw3000_recv_test_fz.h": "c"
+        "dw3000_recv_test_fz.h": "c",
+        "stdint.h": "c",
+        "stdio.h": "c"
     }
 }

@@ -31,7 +31,8 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-node_type current_node = rx_node; // current node type, default is TX node
+// https://gist.github.com/egnor/455d510e11c22deafdec14b09da5bf54
+node_type current_node = tx_node; // current node type, default is TX node
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -123,25 +124,16 @@ int main(void)
 
   if (dev_id == (uint32_t)DWT_DW3000_DEV_ID) {
     blink_led(PIN_LED1_GPIO_Port, PIN_LED1_Pin, 50);
-  }
-  else {
+  } else {
     while (1);
   }
-
-  DW3000config_CH(0x09, 0x09, 0x00, CH5); // configure the channel
-  uint32_t chan_ctrl = DW3000readreg(CHAN_CTRL_ID, 4);
-  printf("DW3000 Channel Control: 0x%08lX\r\n", chan_ctrl);
-
-  uint32_t sys_cfg = DW3000readreg(SYS_CFG_ID, 4);
-  printf("DW3000 system configuration: 0x%08lX\r\n", sys_cfg);
 
   HAL_Delay(10);
 
   if(DW3000check_IDLE_RC()) {
     DW3000enter_IDLE_PLL(); // enter PLL mode
     HAL_Delay(10); // wait for the PLL to lock
-  }
-  else {
+  } else {
     while (1);
   }
 
@@ -149,17 +141,32 @@ int main(void)
   // actually this is redundant since PLL lock means IDLE_PLL state
   if(DW3000check_IDLE_PLL() && DW3000check_IDLE()) {
     HAL_GPIO_WritePin(PIN_LED1_GPIO_Port, PIN_LED1_Pin, GPIO_PIN_SET);
-  }
-  else {
+  } else {
     HAL_GPIO_WritePin(PIN_LED1_GPIO_Port, PIN_LED1_Pin, GPIO_PIN_RESET);
     while (1);
   }
 
-  if (current_node == tx_node) DW3000_irq_for_tx_done(); // enable the IRQ for TX done
-  if (current_node == rx_node) DW3000_irq_for_rx_done(); // enable the IRQ for RX done
-
   // after PLL locked, SPI can operate up to 38MHz.
   set_SPI2highspeed(&hspi1);
+
+  DW3000config_CH(0x09, 0x09, 0x00, CH5); // configure the channel
+  DW3000_cfg_FZ();
+
+  if (current_node == rx_node) {
+    DW3000_pgf_cal(); // perform the PGF calibration
+    printf("PGF calibration done\r\n");
+  }
+
+  DW3000_debug_reg(CHAN_CTRL_ID, 4);
+  DW3000_debug_reg(SYS_CFG_ID, 4);
+  DW3000_debug_reg(TX_FCTRL_ID, 4);
+
+  if (current_node == tx_node) {
+    DW3000_irq_for_tx_done(); // enable the IRQ for TX done
+  }
+  if (current_node == rx_node) {
+    DW3000_irq_for_rx_done(); // enable the IRQ for RX done
+  }
 
   /* USER CODE END 2 */
 
@@ -201,6 +208,7 @@ int main(void)
       // receive data
       DW3000_clear_IRQ(); // clear the IRQ flags, reset the IRQ pin.
       DW3000_start_receiver_FZ(); // start the receiver
+      DW3000_set_max_sfd_timeout(); // set the maximum SFD timeout
 
       // wait for the IRQ to be triggered
       while (!DW3000_IRQ_flag) {;}

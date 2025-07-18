@@ -1114,8 +1114,8 @@ extern "C"
  * @brief Bit definitions for register RX_CAL_STS
  **/
 #define RX_CAL_STS_ID   0x40020UL
-#define RX_CAL_STS_LEN  (4U)
-#define RX_CAL_STS_MASK 0xFFFFFFFFUL
+#define RX_CAL_STS_LEN  (1U)
+#define RX_CAL_STS_MASK 0xFFUL
 
 /******************************************************************************
  * @brief Bit definitions for register GPIO_MODE
@@ -1508,6 +1508,16 @@ extern "C"
 #define DTUNE0_PRE_PAC_SYM_BIT_MASK   0x3U
 
 /******************************************************************************
+ * @brief Bit definitions for register SFD detection timout count (RX_SFD_TOC)
+ **/
+#define RX_SFD_TOC_ID                 0x60002UL
+#define RX_SFD_TOC_LEN                (2U)
+#define RX_SFD_TOC_MASK               0xFFFFUL
+#define RX_SFD_TOC_PRE_TOC_BIT_OFFSET (0U)
+#define RX_SFD_TOC_PRE_TOC_BIT_LEN    (16U)
+#define RX_SFD_TOC_PRE_TOC_BIT_MASK   0xffffU
+
+/******************************************************************************
  * @brief Bit definitions for register DTUNE1
  **/
 #define DTUNE1_ID                 0x60004UL
@@ -1625,6 +1635,13 @@ extern "C"
 #define TX_CTRL_LO_ID   0x70018UL
 #define TX_CTRL_LO_LEN  (4U)
 #define TX_CTRL_LO_MASK 0xFFFFFFFFUL
+
+/******************************************************************************
+ * @brief Bit definitions for register RF_TX_CTRL_1
+ **/
+#define RF_TX_CTRL_1_ID   0x7001AUL
+#define RF_TX_CTRL_1_LEN  (1U)
+#define RF_TX_CTRL_1_MASK 0xFFUL
 
 /******************************************************************************
  * @brief Bit definitions for register TX_CTRL_HI
@@ -1772,9 +1789,17 @@ extern "C"
 /******************************************************************************
  * @brief Bit definitions for register LDO_RLOAD
  **/
-#define LDO_RLOAD_ID   0x70050UL
-#define LDO_RLOAD_LEN  (4U)
-#define LDO_RLOAD_MASK 0xFFFFFFFFUL
+// FZ: in user manual, the ID is 07:51
+// #define LDO_RLOAD_ID   0x70050UL
+// #define LDO_RLOAD_LEN  (4U)
+// #define LDO_RLOAD_MASK 0xFFFFFFFFUL
+
+/******************************************************************************
+ * @brief Bit definitions for register LDO_RLOAD
+ **/
+#define LDO_RLOAD_ID   0x70051UL
+#define LDO_RLOAD_LEN  (1U)
+#define LDO_RLOAD_MASK 0xFFUL
 
 /******************************************************************************
 * @brief Bit definitions for register SAR_CTRL
@@ -1918,6 +1943,11 @@ extern "C"
 #define PLL_CAL_PLL_CAL_EN_BIT_OFFSET        (8U)
 #define PLL_CAL_PLL_CAL_EN_BIT_LEN           (1U)
 #define PLL_CAL_PLL_CAL_EN_BIT_MASK          0x100UL
+
+#define PLL_CAL_PLL_PLL_CFG_LD_OFFSET        (4U)
+#define PLL_CAL_PLL_PLL_CFG_LD_LEN           (4U)
+#define PLL_CAL_PLL_PLL_CFG_LD_MASK          0xF0UL
+
 #define PLL_CAL_PLL_TUNE_OVR_BIT_OFFSET      (2U)
 #define PLL_CAL_PLL_TUNE_OVR_BIT_LEN         (1U)
 #define PLL_CAL_PLL_TUNE_OVR_BIT_MASK        0x4UL
