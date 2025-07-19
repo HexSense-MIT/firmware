@@ -323,6 +323,25 @@ typedef enum {
 
 #define RF_PLL_COMMON 0xE104UL
 
+// Defines for enable_clocks function
+#define FORCE_CLK_SYS_TX        (1)
+#define FORCE_CLK_AUTO          (5)
+//SYSCLK
+#define FORCE_SYSCLK_PLL        (2)
+#define FORCE_SYSCLK_FOSCDIV4   (1)
+#define FORCE_SYSCLK_FOSC       (3)
+//RX and TX CLK
+#define FORCE_CLK_PLL           (2)
+
+#define SEL_CHANNEL5            (5)
+#define SEL_CHANNEL9            (9)
+
+//Reset options
+#define DWT_RESET_ALL          0x00
+#define DWT_RESET_CTRX         0x0F
+#define DWT_RESET_RX           0xEF
+#define DWT_RESET_CLEAR        0xFF
+
 #ifdef __cplusplus
 }
 #endif
