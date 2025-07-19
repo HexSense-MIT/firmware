@@ -52,7 +52,7 @@ static dwt_config_t config = {
 //static uint8_t rx_buffer[FRAME_LEN_MAX];
 
 // https://gist.github.com/egnor/455d510e11c22deafdec14b09da5bf54
-node_type current_node = tx_node; // current node type, default is TX node
+node_type current_node = rx_node; // current node type, default is TX node
 static uint8_t rx_buffer[FRAME_LEN_MAX];
 #define FCS_LEN 2
 /* Hold copy of status register state here for reference so that it can be examined at a debug breakpoint. */
@@ -223,7 +223,7 @@ int main(void)
       // send data
       DW3000_clear_IRQ(); // clear the IRQ flags, reset the IRQ pin.
       DW3000_writetxdata_FZ(data2send, 10);
-      dwt_writetxfctrl(12, 0, 0); /* Zero offset in TX buffer, no ranging. */
+      dwt_writetxfctrl(10, 0, 0); /* Zero offset in TX buffer, no ranging. */
       DW3000_txcmd_FZ(0);
 
       // wait for the IRQ to be triggered

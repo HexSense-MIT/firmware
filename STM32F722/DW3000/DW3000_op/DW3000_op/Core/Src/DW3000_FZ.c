@@ -1251,7 +1251,6 @@ void dwt_setleds(uint8_t mode) {
     dwt_and32bitoffsetreg(GPIO_MODE_ID, 0, ~(GPIO_MODE_MSGP2_MODE_BIT_MASK | GPIO_MODE_MSGP3_MODE_BIT_MASK));
     dwt_and16bitoffsetreg(LED_CTRL_ID, 0, (uint16_t) ~LED_CTRL_BLINK_EN_BIT_MASK);
   }
-
 }
 
 /*! ------------------------------------------------------------------------------------------------------------------
