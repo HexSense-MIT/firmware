@@ -10,6 +10,8 @@
 
 #include "DW3000_FZ.h"
 
+#define FRAME_LEN_MAX      (127)
+
 extern void DW3000_start_receiver_FZ(void);
 
 #endif /* INC_DW3000_RECV_TEST_FZ_H_ */

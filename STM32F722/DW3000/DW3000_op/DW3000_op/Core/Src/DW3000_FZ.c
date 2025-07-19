@@ -278,7 +278,7 @@ void DW3000enter_IDLE_PLL(void) {
  * @return uint8_t 
  */
 uint8_t DW3000check_IDLE_RC(void) {
-  uint32_t reg = DW3000readreg(SYS_STATUS_ID, 4);
+  uint32_t reg = dwt_read32bitoffsetreg(SYS_STATUS_ID, 0);
   return ((reg & (SYS_STATUS_RCINIT_BIT_MASK)) == (SYS_STATUS_RCINIT_BIT_MASK));
 }
 
@@ -422,15 +422,16 @@ void DW3000_debug_reg(uint32_t reg, uint8_t len) {
  */
 void DW3000_cfg_FZ(void) {
   // Always change THR_64 in DGC_CFG to 0x32
-  uint32_t dgc_cfg = DW3000readreg(DGC_CFG_ID, 4);
+  uint32_t dgc_cfg = DW3000readreg(DGC_CFG_ID, 2);
+  dgc_cfg &= ~(DGC_CFG_RX_TUNE_EN_BIT_MASK | DGC_CFG_THR_64_BIT_MASK);
   dgc_cfg |= (1 << DGC_CFG_RX_TUNE_EN_BIT_OFFSET) |
              (0x32 << DGC_CFG_THR_64_BIT_OFFSET); // Enable RX tuning
-  DW3000writereg(DGC_CFG_ID, (uint8_t*)&dgc_cfg, 4);
+  DW3000writereg(DGC_CFG_ID, (uint8_t*)&dgc_cfg, 2);
 
   // Always clear DT0B4 in DTUNE0
-  uint32_t dtune0 = DW3000readreg(DTUNE0_ID, 4);
+  uint32_t dtune0 = DW3000readreg(DTUNE0_ID, 2);
   dtune0 &= ~DTUNE0_DT0B4_BIT_MASK; // Clear the DT0B4 bit
-  DW3000writereg(DTUNE0_ID, (uint8_t*)&dtune0, 4);
+  DW3000writereg(DTUNE0_ID, (uint8_t*)&dtune0, 2);
 
   // Always change COMP_DLY in RX_CAL to 0x2
   uint32_t rx_cal = DW3000readreg(RX_CAL_CFG_ID, 4);
@@ -457,10 +458,10 @@ void DW3000_cfg_FZ(void) {
   DW3000writereg(PLL_CFG_ID, (uint8_t*)&pll_cfg, 2);
 
   // Always change PLL_CFG_LD in PLL_CAL to 0x8
-  uint32_t pll_cal = DW3000readreg(PLL_CAL_ID, 4);
+  uint32_t pll_cal = DW3000readreg(PLL_CAL_ID, 2);
   pll_cal &= ~PLL_CAL_PLL_PLL_CFG_LD_MASK; // Clear the PLL_CFG_LD bits
   pll_cal |= (0x8 << PLL_CAL_PLL_PLL_CFG_LD_OFFSET); // Set PLL_CFG_LD to 0x8
-  DW3000writereg(PLL_CAL_ID, (uint8_t*)&pll_cal, 4);
+  DW3000writereg(PLL_CAL_ID, (uint8_t*)&pll_cal, 2);
 }
 
 /**
@@ -540,8 +541,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 #define BIAS_TUNE_ADDRESS (0xA)
 #define DGC_TUNE_ADDRESS (0x20)
 
-typedef struct
-{
+typedef struct {
   uint32_t      partID ;            // IC Part ID - read during initialisation
   uint32_t      lotID ;             // IC Lot ID - read during initialisation
   uint8_t       bias_tune;          // bias tune code
@@ -570,8 +570,7 @@ typedef struct
 static localdata _ptr;
 static localdata *pdw3000local = &_ptr;
 
-int writetospi(uint16_t headerLength, uint8_t *headerBuffer, uint16_t bodyLength, uint8_t *bodyBuffer)
-{
+int writetospi(uint16_t headerLength, uint8_t *headerBuffer, uint16_t bodyLength, uint8_t *bodyBuffer) {
   HAL_GPIO_WritePin(UWB_CS_GPIO_Port, UWB_CS_Pin, GPIO_PIN_RESET);
   sendBytes(headerBuffer, headerLength);
   sendBytes(bodyBuffer, bodyLength);
@@ -750,20 +749,18 @@ void dwt_readfromdevice
  *
  * returns 32 bit register value
  */
-uint32_t dwt_read32bitoffsetreg(uint32_t regFileID, uint16_t regOffset)
-{
-    int     j ;
-    uint32_t  regval = 0 ;
-    uint8_t   buffer[4] ;
+uint32_t dwt_read32bitoffsetreg(uint32_t regFileID, uint16_t regOffset) {
+  int     j ;
+  uint32_t  regval = 0 ;
+  uint8_t   buffer[4] ;
 
-    dwt_readfromdevice(regFileID,regOffset,4,buffer); // Read 4 bytes (32-bits) register into buffer
+  dwt_readfromdevice(regFileID,regOffset,4,buffer); // Read 4 bytes (32-bits) register into buffer
 
-    for (j = 3 ; j >= 0 ; j --)
-    {
-        regval = (regval << 8) + buffer[j] ;
-    }
+  for (j = 3 ; j >= 0 ; j --) {
+    regval = (regval << 8) + buffer[j] ;
+  }
 
-    return (regval);
+  return (regval);
 
 } // end dwt_read32bitoffsetreg()
 
@@ -803,13 +800,13 @@ uint16_t dwt_read16bitoffsetreg(uint32_t regFileID, uint16_t regOffset)
  */
 uint8_t dwt_read8bitoffsetreg(uint32_t regFileID, uint16_t regOffset)
 {
-    uint8_t regval;
+  uint8_t regval;
   uint8_t buffer[1];
 
-    dwt_readfromdevice(regFileID, regOffset, 1, buffer);
+  dwt_readfromdevice(regFileID, regOffset, 1, buffer);
   regval = buffer[0] ;
 
-    return regval ;
+  return regval ;
 }
 
 /*! ------------------------------------------------------------------------------------------------------------------
@@ -1159,3 +1156,885 @@ int dwt_initialise(uint8_t mode)
   return DWT_SUCCESS ;
 
 } // end dwt_initialise()
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This is used to set up Tx/Rx GPIOs which could be used to control LEDs
+ * Note: not completely IC dependent, also needs board with LEDS fitted on right I/O lines
+ *       this function enables GPIOs 2 and 3 which are connected to LED3 and LED4 on EVB1000
+ *
+ * input parameters
+ * @param mode - this is a bit field interpreted as follows:
+ *          - bit 0: 1 to enable LEDs, 0 to disable them
+ *          - bit 1: 1 to make LEDs blink once on init. Only valid if bit 0 is set (enable LEDs)
+ *          - bit 2 to 7: reserved
+ *
+ * output parameters none
+ *
+ * no return value
+ */
+void dwt_setleds(uint8_t mode) {
+  uint32_t reg;
+  if (mode & DWT_LEDS_ENABLE) {
+    // Set up MFIO for LED output.
+    dwt_modify32bitoffsetreg(GPIO_MODE_ID, 0, ~(GPIO_MODE_MSGP3_MODE_BIT_MASK | GPIO_MODE_MSGP2_MODE_BIT_MASK), (GPIO_PIN2_RXLED | GPIO_PIN3_TXLED));
+
+    // Enable LP Oscillator to run from counter and turn on de-bounce clock.
+    dwt_or32bitoffsetreg(CLK_CTRL_ID, 0, (CLK_CTRL_GPIO_DCLK_EN_BIT_MASK | CLK_CTRL_LP_CLK_EN_BIT_MASK));
+
+    // Enable LEDs to blink and set default blink time.
+    reg = LED_CTRL_BLINK_EN_BIT_MASK | DWT_LEDS_BLINK_TIME_DEF;
+    // Make LEDs blink once if requested.
+    if (mode & DWT_LEDS_INIT_BLINK) {
+        reg |= LED_CTRL_FORCE_TRIGGER_BIT_MASK;
+    }
+    dwt_write32bitreg(LED_CTRL_ID, reg);
+    // Clear force blink bits if needed.
+    if(mode & DWT_LEDS_INIT_BLINK) {
+      reg &= (~LED_CTRL_FORCE_TRIGGER_BIT_MASK);
+      dwt_write32bitreg(LED_CTRL_ID, reg);
+    }
+  } else {
+    // Clear the GPIO bits that are used for LED control.
+    dwt_and32bitoffsetreg(GPIO_MODE_ID, 0, ~(GPIO_MODE_MSGP2_MODE_BIT_MASK | GPIO_MODE_MSGP3_MODE_BIT_MASK));
+    dwt_and16bitoffsetreg(LED_CTRL_ID, 0, (uint16_t) ~LED_CTRL_BLINK_EN_BIT_MASK);
+  }
+
+}
+
+static uint16_t get_sts_mnth (uint16_t cipher, uint8_t threshold, uint8_t shift_val)
+{
+    uint32_t  value;
+    uint16_t  mod_val;
+
+    value = cipher* (uint32_t)threshold;
+    if (shift_val == 3)
+    {
+        value *= SQRT_FACTOR;//Factor to sqrt(2)
+        value >>= SQRT_SHIFT_VAL;
+    }
+
+    mod_val = value % MOD_VALUE+ HALF_MOD;
+    value >>= SHIFT_VALUE;
+    /* Check if modulo greater than MOD_VALUE, if yes add 1 */
+    if (mod_val >= MOD_VALUE)
+  {
+        value += 1;
+  }
+
+    return (uint16_t)value;
+}
+
+// -------------------------------------------------------------------------------------------------------------------
+// Module Macro definitions and enumerations
+//
+
+//#define DWT_API_ERROR_CHECK  /* API checks config input parameters */
+
+/* STS Minimum Threshold (STS_MNTH) needs to be adjusted with changing STS length.
+To adjust the STS_MNTH following formula can be used: STS_MNTH = SQRT(X/Y)*default_STS_MNTH
+default_STS_MNTH is 0x10
+X is the length of the STS in units of 8 (i.e. 8 for 64 length, 16 for 128 length etc.)
+Y is either 8 or 16, 8 when no PDOA or PDOA mode 1 and 16 for PDOA mode 3
+
+The API does not use the formula and the STS_MNTH value is derived from approximation formula as given by get_sts_mnth()
+function. The API here supports STS lengths as listed in: dwt_sts_lengths_e enum, which are: 32, 64, 128, 256, 512, 1024, 2048
+The enum value is used as the index into sts_length_factors array. The array has values which are generated by:
+val = SQRT(stsLength/16)*2048
+*/
+const uint16_t sts_length_factors[STS_LEN_SUPPORTED]=
+{
+    1024,1448,2048,2896,4096,5793,8192
+};
+
+/*! ------------------------------------------------------------------------------------------------------------------
+* @brief This API function is used to configure frame preamble length, the frame premable length can be
+* configured in steps of 8, from 16 to 2048 symbols. If a non-zero value is configured, then the TXPSR_PE setting is ignored.
+*
+* input parameters:
+* @param preambleLength - sets the length of the preamble, value of 0 disables this setting and the length of the
+*                         frame will be dependent on the TXPSR_PE setting as configured by dwt_configure function
+*
+* output parameters
+*
+* no return value
+*/
+void dwt_setplenfine(uint8_t preambleLength)
+{
+    dwt_write8bitoffsetreg(TX_FCTRL_HI_ID, 1, preambleLength);
+}
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This function can place DW3000 into IDLE/IDLE_PLL or IDLE_RC mode when it is not actively in TX or RX.
+ *
+ * input parameters
+ * @param state - DWT_DW_IDLE (1) to put DW3000 into IDLE/IDLE_PLL state; DWT_DW_INIT (0) to put DW3000 into INIT_RC state;
+ *                DWT_DW_IDLE_RC (2) to put DW3000 into IDLE_RC state.
+ *
+ * output parameters none
+ *
+ * no return value
+ */
+void dwt_setdwstate(uint8_t state)
+{
+    if (state == DWT_DW_IDLE) // Set the auto INIT2IDLE bit so that DW3000 enters IDLE mode before switching clocks to system_PLL
+    //NOTE: PLL should be configured prior to this, and the device should be in IDLE_RC (if the PLL does not lock device will remain in IDLE_RC)
+    {
+        //switch clock to auto - if coming here from INIT_RC the clock will be FOSC/4, need to switch to auto prior to setting auto INIT2IDLE bit
+        dwt_force_clocks(FORCE_CLK_AUTO);
+        dwt_or8bitoffsetreg(SEQ_CTRL_ID, 0x01, SEQ_CTRL_AINIT2IDLE_BIT_MASK>>8);
+    }
+    else if(state == DWT_DW_IDLE_RC)  //Change state to IDLE_RC and clear auto INIT2IDLE bit
+    {
+        //switch clock to FOSC
+        dwt_or8bitoffsetreg(CLK_CTRL_ID, 0, FORCE_SYSCLK_FOSC);
+        //clear the auto INIT2IDLE bit and set FORCE2INIT
+        dwt_modify32bitoffsetreg(SEQ_CTRL_ID, 0x0, (uint32_t) ~SEQ_CTRL_AINIT2IDLE_BIT_MASK, SEQ_CTRL_FORCE2INIT_BIT_MASK);
+        //clear force bits (device will stay in IDLE_RC)
+        dwt_and8bitoffsetreg(SEQ_CTRL_ID, 0x2, (uint8_t) ~(SEQ_CTRL_FORCE2INIT_BIT_MASK>>16));
+        //switch clock to auto
+        dwt_force_clocks(FORCE_CLK_AUTO);
+    }
+    else
+    //NOTE: the SPI rate needs to be <= 7MHz as device is switching to INIT_RC state
+    {
+        dwt_or8bitoffsetreg(CLK_CTRL_ID, 0, FORCE_SYSCLK_FOSCDIV4);
+        //clear the auto INIT2IDLE bit and set FORCE2INIT
+        dwt_modify32bitoffsetreg(SEQ_CTRL_ID, 0x0, (uint32_t) ~SEQ_CTRL_AINIT2IDLE_BIT_MASK, SEQ_CTRL_FORCE2INIT_BIT_MASK);
+        dwt_and8bitoffsetreg(SEQ_CTRL_ID, 0x2, (uint8_t) ~(SEQ_CTRL_FORCE2INIT_BIT_MASK>>16));
+  }
+}
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief function to enable/disable clocks to particular digital blocks/system
+ *
+ * input parameters
+ * @param clocks - set of clocks to enable/disable
+ *
+ * output parameters none
+ *
+ * no return value
+ */
+void dwt_force_clocks(int clocks)
+{
+
+    if (clocks == FORCE_CLK_SYS_TX)
+    {
+        uint16_t regvalue0 = CLK_CTRL_TX_BUF_CLK_ON_BIT_MASK | CLK_CTRL_RX_BUF_CLK_ON_BIT_MASK;
+
+        //SYS_CLK_SEL = PLL
+        regvalue0 |= ((uint16_t) FORCE_SYSCLK_PLL) << CLK_CTRL_SYS_CLK_SEL_BIT_OFFSET;
+
+        //TX_CLK_SEL = ON
+        regvalue0 |= ((uint16_t) FORCE_CLK_PLL) << CLK_CTRL_TX_CLK_SEL_BIT_OFFSET;
+
+        dwt_write16bitoffsetreg(CLK_CTRL_ID, 0x0, regvalue0);
+
+    }
+
+    if (clocks == FORCE_CLK_AUTO)
+    {
+        //Restore auto clock mode
+        dwt_write16bitoffsetreg(CLK_CTRL_ID, 0x0, (uint16_t) DWT_AUTO_CLKS);  //we only need to restore the low 16 bits as they are the only ones to change as a result of  FORCE_CLK_SYS_TX
+    }
+
+} // end dwt_force_clocks()
+
+/*! ------------------------------------------------------------------------------------------------------------------
+* @brief This function is a static function used to 'kick' the DGC upon wakeup from sleep. It will load the
+*        required DGC configuration from OTP based upon what channel was set to be used in dwt_configure().
+*
+* input parameters
+* @param channel - specifies the operating channel (e.g. 5 or 9)
+*
+* output parameters
+*
+* no return value
+*/
+static
+void _dwt_kick_dgc_on_wakeup(int8_t channel)
+{
+    /* The DGC_SEL bit must be set to '0' for channel 5 and '1' for channel 9 */
+    if (channel == 5)
+    {
+        dwt_modify32bitoffsetreg(OTP_CFG_ID, 0, ~(OTP_CFG_DGC_SEL_BIT_MASK),
+                (DWT_DGC_SEL_CH5 << OTP_CFG_DGC_SEL_BIT_OFFSET) | OTP_CFG_DGC_KICK_BIT_MASK);
+    }
+    else if (channel == 9)
+    {
+        dwt_modify32bitoffsetreg(OTP_CFG_ID, 0, ~(OTP_CFG_DGC_SEL_BIT_MASK),
+                (DWT_DGC_SEL_CH9 << OTP_CFG_DGC_SEL_BIT_OFFSET) | OTP_CFG_DGC_KICK_BIT_MASK);
+    }
+}
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This function sets the default values of the lookup tables depending on the channel selected.
+ *
+ * input parameters
+ * @param[in] channel - Channel that the device will be transmitting/receiving on.
+ *
+ * no return value
+ */
+void dwt_configmrxlut(uint8_t channel)
+{
+  uint32_t lut0, lut1, lut2, lut3, lut4, lut5, lut6 = 0;
+
+    if (channel == 5)
+    {
+        lut0 = (uint32_t)CH5_DGC_LUT_0;
+        lut1 = (uint32_t)CH5_DGC_LUT_1;
+        lut2 = (uint32_t)CH5_DGC_LUT_2;
+        lut3 = (uint32_t)CH5_DGC_LUT_3;
+        lut4 = (uint32_t)CH5_DGC_LUT_4;
+        lut5 = (uint32_t)CH5_DGC_LUT_5;
+        lut6 = (uint32_t)CH5_DGC_LUT_6;
+    }
+    else
+    {
+        lut0 = (uint32_t)CH9_DGC_LUT_0;
+        lut1 = (uint32_t)CH9_DGC_LUT_1;
+        lut2 = (uint32_t)CH9_DGC_LUT_2;
+        lut3 = (uint32_t)CH9_DGC_LUT_3;
+        lut4 = (uint32_t)CH9_DGC_LUT_4;
+        lut5 = (uint32_t)CH9_DGC_LUT_5;
+        lut6 = (uint32_t)CH9_DGC_LUT_6;
+    }
+    dwt_write32bitoffsetreg(DGC_LUT_0_CFG_ID, 0x0, lut0);
+    dwt_write32bitoffsetreg(DGC_LUT_1_CFG_ID, 0x0, lut1);
+    dwt_write32bitoffsetreg(DGC_LUT_2_CFG_ID, 0x0, lut2);
+    dwt_write32bitoffsetreg(DGC_LUT_3_CFG_ID, 0x0, lut3);
+    dwt_write32bitoffsetreg(DGC_LUT_4_CFG_ID, 0x0, lut4);
+    dwt_write32bitoffsetreg(DGC_LUT_5_CFG_ID, 0x0, lut5);
+    dwt_write32bitoffsetreg(DGC_LUT_6_CFG_ID, 0x0, lut6);
+    dwt_write32bitoffsetreg(DGC_CFG0_ID, 0x0, DWT_DGC_CFG0);
+    dwt_write32bitoffsetreg(DGC_CFG1_ID, 0x0, DWT_DGC_CFG1);
+}
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ *
+ * @brief This function runs the PGF calibration. This is needed prior to reception.
+ * Note: If the RX calibration routine fails the device receiver performance will be severely affected, the application should reset and try again
+ *
+ * input parameters
+ * @param ldoen    -   if set to 1 the function will enable LDOs prior to calibration and disable afterwards.
+ *
+ * return result of PGF calibration (DWT_ERROR/-1 = error)
+ *
+ */
+int dwt_pgf_cal(uint8_t ldoen)
+{
+    uint8_t temp;
+    uint16_t val;
+
+    //PGF needs LDOs turned on - ensure PGF LDOs are enabled
+    if (ldoen == 1)
+    {
+        val = dwt_read16bitoffsetreg(LDO_CTRL_ID, 0);
+
+        dwt_or16bitoffsetreg(LDO_CTRL_ID, 0, (
+            LDO_CTRL_LDO_VDDIF2_EN_BIT_MASK |
+            LDO_CTRL_LDO_VDDMS3_EN_BIT_MASK |
+            LDO_CTRL_LDO_VDDMS1_EN_BIT_MASK));
+    }
+
+    //Run PGF Cal
+    temp = dwt_run_pgfcal();
+
+    //Turn off RX LDOs if previously off
+    if (ldoen == 1)
+    {
+        dwt_and16bitoffsetreg(LDO_CTRL_ID, 0, val); // restore LDO values
+    }
+    return temp;
+}
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ *
+ * @brief This function runs the PGF calibration. This is needed prior to reception.
+ *
+ * input parameters
+ *
+ * return result of PGF calibration (DWT_ERROR/-1 = error)
+ *
+ */
+int dwt_run_pgfcal(void)
+{
+    int result = DWT_SUCCESS;
+    uint32_t    data;
+    uint32_t    val = 0;
+    uint8_t     cnt,flag;
+    //put into cal mode
+    //Turn on delay mode
+    data = (((uint32_t)0x02) << RX_CAL_CFG_COMP_DLY_BIT_OFFSET) | (RX_CAL_CFG_CAL_MODE_BIT_MASK & 0x1);
+    dwt_write32bitoffsetreg(RX_CAL_CFG_ID, 0x0, data);
+    // Trigger PGF Cal
+    dwt_or8bitoffsetreg(RX_CAL_CFG_ID, 0x0, RX_CAL_CFG_CAL_EN_BIT_MASK);
+
+    for (flag=1,cnt=0;cnt<MAX_RETRIES_FOR_PGF;cnt++)
+    {
+        HAL_Delay(1);
+        if(dwt_read8bitoffsetreg(RX_CAL_STS_ID, 0x0) == 1)
+        {//PGF cal is complete
+      printf("PGF cal complete..\r\n");
+            flag=0;
+            break;
+        }
+    }
+    if (flag)
+    {
+    	printf("PGF CAL ERROR\r\n");
+        result = DWT_ERROR;
+    }
+
+    // Put into normal mode
+    dwt_write8bitoffsetreg(RX_CAL_CFG_ID, 0x0, 0);
+    dwt_write8bitoffsetreg(RX_CAL_STS_ID, 0x0, 1); //clear the status
+    dwt_or8bitoffsetreg(RX_CAL_CFG_ID, 0x2, 0x1); //enable reading
+    val = dwt_read32bitoffsetreg(RX_CAL_RESI_ID, 0x0);
+    if (val == ERR_RX_CAL_FAIL)
+    {
+        //PGF I Cal Fail
+    	printf("PGF I CAL ERROR\r\n");
+        result = DWT_ERROR;
+    }
+    val = dwt_read32bitoffsetreg(RX_CAL_RESQ_ID, 0x0);
+    if (val == ERR_RX_CAL_FAIL)
+    {
+        //PGF Q Cal Fail
+    	printf("PGF Q CAL ERROR\r\n");
+        result = DWT_ERROR;
+    }
+
+    return result;
+}
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This function provides the main API for the configuration of the
+ * DW3000 and this low-level driver.  The input is a pointer to the data structure
+ * of type dwt_config_t that holds all the configurable items.
+ * The dwt_config_t structure shows which ones are supported
+ *
+ * input parameters
+ * @param config    -   pointer to the configuration structure, which contains the device configuration data.
+ *
+ * return DWT_SUCCESS or DWT_ERROR
+ * Note: If the RX calibration routine fails the device receiver performance will be severely affected,
+ * the application should reset device and try again
+ *
+ */
+int dwt_configure(dwt_config_t *config)
+{
+    uint8_t chan = config->chan,cnt,flag;
+    uint32_t temp;
+    uint8_t scp = ((config->rxCode > 24) || (config->txCode > 24)) ? 1 : 0;
+    uint8_t mode = (config->phrMode == DWT_PHRMODE_EXT) ? SYS_CFG_PHR_MODE_BIT_MASK : 0;
+    uint16_t sts_len;
+    int error = DWT_SUCCESS;
+
+
+#ifdef DWT_API_ERROR_CHECK
+    assert((config->dataRate == DWT_BR_6M8) || (config->dataRate == DWT_BR_850K));
+    assert(config->rxPAC <= DWT_PAC4);
+    assert((chan == 5) || (chan == 9));
+    assert((config->txPreambLength == DWT_PLEN_32) || (config->txPreambLength == DWT_PLEN_64) || (config->txPreambLength == DWT_PLEN_72) || (config->txPreambLength == DWT_PLEN_128) || (config->txPreambLength == DWT_PLEN_256)
+           || (config->txPreambLength == DWT_PLEN_512) || (config->txPreambLength == DWT_PLEN_1024) || (config->txPreambLength == DWT_PLEN_1536)
+           || (config->txPreambLength == DWT_PLEN_2048) || (config->txPreambLength == DWT_PLEN_4096));
+    assert((config->phrMode == DWT_PHRMODE_STD) || (config->phrMode == DWT_PHRMODE_EXT));
+    assert((config->phrRate == DWT_PHRRATE_STD) || (config->phrRate == DWT_PHRRATE_DTA));
+    assert((config->pdoaMode == DWT_PDOA_M0) || (config->pdoaMode == DWT_PDOA_M1) || (config->pdoaMode == DWT_PDOA_M3));
+  assert(((config->stsMode & DWT_STS_CONFIG_MASK) == DWT_STS_MODE_OFF) 
+        || ((config->stsMode & DWT_STS_CONFIG_MASK) == DWT_STS_MODE_1) 
+        || ((config->stsMode & DWT_STS_CONFIG_MASK) == DWT_STS_MODE_2)
+        || ((config->stsMode & DWT_STS_CONFIG_MASK) == DWT_STS_MODE_ND)
+        || ((config->stsMode & DWT_STS_CONFIG_MASK) == DWT_STS_MODE_SDC)
+        || ((config->stsMode & DWT_STS_CONFIG_MASK) == (DWT_STS_MODE_1 | DWT_STS_MODE_SDC))
+        || ((config->stsMode & DWT_STS_CONFIG_MASK) == (DWT_STS_MODE_2 | DWT_STS_MODE_SDC))
+        || ((config->stsMode & DWT_STS_CONFIG_MASK) == (DWT_STS_MODE_ND | DWT_STS_MODE_SDC))
+        || ((config->stsMode & DWT_STS_CONFIG_MASK) == DWT_STS_CONFIG_MASK));
+#endif
+    int preamble_len;
+
+    switch (config->txPreambLength)
+    {
+    case DWT_PLEN_32:
+        preamble_len = 32;
+        break;
+    case DWT_PLEN_64:
+        preamble_len = 64;
+        break;
+    case DWT_PLEN_72:
+        preamble_len = 72;
+        break;
+    case DWT_PLEN_128:
+        preamble_len = 128;
+        break;
+    default:
+        preamble_len = 256;
+        break;
+    }
+
+    pdw3000local->sleep_mode &= (~(DWT_ALT_OPS | DWT_SEL_OPS3));  //clear the sleep mode ALT_OPS bit
+    pdw3000local->longFrames = config->phrMode ;
+    sts_len=GET_STS_REG_SET_VALUE((uint16_t)(config->stsLength));
+    pdw3000local->ststhreshold = (int16_t)((((uint32_t)sts_len) * 8) * STSQUAL_THRESH_64);
+    pdw3000local->stsconfig = config->stsMode;
+
+    /////////////////////////////////////////////////////////////////////////
+    //SYS_CFG
+    //clear the PHR Mode, PHR Rate, STS Protocol, SDC, PDOA Mode,
+    //then set the relevant bits according to configuration of the PHR Mode, PHR Rate, STS Protocol, SDC, PDOA Mode,
+    dwt_modify32bitoffsetreg(SYS_CFG_ID, 0, ~(SYS_CFG_PHR_MODE_BIT_MASK | SYS_CFG_PHR_6M8_BIT_MASK | SYS_CFG_CP_SPC_BIT_MASK | SYS_CFG_PDOA_MODE_BIT_MASK | SYS_CFG_CP_SDC_BIT_MASK),
+        ((uint32_t)config->pdoaMode) << SYS_CFG_PDOA_MODE_BIT_OFFSET
+        | ((uint16_t)config->stsMode & DWT_STS_CONFIG_MASK) << SYS_CFG_CP_SPC_BIT_OFFSET
+        | (SYS_CFG_PHR_6M8_BIT_MASK & ((uint32_t)config->phrRate << SYS_CFG_PHR_6M8_BIT_OFFSET))
+        | mode);
+
+    if (scp)
+    {
+        //configure OPS tables for SCP mode
+        pdw3000local->sleep_mode |= DWT_ALT_OPS | DWT_SEL_OPS1;  //configure correct OPS table is kicked on wakeup
+        dwt_modify32bitoffsetreg(OTP_CFG_ID, 0, ~(OTP_CFG_OPS_ID_BIT_MASK), DWT_OPSET_SCP | OTP_CFG_OPS_KICK_BIT_MASK);
+
+        dwt_write32bitoffsetreg(IP_CONFIG_LO_ID, 0, IP_CONFIG_LO_SCP);       //Set this if Ipatov analysis is used in SCP mode
+        dwt_write32bitoffsetreg(IP_CONFIG_HI_ID, 0, IP_CONFIG_HI_SCP);
+
+        dwt_write32bitoffsetreg(STS_CONFIG_LO_ID, 0, STS_CONFIG_LO_SCP);
+        dwt_write8bitoffsetreg(STS_CONFIG_HI_ID, 0, STS_CONFIG_HI_SCP);
+    }
+    else
+    {
+        uint16_t sts_mnth;
+        if (config->stsMode != DWT_STS_MODE_OFF)
+        {  
+            //configure CIA STS lower bound
+            if ((config->pdoaMode == DWT_PDOA_M1) || (config->pdoaMode == DWT_PDOA_M0))
+            {
+                //In PDOA mode 1, number of accumulated symbols is the whole length of the STS
+                sts_mnth=get_sts_mnth(sts_length_factors[(uint8_t)(config->stsLength)], CIA_MANUALLOWERBOUND_TH_64, 3);
+            }
+            else
+            {
+                //In PDOA mode 3 number of accumulated symbols is half of the length of STS symbols
+                sts_mnth=get_sts_mnth(sts_length_factors[(uint8_t)(config->stsLength)], CIA_MANUALLOWERBOUND_TH_64, 4);
+            }
+
+            preamble_len += (sts_len) * 8;
+            dwt_modify16bitoffsetreg(STS_CONFIG_LO_ID, 2, (uint16_t)~(STS_CONFIG_LO_STS_MAN_TH_BIT_MASK >> 16), sts_mnth & 0x7F);
+
+        }
+
+        //configure OPS tables for non-SCP mode
+        if (preamble_len >= 256)
+        {
+            pdw3000local->sleep_mode |= DWT_ALT_OPS | DWT_SEL_OPS0;
+            dwt_modify32bitoffsetreg(OTP_CFG_ID, 0, ~(OTP_CFG_OPS_ID_BIT_MASK), DWT_OPSET_LONG | OTP_CFG_OPS_KICK_BIT_MASK);
+        }
+        else
+        {
+            dwt_modify32bitoffsetreg(OTP_CFG_ID, 0, ~(OTP_CFG_OPS_ID_BIT_MASK), DWT_OPSET_SHORT | OTP_CFG_OPS_KICK_BIT_MASK);
+    }
+
+    }
+
+    dwt_modify8bitoffsetreg(DTUNE0_ID, 0, (uint8_t) ~DTUNE0_PRE_PAC_SYM_BIT_MASK, config->rxPAC);
+
+    dwt_write8bitoffsetreg(STS_CFG0_ID, 0, sts_len-1);    /*Starts from 0 that is why -1*/
+
+    if (config->txPreambLength == DWT_PLEN_72)
+    {
+        dwt_setplenfine(8); //value 8 sets fine preamble length to 72 symbols - this is needed to set 72 length.
+    }
+    else
+    {
+        dwt_setplenfine(0); //clear the setting in the FINE_PLEN register.
+    }
+
+    if((config->stsMode & DWT_STS_MODE_ND) == DWT_STS_MODE_ND)
+    {
+        //configure lower preamble detection threshold for no data STS mode
+        dwt_write32bitoffsetreg(DTUNE3_ID, 0, PD_THRESH_NO_DATA);
+    }
+    else
+    {
+        //configure default preamble detection threshold for other modes
+        dwt_write32bitoffsetreg(DTUNE3_ID, 0, PD_THRESH_DEFAULT);
+    }
+
+    /////////////////////////////////////////////////////////////////////////
+    //CHAN_CTRL
+    temp = dwt_read32bitoffsetreg(CHAN_CTRL_ID, 0);
+  
+    temp &= (~(CHAN_CTRL_RX_PCODE_BIT_MASK | CHAN_CTRL_TX_PCODE_BIT_MASK | CHAN_CTRL_SFD_TYPE_BIT_MASK | CHAN_CTRL_RF_CHAN_BIT_MASK));
+
+    if (chan == 9) temp |= CHAN_CTRL_RF_CHAN_BIT_MASK;
+
+    temp |= (CHAN_CTRL_RX_PCODE_BIT_MASK & ((uint32_t)config->rxCode << CHAN_CTRL_RX_PCODE_BIT_OFFSET));
+    temp |= (CHAN_CTRL_TX_PCODE_BIT_MASK & ((uint32_t)config->txCode << CHAN_CTRL_TX_PCODE_BIT_OFFSET));
+    temp |= (CHAN_CTRL_SFD_TYPE_BIT_MASK & ((uint32_t)config->sfdType << CHAN_CTRL_SFD_TYPE_BIT_OFFSET));
+
+    dwt_write32bitoffsetreg(CHAN_CTRL_ID, 0, temp);
+
+    /////////////////////////////////////////////////////////////////////////
+    //TX_FCTRL
+    // Set up TX Preamble Size, PRF and Data Rate
+    dwt_modify32bitoffsetreg(TX_FCTRL_ID, 0, ~(TX_FCTRL_TXBR_BIT_MASK | TX_FCTRL_TXPSR_BIT_MASK),
+                                              ((uint32_t)config->dataRate << TX_FCTRL_TXBR_BIT_OFFSET)
+                                              | ((uint32_t) config->txPreambLength) << TX_FCTRL_TXPSR_BIT_OFFSET);
+
+
+    //DTUNE (SFD timeout)
+    // Don't allow 0 - SFD timeout will always be enabled
+    if (config->sfdTO == 0)
+    {
+        config->sfdTO = DWT_SFDTOC_DEF;
+    }
+    dwt_write16bitoffsetreg(DTUNE0_ID, 2, config->sfdTO);
+
+
+    ///////////////////////
+    // RF
+    if (chan == 9)
+    {
+        // Setup TX analog for ch9
+        dwt_write32bitoffsetreg(TX_CTRL_HI_ID, 0, RF_TXCTRL_CH9);
+        dwt_write16bitoffsetreg(PLL_CFG_ID, 0, RF_PLL_CFG_CH9);
+        // Setup RX analog for ch9
+        dwt_write32bitoffsetreg(RX_CTRL_HI_ID, 0, RF_RXCTRL_CH9);
+    }
+    else
+    { 
+        // Setup TX analog for ch5
+        dwt_write32bitoffsetreg(TX_CTRL_HI_ID, 0, RF_TXCTRL_CH5);
+    
+
+    
+        dwt_write16bitoffsetreg(PLL_CFG_ID, 0, RF_PLL_CFG_CH5);
+    
+
+    }
+
+    dwt_write8bitoffsetreg(LDO_RLOAD_ID, 1, LDO_RLOAD_VAL_B1);  
+    dwt_write8bitoffsetreg(TX_CTRL_LO_ID, 2, RF_TXCTRL_LO_B2);
+  
+    dwt_write8bitoffsetreg(PLL_CAL_ID, 0, RF_PLL_CFG_LD);        // Extend the lock delay
+
+    //Verify PLL lock bit is cleared
+    dwt_write32bitoffsetreg(SYS_STATUS_ID, 0, SYS_STATUS_CP_LOCK_BIT_MASK);
+
+    ///////////////////////
+    // auto cal the PLL and change to IDLE_PLL state
+    dwt_setdwstate(DWT_DW_IDLE);
+
+    for (flag=1,cnt=0;cnt<MAX_RETRIES_FOR_PLL;cnt++)
+    {
+        HAL_Delay(1);
+        if ((dwt_read8bitoffsetreg(SYS_STATUS_ID, 0) & SYS_STATUS_CP_LOCK_BIT_MASK))
+        {//PLL is locked
+      printf("PLL is locked..\r\n");
+            flag=0;
+            break;
+        }
+    }
+    if (flag)
+    { 
+    	printf("PLL LOCKING ERROR\r\n");
+        return  DWT_ERROR;
+    }
+
+    if ((config->rxCode >= 9) && (config->rxCode <= 24)) //only enable DGC for PRF 64
+    {
+        //load RX LUTs
+        /* If the OTP has DGC info programmed into it, do a manual kick from OTP. */
+        if (pdw3000local->dgc_otp_set == DWT_DGC_LOAD_FROM_OTP)
+        {
+            _dwt_kick_dgc_on_wakeup(chan);
+        }
+        /* Else we manually program hard-coded values into the DGC registers. */
+        else
+        {
+            dwt_configmrxlut(chan);
+        }
+        dwt_modify16bitoffsetreg(DGC_CFG_ID, 0x0, (uint16_t)~DGC_CFG_THR_64_BIT_MASK, DWT_DGC_CFG << DGC_CFG_THR_64_BIT_OFFSET);
+    }
+    else
+    {
+        dwt_and8bitoffsetreg(DGC_CFG_ID, 0x0, (uint8_t)~DGC_CFG_RX_TUNE_EN_BIT_MASK);
+    }
+
+    ///////////////////////
+    // PGF
+    error = dwt_pgf_cal(1);  //if the RX calibration routine fails the device receiver performance will be severely affected, the application should reset and try again
+
+    return error;
+} // end dwt_configure()
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This function disables the automatic sequencing of the tx-blocks for a specific channel.
+ *
+ * input parameters:
+ * @param[in] chan - specifies the operating channel (e.g. 5 or 9)
+ *
+ * output parameters:
+ * None
+ *
+ * No return value
+ */
+static void dwt_enable_rftx_blocks(uint32_t channel)
+{
+    if (channel == SEL_CHANNEL5)
+    {
+        dwt_or32bitoffsetreg(RF_CTRL_MASK_ID, 0, (RF_ENABLE_TX_SW_EN_BIT_MASK
+                | RF_ENABLE_TX_CH5_BIT_MASK | RF_ENABLE_TX_EN_BIT_MASK
+                | RF_ENABLE_TX_EN_BUF_BIT_MASK | RF_ENABLE_TX_BIAS_EN_BIT_MASK));
+    }
+    else if (channel == SEL_CHANNEL9)
+    {
+        dwt_or32bitoffsetreg(RF_CTRL_MASK_ID, 0, (RF_ENABLE_TX_SW_EN_BIT_MASK
+                | RF_ENABLE_TX_EN_BIT_MASK
+                | RF_ENABLE_TX_EN_BUF_BIT_MASK | RF_ENABLE_TX_BIAS_EN_BIT_MASK));
+    }
+}
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This function will enable TX LDOs and allow TX blocks to be manually turned on by dwt_enable_rftx_blocks for a given channel
+ *
+ * input parameters
+ * @param[in] channel - specifies the operating channel (e.g. 5 or 9)
+ * @param[in] switch_config - specifies whether the switch needs to be configured for TX 
+ *
+ * output parameters
+ *
+ */
+static void dwt_enable_rf_tx(uint32_t channel, uint8_t switch_control) {
+  //Turn on TX LDOs
+  dwt_or32bitoffsetreg(LDO_CTRL_ID, 0, (LDO_CTRL_LDO_VDDHVTX_VREF_BIT_MASK |
+          LDO_CTRL_LDO_VDDHVTX_EN_BIT_MASK));
+  dwt_or32bitoffsetreg(LDO_CTRL_ID, 0, (LDO_CTRL_LDO_VDDTX2_VREF_BIT_MASK |
+          LDO_CTRL_LDO_VDDTX1_VREF_BIT_MASK |
+          LDO_CTRL_LDO_VDDTX2_EN_BIT_MASK |
+          LDO_CTRL_LDO_VDDTX1_EN_BIT_MASK));
+
+  //Enable RF blocks for TX (configure RF_ENABLE_ID reg)
+  if (channel == SEL_CHANNEL5) {
+    dwt_or32bitoffsetreg(RF_ENABLE_ID, 0, (RF_ENABLE_TX_SW_EN_BIT_MASK
+        | RF_ENABLE_TX_CH5_BIT_MASK | RF_ENABLE_TX_EN_BIT_MASK
+        | RF_ENABLE_TX_EN_BUF_BIT_MASK | RF_ENABLE_TX_BIAS_EN_BIT_MASK));
+  } else {
+    dwt_or32bitoffsetreg(RF_ENABLE_ID, 0, (RF_ENABLE_TX_SW_EN_BIT_MASK
+        | RF_ENABLE_TX_EN_BIT_MASK
+        | RF_ENABLE_TX_EN_BUF_BIT_MASK | RF_ENABLE_TX_BIAS_EN_BIT_MASK));
+  }
+
+  if (switch_control) {
+    //configure the TXRX switch for TX mode 
+    dwt_write32bitoffsetreg(RF_SWITCH_CTRL_ID, 0x0, TXRXSWITCH_TX);
+  }
+}
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This function will disable TX LDOs and allow TX blocks to be manually turned off by dwt_disable_rftx_blocks
+ *
+ * input parameters
+ * @param[in] switch_config - specifies whether the switch needs to be restored to auto.
+ *
+ * output parameters
+ * None
+ *
+ */
+static void dwt_disable_rf_tx(uint8_t switch_config) {
+  //Turn off TX LDOs
+  dwt_write32bitoffsetreg(LDO_CTRL_ID, 0, 0x00000000);
+
+  //Disable RF blocks for TX (configure RF_ENABLE_ID reg)
+  dwt_write32bitoffsetreg(RF_ENABLE_ID, 0, 0x00000000);
+
+  if (switch_config) {
+    //Restore the TXRX switch to auto
+    dwt_write32bitoffsetreg(RF_SWITCH_CTRL_ID, 0x0, TXRXSWITCH_AUTO);
+  }
+}
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This function enables the automatic sequencing of the tx-blocks for a specific channel.
+ *
+ * input parameters:
+ * None
+ *
+ * output parameters:
+ * None
+ *
+ * No return value
+ */
+static void dwt_disable_rftx_blocks(void) {
+  dwt_write32bitoffsetreg(RF_CTRL_MASK_ID, 0, 0x00000000);
+}
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief this function determines the adjusted bandwidth setting (PG_DELAY bitfield setting)
+ * of the DW3000. The adjustment is a result of DW3000 internal PG cal routine, given a target count value it will try to
+ * find the PG delay which gives the closest count value.
+ * Manual sequencing of TX blocks and TX clocks need to be enabled for either channel 5 or 9.
+ * This function presumes that the PLL is already in the IDLE state. Please configure the PLL to IDLE
+ * state before calling this function, by calling dwt_configure.
+ *
+ * input parameters:
+ * @param target_count - uint16_t - the PG count target to reach in order to correct the bandwidth
+ * @param channel - int - The channel to configure for the corrected bandwidth (5 or 9)
+ *
+ * output parameters:
+ * returns: (uint8_t) The setting that was written to the PG_DELAY register (when calibration completed)
+ */
+uint8_t dwt_calcbandwidthadj(uint16_t target_count, uint8_t channel) {
+  // Force system clock to FOSC/4 and TX clocks on and enable RF blocks
+  dwt_force_clocks(FORCE_CLK_SYS_TX);
+  dwt_enable_rf_tx(channel, 0);
+  dwt_enable_rftx_blocks(channel);
+
+  // Write to the PG target before kicking off PG auto-cal with given target value
+  dwt_write16bitoffsetreg(PG_CAL_TARGET_ID, 0x0, target_count & PG_CAL_TARGET_TARGET_BIT_MASK);
+  // Run PG count cal
+  dwt_or8bitoffsetreg(PGC_CTRL_ID, 0x0, (uint8_t)(PGC_CTRL_PGC_START_BIT_MASK | PGC_CTRL_PGC_AUTO_CAL_BIT_MASK));
+  // Wait for calibration to complete
+  while (dwt_read8bitoffsetreg(PGC_CTRL_ID, 0) & PGC_CTRL_PGC_START_BIT_MASK);
+
+  //Restore clocks to AUTO and turn off TX blocks
+  dwt_disable_rftx_blocks();
+  dwt_disable_rf_tx(0);
+  dwt_force_clocks(FORCE_CLK_AUTO);
+
+  return  (dwt_read8bitoffsetreg(TX_CTRL_HI_ID, 0) & TX_CTRL_HI_TX_PG_DELAY_BIT_MASK);
+}
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This function provides the API for the configuration of the TX spectrum
+ * including the power and pulse generator delay. The input is a pointer to the data structure
+ * of type dwt_txconfig_t that holds all the configurable items.
+ *
+ * input parameters
+ * @param config    -   pointer to the txrf configuration structure, which contains the tx rf config data
+ *                      If config->PGcount == 0 the PGdelay value will be used, else the PG calibration will run
+ * 0x34,       // PG delay.
+ * 0xfdfdfdfd, // TX power.
+ * 0x0         // PG count
+ * output parameters
+ *
+ * no return value
+ */
+
+void dwt_configuretxrf(
+  uint8_t   PGdly,
+  //TX POWER
+  //31:24     TX_CP_PWR
+  //23:16     TX_SHR_PWR
+  //15:8      TX_PHR_PWR
+  //7:0       TX_DATA_PWR
+  uint32_t  power,
+  uint16_t  PGcount)
+{
+    if (PGcount == 0) 
+  {
+        // Configure RF TX PG_DELAY
+        dwt_write8bitoffsetreg(TX_CTRL_HI_ID, 0, PGdly);
+    }
+    else
+    {
+        uint8_t channel = 5;
+        if (dwt_read8bitoffsetreg(CHAN_CTRL_ID, 0) & 0x1)
+        {
+            channel = 9;
+        }
+        dwt_calcbandwidthadj(PGcount, channel);
+    }
+
+    // Configure TX power
+    dwt_write32bitreg(TX_POWER_ID, power);
+}
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This API function writes the supplied TX data into the DW3000's
+ * TX buffer.  The input parameters are the data length in bytes and a pointer
+ * to those data bytes.
+ *
+ * input parameters
+ * @param txDataLength   - This is the total length of data (in bytes) to write to the tx buffer.
+ *                         Note: the size of tx buffer is 1024 bytes.
+ *                         The standard PHR mode allows to transmit frames of up to 127 bytes (including 2 byte CRC)
+ *                         The extended PHR mode allows to transmit frames of up to 1023 bytes (including 2 byte CRC)
+ *                         if > 127 is programmed, DWT_PHRMODE_EXT needs to be set in the phrMode configuration
+ *                         see dwt_configure function
+ * @param txDataBytes    - Pointer to the user’s buffer containing the data to send.
+ * @param txBufferOffset - This specifies an offset in the DW IC’s TX Buffer at which to start writing data.
+ *
+ * output parameters
+ *
+ * returns DWT_SUCCESS for success, or DWT_ERROR for error
+ */
+int dwt_writetxdata(uint16_t txDataLength, uint8_t *txDataBytes, uint16_t txBufferOffset)
+{
+#ifdef DWT_API_ERROR_CHECK
+    assert((pdw3000local->longFrames && (txDataLength <= EXT_FRAME_LEN)) ||\
+           (txDataLength <= STD_FRAME_LEN));
+    assert((txBufferOffset + txDataLength) < TX_BUFFER_MAX_LEN);
+#endif
+
+    if ((txBufferOffset + txDataLength) < TX_BUFFER_MAX_LEN)
+    {
+        if(txBufferOffset <= REG_DIRECT_OFFSET_MAX_LEN)
+        {
+            /* Directly write the data to the IC TX buffer */
+            dwt_writetodevice(TX_BUFFER_ID, txBufferOffset, txDataLength, txDataBytes);
+        }
+        else
+        {
+            /* Program the indirect offset register A for specified offset to TX buffer */
+            dwt_write32bitreg(INDIRECT_ADDR_A_ID, (TX_BUFFER_ID >> 16) );
+            dwt_write32bitreg(ADDR_OFFSET_A_ID,   txBufferOffset);
+
+            /* Indirectly write the data to the IC TX buffer */
+            dwt_writetodevice(INDIRECT_POINTER_A_ID, 0, txDataLength, txDataBytes);
+        }
+        return DWT_SUCCESS;
+    }
+    else
+        return DWT_ERROR;
+} // end dwt_writetxdata()
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This API function configures the TX frame control register before the transmission of a frame
+ *
+ * input parameters:
+ * @param txFrameLength - this is the length of TX message (including the 2 byte CRC) - max is 1023
+ *                              NOTE: standard PHR mode allows up to 127 bytes
+ *                              if > 127 is programmed, DWT_PHRMODE_EXT needs to be set in the phrMode configuration
+ *                              see dwt_configure function
+ * @param txBufferOffset - the offset in the tx buffer to start writing the data
+ * @param ranging - 1 if this is a ranging frame, else 0
+ *
+ * output parameters
+ *
+ * no return value
+ */
+void dwt_writetxfctrl(uint16_t txFrameLength, uint16_t txBufferOffset, uint8_t ranging)
+{
+    uint32_t reg32;
+#ifdef DWT_API_ERROR_CHECK
+    assert((pdw3000local->longFrames && (txFrameLength <= EXT_FRAME_LEN)) ||\
+           (txFrameLength <= STD_FRAME_LEN));
+#endif
+
+    //DW3000/3700 - if offset is > 127, 128 needs to be added before data is written, this will be subtracted internally
+    //prior to writing the data
+    if(txBufferOffset <= 127)
+    {
+        // Write the frame length to the TX frame control register
+        reg32 = txFrameLength | ((uint32_t)(txBufferOffset) << TX_FCTRL_TXB_OFFSET_BIT_OFFSET) | ((uint32_t)ranging << TX_FCTRL_TR_BIT_OFFSET);
+        dwt_modify32bitoffsetreg(TX_FCTRL_ID, 0, ~(TX_FCTRL_TXB_OFFSET_BIT_MASK | TX_FCTRL_TR_BIT_MASK | TX_FCTRL_TXFLEN_BIT_MASK), reg32);
+    }
+    else
+    {
+        // Write the frame length to the TX frame control register
+        reg32 = txFrameLength | ((uint32_t)(txBufferOffset + DWT_TX_BUFF_OFFSET_ADJUST) << TX_FCTRL_TXB_OFFSET_BIT_OFFSET) | ((uint32_t)ranging << TX_FCTRL_TR_BIT_OFFSET);
+        dwt_modify32bitoffsetreg(TX_FCTRL_ID, 0, ~(TX_FCTRL_TXB_OFFSET_BIT_MASK | TX_FCTRL_TR_BIT_MASK | TX_FCTRL_TXFLEN_BIT_MASK), reg32);
+        reg32 = dwt_read8bitoffsetreg(SAR_CTRL_ID, 0); //DW3000/3700 - need to read this to load the correct TX buffer offset value
+    }
+
+} // end dwt_writetxfctrl()

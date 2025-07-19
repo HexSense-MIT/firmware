@@ -120,6 +120,102 @@ extern void DW3000_pgf_cal(void);
 #define DWT_SUCCESS (0)
 #define DWT_ERROR   (-1)
 
+//! constants for specifying TX Preamble length in symbols
+//! These are defined to allow them be directly written into byte 2 of the TX_FCTRL register
+//! (i.e. a four bit value destined for bits 20..18 but shifted left by 2 for byte alignment)
+#define DWT_PLEN_4096   0x03    //! Standard preamble length 4096 symbols
+#define DWT_PLEN_2048   0x0A    //! Non-standard preamble length 2048 symbols
+#define DWT_PLEN_1536   0x06    //! Non-standard preamble length 1536 symbols
+#define DWT_PLEN_1024   0x02    //! Standard preamble length 1024 symbols
+#define DWT_PLEN_512    0x0d    //! Non-standard preamble length 512 symbols
+#define DWT_PLEN_256    0x09    //! Non-standard preamble length 256 symbols
+#define DWT_PLEN_128    0x05    //! Non-standard preamble length 128 symbols
+#define DWT_PLEN_64     0x01    //! Standard preamble length 64 symbols
+#define DWT_PLEN_32     0x04    //! Non-standard length 32
+#define DWT_PLEN_72     0x07    //! Non-standard length 72
+
+//! constants for specifying Preamble Acquisition Chunk (PAC) Size in symbols
+#define DWT_PAC8        0   //!< PAC  8 (recommended for RX of preamble length  128 and below
+#define DWT_PAC16       1   //!< PAC 16 (recommended for RX of preamble length  256
+#define DWT_PAC32       2   //!< PAC 32 (recommended for RX of preamble length  512
+#define DWT_PAC4        3   //!< PAC  4 (recommended for RX of preamble length  < 127
+
+//! constants for selecting the bit rate for data TX (and RX)
+//! These are defined for write (with just a shift) the TX_FCTRL register
+#define DWT_BR_850K     0   //!< UWB bit rate 850 kbits/s
+#define DWT_BR_6M8      1   //!< UWB bit rate 6.8 Mbits/s
+#define DWT_BR_NODATA   2   //!< No data (SP3 packet format)
+
+#define DWT_PHRMODE_STD      0x0     // standard PHR mode
+#define DWT_PHRMODE_EXT      0x1     // DW proprietary extended frames PHR mode
+
+#define DWT_PHRRATE_STD      0x0     // standard PHR rate
+#define DWT_PHRRATE_DTA      0x1     // PHR at data rate (6M81)
+
+// Defined constants for "mode" bit field parameter passed to dwt_setleds() function.
+#define DWT_LEDS_DISABLE     0x00
+#define DWT_LEDS_ENABLE      0x01
+#define DWT_LEDS_INIT_BLINK  0x02
+
+// Define DW3000 STS modes
+#define DWT_STS_MODE_OFF         0x0     // STS is off
+#define DWT_STS_MODE_1           0x1     // STS mode 1
+#define DWT_STS_MODE_2           0x2     // STS mode 2
+#define DWT_STS_MODE_ND          0x3     // STS with no data
+#define DWT_STS_MODE_SDC         0x8     // Enable Super Deterministic Codes
+#define DWT_STS_CONFIG_MASK      0xB
+
+// Define DW3000 PDOA modes
+#define DWT_PDOA_M0           0x0     // DW PDOA mode is off
+#define DWT_PDOA_M1           0x1     // DW PDOA mode  mode 1
+#define DWT_PDOA_M3           0x3     // DW PDOA mode  mode 3
+
+/*This Enum holds the index for factor calculation.*/
+typedef enum
+{
+    DWT_STS_LEN_32  =0,
+    DWT_STS_LEN_64  =1,
+    DWT_STS_LEN_128 =2,
+    DWT_STS_LEN_256 =3,
+    DWT_STS_LEN_512 =4,
+    DWT_STS_LEN_1024=5,
+    DWT_STS_LEN_2048=6
+} dwt_sts_lengths_e;
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * Structure typedef: dwt_config_t
+ *
+ * Structure for setting device configuration via dwt_configure() function
+ *
+ */
+typedef struct {
+  uint8_t chan ;           //!< Channel number (5 or 9)
+  uint8_t txPreambLength ; //!< DWT_PLEN_64..DWT_PLEN_4096
+  uint8_t rxPAC ;          //!< Acquisition Chunk Size (Relates to RX preamble length)
+  uint8_t txCode ;         //!< TX preamble code (the code configures the PRF, e.g. 9 -> PRF of 64 MHz)
+  uint8_t rxCode ;         //!< RX preamble code (the code configures the PRF, e.g. 9 -> PRF of 64 MHz)
+  uint8_t sfdType;         //!< SFD type (0 for short IEEE 8-bit standard, 1 for DW 8-bit, 2 for DW 16-bit, 3 for 4z BPRF)
+  uint8_t dataRate ;       //!< Data rate {DWT_BR_850K or DWT_BR_6M8}
+  uint8_t phrMode ;        //!< PHR mode {0x0 - standard DWT_PHRMODE_STD, 0x3 - extended frames DWT_PHRMODE_EXT}
+  uint8_t phrRate;         //!< PHR rate {0x0 - standard DWT_PHRRATE_STD, 0x1 - at datarate DWT_PHRRATE_DTA}
+  uint16_t sfdTO ;         //!< SFD timeout value (in symbols)
+  uint8_t stsMode;         //!< STS mode (no STS, STS before PHR or STS after data)
+  dwt_sts_lengths_e stsLength;    //!< STS length (the allowed values are listed in dwt_sts_lengths_e
+  uint8_t pdoaMode;        //!< PDOA mode
+} dwt_config_t;
+
+#define DWT_LEDS_BLINK_TIME_DEF 0x02
+
+#define GPIO_PIN2_RXLED         (((uint32_t)0x1)<<6)    /* The pin operates as the RXLED output */
+#define GPIO_PIN3_TXLED         (((uint32_t)0x1)<<9)    /* The pin operates as the TXLED output */
+
+#define GPIO_PIN0_EXTTXE        (((uint32_t)0x2)<<0)    /* The pin operates as the EXTTXE output (output TX state) */
+#define GPIO_PIN1_EXTRXE        (((uint32_t)0x2)<<3)    /* The pin operates as the EXTRXE output (output RX state) */
+
+#define GPIO_PIN4_EXTDA         (((uint32_t)0x1)<<12)   /* The pin operates to support external DA/PA */
+#define GPIO_PIN5_EXTTX         (((uint32_t)0x1)<<15)   /* The pin operates to support external PA */
+#define GPIO_PIN6_EXTRX         (((uint32_t)0x1)<<18)   /* The pin operates to support external LNA */
+
 //DW3000 SLEEP and WAKEUP configuration parameters
 #define DWT_PGFCAL       0x0800
 #define DWT_GOTORX       0x0200
@@ -158,6 +254,32 @@ extern void DW3000_pgf_cal(void);
 #define DBL_BUFF_ACCESS_BUFFER_0 0x1
 #define DBL_BUFF_ACCESS_BUFFER_1 0x3
 
+#define CIA_MANUALLOWERBOUND_TH_64  (0x10) //cia lower bound threshold values for 64 MHz PRF
+#define STSQUAL_THRESH_64 (0.90f)
+
+#define SQRT_FACTOR             181 /*Factor of sqrt(2) for calculation*/
+#define STS_LEN_SUPPORTED       7   /*The supported STS length options*/
+#define SQRT_SHIFT_VAL          7
+#define SHIFT_VALUE             11
+#define MOD_VALUE               2048
+#define HALF_MOD                (MOD_VALUE>>1)
+
+#define DWT_SFDTOC_DEF          129  // default SFD timeout value
+
+#define DELAY_20uUSec           (20)/*Delay of 20uSec(measured 24uSec)*/
+#define MAX_RETRIES_FOR_PLL     (6)
+#define MAX_RETRIES_FOR_PGF     (3)
+
+// #define PANADR_PAN_ID_BYTE_OFFSET       2
+#define PMSC_CTRL0_PLL2_SEQ_EN          0x01000000UL    /* Enable PLL2 on/off sequencing by SNIFF mode */
+#define RX_BUFFER_MAX_LEN               (1023)
+#define TX_BUFFER_MAX_LEN               (1024)
+#define RX_FINFO_STD_RXFLEN_MASK        0x0000007FUL    /* Receive Frame Length (0 to 127) */
+// #define RX_TIME_RX_STAMP_LEN            (5)             /* read only 5 bytes (the adjusted timestamp (40:0)) */
+// #define TX_TIME_TX_STAMP_LEN            (5)             /* 40-bits = 5 bytes */
+#define SCRATCH_BUFFER_MAX_LEN          (127)           /* AES scratch memory */
+#define STD_FRAME_LEN                   (127)
+
 /* MACRO */
 #define dwt_write32bitreg(addr,value)  dwt_write32bitoffsetreg(addr,0,value)
 #define dwt_read32bitreg(addr)     dwt_read32bitoffsetreg(addr,0)
@@ -180,6 +302,15 @@ extern void DW3000_pgf_cal(void);
 #define dwt_and_or32bitoffsetreg(addr,offset, and_val, or_val) dwt_modify32bitoffsetreg(addr,offset,and_val,or_val)
 #define dwt_set_bit_num_32bit_reg(addr,bit_num) dwt_modify32bitoffsetreg(addr,0,-1,DWT_BIT_MASK(bit_num))
 #define dwt_clr_bit_num_32bit_reg(addr,bit_num) dwt_modify32bitoffsetreg(addr,0,~DWT_BIT_MASK(bit_num),0)
+
+#define GET_STS_REG_SET_VALUE(x)     ((uint16_t)1<<((x)+2))    /* Returns the value to set in CP_CFG0_ID for STS length. The x is the enum value from dwt_sts_lengths_e */
+
+/* Enum used for selecting channel for DGC on-wake kick. */
+typedef enum
+{
+    DWT_DGC_SEL_CH5=0,
+    DWT_DGC_SEL_CH9
+} dwt_dgc_chan_sel;
 
 typedef enum {
   DW3000_SPI_RD_BIT    = 0x0000U,
@@ -212,6 +343,20 @@ typedef enum
     DWT_DGC_LOAD_FROM_SW=0,
     DWT_DGC_LOAD_FROM_OTP
 } dwt_dgc_load_location;
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This API function is used to configure frame preamble length, the frame premable length can be
+ * configured in steps of 8, from 16 to 2048 symbols. If a non-zero value is configured, then the TXPSR_PE setting is ignored.
+ *
+ * input parameters:
+ * @param preambleLength - sets the length of the preamble, value of 0 disables this setting and the length of the
+ *                         frame will be dependent on the TXPSR_PE setting as configured by dwt_configure function
+ *
+ * output parameters
+ *
+ * no return value
+ */
+void dwt_setplenfine(uint8_t preambleLength);
 
 // Call-back type for SPI read error event (if the DW3000 generated CRC does not match the one calculated by the dwt_generatecrc8 function)
 typedef void(*dwt_spierrcb_t)(void);
@@ -509,5 +654,164 @@ int dwt_check_dev_id(void);
  */
 int dwt_initialise(uint8_t mode);
 
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This is used to set up Tx/Rx GPIOs which could be used to control LEDs
+ * Note: not completely IC dependent, also needs board with LEDS fitted on right I/O lines
+ *       this function enables GPIOs 2 and 3 which are connected to LED3 and LED4 on EVB1000
+ *
+ * input parameters
+ * @param mode - this is a bit field interpreted as follows:
+ *          - bit 0: 1 to enable LEDs, 0 to disable them
+ *          - bit 1: 1 to make LEDs blink once on init. Only valid if bit 0 is set (enable LEDs)
+ *          - bit 2 to 7: reserved
+ *
+ * output parameters none
+ *
+ * no return value
+ */
+void dwt_setleds(uint8_t mode);
 
 #endif /* INC_DW3000_FZ_H_ */
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This function provides the main API for the configuration of the
+ * DW3000 and this low-level driver.  The input is a pointer to the data structure
+ * of type dwt_config_t that holds all the configurable items.
+ * The dwt_config_t structure shows which ones are supported
+ *
+ * input parameters
+ * @param config    -   pointer to the configuration structure, which contains the device configuration data.
+ *
+ * output parameters
+ *
+ * return DWT_SUCCESS or DWT_ERROR (e.g. when PLL CAL fails / PLL fails to lock)
+ */
+int dwt_configure(dwt_config_t *config);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This function can place DW3000 into IDLE/IDLE_PLL or IDLE_RC mode when it is not actively in TX or RX.
+ *
+ * input parameters
+ * @param state - DWT_DW_IDLE (1) to put DW3000 into IDLE/IDLE_PLL state; DWT_DW_INIT (0) to put DW3000 into INIT_RC state;
+ *                DWT_DE_IDLE_RC (2) to put DW3000 into IDLE_RC state.
+ *
+ * output parameters none
+ *
+ * no return value
+ */
+void dwt_setdwstate(uint8_t state);
+
+void dwt_force_clocks(int clocks);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This function sets the default values of the lookup tables depending on the channel selected.
+ *
+ * input parameters
+ * @param[in] channel - Channel that the device will be transmitting/receiving on.
+ *
+ * no return value
+ */
+void dwt_configmrxlut(uint8_t channel);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ *
+ * @brief This function runs the PGF calibration. This is needed prior to reception.
+ * Note: If the RX calibration routine fails the device receiver performance will be severely affected, the application should reset and try again
+ *
+ * input parameters
+ * @param ldoen    -   if set to 1 the function will enable LDOs prior to calibration and disable afterwards.
+ *
+ * return result of PGF calibration (DWT_ERROR/-1 = error)
+ *
+ */
+int dwt_run_pgfcal(void);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ *
+ * @brief This function runs the PGF calibration. This is needed prior to reception.
+ * Note: If the RX calibration routine fails the device receiver performance will be severely affected, the application should reset and try again
+ *
+ * input parameters
+ * @param ldoen    -   if set to 1 the function will enable LDOs prior to calibration and disable afterwards.
+ *
+ * return result of PGF calibration (DWT_ERROR/-1 = error)
+ *
+ */
+int dwt_run_pgfcal(void);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This function provides the API for the configuration of the TX spectrum
+ * including the power and pulse generator delay. The input is a pointer to the data structure
+ * of type dwt_txconfig_t that holds all the configurable items.
+ *
+ * input parameters
+ * @param config    -   pointer to the txrf configuration structure, which contains the tx rf config data
+ *
+ * output parameters
+ *
+ * no return value
+ */
+void dwt_configuretxrf(
+  uint8_t   PGdly,
+  //TX POWER
+  //31:24     TX_CP_PWR
+  //23:16     TX_SHR_PWR
+  //15:8      TX_PHR_PWR
+  //7:0       TX_DATA_PWR
+  uint32_t  power,
+  uint16_t  PGcount);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief this function determines the adjusted bandwidth setting (PG_DELAY bitfield setting)
+ * of the DW3000. The adjustemnt is a result of DW3000 internal PG cal routine, given a target count value it will try to
+ * find the PG delay which gives the closest count value.
+ * Manual sequencing of TX blocks and TX clocks need to be enabled for either channel 5 or 9.
+ * This function presumes that the PLL is already in the IDLE state. Please configure the PLL to IDLE
+ * state before calling this function, by calling dwt_configure.
+ *
+ * input parameters:
+ * @param target_count - uint16_t - the PG count target to reach in order to correct the bandwidth
+ * @param channel - int - The channel to configure for the corrected bandwith (5 or 9)
+ *
+ * output parameters:
+ * returns: (uint8_t) The setting that was written to the PG_DELAY register (when calibration completed)
+ */
+uint8_t dwt_calcbandwidthadj(uint16_t target_count, uint8_t channel);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This API function writes the supplied TX data into the DW3000's
+ * TX buffer.  The input parameters are the data length in bytes and a pointer
+ * to those data bytes.
+ *
+ * input parameters
+ * @param txDataLength   - This is the total length of data (in bytes) to write to the tx buffer.
+ *                         Note: the size of tx buffer is 1024 bytes.
+ *                         The standard PHR mode allows to transmit frames of up to 127 bytes (including 2 byte CRC)
+ *                         The extended PHR mode allows to transmit frames of up to 1023 bytes (including 2 byte CRC)
+ *                         if > 127 is programmed, DWT_PHRMODE_EXT needs to be set in the phrMode configuration
+ *                         see dwt_configure function
+ * @param txDataBytes    - Pointer to the user's buffer containing the data to send.
+ * @param txBufferOffset - This specifies an offset in the DW IC's TX Buffer at which to start writing data.
+ *
+ * output parameters
+ *
+ * returns DWT_SUCCESS for success, or DWT_ERROR for error
+ */
+int dwt_writetxdata(uint16_t txDataLength, uint8_t *txDataBytes, uint16_t txBufferOffset);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This API function configures the TX frame control register before the transmission of a frame
+ *
+ * input parameters:
+ * @param txFrameLength - this is the length of TX message (including the 2 byte CRC) - max is 1023
+ *                              NOTE: standard PHR mode allows up to 127 bytes
+ *                              if > 127 is programmed, DWT_PHRMODE_EXT needs to be set in the phrMode configuration
+ *                              see dwt_configure function
+ * @param txBufferOffset - the offset in the tx buffer to start writing the data
+ * @param ranging - 1 if this is a ranging frame, else 0
+ *
+ * output parameters
+ *
+ * no return value
+ */
+void dwt_writetxfctrl(uint16_t txFrameLength, uint16_t txBufferOffset, uint8_t ranging);

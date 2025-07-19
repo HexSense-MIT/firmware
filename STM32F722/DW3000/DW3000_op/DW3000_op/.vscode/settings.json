@@ -15,6 +15,20 @@
         "dw3000_recv_test_fz.h": "c",
         "stdint.h": "c",
         "stdio.h": "c",
-        "functional": "c"
+        "functional": "c",
+        "__bit_reference": "c",
+        "bitset": "c",
+        "deque": "c",
+        "limits": "c",
+        "locale": "c",
+        "optional": "c",
+        "ratio": "c",
+        "charconv": "c",
+        "chrono": "c",
+        "format": "c",
+        "system_error": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "utility": "c"
     }
 }

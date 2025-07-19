@@ -1,0 +1,772 @@
+/*
+ * DW3000_FZ.h
+ *
+ *  Created on: Jul 16, 2025
+ *      Author: liufangzheng
+ */
+
+#ifndef INC_DW3000_FZ_H_
+#define INC_DW3000_FZ_H_
+
+#include <assert.h>
+#include <stdio.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <string.h>
+
+#include "stm32f7xx_hal.h"
+#include "main.h"
+
+#include "dw3000_deca_regs.h"
+#include "dw3000_deca_vals.h"
+#include "HS_system.h"
+
+extern bool DW3000_IRQ_flag; // flag to indicate if the TX is done
+
+typedef enum {
+  tx_node = 0, //!< TX node
+  rx_node = 1  //!< RX node
+} node_type;
+
+// FZ stole from DecaWave API
+typedef enum {
+  DWT_DW3000_DEV_ID       = (int)(0xDECA0302), //!< DW3000 (non PDOA) silicon device ID
+  DWT_QM33110_DEV_ID      = (int)(0xDECA0304), //!< QM33110 (non PDOA) silicon device ID
+  DWT_DW3000_PDOA_DEV_ID  = (int)(0xDECA0312), //!< DW3000 (with PDOA) silicon device ID
+  DWT_QM33120_PDOA_DEV_ID = (int)(0xDECA0314) //!< QM33120 (with PDOA) silicon device ID
+} dw_chip_id_e;
+
+typedef enum {
+  GPIO0 = 0x1,
+  GPIO1 = 0x1 << 1,
+  GPIO2 = 0x1 << 2,
+  GPIO3 = 0x1 << 3,
+  GPIO4 = 0x1 << 4,
+  GPIO5 = 0x1 << 5,
+  GPIO6 = 0x1 << 6,
+  GPIO7 = 0x1 << 7,
+  GPIO8 = 0x1 << 8
+} dw_gpio;
+
+typedef enum {
+  OUTPUT_MODE = 0, //!< GPIO output mode
+  INPUT_MODE  = 1  //!< GPIO input mode
+} dw_gpio_mode;
+
+typedef enum {
+  CH5 = 0, //!< GPIO output mode
+  CH9  = 1  //!< GPIO input mode
+} channel;
+
+#define GEN_CFG_AES_base 0x00
+#define DIG_DIAG_base    0x0F
+
+unsigned int countBits(unsigned int number);
+
+HAL_StatusTypeDef sendBytes(uint8_t *sendb, uint16_t sendLen);
+HAL_StatusTypeDef readBytes(uint8_t *recvb, uint16_t recLen);
+
+uint32_t readOrWriteFullAddress(uint32_t base, uint32_t sub, uint32_t data, uint32_t dataLen, uint32_t readWriteBit);
+
+uint32_t read(int base, int sub);
+
+extern void set_SPI2lowspeed(SPI_HandleTypeDef *hspi);
+extern void set_SPI2highspeed(SPI_HandleTypeDef *hspi);
+
+extern uint8_t DW3000pack_fast_command(uint8_t cmd);
+
+extern uint8_t DW3000pack_short_address(uint8_t address, uint8_t rw);
+extern uint16_t DW3000pack_full_address(uint8_t base, uint8_t sub, uint8_t rw);
+
+extern void DW3000poweron(void);
+extern void DW3000init(SPI_HandleTypeDef *hspi);
+extern void DW3000softReset(void);
+extern void DW3000hardReset(void);
+
+extern void     DW3000writereg(uint32_t reg, uint8_t* data, uint8_t len);
+extern uint32_t DW3000readreg(uint32_t reg, uint8_t len);
+
+extern void DW3000enter_IDLE_PLL(void);
+
+extern uint8_t DW3000check_IDLE_RC(void);
+extern uint8_t DW3000check_IDLE_PLL(void);
+extern uint8_t DW3000check_IDLE(void);
+
+extern void DW3000config_CH(uint16_t RX_PCODE, uint16_t TX_PCODE, uint8_t SFD_TYP, channel CH);
+extern void DW3000set_TXLED(void);
+
+extern uint32_t DW3000readOTP(uint8_t addr);
+
+extern void DW3000_clear_IRQ(void);
+extern void DW3000_clear_all_events(void);
+
+extern void DW3000_writefastCMD_FZ(uint8_t cmd);
+extern void DW3000_irq_for_tx_done(void);
+extern void DW3000_irq_for_rx_done(void);
+
+extern void DW3000_disable_RX_timeout(void);
+extern void DW3000_set_max_sfd_timeout(void);
+
+extern void DW3000_debug_reg(uint32_t reg, uint8_t len);
+
+extern void DW3000_cfg_FZ(void); // all configuration for RX
+extern void DW3000_pgf_cal(void);
+
+
+
+// ----------------------------------- FZ: stole from DecaWave API (Jul 18, 2025) -----------------------------------
+/* */
+#define DWT_SUCCESS (0)
+#define DWT_ERROR   (-1)
+
+//! constants for specifying TX Preamble length in symbols
+//! These are defined to allow them be directly written into byte 2 of the TX_FCTRL register
+//! (i.e. a four bit value destined for bits 20..18 but shifted left by 2 for byte alignment)
+#define DWT_PLEN_4096   0x03    //! Standard preamble length 4096 symbols
+#define DWT_PLEN_2048   0x0A    //! Non-standard preamble length 2048 symbols
+#define DWT_PLEN_1536   0x06    //! Non-standard preamble length 1536 symbols
+#define DWT_PLEN_1024   0x02    //! Standard preamble length 1024 symbols
+#define DWT_PLEN_512    0x0d    //! Non-standard preamble length 512 symbols
+#define DWT_PLEN_256    0x09    //! Non-standard preamble length 256 symbols
+#define DWT_PLEN_128    0x05    //! Non-standard preamble length 128 symbols
+#define DWT_PLEN_64     0x01    //! Standard preamble length 64 symbols
+#define DWT_PLEN_32     0x04    //! Non-standard length 32
+#define DWT_PLEN_72     0x07    //! Non-standard length 72
+
+//! constants for specifying Preamble Acquisition Chunk (PAC) Size in symbols
+#define DWT_PAC8        0   //!< PAC  8 (recommended for RX of preamble length  128 and below
+#define DWT_PAC16       1   //!< PAC 16 (recommended for RX of preamble length  256
+#define DWT_PAC32       2   //!< PAC 32 (recommended for RX of preamble length  512
+#define DWT_PAC4        3   //!< PAC  4 (recommended for RX of preamble length  < 127
+
+//! constants for selecting the bit rate for data TX (and RX)
+//! These are defined for write (with just a shift) the TX_FCTRL register
+#define DWT_BR_850K     0   //!< UWB bit rate 850 kbits/s
+#define DWT_BR_6M8      1   //!< UWB bit rate 6.8 Mbits/s
+#define DWT_BR_NODATA   2   //!< No data (SP3 packet format)
+
+#define DWT_PHRMODE_STD      0x0     // standard PHR mode
+#define DWT_PHRMODE_EXT      0x1     // DW proprietary extended frames PHR mode
+
+#define DWT_PHRRATE_STD      0x0     // standard PHR rate
+#define DWT_PHRRATE_DTA      0x1     // PHR at data rate (6M81)
+
+// Defined constants for "mode" bit field parameter passed to dwt_setleds() function.
+#define DWT_LEDS_DISABLE     0x00
+#define DWT_LEDS_ENABLE      0x01
+#define DWT_LEDS_INIT_BLINK  0x02
+
+// Define DW3000 STS modes
+#define DWT_STS_MODE_OFF         0x0     // STS is off
+#define DWT_STS_MODE_1           0x1     // STS mode 1
+#define DWT_STS_MODE_2           0x2     // STS mode 2
+#define DWT_STS_MODE_ND          0x3     // STS with no data
+#define DWT_STS_MODE_SDC         0x8     // Enable Super Deterministic Codes
+#define DWT_STS_CONFIG_MASK      0xB
+
+// Define DW3000 PDOA modes
+#define DWT_PDOA_M0           0x0     // DW PDOA mode is off
+#define DWT_PDOA_M1           0x1     // DW PDOA mode  mode 1
+#define DWT_PDOA_M3           0x3     // DW PDOA mode  mode 3
+
+/*This Enum holds the index for factor calculation.*/
+typedef enum
+{
+    DWT_STS_LEN_32  =0,
+    DWT_STS_LEN_64  =1,
+    DWT_STS_LEN_128 =2,
+    DWT_STS_LEN_256 =3,
+    DWT_STS_LEN_512 =4,
+    DWT_STS_LEN_1024=5,
+    DWT_STS_LEN_2048=6
+} dwt_sts_lengths_e;
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * Structure typedef: dwt_config_t
+ *
+ * Structure for setting device configuration via dwt_configure() function
+ *
+ */
+typedef struct {
+  uint8_t chan ;           //!< Channel number (5 or 9)
+  uint8_t txPreambLength ; //!< DWT_PLEN_64..DWT_PLEN_4096
+  uint8_t rxPAC ;          //!< Acquisition Chunk Size (Relates to RX preamble length)
+  uint8_t txCode ;         //!< TX preamble code (the code configures the PRF, e.g. 9 -> PRF of 64 MHz)
+  uint8_t rxCode ;         //!< RX preamble code (the code configures the PRF, e.g. 9 -> PRF of 64 MHz)
+  uint8_t sfdType;         //!< SFD type (0 for short IEEE 8-bit standard, 1 for DW 8-bit, 2 for DW 16-bit, 3 for 4z BPRF)
+  uint8_t dataRate ;       //!< Data rate {DWT_BR_850K or DWT_BR_6M8}
+  uint8_t phrMode ;        //!< PHR mode {0x0 - standard DWT_PHRMODE_STD, 0x3 - extended frames DWT_PHRMODE_EXT}
+  uint8_t phrRate;         //!< PHR rate {0x0 - standard DWT_PHRRATE_STD, 0x1 - at datarate DWT_PHRRATE_DTA}
+  uint16_t sfdTO ;         //!< SFD timeout value (in symbols)
+  uint8_t stsMode;         //!< STS mode (no STS, STS before PHR or STS after data)
+  dwt_sts_lengths_e stsLength;    //!< STS length (the allowed values are listed in dwt_sts_lengths_e
+  uint8_t pdoaMode;        //!< PDOA mode
+} dwt_config_t ;
+
+#define DWT_LEDS_BLINK_TIME_DEF 0x02
+
+#define GPIO_PIN2_RXLED         (((uint32_t)0x1)<<6)    /* The pin operates as the RXLED output */
+#define GPIO_PIN3_TXLED         (((uint32_t)0x1)<<9)    /* The pin operates as the TXLED output */
+
+#define GPIO_PIN0_EXTTXE        (((uint32_t)0x2)<<0)    /* The pin operates as the EXTTXE output (output TX state) */
+#define GPIO_PIN1_EXTRXE        (((uint32_t)0x2)<<3)    /* The pin operates as the EXTRXE output (output RX state) */
+
+#define GPIO_PIN4_EXTDA         (((uint32_t)0x1)<<12)   /* The pin operates to support external DA/PA */
+#define GPIO_PIN5_EXTTX         (((uint32_t)0x1)<<15)   /* The pin operates to support external PA */
+#define GPIO_PIN6_EXTRX         (((uint32_t)0x1)<<18)   /* The pin operates to support external LNA */
+
+//DW3000 SLEEP and WAKEUP configuration parameters
+#define DWT_PGFCAL       0x0800
+#define DWT_GOTORX       0x0200
+#define DWT_GOTOIDLE     0x0100
+#define DWT_SEL_OPS3     0x00C0
+#define DWT_SEL_OPS2     0x0080                     // Short OPS table
+#define DWT_SEL_OPS1     0x0040                     // SCP
+#define DWT_SEL_OPS0     0x0000                     // Long OPS table
+#define DWT_ALT_OPS      0x0020
+#define DWT_LOADLDO      0x0010
+#define DWT_LOADDGC      0x0008
+#define DWT_LOADBIAS     0x0004
+#define DWT_RUNSAR       0x0002
+#define DWT_CONFIG       0x0001                     // download the AON array into the HIF (configuration download)
+
+#define DWT_PRES_SLEEP   0x20                       // allows for SLEEP_EN bit to be "preserved", although it will self - clear on wake up
+#define DWT_WAKE_WUP     0x10                       // wake up on WAKEUP PIN
+#define DWT_WAKE_CSN     0x8                        // wake up on chip select
+#define DWT_BROUT_EN     0x4                        // enable brownout detector during sleep/deep sleep
+#define DWT_SLEEP        0x2                        // enable sleep (if this bit is clear the device will enter deep sleep)
+#define DWT_SLP_EN       0x1                        // enable sleep/deep sleep functionality
+
+
+//DW3000 IDLE/INIT mode definitions
+#define DWT_DW_INIT      0x0
+#define DWT_DW_IDLE      0x1
+#define DWT_DW_IDLE_RC   0x2
+
+#define DWT_READ_OTP_PID  0x10    //read part ID from OTP
+#define DWT_READ_OTP_LID  0x20    //read lot ID from OTP
+#define DWT_READ_OTP_BAT  0x40    //read ref voltage from OTP
+#define DWT_READ_OTP_TMP  0x80    //read ref temperature from OTP
+
+// -------------------------------------------------------------------------------------------------------------------
+#define DBL_BUFF_OFF             0x0
+#define DBL_BUFF_ACCESS_BUFFER_0 0x1
+#define DBL_BUFF_ACCESS_BUFFER_1 0x3
+
+#define CIA_MANUALLOWERBOUND_TH_64  (0x10) //cia lower bound threshold values for 64 MHz PRF
+#define STSQUAL_THRESH_64 (0.90f)
+
+#define SQRT_FACTOR             181 /*Factor of sqrt(2) for calculation*/
+#define STS_LEN_SUPPORTED       7   /*The supported STS length options*/
+#define SQRT_SHIFT_VAL          7
+#define SHIFT_VALUE             11
+#define MOD_VALUE               2048
+#define HALF_MOD                (MOD_VALUE>>1)
+
+#define DWT_SFDTOC_DEF          129  // default SFD timeout value
+
+#define DELAY_20uUSec           (20)/*Delay of 20uSec(measured 24uSec)*/
+#define MAX_RETRIES_FOR_PLL     (6)
+#define MAX_RETRIES_FOR_PGF     (3)
+
+/* MACRO */
+#define dwt_write32bitreg(addr,value)  dwt_write32bitoffsetreg(addr,0,value)
+#define dwt_read32bitreg(addr)     dwt_read32bitoffsetreg(addr,0)
+#define dwt_writefastCMD(cmd)     dwt_writetodevice(cmd,0,0,0)
+
+#define dwt_or8bitoffsetreg(addr, offset, or_val) dwt_modify8bitoffsetreg(addr, offset, -1, or_val)
+#define dwt_and8bitoffsetreg(addr, offset, and_val) dwt_modify8bitoffsetreg(addr, offset, and_val, 0)
+#define dwt_and_or8bitoffsetreg(addr,offset, and_val, or_val) dwt_modify8bitoffsetreg(addr,offset,and_val,or_val)
+#define dwt_set_bit_num_8bit_reg(addr,bit_num) dwt_modify8bitoffsetreg(addr,0,-1,DWT_BIT_MASK(bit_num))
+#define dwt_clr_bit_num_8bit_reg(addr,bit_num) dwt_modify8bitoffsetreg(addr,0,~DWT_BIT_MASK(bit_num),0)
+
+#define dwt_or16bitoffsetreg(addr, offset, or_val) dwt_modify16bitoffsetreg(addr, offset, -1, or_val)
+#define dwt_and16bitoffsetreg(addr, offset, and_val) dwt_modify16bitoffsetreg(addr, offset, and_val, 0)
+#define dwt_and_or16bitoffsetreg(addr,offset, and_val, or_val) dwt_modify16bitoffsetreg(addr,offset,and_val,or_val)
+#define dwt_set_bit_num_16bit_reg(addr,bit_num) dwt_modify16bitoffsetreg(addr,0,-1,DWT_BIT_MASK(bit_num))
+#define dwt_clr_bit_num_16bit_reg(addr,bit_num) dwt_modify16bitoffsetreg(addr,0,~DWT_BIT_MASK(bit_num),0)
+
+#define dwt_or32bitoffsetreg(addr, offset, or_val) dwt_modify32bitoffsetreg(addr, offset, -1, or_val)
+#define dwt_and32bitoffsetreg(addr, offset, and_val) dwt_modify32bitoffsetreg(addr, offset, and_val, 0)
+#define dwt_and_or32bitoffsetreg(addr,offset, and_val, or_val) dwt_modify32bitoffsetreg(addr,offset,and_val,or_val)
+#define dwt_set_bit_num_32bit_reg(addr,bit_num) dwt_modify32bitoffsetreg(addr,0,-1,DWT_BIT_MASK(bit_num))
+#define dwt_clr_bit_num_32bit_reg(addr,bit_num) dwt_modify32bitoffsetreg(addr,0,~DWT_BIT_MASK(bit_num),0)
+
+#define GET_STS_REG_SET_VALUE(x)     ((uint16_t)1<<((x)+2))    /* Returns the value to set in CP_CFG0_ID for STS length. The x is the enum value from dwt_sts_lengths_e */
+
+/* Enum used for selecting channel for DGC on-wake kick. */
+typedef enum
+{
+    DWT_DGC_SEL_CH5=0,
+    DWT_DGC_SEL_CH9
+} dwt_dgc_chan_sel;
+
+typedef enum {
+  DW3000_SPI_RD_BIT    = 0x0000U,
+  DW3000_SPI_WR_BIT    = 0x8000U,
+  DW3000_SPI_AND_OR_8  = 0x8001U,
+  DW3000_SPI_AND_OR_16 = 0x8002U,
+  DW3000_SPI_AND_OR_32 = 0x8003U,
+} spi_modes_e;
+
+// Defined constants when SPI CRC mode is used:
+typedef enum
+{
+    DWT_SPI_CRC_MODE_NO = 0,    /* No CRC */
+    DWT_SPI_CRC_MODE_WR,        /* This is used to enable SPI CRC check (the SPI CRC check will be enabled on DW3000 and CRC-8 added for SPI write transactions) */
+    DWT_SPI_CRC_MODE_WRRD       /* This is used to optionally enable additional CRC check on the SPI read operations, while the CRC check on the SPI write operations is also enabled */
+}dwt_spi_crc_mode_e;
+
+// TX/RX call-back data
+typedef struct
+{
+    uint32_t status;      //initial value of register as ISR is entered
+    uint16_t status_hi;   //initial value of register as ISR is entered, if relevant for that event type
+    uint16_t datalength;  //length of frame
+    uint8_t  rx_flags;    //RX frame flags, see above
+} dwt_cb_data_t;
+
+/* Enum used for selecting location to load DGC data from */
+typedef enum
+{
+    DWT_DGC_LOAD_FROM_SW=0,
+    DWT_DGC_LOAD_FROM_OTP
+} dwt_dgc_load_location;
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This API function is used to configure frame preamble length, the frame premable length can be
+ * configured in steps of 8, from 16 to 2048 symbols. If a non-zero value is configured, then the TXPSR_PE setting is ignored.
+ *
+ * input parameters:
+ * @param preambleLength - sets the length of the preamble, value of 0 disables this setting and the length of the
+ *                         frame will be dependent on the TXPSR_PE setting as configured by dwt_configure function
+ *
+ * output parameters
+ *
+ * no return value
+ */
+void dwt_setplenfine(uint8_t preambleLength);
+
+// Call-back type for SPI read error event (if the DW3000 generated CRC does not match the one calculated by the dwt_generatecrc8 function)
+typedef void(*dwt_spierrcb_t)(void);
+
+// Call-back type for all interrupt events
+typedef void (*dwt_cb_t)(const dwt_cb_data_t *);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief
+ * NB: In porting this to a particular microprocessor, the implementer needs to define the two low
+ * level abstract functions to write to and read from the SPI the definitions should be in deca_spi.c file.
+ * Low level abstract function to write to the SPI
+ * Takes two separate byte buffers for write header and write data
+ * returns 0 for success, or -1 for error
+ *
+ * Note: The body of this function is defined in deca_spi.c and is platform specific
+ *
+ * input parameters:
+ * @param headerLength  - number of bytes header being written
+ * @param headerBuffer  - pointer to buffer containing the 'headerLength' bytes of header to be written
+ * @param bodylength    - number of bytes data being written
+ * @param bodyBuffer    - pointer to buffer containing the 'bodylength' bytes od data to be written
+ *
+ * output parameters
+ *
+ * returns DWT_SUCCESS for success, or DWT_ERROR for error
+ */
+extern int writetospi(uint16_t headerLength, uint8_t *headerBuffer, uint16_t bodylength, uint8_t *bodyBuffer);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief
+ * NB: In porting this to a particular microprocessor, the implementer needs to define the two low
+ * level abstract functions to write to and read from the SPI the definitions should be in deca_spi.c file.
+ * Low level abstract function to write to the SPI
+ * Takes two separate byte buffers for write header and write data
+ * returns 0 for success, or -1 for error
+ *
+ * Note: The body of this function is defined in deca_spi.c and is platform specific
+ *
+ * input parameters:
+ * @param headerLength  - number of bytes header to write
+ * @param headerBuffer  - pointer to buffer containing the 'headerLength' bytes of header to write
+ * @param readlength    - number of bytes data being read
+ * @param readBuffer    - pointer to buffer containing to return the data (NB: size required = headerLength + readlength)
+ *
+ * output parameters
+ *
+ * returns DWT_SUCCESS for success (and the position in the buffer at which data begins), or DWT_ERROR for error
+ */
+extern int readfromspi(uint16_t headerLength, uint8_t *headerBuffer, uint16_t readlength, uint8_t *readBuffer);
+
+void dwt_xfer3000(
+  uint32_t    regFileID,  //0x0, 0x04-0x7F ; 0x10000, 0x10004, 0x10008-0x1007F; 0x20000 etc
+  uint16_t    indx,       //sub-index, calculated from regFileID 0..0x7F,
+  uint16_t    length,
+  uint8_t     *buffer,
+  spi_modes_e mode
+);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief  this function is used to write to the DW3000 device registers
+ * Notes:
+ *        1. Firstly we create a header (the first byte is a header byte)
+ *        a. check if sub index is used, if subindexing is used - set bit-6 to 1 to signify that the sub-index address follows the register index byte
+ *        b. set bit-7 (or with 0x80) for write operation
+ *        c. if extended sub address index is used (i.e. if index > 127) set bit-7 of the first sub-index byte following the first header byte
+ *
+ *        2. Write the header followed by the data bytes to the DW3000 device
+ *
+ *
+ * input parameters:
+ * @param recordNumber  - ID of register file or buffer being accessed
+ * @param index         - byte index into register file or buffer being accessed
+ * @param length        - number of bytes being written
+ * @param buffer        - pointer to buffer containing the 'length' bytes to be written
+ *
+ * output parameters
+ *
+ * no return value
+ */
+void dwt_writetodevice
+(
+    uint32_t      recordNumber,   // input parameter - ID of register file or buffer being accessed
+    uint16_t      index,          // input parameter - byte index into register file or buffer being accessed
+    uint16_t      length,         // input parameter - number of bytes being written
+    uint8_t       *buffer         // input parameter - pointer to buffer containing the 'length' bytes to be written
+);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief  this function is used to read from the DW3000 device registers
+ * Notes:
+ *        1. Firstly we create a header (the first byte is a header byte)
+ *        a. check if sub index is used, if subindexing is used - set bit-6 to 1 to signify that the sub-index address follows the register index byte
+ *        b. set bit-7 (or with 0x80) for write operation
+ *        c. if extended sub address index is used (i.e. if index > 127) set bit-7 of the first sub-index byte following the first header byte
+ *
+ *        2. Write the header followed by the data bytes to the DW3000 device
+ *        3. Store the read data in the input buffer
+ *
+ * input parameters:
+ * @param recordNumber  - ID of register file or buffer being accessed
+ * @param index         - byte index into register file or buffer being accessed
+ * @param length        - number of bytes being read
+ * @param buffer        - pointer to buffer in which to return the read data.
+ *
+ * output parameters
+ *
+ * no return value
+ */
+void dwt_readfromdevice
+(
+    uint32_t  recordNumber,       // input parameter - ID of register file or buffer being accessed
+    uint16_t  index,              // input parameter - byte index into register file or buffer being accessed
+    uint16_t  length,             // input parameter - number of bytes being read
+    uint8_t   *buffer             // input parameter - pointer to buffer in which to return the read data.
+);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief  this function is used to read 32-bit value from the DW3000 device registers
+ *
+ * input parameters:
+ * @param regFileID - ID of register file or buffer being accessed
+ * @param regOffset - the index into register file or buffer being accessed
+ *
+ * output parameters
+ *
+ * returns 32 bit register value
+ */
+uint32_t dwt_read32bitoffsetreg(uint32_t regFileID, uint16_t regOffset);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief  this function is used to write 32-bit value to the DW3000 device registers
+ *
+ * input parameters:
+ * @param regFileID - ID of register file or buffer being accessed
+ * @param regOffset - the index into register file or buffer being accessed
+ * @param regval    - the value to write
+ *
+ * output parameters
+ *
+ * no return value
+ */
+void dwt_write32bitoffsetreg(uint32_t regFileID, uint16_t regOffset, uint32_t regval);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief  this function is used to read 16-bit value from the DW3000 device registers
+ *
+ * input parameters:
+ * @param regFileID - ID of register file or buffer being accessed
+ * @param regOffset - the index into register file or buffer being accessed
+ *
+ * output parameters
+ *
+ * returns 16 bit register value
+ */
+uint16_t dwt_read16bitoffsetreg(uint32_t regFileID, uint16_t regOffset);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief  this function is used to write 16-bit value to the DW3000 device registers
+ *
+ * input parameters:
+ * @param regFileID - ID of register file or buffer being accessed
+ * @param regOffset - the index into register file or buffer being accessed
+ * @param regval    - the value to write
+ *
+ * output parameters
+ *
+ * no return value
+ */
+void dwt_write16bitoffsetreg(uint32_t regFileID, uint16_t regOffset, uint16_t regval);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief  this function is used to read an 8-bit value from the DW3000 device registers
+ *
+ * input parameters:
+ * @param regFileID - ID of register file or buffer being accessed
+ * @param regOffset - the index into register file or buffer being accessed
+ *
+ * output parameters
+ *
+ * returns 8-bit register value
+ */
+uint8_t dwt_read8bitoffsetreg(uint32_t regFileID, uint16_t regOffset);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief  this function is used to write an 8-bit value to the DW3000 device registers
+ *
+ * input parameters:
+ * @param regFileID - ID of register file or buffer being accessed
+ * @param regOffset - the index into register file or buffer being accessed
+ * @param regval    - the value to write
+ *
+ * output parameters
+ *
+ * no return value
+ */
+void dwt_write8bitoffsetreg(uint32_t regFileID, uint16_t regOffset, uint8_t regval);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief  this function can be used to modify a 32-bit register of DW3000
+ *         Used to optimize SPI transaction when only clear or set of know
+ *         bits in the register is requierd
+ *
+ * input parameters:
+ * @param regFileID - ID of register file or buffer being accessed
+ * @param regOffset - the index into register file or buffer being accessed
+ * @param _and      - the 32-bit value to logically AND register
+ * @param _or       - the 32-bit value to logically OR register after AND operation
+ *
+ * output parameters
+ *
+ * no return value
+ */
+void dwt_modify32bitoffsetreg(const uint32_t regFileID, const uint16_t regOffset, const uint32_t _and, const uint32_t _or);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief  this function can be used to modify a 16-bit register of DW3000
+ *         Used to optimize SPI transaction when only clear or set of know
+ *         bits in the register is requierd
+ *
+ * input parameters:
+ * @param regFileID - ID of register file or buffer being accessed
+ * @param regOffset - the index into register file or buffer being accessed
+ * @param _and      - the 16-bit value to logically AND register
+ * @param _or       - the 16-bit value to logically OR register after AND operation
+ *
+ * output parameters
+ *
+ * no return value
+ */
+ void dwt_modify16bitoffsetreg(const uint32_t regFileID, const uint16_t regOffset, const uint16_t _and, const uint16_t _or);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief  this function can be used to modify a 8-bit register of DW3000
+ *         Used to optimize SPI transaction when only clear or set of know
+ *         bits in the register is requierd
+ *
+ * input parameters:
+ * @param regFileID - ID of register file or buffer being accessed
+ * @param regOffset - the index into register file or buffer being accessed
+ * @param _and      - the 8-bit value to logically AND register
+ * @param _or       - the 8-bit value to logically OR register after AND operation
+ *
+ * output parameters
+ *
+ * no return value
+ */
+void dwt_modify8bitoffsetreg(const uint32_t regFileID, const uint16_t regOffset, const uint8_t _and, const uint8_t _or);
+
+uint32_t _dwt_otpread(uint16_t address);
+
+void _dwt_prog_ldo_and_bias_tune(void);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This is used to return the read device type and revision information of the DW3000 device (MP part is 0xDECA0130)
+ *
+ * input parameters
+ *
+ * output parameters
+ *
+ * returns the read value which for DW3000 is 0xDECA0130
+ */
+uint32_t dwt_readdevid(void);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief this reads the device ID and checks if it is the right one
+ *
+ * input parameters
+ * None
+ *
+ * output parameters
+ *
+ * returns DWT_SUCCESS for success, or DWT_ERROR for error
+ */
+int dwt_check_dev_id(void);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This function initialises the DW3000 transceiver:
+ * it reads its DEV_ID register (address 0x00) to verify the IC is one supported
+ * by this software (e.g. DW3000 32-bit device ID value is 0xDECA03xx).  Then it
+ * does any initial once only device configurations needed for use and initialises
+ * as necessary any static data items belonging to this low-level driver.
+ *
+ * NOTES:
+ * 1.this function needs to be run before dwt_configuresleep, also the SPI frequency has to be < 3MHz
+ * 2.it also reads and applies LDO and BIAS tune and crystal trim values from OTP memory
+ * 3.it is assumed this function is called after a reset or on power up of the DW3000*
+ *
+ * input parameters
+ * @param mode - mask which defines which OTP values to read.
+ *
+ * output parameters
+ *
+ * returns DWT_SUCCESS for success, or DWT_ERROR for error
+ */
+int dwt_initialise(uint8_t mode);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This is used to set up Tx/Rx GPIOs which could be used to control LEDs
+ * Note: not completely IC dependent, also needs board with LEDS fitted on right I/O lines
+ *       this function enables GPIOs 2 and 3 which are connected to LED3 and LED4 on EVB1000
+ *
+ * input parameters
+ * @param mode - this is a bit field interpreted as follows:
+ *          - bit 0: 1 to enable LEDs, 0 to disable them
+ *          - bit 1: 1 to make LEDs blink once on init. Only valid if bit 0 is set (enable LEDs)
+ *          - bit 2 to 7: reserved
+ *
+ * output parameters none
+ *
+ * no return value
+ */
+void dwt_setleds(uint8_t mode);
+
+#endif /* INC_DW3000_FZ_H_ */
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This function provides the main API for the configuration of the
+ * DW3000 and this low-level driver.  The input is a pointer to the data structure
+ * of type dwt_config_t that holds all the configurable items.
+ * The dwt_config_t structure shows which ones are supported
+ *
+ * input parameters
+ * @param config    -   pointer to the configuration structure, which contains the device configuration data.
+ *
+ * output parameters
+ *
+ * return DWT_SUCCESS or DWT_ERROR (e.g. when PLL CAL fails / PLL fails to lock)
+ */
+int dwt_configure(dwt_config_t *config);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This function can place DW3000 into IDLE/IDLE_PLL or IDLE_RC mode when it is not actively in TX or RX.
+ *
+ * input parameters
+ * @param state - DWT_DW_IDLE (1) to put DW3000 into IDLE/IDLE_PLL state; DWT_DW_INIT (0) to put DW3000 into INIT_RC state;
+ *                DWT_DE_IDLE_RC (2) to put DW3000 into IDLE_RC state.
+ *
+ * output parameters none
+ *
+ * no return value
+ */
+void dwt_setdwstate(uint8_t state);
+
+void dwt_force_clocks(int clocks);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This function sets the default values of the lookup tables depending on the channel selected.
+ *
+ * input parameters
+ * @param[in] channel - Channel that the device will be transmitting/receiving on.
+ *
+ * no return value
+ */
+void dwt_configmrxlut(uint8_t channel);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ *
+ * @brief This function runs the PGF calibration. This is needed prior to reception.
+ * Note: If the RX calibration routine fails the device receiver performance will be severely affected, the application should reset and try again
+ *
+ * input parameters
+ * @param ldoen    -   if set to 1 the function will enable LDOs prior to calibration and disable afterwards.
+ *
+ * return result of PGF calibration (DWT_ERROR/-1 = error)
+ *
+ */
+int dwt_run_pgfcal(void);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ *
+ * @brief This function runs the PGF calibration. This is needed prior to reception.
+ * Note: If the RX calibration routine fails the device receiver performance will be severely affected, the application should reset and try again
+ *
+ * input parameters
+ * @param ldoen    -   if set to 1 the function will enable LDOs prior to calibration and disable afterwards.
+ *
+ * return result of PGF calibration (DWT_ERROR/-1 = error)
+ *
+ */
+int dwt_run_pgfcal(void);
+
+typedef struct {
+  uint8_t   PGdly;
+  //TX POWER
+  //31:24     TX_CP_PWR
+  //23:16     TX_SHR_PWR
+  //15:8      TX_PHR_PWR
+  //7:0       TX_DATA_PWR
+  uint32_t  power;
+  uint16_t  PGcount;
+}dwt_txconfig_t;
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This function provides the API for the configuration of the TX spectrum
+ * including the power and pulse generator delay. The input is a pointer to the data structure
+ * of type dwt_txconfig_t that holds all the configurable items.
+ *
+ * input parameters
+ * @param config    -   pointer to the txrf configuration structure, which contains the tx rf config data
+ *
+ * output parameters
+ *
+ * no return value
+ */
+void dwt_configuretxrf(dwt_txconfig_t *config);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief this function determines the adjusted bandwidth setting (PG_DELAY bitfield setting)
+ * of the DW3000. The adjustemnt is a result of DW3000 internal PG cal routine, given a target count value it will try to
+ * find the PG delay which gives the closest count value.
+ * Manual sequencing of TX blocks and TX clocks need to be enabled for either channel 5 or 9.
+ * This function presumes that the PLL is already in the IDLE state. Please configure the PLL to IDLE
+ * state before calling this function, by calling dwt_configure.
+ *
+ * input parameters:
+ * @param target_count - uint16_t - the PG count target to reach in order to correct the bandwidth
+ * @param channel - int - The channel to configure for the corrected bandwith (5 or 9)
+ *
+ * output parameters:
+ * returns: (uint8_t) The setting that was written to the PG_DELAY register (when calibration completed)
+ */
+uint8_t dwt_calcbandwidthadj(uint16_t target_count, uint8_t channel);

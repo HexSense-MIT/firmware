@@ -31,12 +31,33 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+/* Default communication configuration. We use default non-STS DW mode. */
+static dwt_config_t config = {
+  5,               /* Channel number. */
+  DWT_PLEN_128,    /* Preamble length. Used in TX only. */
+  DWT_PAC8,        /* Preamble acquisition chunk size. Used in RX only. */
+  9,               /* TX preamble code. Used in TX only. */
+  9,               /* RX preamble code. Used in RX only. */
+  1,               /* 0 to use standard 8 symbol SFD, 1 to use non-standard 8 symbol, 2 for non-standard 16 symbol SFD and 3 for 4z 8 symbol SDF type */
+  DWT_BR_6M8,      /* Data rate. */
+  DWT_PHRMODE_STD, /* PHY header mode. */
+  DWT_PHRRATE_STD, /* PHY header rate. */
+  (129 + 8 - 8),   /* SFD timeout (preamble length + 1 + SFD length - PAC size). Used in RX only. */
+  DWT_STS_MODE_OFF,
+  DWT_STS_LEN_64, /* STS length, see allowed values in Enum dwt_sts_lengths_e */
+  DWT_PDOA_M0     /* PDOA mode off */
+};
+
+/* Buffer to store received frame. See NOTE 1 below. */
+//static uint8_t rx_buffer[FRAME_LEN_MAX];
+
 // https://gist.github.com/egnor/455d510e11c22deafdec14b09da5bf54
-node_type current_node = tx_node; // current node type, default is TX node
+node_type current_node = rx_node; // current node type, default is TX node
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+// #define FRAME_LENGTH (sizeof(tx_msg) + FCS_LEN) // The real length that is going to be transmitted
 
 /* USER CODE END PD */
 
@@ -114,21 +135,61 @@ int main(void)
   // HAL_Delay(10);     // wait for the DW3000 to wake up
 
   // Make sure the SPI is ready
-  while(!(DW3000readreg(SYS_STATUS_ID, 4) & SYS_STATUS_SPIRDY_BIT_MASK)) {
+  while(!(dwt_read32bitoffsetreg(SYS_STATUS_ID, 0) & SYS_STATUS_SPIRDY_BIT_MASK)) {
     HAL_Delay(10);
   }
 
   // check if the DW3000 is present
-  uint32_t dev_id = DW3000readreg(DEV_ID_ID, 4);
-  printf("DW3000 Device ID: 0x%08lX\r\n", dev_id);
+  uint32_t dev_id = dwt_read32bitoffsetreg(DEV_ID_ID, 0);
 
   if (dev_id == (uint32_t)DWT_DW3000_DEV_ID) {
+    printf("DW3000 Device ID: 0x%08lX\r\n", dev_id);
     blink_led(PIN_LED1_GPIO_Port, PIN_LED1_Pin, 50);
   } else {
+    printf("Wrong Device ID: 0x%08lX\r\n", dev_id);
     while (1);
   }
 
   HAL_Delay(10);
+
+  if(DW3000check_IDLE_RC()) {
+    // DW3000enter_IDLE_PLL(); // enter PLL mode
+    // HAL_Delay(10); // wait for the PLL to lock
+  } else {
+    while (1);
+  }
+
+  // DW3000_cfg_FZ();
+  // DW3000config_CH(0x09, 0x09, 0x00, CH5); // configure the channel
+
+  // test_run_info((unsigned char *)"IDLE OK\r\n");
+  if (dwt_initialise(DWT_DW_INIT) == DWT_ERROR) {
+	  printf("dwt_initialise error\r\n");
+    while (100) {;}
+  }
+
+  dwt_setleds(DWT_LEDS_ENABLE | DWT_LEDS_INIT_BLINK);
+
+  // Configure DW IC. See NOTE 5 below.
+  // if the dwt_configure returns DWT_ERROR either the PLL or RX calibration has failed the host should reset the device
+  if (dwt_configure(&config))  {
+    printf("CONFIG FAILED\r\n");
+    while (100) {;}
+  }
+
+  // if (current_node == rx_node) {
+  //   DW3000_pgf_cal(); // perform the PGF calibration
+  //   printf("PGF calibration done\r\n");
+  // }
+
+  if (current_node == tx_node) {
+    DW3000_irq_for_tx_done(); // enable the IRQ for TX done
+    /* Configure the TX spectrum parameters (power PG delay and PG Count) */
+    dwt_configuretxrf(0x34, 0xfdfdfdfd, 0x00);
+  }
+  if (current_node == rx_node) {
+    DW3000_irq_for_rx_done(); // enable the IRQ for RX done
+  }
 
   if(DW3000check_IDLE_RC()) {
     DW3000enter_IDLE_PLL(); // enter PLL mode
@@ -145,28 +206,7 @@ int main(void)
     HAL_GPIO_WritePin(PIN_LED1_GPIO_Port, PIN_LED1_Pin, GPIO_PIN_RESET);
     while (1);
   }
-
-  // after PLL locked, SPI can operate up to 38MHz.
   set_SPI2highspeed(&hspi1);
-
-  DW3000config_CH(0x09, 0x09, 0x00, CH5); // configure the channel
-  DW3000_cfg_FZ();
-
-  if (current_node == rx_node) {
-    DW3000_pgf_cal(); // perform the PGF calibration
-    printf("PGF calibration done\r\n");
-  }
-
-  DW3000_debug_reg(CHAN_CTRL_ID, 4);
-  DW3000_debug_reg(SYS_CFG_ID, 4);
-  DW3000_debug_reg(TX_FCTRL_ID, 4);
-
-  if (current_node == tx_node) {
-    DW3000_irq_for_tx_done(); // enable the IRQ for TX done
-  }
-  if (current_node == rx_node) {
-    DW3000_irq_for_rx_done(); // enable the IRQ for RX done
-  }
 
   /* USER CODE END 2 */
 
@@ -180,6 +220,7 @@ int main(void)
       // send data
       DW3000_clear_IRQ(); // clear the IRQ flags, reset the IRQ pin.
       DW3000_writetxdata_FZ(data2send, 10);
+      dwt_writetxfctrl(12, 0, 0); /* Zero offset in TX buffer, no ranging. */
       DW3000_txcmd_FZ(0);
 
       // wait for the IRQ to be triggered

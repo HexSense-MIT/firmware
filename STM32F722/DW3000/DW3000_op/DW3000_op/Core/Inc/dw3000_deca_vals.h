@@ -81,6 +81,9 @@ typedef enum {
 #define DWT_DGC_CFG0      0x10000240UL
 #define DWT_DGC_CFG1      0x1B6DA489UL
 #define PD_THRESH_OPTIMAL 0xAF5F35CCUL /* Optimal PD threshold. */
+#define PD_THRESH_NO_DATA 0xAF5F35CCUL /* PD threshold for no data STS mode*/
+#define PD_THRESH_DEFAULT 0xAF5F584CUL
+
 
 #define IP_CONFIG_LO_SCP  0x0306UL
 #define IP_CONFIG_HI_SCP  0x00000000UL
