@@ -408,7 +408,7 @@ void DW3000_irq_for_rx_done(void) {
   // uint32_t sys_enable = DW3000readreg(SYS_ENABLE_LO_ID, 4);
   // sys_enable |= ((1 << SYS_ENABLE_LO_RXFR_ENABLE_BIT_OFFSET)  |
   //                (1 << SYS_ENABLE_LO_RXPHD_ENABLE_BIT_OFFSET)); // Enable RX done interrupt
-  uint32_t sys_enable = SYS_ENABLE_LO_MASK;
+  uint32_t sys_enable = SYS_STATUS_RXFCG_BIT_MASK;
   DW3000writereg(SYS_ENABLE_LO_ID, (uint8_t*)&sys_enable, SYS_ENABLE_LO_LEN);
 }
 

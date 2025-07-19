@@ -53,7 +53,7 @@ static dwt_config_t config = {
 
 // https://gist.github.com/egnor/455d510e11c22deafdec14b09da5bf54
 node_type current_node = rx_node; // current node type, default is TX node
-//static uint8_t rx_buffer[FRAME_LEN_MAX];
+static uint8_t rx_buffer[FRAME_LEN_MAX];
 uint32_t status_reg;
 uint16_t frame_len;
 uint32_t current_status;
