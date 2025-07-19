@@ -622,6 +622,45 @@ void _dwt_prog_ldo_and_bias_tune(void);
 uint32_t dwt_readdevid(void);
 
 /*! ------------------------------------------------------------------------------------------------------------------
+*
+* @brief this function clears the AON configuration in DW3000
+*
+* input parameters:
+*
+* output parameters
+*
+* no return value
+*/
+void dwt_clearaonconfig(void);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief this function resets the DW3000
+ *
+ * NOTE: SPI rate must be <= 7MHz before a call to this function as the device will use FOSC/4 as part of internal reset
+ *
+ * input parameters:
+ *
+ * output parameters
+ *
+ * no return value
+ */
+void dwt_softreset(void);
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @brief This is used to read the data from the RX buffer, from an offset location give by offset parameter
+ *
+ * input parameters
+ * @param buffer - the buffer into which the data will be read
+ * @param length - the length of data to read (in bytes)
+ * @param rxBufferOffset - the offset in the rx buffer from which to read the data
+ *
+ * output parameters
+ *
+ * no return value
+ */
+void dwt_readrxdata(uint8_t *buffer, uint16_t length, uint16_t rxBufferOffset);
+
+/*! ------------------------------------------------------------------------------------------------------------------
  * @brief this reads the device ID and checks if it is the right one
  *
  * input parameters

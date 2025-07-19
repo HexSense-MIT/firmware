@@ -56,13 +56,11 @@ node_type current_node = rx_node; // current node type, default is TX node
 static uint8_t rx_buffer[FRAME_LEN_MAX];
 uint32_t status_reg;
 uint16_t frame_len;
-uint32_t current_status;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define FCS_LEN 2 // The real length that is going to be transmitted
-#define FRAME_LENGTH (sizeof(tx_msg) + FCS_LEN) // The real length that is going to be transmitted
+// #define FRAME_LENGTH (sizeof(tx_msg) + FCS_LEN) // The real length that is going to be transmitted
 
 /* USER CODE END PD */
 
@@ -246,7 +244,7 @@ int main(void)
       while (!DW3000_IRQ_flag) {;}
 
       DW3000_IRQ_flag = false; // reset the flag
-      current_status = DW3000readreg(SYS_STATUS_ID, 4);
+      uint32_t current_status = DW3000readreg(SYS_STATUS_ID, 4);
 
       if (current_status & SYS_STATUS_TXFRS_BIT_MASK) {
         printf("TX done, SYS_STATUS: 0x%08lX\r\n", current_status);
@@ -281,9 +279,7 @@ int main(void)
         /* Clear good RX frame event in the DW IC status register. */
         dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_RXFCG_BIT_MASK);
 
-        printf("Frame Received: ");
-        current_status = DW3000readreg(SYS_STATUS_ID, 4);
-        printf("0x%08lX\r\n", current_status);
+        printf("Frame Received");
       } else {
         /* Clear RX error events in the DW IC status register. */
         dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_ALL_RX_ERR);
