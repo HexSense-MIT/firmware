@@ -3,6 +3,19 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
+		<item value="dev_id"/>
+		<item value="fcs_len"/>
+		<item value="pdw3000local"/>
+		<item value="typedef struct"/>
+		<item value="dwt_txconfig_t_fz"/>
+		<item value="txconfig_options"/>
+		<item value="dwt_pgf_cal"/>
+		<item value="CH5_DGC_LUT_0"/>
+		<item value="0x1c0fd"/>
+		<item value="DWT_DGC_CFG"/>
+		<item value="PD_THRESH_NO_DATA"/>
+		<item value="current_node"/>
+		<item value="dwt_xfer3000"/>
 		<item value="UWB_CS_pin"/>
 	</list>
 </section>

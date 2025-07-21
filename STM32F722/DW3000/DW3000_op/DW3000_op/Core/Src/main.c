@@ -52,7 +52,7 @@ static dwt_config_t config = {
 //static uint8_t rx_buffer[FRAME_LEN_MAX];
 
 // https://gist.github.com/egnor/455d510e11c22deafdec14b09da5bf54
-node_type current_node = tx_node; // current node type, default is TX node
+node_type current_node = rx_node; // current node type, default is TX node
 static uint8_t rx_buffer[FRAME_LEN_MAX];
 #define FCS_LEN 2
 /* Hold copy of status register state here for reference so that it can be examined at a debug breakpoint. */
@@ -179,11 +179,6 @@ int main(void)
     printf("CONFIG FAILED\r\n");
     while (100) {;}
   }
-
-  // if (current_node == rx_node) {
-  //   DW3000_pgf_cal(); // perform the PGF calibration
-  //   printf("PGF calibration done\r\n");
-  // }
 
   if (current_node == tx_node) {
     DW3000_irq_for_tx_done(); // enable the IRQ for TX done
