@@ -1558,3 +1558,10 @@ arm-none-eabi-size  microsd_spi_fatfs.elf
   52496	    384	   8672	  61552	   f070	microsd_spi_fatfs.elf
 Finished building: default.size.stdout
  
+10:47:14 **** Incremental Build of configuration Debug for project microsd_spi_fatfs ****
+make -j15 all 
+arm-none-eabi-size  microsd_spi_fatfs.elf 
+   text	   data	    bss	    dec	    hex	filename
+  52496	    384	   8672	  61552	   f070	microsd_spi_fatfs.elf
+Finished building: default.size.stdout
+ 

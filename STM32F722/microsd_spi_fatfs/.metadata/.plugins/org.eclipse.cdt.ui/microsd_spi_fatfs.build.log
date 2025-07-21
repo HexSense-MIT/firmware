@@ -1,4 +1,4 @@
-10:39:01 **** Incremental Build of configuration Debug for project microsd_spi_fatfs ****
+10:47:14 **** Incremental Build of configuration Debug for project microsd_spi_fatfs ****
 make -j15 all 
 arm-none-eabi-size  microsd_spi_fatfs.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size  microsd_spi_fatfs.elf
 Finished building: default.size.stdout
  
 
-10:39:01 Build Finished. 0 errors, 0 warnings. (took 183ms)
+10:47:14 Build Finished. 0 errors, 0 warnings. (took 193ms)
 
