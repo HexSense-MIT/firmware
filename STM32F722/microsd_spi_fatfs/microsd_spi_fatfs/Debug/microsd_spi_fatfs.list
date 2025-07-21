@@ -644,7 +644,8 @@ int main(void)
  8000760:	482e      	ldr	r0, [pc, #184]	@ (800081c <main+0x230>)
  8000762:	f00b fb93 	bl	800be8c <puts>
  8000766:	e005      	b.n	8000774 <main+0x188>
-  } else {
+  }
+  else {
     printf("f_open error (%i)\r\n", fres);
  8000768:	f897 349f 	ldrb.w	r3, [r7, #1183]	@ 0x49f
  800076c:	4619      	mov	r1, r3
@@ -662,7 +663,9 @@ int main(void)
  8000780:	c40f      	stmia	r4!, {r0, r1, r2, r3}
  8000782:	e895 0003 	ldmia.w	r5, {r0, r1}
  8000786:	e884 0003 	stmia.w	r4, {r0, r1}
+
   UINT bytesWrote;
+
   fres = f_write(&fil, readBuf, 19, &bytesWrote);
  800078a:	1d3b      	adds	r3, r7, #4
  800078c:	f107 0108 	add.w	r1, r7, #8
@@ -683,7 +686,8 @@ int main(void)
  80007b4:	481b      	ldr	r0, [pc, #108]	@ (8000824 <main+0x238>)
  80007b6:	f00b fb01 	bl	800bdbc <iprintf>
  80007ba:	e005      	b.n	80007c8 <main+0x1dc>
-  } else {
+  }
+  else {
     printf("f_write error (%i)\r\n", fres);
  80007bc:	f897 349f 	ldrb.w	r3, [r7, #1183]	@ 0x49f
  80007c0:	4619      	mov	r1, r3
@@ -1272,7 +1276,7 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
     /**SPI2 GPIO Configuration
     PC1     ------> SPI2_MOSI
     PC2     ------> SPI2_MISO
-    PB10     ------> SPI2_SCK
+    PB13     ------> SPI2_SCK
     */
     GPIO_InitStruct.Pin = GPIO_PIN_1|GPIO_PIN_2;
  8000b42:	2306      	movs	r3, #6
@@ -1295,8 +1299,8 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
  8000b5c:	480d      	ldr	r0, [pc, #52]	@ (8000b94 <HAL_SPI_MspInit+0xbc>)
  8000b5e:	f000 fac9 	bl	80010f4 <HAL_GPIO_Init>
 
-    GPIO_InitStruct.Pin = GPIO_PIN_10;
- 8000b62:	f44f 6380 	mov.w	r3, #1024	@ 0x400
+    GPIO_InitStruct.Pin = GPIO_PIN_13;
+ 8000b62:	f44f 5300 	mov.w	r3, #8192	@ 0x2000
  8000b66:	617b      	str	r3, [r7, #20]
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
  8000b68:	2302      	movs	r3, #2
@@ -22146,7 +22150,6 @@ FRESULT f_open (
 	const BYTE *wbuff = (const BYTE*)buff;
  8008878:	68bb      	ldr	r3, [r7, #8]
  800887a:	61fb      	str	r3, [r7, #28]
-
 
 	*bw = 0;	/* Clear write byte counter */
  800887c:	683b      	ldr	r3, [r7, #0]
