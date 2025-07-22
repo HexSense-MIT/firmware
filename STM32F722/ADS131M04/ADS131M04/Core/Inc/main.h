@@ -57,6 +57,8 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define ADS_CS_Pin GPIO_PIN_0
+#define ADS_CS_GPIO_Port GPIOC
 #define LORA_RESET_Pin GPIO_PIN_3
 #define LORA_RESET_GPIO_Port GPIOC
 #define LORA_CS_Pin GPIO_PIN_0
@@ -77,9 +79,16 @@ void Error_Handler(void);
 #define SD_CS_GPIO_Port GPIOC
 #define UWB_CS_Pin GPIO_PIN_9
 #define UWB_CS_GPIO_Port GPIOA
+#define ADS_CLK_Pin GPIO_PIN_5
+#define ADS_CLK_GPIO_Port GPIOB
+#define ADS_SYNC_RST_Pin GPIO_PIN_8
+#define ADS_SYNC_RST_GPIO_Port GPIOB
+#define ADS_DRDY_Pin GPIO_PIN_9
+#define ADS_DRDY_GPIO_Port GPIOB
+#define ADS_DRDY_EXTI_IRQn EXTI9_5_IRQn
 
 /* USER CODE BEGIN Private defines */
-
+#define ADS131M04_SPI_HANDLE hspi3
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

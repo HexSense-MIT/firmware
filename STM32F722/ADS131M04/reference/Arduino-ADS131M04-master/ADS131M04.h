@@ -3,8 +3,7 @@
 
 #include "Arduino.h"
 
-struct adcOutput
-{
+struct adcOutput {
   uint16_t status;
   int32_t ch0;
   int32_t ch1;
@@ -205,16 +204,16 @@ struct adcOutput
 #define DATA_MODE_32BITS 1
 
 // Data Rate
-#define DATA_RATE_0 0
-#define DATA_RATE_1 1
-#define DATA_RATE_2 2
-#define DATA_RATE_3 3
-#define DATA_RATE_4 4
-#define DATA_RATE_5 5
-#define DATA_RATE_6 6
-#define DATA_RATE_7 7
-#define DATA_RATE_8 8
-#define DATA_RATE_9 9
+#define DATA_RATE_0   0
+#define DATA_RATE_1   1
+#define DATA_RATE_2   2
+#define DATA_RATE_3   3
+#define DATA_RATE_4   4
+#define DATA_RATE_5   5
+#define DATA_RATE_6   6
+#define DATA_RATE_7   7
+#define DATA_RATE_8   8
+#define DATA_RATE_9   9
 #define DATA_RATE_10 10
 #define DATA_RATE_11 11
 #define DATA_RATE_12 12
@@ -224,20 +223,20 @@ struct adcOutput
 
 // Sync Mpdes
 #define SYNC_CONTINUOUS 1
-#define SYNC_PULSE 0
+#define SYNC_PULSE      0
 
 // DIO Config Mode
 #define DIO_OUTPUT 1
-#define DIO_INPUT 0
+#define DIO_INPUT  0
 
-#define SPI_MASTER_DUMMY 0xFF
+#define SPI_MASTER_DUMMY   0xFF
 #define SPI_MASTER_DUMMY16 0xFFFF
 #define SPI_MASTER_DUMMY32 0xFFFFFFFF
 
-class ADS131M04
-{
+class ADS131M04 {
 public:
   ADS131M04();
+
   uint8_t ADS131M04_CS_PIN;
   uint8_t ADS131M04_DRDY_PIN;
   uint8_t ADS131M04_CLK_PIN;

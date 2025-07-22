@@ -323,6 +323,7 @@ int __io_putchar(int ch) {
     }
     return ch;
 }
+
 /* USER CODE END PRIVATE_FUNCTIONS_IMPLEMENTATION */
 
 /**

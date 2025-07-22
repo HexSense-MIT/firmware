@@ -4,12 +4,10 @@
 
 #define settings SPISettings(4000000, MSBFIRST, SPI_MODE1)
 
-ADS131M04::ADS131M04()
-{
+ADS131M04::ADS131M04() {
 }
 
-uint8_t ADS131M04::writeRegister(uint8_t address, uint16_t value)
-{
+uint8_t ADS131M04::writeRegister(uint8_t address, uint16_t value) {
   uint16_t res;
   uint8_t addressRcv;
   uint8_t bytesRcv;
@@ -63,10 +61,10 @@ uint8_t ADS131M04::writeRegister(uint8_t address, uint16_t value)
   addressRcv = (res & REGMASK_CMD_READ_REG_ADDRESS) >> 7;
   bytesRcv = (res & REGMASK_CMD_READ_REG_BYTES);
 
-  if (addressRcv == address)
-  {
+  if (addressRcv == address) {
     return bytesRcv + 1;
   }
+
   return 0;
 }
 
@@ -141,12 +139,11 @@ uint16_t ADS131M04::readRegister(uint8_t address)
   return data;
 }
 
-void ADS131M04::begin(uint8_t clk_pin, uint8_t miso_pin, uint8_t mosi_pin, uint8_t cs_pin, uint8_t drdy_pin)
-{
+void ADS131M04::begin(uint8_t clk_pin, uint8_t miso_pin, uint8_t mosi_pin, uint8_t cs_pin, uint8_t drdy_pin) {
   // Set pins up
-  ADS131M04_CS_PIN = cs_pin;
+  ADS131M04_CS_PIN   = cs_pin;
   ADS131M04_DRDY_PIN = drdy_pin;
-  ADS131M04_CLK_PIN = clk_pin;
+  ADS131M04_CLK_PIN  = clk_pin;
   ADS131M04_MISO_PIN = miso_pin;
   ADS131M04_MOSI_PIN = mosi_pin;
 
@@ -158,26 +155,20 @@ void ADS131M04::begin(uint8_t clk_pin, uint8_t miso_pin, uint8_t mosi_pin, uint8
   pinMode(ADS131M04_DRDY_PIN, INPUT);
 }
 
-int8_t ADS131M04::isDataReadySoft(byte channel)
-{
-  if (channel == 0)
-  {
+int8_t ADS131M04::isDataReadySoft(byte channel) {
+  if (channel == 0) {
     return (readRegister(REG_STATUS) & REGMASK_STATUS_DRDY0);
   }
-  else if (channel == 1)
-  {
+  else if (channel == 1) {
     return (readRegister(REG_STATUS) & REGMASK_STATUS_DRDY1);
   }
-  else if (channel == 2)
-  {
+  else if (channel == 2) {
     return (readRegister(REG_STATUS) & REGMASK_STATUS_DRDY2);
   }
-  else if (channel == 3)
-  {
+  else if (channel == 3) {
     return (readRegister(REG_STATUS) & REGMASK_STATUS_DRDY3);
   }
-  else
-  {
+  else {
     return -1;
   }
 }

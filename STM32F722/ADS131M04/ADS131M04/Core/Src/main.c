@@ -23,7 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "ADS131M04.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -106,8 +106,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+  while (1) {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -310,7 +309,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, LORA_RESET_Pin|PIN_LED2_Pin|SD_CS_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, ADS_CS_Pin|LORA_RESET_Pin|PIN_LED2_Pin|SD_CS_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, LORA_CS_Pin|UWB_CS_Pin, GPIO_PIN_SET);
@@ -319,10 +318,10 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(UWB_RST_GPIO_Port, UWB_RST_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(PIN_LED1_GPIO_Port, PIN_LED1_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, PIN_LED1_Pin|ADS_CLK_Pin|ADS_SYNC_RST_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : LORA_RESET_Pin SD_CS_Pin */
-  GPIO_InitStruct.Pin = LORA_RESET_Pin|SD_CS_Pin;
+  /*Configure GPIO pins : ADS_CS_Pin LORA_RESET_Pin SD_CS_Pin */
+  GPIO_InitStruct.Pin = ADS_CS_Pin|LORA_RESET_Pin|SD_CS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -361,12 +360,18 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(PIN_LED2_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : PIN_LED1_Pin */
-  GPIO_InitStruct.Pin = PIN_LED1_Pin;
+  /*Configure GPIO pins : PIN_LED1_Pin ADS_CLK_Pin ADS_SYNC_RST_Pin */
+  GPIO_InitStruct.Pin = PIN_LED1_Pin|ADS_CLK_Pin|ADS_SYNC_RST_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(PIN_LED1_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : ADS_DRDY_Pin */
+  GPIO_InitStruct.Pin = ADS_DRDY_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(ADS_DRDY_GPIO_Port, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI2_IRQn, 0, 0);
@@ -374,6 +379,9 @@ static void MX_GPIO_Init(void)
 
   HAL_NVIC_SetPriority(EXTI4_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(EXTI4_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 

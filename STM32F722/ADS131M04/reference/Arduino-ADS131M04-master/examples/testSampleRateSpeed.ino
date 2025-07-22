@@ -4,8 +4,7 @@
 
 ADS131M04 adc;
 
-void setup()
-{
+void setup() {
   Serial.begin(115200);
   adc.begin(14, 12, 13, 5, 19);
 
@@ -19,22 +18,18 @@ void setup()
   adc.setOsr(OSR_128);      // 32KSPS  only with 8MHZ clock
 }
 
-void loop()
-{
+void loop() {
   adcOutput res;
   delay(100);
   unsigned long timeAnt = 0;
   unsigned long cont = 0;
 
-  while (1)
-  {
-    if (adc.isDataReady())
-    {
+  while (1) {
+    if (adc.isDataReady()) {
       res = adc.readADC();
       cont++;
     }
-    if (millis() - timeAnt > 1000)
-    {
+    if (millis() - timeAnt > 1000) {
       Serial.print("SPS = ");
       Serial.println(cont);
       timeAnt = millis();
