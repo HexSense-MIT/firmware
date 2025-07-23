@@ -44,8 +44,8 @@ typedef struct {
 #define ADS131M04_OPCODE_LOCK ((uint16_t)0x0555)
 #define ADS131M04_OPCODE_UNLOCK ((uint16_t)0x0655)
 
-#define ADS131M04_ENABLE_CRC
-#define ADS131M04_CRC_CCITT
+// #define ADS131M04_ENABLE_CRC
+// #define ADS131M04_CRC_CCITT
 //#define ADS131M04_CRC_ANSI
 
 //#define ADS131M04_WORD_LENGTH_16BIT_TRUNCATED
@@ -56,7 +56,7 @@ typedef struct {
 #ifdef ADS131M04_WORD_LENGTH_16BIT_TRUNCATED
 #define ADS131M04_WORD_LENGTH 2
 #elif defined(ADS131M04_WORD_LENGTH_24BIT)
-#define ADS131M04_WORD_LENGTH 3
+#define ADS131M04_WORD_LENGTH 3 // default word size is 24 bits
 #elif
 #define ADS131M04_WORD_LENGTH 4
 #endif
@@ -282,6 +282,8 @@ typedef struct {
 #define SPI_MASTER_DUMMY16 0xFFFF
 #define SPI_MASTER_DUMMY32 0xFFFFFFFF
 
+#define FRAME_LEN 6 // 6 words in a frame
+
 extern void ADS131M04_Init(void);
 extern int8_t ADS131M04_isDataReadySoft(uint8_t channel);
 extern bool ADS131M04_isDataReady(void);
@@ -300,9 +302,11 @@ extern bool ADS131M04_setChannelGainCalibration(uint8_t channel, uint32_t gain);
 extern bool ADS131M04_setOsr(uint16_t osr);
 extern bool ADS131M04_readADC(ADS131M04_ADCValue *adcValue);
 
-void     ADS131M04_writeRegister(uint8_t address, uint16_t value);
-uint16_t ADS131M04_readRegister(uint8_t address);
-void     ADS131M04_writeRegisterMasked(uint8_t address, uint16_t value, uint16_t mask);
+void     ADS131M04_Transmitword(uint16_t word, uint8_t *rxBytes);
+
+extern uint16_t ADS131M04_WriteRegister(uint8_t address, uint16_t value, bool with_reply);
+extern uint16_t ADS131M04_ReadRegister(uint8_t address);
+extern void     ADS131M04_writeRegisterMasked(uint8_t address, uint16_t value, uint16_t mask);
 
 #endif /* INC_ADS131M04_H_ */
 

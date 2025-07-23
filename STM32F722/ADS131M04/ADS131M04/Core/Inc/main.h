@@ -49,6 +49,8 @@ extern "C" {
 
 /* USER CODE END EM */
 
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
@@ -89,6 +91,7 @@ void Error_Handler(void);
 
 /* USER CODE BEGIN Private defines */
 #define ADS131M04_SPI_HANDLE hspi3
+#define ADS131M04_CLKIN_TIM  htim3
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

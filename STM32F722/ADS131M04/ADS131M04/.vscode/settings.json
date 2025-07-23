@@ -19,6 +19,7 @@
         "ads131m04.h": "c",
         "stdlib.h": "c",
         "compare": "c",
-        "cstdint": "c"
+        "cstdint": "c",
+        "stdbool.h": "c"
     }
 }
