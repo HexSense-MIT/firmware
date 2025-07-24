@@ -1,0 +1,631 @@
+2025-07-23 17:07:56,790 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 925782704 Bytes (1073741824)
+2025-07-23 17:07:57,095 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 947525824 Bytes (1073741824)
+2025-07-23 17:07:57,965 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 406590320 Bytes (1073741824)
+2025-07-23 17:07:59,141 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-23 17:07:59,141 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-23 17:07:59,142 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-23 17:07:59,142 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_DEVICE
+2025-07-23 17:07:59,142 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2025-07-23 17:07:59,142 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2025-07-23 17:07:59,142 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_OTG_FS
+2025-07-23 17:07:59,142 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2025-07-23 17:07:59,143 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2025-07-23 17:07:59,144 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: FATFS
+2025-07-23 17:07:59,144 [INFO] CodeGenerator:892 - code generatio: config db path: /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.common.mx_6.15.0.202507011659//db/
+2025-07-23 17:07:59,191 [WARN] IP:2250 - DEVICE_SERIAL0_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:07:59,191 [WARN] IP:2250 - DEVICE_SERIAL1_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:07:59,191 [WARN] IP:2250 - DEVICE_SERIAL2_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:07:59,388 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/license.tmp_save
+2025-07-23 17:07:59,810 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/license.tmp
+2025-07-23 17:07:59,956 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/gpio.tmp_save
+2025-07-23 17:08:00,157 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/gpio.tmp
+2025-07-23 17:08:00,328 [WARN] IPConfigManager:3238 - Warning: the RefConfig PWREx_EnableUSBVoltageDetector is not available in your config.xml file
+2025-07-23 17:08:00,336 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_vars.tmp_save
+2025-07-23 17:08:00,476 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_vars.tmp
+2025-07-23 17:08:00,479 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_inc.tmp_save
+2025-07-23 17:08:00,605 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_inc.tmp
+2025-07-23 17:08:00,608 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_HalInit.tmp_save
+2025-07-23 17:08:00,745 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_HalInit.tmp
+2025-07-23 17:08:00,748 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_Msp.tmp_save
+2025-07-23 17:08:00,890 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_Msp.tmp
+2025-07-23 17:08:01,522 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 17:08:01,526 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-23 17:08:01,636 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-23 17:08:01,639 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-23 17:08:01,759 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp
+2025-07-23 17:08:01,786 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-23 17:08:01,955 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-23 17:08:01,958 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-23 17:08:02,084 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp
+2025-07-23 17:08:02,124 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 17:08:02,131 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/cortex.tmp_save
+2025-07-23 17:08:02,290 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/cortex.tmp
+2025-07-23 17:08:02,297 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 17:08:02,302 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-23 17:08:02,414 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-23 17:08:02,417 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-23 17:08:02,584 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp
+2025-07-23 17:08:02,587 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-23 17:08:02,712 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-23 17:08:02,715 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-23 17:08:02,925 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp
+2025-07-23 17:08:02,930 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/ffconf.h_save
+2025-07-23 17:08:03,059 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/ffconf.h
+2025-07-23 17:08:03,062 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.c_save
+2025-07-23 17:08:03,181 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.c
+2025-07-23 17:08:03,186 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.h_save
+2025-07-23 17:08:03,298 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.h
+2025-07-23 17:08:03,302 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.c_save
+2025-07-23 17:08:03,424 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.c
+2025-07-23 17:08:03,428 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.h_save
+2025-07-23 17:08:03,538 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.h
+2025-07-23 17:08:03,560 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 17:08:03,569 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.c_save
+2025-07-23 17:08:03,688 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.c
+2025-07-23 17:08:03,693 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.h_save
+2025-07-23 17:08:03,904 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.h
+2025-07-23 17:08:03,909 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.h_save
+2025-07-23 17:08:04,091 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.h
+2025-07-23 17:08:04,095 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.c_save
+2025-07-23 17:08:04,224 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.c
+2025-07-23 17:08:04,228 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.h_save
+2025-07-23 17:08:04,335 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.h
+2025-07-23 17:08:04,338 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.c_save
+2025-07-23 17:08:04,457 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.c
+2025-07-23 17:08:04,462 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.h_save
+2025-07-23 17:08:04,569 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.h
+2025-07-23 17:08:04,573 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.c_save
+2025-07-23 17:08:04,690 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.c
+2025-07-23 17:08:04,704 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_it.c_save
+2025-07-23 17:08:04,932 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_it.c
+2025-07-23 17:08:04,936 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_it.h_save
+2025-07-23 17:08:04,999 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_it.h
+2025-07-23 17:08:05,020 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_hal_msp.c_save
+2025-07-23 17:08:05,108 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_hal_msp.c
+2025-07-23 17:08:05,112 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/system.tmp_save
+2025-07-23 17:08:05,172 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/system.tmp
+2025-07-23 17:08:05,179 [INFO] CodeEngine:321 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_hal_conf.h_save
+2025-07-23 17:08:05,257 [INFO] CodeEngine:345 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_hal_conf.h
+2025-07-23 17:08:05,304 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/main.h_save
+2025-07-23 17:08:05,387 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/main.h
+2025-07-23 17:08:05,391 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/main.c_save
+2025-07-23 17:08:05,492 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/main.c
+2025-07-23 17:08:05,996 [INFO] ProjectBuilder:3606 - Time for Copy HAL[1] : 206mS.
+2025-07-23 17:08:06,001 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
+2025-07-23 17:08:06,176 [INFO] ConfigFileManager:1595 - The Die is : DIE452
+2025-07-23 17:08:07,011 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 1009mS.
+2025-07-23 17:08:07,011 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-07-23 17:08:07,016 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-07-23 17:19:26,288 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 430034688 Bytes (1073741824)
+2025-07-23 17:19:26,435 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 451006208 Bytes (1073741824)
+2025-07-23 17:19:26,791 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 483512064 Bytes (1073741824)
+2025-07-23 17:19:27,087 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-23 17:19:27,088 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-23 17:19:27,090 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-23 17:19:27,090 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_DEVICE
+2025-07-23 17:19:27,090 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2025-07-23 17:19:27,090 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2025-07-23 17:19:27,090 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_OTG_FS
+2025-07-23 17:19:27,090 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2025-07-23 17:19:27,091 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2025-07-23 17:19:27,091 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: FATFS
+2025-07-23 17:19:27,092 [INFO] CodeGenerator:892 - code generatio: config db path: /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.common.mx_6.15.0.202507011659//db/
+2025-07-23 17:19:27,139 [WARN] IP:2250 - DEVICE_SERIAL0_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:19:27,139 [WARN] IP:2250 - DEVICE_SERIAL1_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:19:27,139 [WARN] IP:2250 - DEVICE_SERIAL2_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:19:27,228 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/license.tmp_save
+2025-07-23 17:19:27,299 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/license.tmp
+2025-07-23 17:19:27,385 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/gpio.tmp_save
+2025-07-23 17:19:27,449 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/gpio.tmp
+2025-07-23 17:19:27,613 [WARN] IPConfigManager:3238 - Warning: the RefConfig PWREx_EnableUSBVoltageDetector is not available in your config.xml file
+2025-07-23 17:19:27,619 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_vars.tmp_save
+2025-07-23 17:19:27,675 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_vars.tmp
+2025-07-23 17:19:27,677 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_inc.tmp_save
+2025-07-23 17:19:27,733 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_inc.tmp
+2025-07-23 17:19:27,735 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_HalInit.tmp_save
+2025-07-23 17:19:27,799 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_HalInit.tmp
+2025-07-23 17:19:27,802 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_Msp.tmp_save
+2025-07-23 17:19:27,874 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_Msp.tmp
+2025-07-23 17:19:28,371 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 17:19:28,377 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-23 17:19:28,480 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-23 17:19:28,483 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-23 17:19:28,585 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp
+2025-07-23 17:19:28,588 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-23 17:19:28,650 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-23 17:19:28,652 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-23 17:19:28,705 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp
+2025-07-23 17:19:28,723 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 17:19:28,727 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/cortex.tmp_save
+2025-07-23 17:19:28,778 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/cortex.tmp
+2025-07-23 17:19:28,782 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 17:19:28,785 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-23 17:19:28,834 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-23 17:19:28,836 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-23 17:19:28,885 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp
+2025-07-23 17:19:28,887 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-23 17:19:28,938 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-23 17:19:28,940 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-23 17:19:28,990 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp
+2025-07-23 17:19:28,993 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/ffconf.h_save
+2025-07-23 17:19:29,057 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/ffconf.h
+2025-07-23 17:19:29,060 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.c_save
+2025-07-23 17:19:29,113 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.c
+2025-07-23 17:19:29,116 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.h_save
+2025-07-23 17:19:29,171 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.h
+2025-07-23 17:19:29,175 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.c_save
+2025-07-23 17:19:29,229 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.c
+2025-07-23 17:19:29,232 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.h_save
+2025-07-23 17:19:29,285 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.h
+2025-07-23 17:19:29,299 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 17:19:29,304 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.c_save
+2025-07-23 17:19:29,362 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.c
+2025-07-23 17:19:29,365 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.h_save
+2025-07-23 17:19:29,420 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.h
+2025-07-23 17:19:29,424 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.h_save
+2025-07-23 17:19:29,477 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.h
+2025-07-23 17:19:29,480 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.c_save
+2025-07-23 17:19:29,541 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.c
+2025-07-23 17:19:29,544 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.h_save
+2025-07-23 17:19:29,598 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.h
+2025-07-23 17:19:29,601 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.c_save
+2025-07-23 17:19:29,665 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.c
+2025-07-23 17:19:29,722 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.h_save
+2025-07-23 17:19:29,797 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.h
+2025-07-23 17:19:29,799 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.c_save
+2025-07-23 17:19:29,865 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.c
+2025-07-23 17:19:29,874 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_it.c_save
+2025-07-23 17:19:30,015 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_it.c
+2025-07-23 17:19:30,018 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_it.h_save
+2025-07-23 17:19:30,069 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_it.h
+2025-07-23 17:19:30,081 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_hal_msp.c_save
+2025-07-23 17:19:30,160 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_hal_msp.c
+2025-07-23 17:19:30,163 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/system.tmp_save
+2025-07-23 17:19:30,213 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/system.tmp
+2025-07-23 17:19:30,218 [INFO] CodeEngine:321 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_hal_conf.h_save
+2025-07-23 17:19:30,275 [INFO] CodeEngine:345 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_hal_conf.h
+2025-07-23 17:19:30,299 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/main.h_save
+2025-07-23 17:19:30,373 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/main.h
+2025-07-23 17:19:30,376 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/main.c_save
+2025-07-23 17:19:30,462 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/main.c
+2025-07-23 17:19:31,340 [INFO] ProjectBuilder:3606 - Time for Copy HAL[1] : 461mS.
+2025-07-23 17:19:31,344 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
+2025-07-23 17:19:31,441 [INFO] ConfigFileManager:1595 - The Die is : DIE452
+2025-07-23 17:19:32,259 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 915mS.
+2025-07-23 17:19:32,260 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 1mS.
+2025-07-23 17:19:32,263 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-07-23 17:43:18,782 [WARN] IP:2250 - DEVICE_SERIAL0_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:43:18,784 [WARN] IP:2250 - DEVICE_SERIAL1_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:43:18,784 [WARN] IP:2250 - DEVICE_SERIAL2_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:43:18,786 [WARN] IP:2250 - DEVICE_SERIAL0_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:43:18,786 [WARN] IP:2250 - DEVICE_SERIAL1_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:43:18,786 [WARN] IP:2250 - DEVICE_SERIAL2_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:43:18,933 [WARN] IP:2250 - DEVICE_SERIAL0_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:43:18,933 [WARN] IP:2250 - DEVICE_SERIAL1_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:43:18,933 [WARN] IP:2250 - DEVICE_SERIAL2_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:43:19,010 [WARN] IP:2250 - DEVICE_SERIAL0_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:43:19,010 [WARN] IP:2250 - DEVICE_SERIAL1_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:43:19,010 [WARN] IP:2250 - DEVICE_SERIAL2_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:43:19,124 [INFO] Gpio:278 - dependency for GPIO [RCC, SPI1, SPI2, SPI3, SYS, USB_OTG_FS]
+2025-07-23 17:43:19,210 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2025-07-23 17:45:56,323 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 439655784 Bytes (1073741824)
+2025-07-23 17:45:56,698 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 460627304 Bytes (1073741824)
+2025-07-23 17:45:57,697 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 562167000 Bytes (1073741824)
+2025-07-23 17:45:57,934 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-23 17:45:57,934 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-23 17:45:57,934 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-23 17:45:57,934 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: TIM1_8F7
+2025-07-23 17:45:57,934 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_DEVICE
+2025-07-23 17:45:57,935 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2025-07-23 17:45:57,935 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2025-07-23 17:45:57,935 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_OTG_FS
+2025-07-23 17:45:57,935 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2025-07-23 17:45:57,935 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2025-07-23 17:45:57,935 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: FATFS
+2025-07-23 17:45:57,936 [INFO] CodeGenerator:892 - code generatio: config db path: /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.common.mx_6.15.0.202507011659//db/
+2025-07-23 17:45:57,994 [WARN] IP:2250 - DEVICE_SERIAL0_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:45:57,994 [WARN] IP:2250 - DEVICE_SERIAL1_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:45:57,994 [WARN] IP:2250 - DEVICE_SERIAL2_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:45:58,150 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/license.tmp_save
+2025-07-23 17:45:58,263 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/license.tmp
+2025-07-23 17:45:58,356 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/gpio.tmp_save
+2025-07-23 17:45:58,450 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/gpio.tmp
+2025-07-23 17:45:58,634 [WARN] IPConfigManager:3238 - Warning: the RefConfig PWREx_EnableUSBVoltageDetector is not available in your config.xml file
+2025-07-23 17:45:58,643 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_vars.tmp_save
+2025-07-23 17:45:58,722 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_vars.tmp
+2025-07-23 17:45:58,726 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_inc.tmp_save
+2025-07-23 17:45:58,791 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_inc.tmp
+2025-07-23 17:45:58,794 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_HalInit.tmp_save
+2025-07-23 17:45:58,872 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_HalInit.tmp
+2025-07-23 17:45:58,937 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_Msp.tmp_save
+2025-07-23 17:45:59,055 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_Msp.tmp
+2025-07-23 17:46:00,027 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 17:46:00,034 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-23 17:46:00,124 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-23 17:46:00,128 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-23 17:46:00,202 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp
+2025-07-23 17:46:00,206 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-23 17:46:00,271 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-23 17:46:00,273 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-23 17:46:00,341 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp
+2025-07-23 17:46:00,359 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 17:46:00,363 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/cortex.tmp_save
+2025-07-23 17:46:00,429 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/cortex.tmp
+2025-07-23 17:46:00,435 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 17:46:00,440 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-23 17:46:00,520 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-23 17:46:00,525 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-23 17:46:00,596 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp
+2025-07-23 17:46:00,598 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-23 17:46:00,677 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-23 17:46:00,679 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-23 17:46:00,746 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp
+2025-07-23 17:46:00,749 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/ffconf.h_save
+2025-07-23 17:46:00,832 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/ffconf.h
+2025-07-23 17:46:00,838 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.c_save
+2025-07-23 17:46:00,910 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.c
+2025-07-23 17:46:00,914 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.h_save
+2025-07-23 17:46:00,980 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.h
+2025-07-23 17:46:00,984 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.c_save
+2025-07-23 17:46:01,059 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.c
+2025-07-23 17:46:01,063 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.h_save
+2025-07-23 17:46:01,147 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.h
+2025-07-23 17:46:01,181 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 17:46:01,191 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.c_save
+2025-07-23 17:46:01,326 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.c
+2025-07-23 17:46:01,333 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.h_save
+2025-07-23 17:46:01,434 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.h
+2025-07-23 17:46:01,439 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.h_save
+2025-07-23 17:46:01,535 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.h
+2025-07-23 17:46:01,539 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.c_save
+2025-07-23 17:46:01,645 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.c
+2025-07-23 17:46:01,649 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.h_save
+2025-07-23 17:46:01,795 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.h
+2025-07-23 17:46:01,815 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.c_save
+2025-07-23 17:46:01,997 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.c
+2025-07-23 17:46:02,054 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.h_save
+2025-07-23 17:46:02,276 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.h
+2025-07-23 17:46:02,281 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.c_save
+2025-07-23 17:46:02,448 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.c
+2025-07-23 17:46:02,461 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_it.c_save
+2025-07-23 17:46:03,124 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_it.c
+2025-07-23 17:46:03,166 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_it.h_save
+2025-07-23 17:46:03,267 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_it.h
+2025-07-23 17:46:03,286 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_hal_msp.c_save
+2025-07-23 17:46:03,412 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_hal_msp.c
+2025-07-23 17:46:03,415 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/system.tmp_save
+2025-07-23 17:46:03,509 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/system.tmp
+2025-07-23 17:46:03,518 [INFO] CodeEngine:321 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_hal_conf.h_save
+2025-07-23 17:46:03,618 [INFO] CodeEngine:345 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_hal_conf.h
+2025-07-23 17:46:03,668 [INFO] ApiDbMcu:532 - Load IP Config File for TIM4
+2025-07-23 17:46:03,673 [WARN] IPConfigManager:3811 - IP not found : TIM
+2025-07-23 17:46:03,674 [WARN] CodeGenerator:4259 - IP not found : null
+2025-07-23 17:46:03,682 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/main.h_save
+2025-07-23 17:46:03,800 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/main.h
+2025-07-23 17:46:03,805 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/main.c_save
+2025-07-23 17:46:03,948 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/main.c
+2025-07-23 17:46:04,687 [INFO] ProjectBuilder:3606 - Time for Copy HAL[1] : 264mS.
+2025-07-23 17:46:04,693 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
+2025-07-23 17:46:04,816 [INFO] ConfigFileManager:1595 - The Die is : DIE452
+2025-07-23 17:46:05,704 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 1011mS.
+2025-07-23 17:46:05,705 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-07-23 17:46:05,709 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-07-23 17:53:08,128 [WARN] IP:2250 - DEVICE_SERIAL0_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:53:08,130 [WARN] IP:2250 - DEVICE_SERIAL1_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:53:08,131 [WARN] IP:2250 - DEVICE_SERIAL2_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:53:08,131 [WARN] IP:2250 - DEVICE_SERIAL0_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:53:08,132 [WARN] IP:2250 - DEVICE_SERIAL1_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:53:08,132 [WARN] IP:2250 - DEVICE_SERIAL2_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:53:08,208 [WARN] IP:2250 - DEVICE_SERIAL0_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:53:08,208 [WARN] IP:2250 - DEVICE_SERIAL1_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:53:08,208 [WARN] IP:2250 - DEVICE_SERIAL2_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:53:08,257 [WARN] IP:2250 - DEVICE_SERIAL0_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:53:08,271 [WARN] IP:2250 - DEVICE_SERIAL1_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:53:08,271 [WARN] IP:2250 - DEVICE_SERIAL2_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:53:41,975 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 468085952 Bytes (1073741824)
+2025-07-23 17:53:42,108 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 488533184 Bytes (1073741824)
+2025-07-23 17:53:42,803 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 573665048 Bytes (1073741824)
+2025-07-23 17:53:43,569 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-23 17:53:43,569 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-23 17:53:43,570 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-23 17:53:43,570 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: TIM1_8F7
+2025-07-23 17:53:43,570 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_DEVICE
+2025-07-23 17:53:43,570 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2025-07-23 17:53:43,570 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2025-07-23 17:53:43,570 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_OTG_FS
+2025-07-23 17:53:43,570 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2025-07-23 17:53:43,570 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2025-07-23 17:53:43,570 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: FATFS
+2025-07-23 17:53:43,571 [INFO] CodeGenerator:892 - code generatio: config db path: /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.common.mx_6.15.0.202507011659//db/
+2025-07-23 17:53:43,621 [WARN] IP:2250 - DEVICE_SERIAL0_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:53:43,621 [WARN] IP:2250 - DEVICE_SERIAL1_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:53:43,622 [WARN] IP:2250 - DEVICE_SERIAL2_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 17:53:44,123 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/license.tmp_save
+2025-07-23 17:53:44,360 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/license.tmp
+2025-07-23 17:53:44,468 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/gpio.tmp_save
+2025-07-23 17:53:44,683 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/gpio.tmp
+2025-07-23 17:53:44,836 [WARN] IPConfigManager:3238 - Warning: the RefConfig PWREx_EnableUSBVoltageDetector is not available in your config.xml file
+2025-07-23 17:53:44,843 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_vars.tmp_save
+2025-07-23 17:53:44,973 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_vars.tmp
+2025-07-23 17:53:44,975 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_inc.tmp_save
+2025-07-23 17:53:45,109 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_inc.tmp
+2025-07-23 17:53:45,112 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_HalInit.tmp_save
+2025-07-23 17:53:45,252 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_HalInit.tmp
+2025-07-23 17:53:45,255 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_Msp.tmp_save
+2025-07-23 17:53:45,397 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_Msp.tmp
+2025-07-23 17:53:46,149 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 17:53:46,154 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-23 17:53:46,262 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-23 17:53:46,265 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-23 17:53:46,370 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp
+2025-07-23 17:53:46,372 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-23 17:53:46,479 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-23 17:53:46,481 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-23 17:53:46,586 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp
+2025-07-23 17:53:46,606 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 17:53:46,612 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/cortex.tmp_save
+2025-07-23 17:53:46,714 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/cortex.tmp
+2025-07-23 17:53:46,720 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 17:53:46,724 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-23 17:53:46,958 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-23 17:53:46,960 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-23 17:53:47,063 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp
+2025-07-23 17:53:47,066 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-23 17:53:47,173 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-23 17:53:47,176 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-23 17:53:47,279 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp
+2025-07-23 17:53:47,283 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/ffconf.h_save
+2025-07-23 17:53:47,449 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/ffconf.h
+2025-07-23 17:53:47,455 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.c_save
+2025-07-23 17:53:47,588 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.c
+2025-07-23 17:53:47,592 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.h_save
+2025-07-23 17:53:47,695 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.h
+2025-07-23 17:53:47,698 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.c_save
+2025-07-23 17:53:47,804 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.c
+2025-07-23 17:53:47,808 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.h_save
+2025-07-23 17:53:47,914 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.h
+2025-07-23 17:53:47,931 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 17:53:47,938 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.c_save
+2025-07-23 17:53:48,053 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.c
+2025-07-23 17:53:48,057 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.h_save
+2025-07-23 17:53:48,162 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.h
+2025-07-23 17:53:48,165 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.h_save
+2025-07-23 17:53:48,269 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.h
+2025-07-23 17:53:48,272 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.c_save
+2025-07-23 17:53:48,385 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.c
+2025-07-23 17:53:48,388 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.h_save
+2025-07-23 17:53:48,493 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.h
+2025-07-23 17:53:48,496 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.c_save
+2025-07-23 17:53:48,607 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.c
+2025-07-23 17:53:48,611 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.h_save
+2025-07-23 17:53:48,715 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.h
+2025-07-23 17:53:48,718 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.c_save
+2025-07-23 17:53:48,847 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.c
+2025-07-23 17:53:48,858 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_it.c_save
+2025-07-23 17:53:48,998 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_it.c
+2025-07-23 17:53:49,001 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_it.h_save
+2025-07-23 17:53:49,107 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_it.h
+2025-07-23 17:53:49,119 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_hal_msp.c_save
+2025-07-23 17:53:49,286 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_hal_msp.c
+2025-07-23 17:53:49,290 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/system.tmp_save
+2025-07-23 17:53:49,390 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/system.tmp
+2025-07-23 17:53:49,397 [INFO] CodeEngine:321 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_hal_conf.h_save
+2025-07-23 17:53:49,510 [INFO] CodeEngine:345 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_hal_conf.h
+2025-07-23 17:53:49,558 [INFO] ApiDbMcu:532 - Load IP Config File for TIM3
+2025-07-23 17:53:49,563 [WARN] IPConfigManager:3811 - IP not found : TIM
+2025-07-23 17:53:49,564 [WARN] CodeGenerator:4259 - IP not found : null
+2025-07-23 17:53:49,570 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/main.h_save
+2025-07-23 17:53:49,702 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/main.h
+2025-07-23 17:53:49,706 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/main.c_save
+2025-07-23 17:53:49,872 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/main.c
+2025-07-23 17:53:51,409 [INFO] ProjectBuilder:3606 - Time for Copy HAL[1] : 326mS.
+2025-07-23 17:53:51,416 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
+2025-07-23 17:53:51,783 [INFO] ConfigFileManager:1595 - The Die is : DIE452
+2025-07-23 17:53:53,462 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 2046mS.
+2025-07-23 17:53:53,462 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-07-23 17:53:53,465 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-07-23 18:05:09,605 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2025-07-23 18:05:19,997 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 613337760 Bytes (1073741824)
+2025-07-23 18:05:20,114 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 633787040 Bytes (1073741824)
+2025-07-23 18:05:20,798 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 784255648 Bytes (1073741824)
+2025-07-23 18:05:21,023 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-23 18:05:21,023 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-23 18:05:21,024 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-23 18:05:21,024 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: TIM1_8F7
+2025-07-23 18:05:21,024 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_DEVICE
+2025-07-23 18:05:21,024 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2025-07-23 18:05:21,024 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2025-07-23 18:05:21,024 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_OTG_FS
+2025-07-23 18:05:21,024 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2025-07-23 18:05:21,025 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2025-07-23 18:05:21,025 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: FATFS
+2025-07-23 18:05:21,026 [INFO] CodeGenerator:892 - code generatio: config db path: /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.common.mx_6.15.0.202507011659//db/
+2025-07-23 18:05:21,080 [WARN] IP:2250 - DEVICE_SERIAL0_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 18:05:21,081 [WARN] IP:2250 - DEVICE_SERIAL1_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 18:05:21,081 [WARN] IP:2250 - DEVICE_SERIAL2_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 18:05:21,216 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/license.tmp_save
+2025-07-23 18:05:21,456 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/license.tmp
+2025-07-23 18:05:21,597 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/gpio.tmp_save
+2025-07-23 18:05:21,728 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/gpio.tmp
+2025-07-23 18:05:21,865 [WARN] IPConfigManager:3238 - Warning: the RefConfig PWREx_EnableUSBVoltageDetector is not available in your config.xml file
+2025-07-23 18:05:21,871 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_vars.tmp_save
+2025-07-23 18:05:21,935 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_vars.tmp
+2025-07-23 18:05:21,938 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_inc.tmp_save
+2025-07-23 18:05:21,993 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_inc.tmp
+2025-07-23 18:05:21,995 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_HalInit.tmp_save
+2025-07-23 18:05:22,063 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_HalInit.tmp
+2025-07-23 18:05:22,065 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_Msp.tmp_save
+2025-07-23 18:05:22,135 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_Msp.tmp
+2025-07-23 18:05:22,698 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 18:05:22,702 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-23 18:05:22,769 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-23 18:05:22,771 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-23 18:05:22,825 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp
+2025-07-23 18:05:22,827 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-23 18:05:23,058 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-23 18:05:23,061 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-23 18:05:23,116 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp
+2025-07-23 18:05:23,131 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 18:05:23,135 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/cortex.tmp_save
+2025-07-23 18:05:23,187 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/cortex.tmp
+2025-07-23 18:05:23,191 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 18:05:23,196 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-23 18:05:23,247 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-23 18:05:23,249 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-23 18:05:23,301 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp
+2025-07-23 18:05:23,303 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-23 18:05:23,354 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-23 18:05:23,357 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-23 18:05:23,409 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp
+2025-07-23 18:05:23,411 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/ffconf.h_save
+2025-07-23 18:05:23,473 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/ffconf.h
+2025-07-23 18:05:23,476 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.c_save
+2025-07-23 18:05:23,531 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.c
+2025-07-23 18:05:23,533 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.h_save
+2025-07-23 18:05:23,586 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.h
+2025-07-23 18:05:23,590 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.c_save
+2025-07-23 18:05:23,645 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.c
+2025-07-23 18:05:23,648 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.h_save
+2025-07-23 18:05:23,701 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.h
+2025-07-23 18:05:23,716 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 18:05:23,722 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.c_save
+2025-07-23 18:05:23,782 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.c
+2025-07-23 18:05:23,785 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.h_save
+2025-07-23 18:05:23,842 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.h
+2025-07-23 18:05:23,845 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.h_save
+2025-07-23 18:05:23,899 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.h
+2025-07-23 18:05:23,902 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.c_save
+2025-07-23 18:05:23,967 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.c
+2025-07-23 18:05:23,970 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.h_save
+2025-07-23 18:05:24,034 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.h
+2025-07-23 18:05:24,038 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.c_save
+2025-07-23 18:05:24,101 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.c
+2025-07-23 18:05:24,104 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.h_save
+2025-07-23 18:05:24,156 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.h
+2025-07-23 18:05:24,159 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.c_save
+2025-07-23 18:05:24,224 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.c
+2025-07-23 18:05:24,234 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_it.c_save
+2025-07-23 18:05:24,391 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_it.c
+2025-07-23 18:05:24,394 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_it.h_save
+2025-07-23 18:05:24,447 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_it.h
+2025-07-23 18:05:24,458 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_hal_msp.c_save
+2025-07-23 18:05:24,541 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_hal_msp.c
+2025-07-23 18:05:24,543 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/system.tmp_save
+2025-07-23 18:05:24,601 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/system.tmp
+2025-07-23 18:05:24,607 [INFO] CodeEngine:321 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_hal_conf.h_save
+2025-07-23 18:05:24,666 [INFO] CodeEngine:345 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_hal_conf.h
+2025-07-23 18:05:24,684 [WARN] IPConfigManager:3811 - IP not found : TIM
+2025-07-23 18:05:24,685 [WARN] CodeGenerator:4259 - IP not found : null
+2025-07-23 18:05:24,689 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/main.h_save
+2025-07-23 18:05:24,776 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/main.h
+2025-07-23 18:05:24,779 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/main.c_save
+2025-07-23 18:05:24,874 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/main.c
+2025-07-23 18:05:25,287 [INFO] ProjectBuilder:3606 - Time for Copy HAL[1] : 177mS.
+2025-07-23 18:05:25,291 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
+2025-07-23 18:05:25,384 [INFO] ConfigFileManager:1595 - The Die is : DIE452
+2025-07-23 18:05:26,195 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 904mS.
+2025-07-23 18:05:26,196 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 1mS.
+2025-07-23 18:05:26,201 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-07-23 18:09:00,564 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2025-07-23 18:09:03,402 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 606733640 Bytes (1073741824)
+2025-07-23 18:09:03,502 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 627182920 Bytes (1073741824)
+2025-07-23 18:09:03,815 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 659688776 Bytes (1073741824)
+2025-07-23 18:09:04,029 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-23 18:09:04,029 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-23 18:09:04,029 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-23 18:09:04,029 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: TIM1_8F7
+2025-07-23 18:09:04,029 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_DEVICE
+2025-07-23 18:09:04,029 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2025-07-23 18:09:04,029 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2025-07-23 18:09:04,029 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_OTG_FS
+2025-07-23 18:09:04,029 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2025-07-23 18:09:04,029 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2025-07-23 18:09:04,029 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: FATFS
+2025-07-23 18:09:04,030 [INFO] CodeGenerator:892 - code generatio: config db path: /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.common.mx_6.15.0.202507011659//db/
+2025-07-23 18:09:04,074 [WARN] IP:2250 - DEVICE_SERIAL0_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 18:09:04,074 [WARN] IP:2250 - DEVICE_SERIAL1_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 18:09:04,074 [WARN] IP:2250 - DEVICE_SERIAL2_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-23 18:09:04,147 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/license.tmp_save
+2025-07-23 18:09:04,208 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/license.tmp
+2025-07-23 18:09:04,288 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/gpio.tmp_save
+2025-07-23 18:09:04,349 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/gpio.tmp
+2025-07-23 18:09:04,502 [WARN] IPConfigManager:3238 - Warning: the RefConfig PWREx_EnableUSBVoltageDetector is not available in your config.xml file
+2025-07-23 18:09:04,507 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_vars.tmp_save
+2025-07-23 18:09:04,562 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_vars.tmp
+2025-07-23 18:09:04,564 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_inc.tmp_save
+2025-07-23 18:09:04,686 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_inc.tmp
+2025-07-23 18:09:04,689 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_HalInit.tmp_save
+2025-07-23 18:09:04,762 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_HalInit.tmp
+2025-07-23 18:09:04,764 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_Msp.tmp_save
+2025-07-23 18:09:04,834 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/usb_otg_fs_Msp.tmp
+2025-07-23 18:09:05,384 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 18:09:05,387 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-23 18:09:05,440 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-23 18:09:05,442 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-23 18:09:05,493 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp
+2025-07-23 18:09:05,495 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-23 18:09:05,544 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-23 18:09:05,546 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-23 18:09:05,595 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp
+2025-07-23 18:09:05,609 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 18:09:05,613 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/cortex.tmp_save
+2025-07-23 18:09:05,663 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/cortex.tmp
+2025-07-23 18:09:05,668 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 18:09:05,671 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-23 18:09:05,721 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-23 18:09:05,723 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-23 18:09:05,777 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_vars.tmp
+2025-07-23 18:09:05,779 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-23 18:09:05,834 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-23 18:09:05,836 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-23 18:09:05,886 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/fatfs_inc.tmp
+2025-07-23 18:09:05,889 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/ffconf.h_save
+2025-07-23 18:09:05,948 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/ffconf.h
+2025-07-23 18:09:05,951 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.c_save
+2025-07-23 18:09:06,004 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.c
+2025-07-23 18:09:06,007 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.h_save
+2025-07-23 18:09:06,059 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/Target/user_diskio.h
+2025-07-23 18:09:06,061 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.c_save
+2025-07-23 18:09:06,113 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.c
+2025-07-23 18:09:06,115 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.h_save
+2025-07-23 18:09:06,166 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/FATFS/App/fatfs.h
+2025-07-23 18:09:06,181 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-23 18:09:06,186 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.c_save
+2025-07-23 18:09:06,243 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.c
+2025-07-23 18:09:06,246 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.h_save
+2025-07-23 18:09:06,301 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usb_device.h
+2025-07-23 18:09:06,304 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.h_save
+2025-07-23 18:09:06,356 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.h
+2025-07-23 18:09:06,360 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.c_save
+2025-07-23 18:09:06,418 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/Target/usbd_conf.c
+2025-07-23 18:09:06,421 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.h_save
+2025-07-23 18:09:06,474 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.h
+2025-07-23 18:09:06,476 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.c_save
+2025-07-23 18:09:06,534 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_desc.c
+2025-07-23 18:09:06,537 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.h_save
+2025-07-23 18:09:06,599 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.h
+2025-07-23 18:09:06,602 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.c_save
+2025-07-23 18:09:06,665 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/USB_DEVICE/App/usbd_cdc_if.c
+2025-07-23 18:09:06,674 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_it.c_save
+2025-07-23 18:09:06,737 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_it.c
+2025-07-23 18:09:06,740 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_it.h_save
+2025-07-23 18:09:06,792 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_it.h
+2025-07-23 18:09:06,803 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_hal_msp.c_save
+2025-07-23 18:09:06,883 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/stm32f7xx_hal_msp.c
+2025-07-23 18:09:06,885 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/system.tmp_save
+2025-07-23 18:09:06,936 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/MXTmpFiles/system.tmp
+2025-07-23 18:09:06,941 [INFO] CodeEngine:321 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_hal_conf.h_save
+2025-07-23 18:09:07,001 [INFO] CodeEngine:345 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/stm32f7xx_hal_conf.h
+2025-07-23 18:09:07,017 [WARN] IPConfigManager:3811 - IP not found : TIM
+2025-07-23 18:09:07,018 [WARN] CodeGenerator:4259 - IP not found : null
+2025-07-23 18:09:07,021 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/main.h_save
+2025-07-23 18:09:07,079 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Inc/main.h
+2025-07-23 18:09:07,082 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/main.c_save
+2025-07-23 18:09:07,174 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04/Core/Src/main.c
+2025-07-23 18:09:07,586 [INFO] ProjectBuilder:3606 - Time for Copy HAL[1] : 153mS.
+2025-07-23 18:09:07,589 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
+2025-07-23 18:09:07,679 [INFO] ConfigFileManager:1595 - The Die is : DIE452
+2025-07-23 18:09:08,343 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 753mS.
+2025-07-23 18:09:08,344 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-07-23 18:09:08,349 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-07-23 21:45:50,086 [INFO] Gpio:278 - dependency for GPIO [RCC, SPI1, SPI2, SPI3, SYS, TIM3, USB_OTG_FS]

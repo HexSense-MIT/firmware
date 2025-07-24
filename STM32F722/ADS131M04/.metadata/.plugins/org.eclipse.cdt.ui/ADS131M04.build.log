@@ -1,10 +1,10 @@
-18:12:01 **** Incremental Build of configuration Debug for project ADS131M04 ****
+12:18:52 **** Incremental Build of configuration Debug for project ADS131M04 ****
 make -j15 all 
 arm-none-eabi-size  ADS131M04.elf 
    text	   data	    bss	    dec	    hex	filename
-  40388	    368	   8896	  49652	   c1f4	ADS131M04.elf
+  40772	    368	   8912	  50052	   c384	ADS131M04.elf
 Finished building: default.size.stdout
  
 
-18:12:01 Build Finished. 0 errors, 0 warnings. (took 293ms)
+12:18:52 Build Finished. 0 errors, 0 warnings. (took 341ms)
 

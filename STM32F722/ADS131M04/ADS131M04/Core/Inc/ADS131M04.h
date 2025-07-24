@@ -106,7 +106,7 @@ typedef struct {
 #define RSP_RESET_NOK 0x0011
 
 // Registers Read Only
-#define REG_ID 0x00
+#define REG_ID     0x00
 #define REG_STATUS 0x01
 
 // Registers Global Settings across channels
@@ -300,7 +300,7 @@ extern bool ADS131M04_setInputChannelSelection(uint8_t channel, uint8_t input);
 extern bool ADS131M04_setChannelOffsetCalibration(uint8_t channel, int32_t offset);
 extern bool ADS131M04_setChannelGainCalibration(uint8_t channel, uint32_t gain);
 extern bool ADS131M04_setOsr(uint16_t osr);
-extern bool ADS131M04_readADC(ADS131M04_ADCValue *adcValue);
+extern void ADS131M04_readADC(ADS131M04_ADCValue *adcValue);
 
 void     ADS131M04_Transmitword(uint16_t word, uint8_t *rxBytes);
 

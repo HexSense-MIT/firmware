@@ -80,6 +80,14 @@ static void spiTransmitReceiveBytes(const uint8_t txBytes[], uint8_t rxBytes[], 
   HAL_SPI_TransmitReceive(&ADS131M04_SPI_HANDLE, txBytes, rxBytes, byteCount, 0xFFFF);
 }
 
+void ADS131M04_Transmitdummyword(uint8_t *rxBytes) {
+  uint8_t txBytes[ADS131M04_WORD_LENGTH] = {0};
+
+  memset(rxBytes, 0, ADS131M04_WORD_LENGTH*sizeof(uint8_t));
+
+  spiTransmitReceiveBytes(txBytes, rxBytes, ADS131M04_WORD_LENGTH);
+}
+
 void ADS131M04_Transmitword(uint16_t word, uint8_t *rxBytes) {
   uint8_t txBytes[ADS131M04_WORD_LENGTH];
 
@@ -98,7 +106,7 @@ uint16_t ADS131M04_TransmitCommand(const uint16_t opcode) {
 
   ADS131M04_Transmitword(opcode, reply);
   for (uint8_t i = 0; i < FRAME_LEN - 1; i++) {
-    ADS131M04_Transmitword(ADS_ZEROS_16, dummy_reply); // dummy read
+    ADS131M04_Transmitdummyword(dummy_reply); // dummy read
   }
 
   uint16_t response = (reply[0] << 8) | reply[1];
@@ -112,11 +120,11 @@ uint16_t ADS131M04_ReadRegister(uint8_t addr) {
 
   ADS_CS_LOW();
   ADS131M04_TransmitCommand(opcode);
-  ADS_CS_HIGH();
+  // ADS_CS_HIGH();
 
-  delay_us(10);
+  // delay_us(5);
 
-  ADS_CS_LOW();
+  // ADS_CS_LOW();
   data = ADS131M04_TransmitCommand(ADS131M04_OPCODE_NULL);
   ADS_CS_HIGH();
 
@@ -135,10 +143,10 @@ uint16_t ADS131M04_WriteRegister(uint8_t addr, uint16_t value, bool with_reply) 
 
   ADS131M04_Transmitword(cmd, temp_byte);
   ADS131M04_Transmitword(value, temp_byte);
-  ADS131M04_Transmitword(0x0000, temp_byte);
-  ADS131M04_Transmitword(0x0000, temp_byte);
-  ADS131M04_Transmitword(0x0000, temp_byte);
-  ADS131M04_Transmitword(0x0000, temp_byte);
+  ADS131M04_Transmitdummyword(temp_byte);
+  ADS131M04_Transmitdummyword(temp_byte);
+  ADS131M04_Transmitdummyword(temp_byte);
+  ADS131M04_Transmitdummyword(temp_byte);
 
   ADS_CS_HIGH();
   if (with_reply) {
@@ -178,20 +186,17 @@ void ADS131M04_Init(void) {
   ADS_RST_HIGH();
   HAL_Delay(10); // Wait for reset to complete
 
+  ADS131M04_ReadRegister(REG_ID); // Reset the ID register
+  ADS131M04_ReadRegister(REG_STATUS); // Reset the ID register
+
+  ADS131M04_setOsr(OSR_512); // 8 kSPS
+
   // Wait for SPI ready to make sure the ADS131M04 is ready
   while (!ADS_READ_DRDY()) {
     HAL_Delay(1);
   }
 
-  // ADS131M04_setInputChannelSelection(0, INPUT_CHANNEL_MUX_AIN0P_AIN0N); // Set channel 0 to AIN1
-  // ADS131M04_setInputChannelSelection(1, INPUT_CHANNEL_MUX_AIN0P_AIN0N); // Set channel 1 to AIN2
-  // ADS131M04_setInputChannelSelection(2, INPUT_CHANNEL_MUX_AIN0P_AIN0N); // Set channel 2 to AIN3
-  // ADS131M04_setInputChannelSelection(3, INPUT_CHANNEL_MUX_AIN0P_AIN0N); // Set channel 3 to AIN4
-
-  ADS131M04_setOsr(OSR_512); // 8 kSPS
-
   TIM3->CCR1 = 15; // Set the PWM duty cycle to 50%
-
   HAL_TIM_PWM_Start(&ADS131M04_CLKIN_TIM, TIM_CHANNEL_1);
 }
 
@@ -402,19 +407,26 @@ bool ADS131M04_setChannelGainCalibration(uint8_t channel, uint32_t gain) {
   }
 }
 
-bool ADS131M04_readADC(ADS131M04_ADCValue *adcValue) {
-  uint8_t rxBytes[ADS131M04_WORD_LENGTH * FRAME_LEN] = {0};
-  uint8_t txBytes[ADS131M04_WORD_LENGTH * FRAME_LEN] = {0};
+void ADS131M04_readADC(ADS131M04_ADCValue *adcValue) {
+  uint8_t dummy_reply[ADS131M04_WORD_LENGTH] = {0};
 
-  memset(txBytes, 0, ADS131M04_WORD_LENGTH * FRAME_LEN * sizeof(uint8_t)); // NULL Command
+  ADS_CS_LOW();
+  delay_us(1);
 
-  for (uint8_t i = 0; i < FRAME_LEN; i++) {
-    spiTransmitReceiveBytes(txBytes + (i * ADS131M04_WORD_LENGTH), rxBytes + (i * ADS131M04_WORD_LENGTH), ADS131M04_WORD_LENGTH);
-  }
+  ADS131M04_Transmitword(ADS_ZEROS_16, dummy_reply);
+  adcValue->status = (dummy_reply[0] << 8) | dummy_reply[1]; // STATUS Word
+  ADS131M04_Transmitword(ADS_ZEROS_16, dummy_reply);
+  adcValue->channel[0] = (dummy_reply[2] << 16) | (dummy_reply[3] << 8) | dummy_reply[4]; // Channel 0 Data
+  ADS131M04_Transmitword(ADS_ZEROS_16, dummy_reply);
+  adcValue->channel[1] = (dummy_reply[2] << 16) | (dummy_reply[3] << 8) | dummy_reply[4]; // Channel 1 Data
+  ADS131M04_Transmitword(ADS_ZEROS_16, dummy_reply);
+  adcValue->channel[2] = (dummy_reply[2] << 16) | (dummy_reply[3] << 8) | dummy_reply[4]; // Channel 2 Data
+  ADS131M04_Transmitword(ADS_ZEROS_16, dummy_reply);
+  adcValue->channel[3] = (dummy_reply[2] << 16) | (dummy_reply[3] << 8) | dummy_reply[4]; // Channel 3 Data
+  ADS131M04_Transmitword(ADS_ZEROS_16, dummy_reply);
 
-  adcValue->status = (rxBytes[0] << 8) | rxBytes[1]; // STATUS Word
-
-  return true;
+  delay_us(1);
+  ADS_CS_HIGH();
 }
 
 // bool ADS131M04_isDataReady() {
