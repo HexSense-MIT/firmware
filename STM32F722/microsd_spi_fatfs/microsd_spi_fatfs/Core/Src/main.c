@@ -53,7 +53,6 @@ SPI_HandleTypeDef hspi2;
 uint8_t init[] = "example - FZ!\r\n";
 uint8_t data[] = "In while loop!\r\n";
 
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/

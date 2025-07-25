@@ -90,7 +90,11 @@ void Error_Handler(void);
 #define ADS_DRDY_EXTI_IRQn EXTI9_5_IRQn
 
 /* USER CODE BEGIN Private defines */
+#define UWB_SPI_HANDLE       hspi1
+#define LORA_SPI_HANDLE      hspi1
+#define SD_SPI_HANDLE        hspi2
 #define ADS131M04_SPI_HANDLE hspi3
+
 #define ADS131M04_CLKIN_TIM  htim3
 /* USER CODE END Private defines */
 

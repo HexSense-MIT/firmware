@@ -1,5 +1,10 @@
 {
     "files.associations": {
-        "cstdint": "c"
+        "cstdint": "c",
+        "ads131m04.h": "c",
+        "stdbool.h": "c",
+        "main.h": "c",
+        "stddef.h": "c",
+        "microsd_fz.h": "c"
     }
 }

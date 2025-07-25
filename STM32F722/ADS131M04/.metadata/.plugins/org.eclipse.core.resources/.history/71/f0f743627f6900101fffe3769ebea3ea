@@ -1,0 +1,109 @@
+/*
+ * microsd_fz.c
+ *
+ *  Created on: Jul 25, 2025
+ *      Author: liufangzheng
+ */
+
+
+#include "microsd_fz.h"
+
+extern SPI_HandleTypeDef SD_SPI_HANDLE;
+
+FATFS   FatFs; //Fatfs handle
+FIL     fil;   //File handle
+FRESULT fres;  //Result after operations
+
+FRESULT mount_sd_card(void) {
+  // Mount the SD card
+  return f_mount(&FatFs, "", 1);
+}
+
+/**
+ * @brief Get the statistics of the SD card.
+ * 
+ * @param free_clusters 
+ * @param free_sectors 
+ * @param total_sectors 
+ */
+FRESULT get_statistics (
+  DWORD *free_clusters,
+  DWORD *free_sectors, 
+  DWORD *total_sectors
+) {
+  FATFS* getFreeFs;
+  FRESULT fres = f_getfree("", free_clusters, &getFreeFs);
+  *total_sectors = (getFreeFs->n_fatent - 2) * getFreeFs->csize; // Total sectors = total clusters - reserved clusters
+  *free_sectors = *free_clusters * getFreeFs->csize; // Free
+
+  return fres;
+}
+
+FRESULT close_file(void) {
+  return f_close(&fil); // Close the file after reading
+}
+
+/**
+ * @brief Open a file and create a file if it does not exist.
+ * 
+ * @param filename 
+ * @param buffer 
+ * @param buffer_size 
+ * @return FRESULT 
+ */
+FRESULT open_file (
+  const char *filename,
+  char *buffer,
+  size_t buffer_size
+) {
+  // Open the file for reading
+  fres = f_open(&fil, filename, FA_READ | FA_OPEN_EXISTING);
+
+  // FA_CREATE_ALWAYS is used to create a new file, overwriting any existing file with the same name.
+  // FA_CREATE_NEW is used to create a new file, but it will fail if the file already exists.
+  if (fres != FR_OK) { // If the file does not exist, create it
+    fres = f_open(&fil, filename, FA_WRITE | FA_CREATE_ALWAYS);
+    if (fres != FR_OK) {
+      return fres; // Return error if file creation fails
+    }
+  }
+
+  return FR_OK; // Return success
+}
+
+/**
+ * @brief Write data to a file.
+ * 
+ * @param filename 
+ * @param data 
+ * @return FRESULT 
+ */
+FRESULT write_data_to_file
+(
+  const char *filename,
+  uint8_t *data,
+  uint16_t data_len
+) {
+  // Open the file for writing
+  fres = f_open(&fil, filename, FA_WRITE | FA_OPEN_ALWAYS);
+  if (fres != FR_OK) {
+    return fres; // Return error if file opening fails
+  }
+  // Move the file pointer to the end of the file
+  f_lseek(&fil, f_size(&fil));
+  // Write data to the file
+  UINT bytes_written;
+  fres = f_write(&fil, data, data_len, &bytes_written);
+  if (fres != FR_OK || bytes_written < data_len) {
+    f_close(&fil); // Close the file if write fails
+    return fres; // Return error if write fails
+  }
+
+  return FR_OK; // Return success
+}
+
+
+
+
+
+

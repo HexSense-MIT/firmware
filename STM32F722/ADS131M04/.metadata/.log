@@ -227,3 +227,37 @@ java.lang.NullPointerException: Cannot read field "activeConfiguration" because 
 
 !ENTRY org.eclipse.cdt.core 1 0 2025-07-25 11:19:36.194
 !MESSAGE Indexed 'ADS131M04_DMA_MicroSD' (41 sources, 109 headers) in 4.19 sec: 9,788 declarations; 71,756 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0025%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2025-07-25 14:56:37.370
+!MESSAGE Indexed 'microsd_spi_fatfs' (40 sources, 109 headers) in 1.61 sec: 8,596 declarations; 52,967 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.0032%)
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 104 2025-07-25 15:37:32.858
+!MESSAGE Program file does not exist
+!STACK 0
+java.io.FileNotFoundException: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Debug/ADS131M04_DMA_MicroSD.elf not found
+	at org.eclipse.cdt.dsf.gdb.launching.LaunchUtils.verifyProgramPath(LaunchUtils.java:130)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.checkBinaryDetails(GdbLaunchDelegate.java:330)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:152)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:109)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:97)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.launch(DSFDelegate.java:334)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1054)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1257)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 104 2025-07-25 15:37:32.858
+!MESSAGE /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Debug/ADS131M04_DMA_MicroSD.elf not found
+!STACK 0
+java.io.FileNotFoundException: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Debug/ADS131M04_DMA_MicroSD.elf not found
+	at org.eclipse.cdt.dsf.gdb.launching.LaunchUtils.verifyProgramPath(LaunchUtils.java:130)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.checkBinaryDetails(GdbLaunchDelegate.java:330)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:152)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:109)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:97)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.launch(DSFDelegate.java:334)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:805)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1054)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1257)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)

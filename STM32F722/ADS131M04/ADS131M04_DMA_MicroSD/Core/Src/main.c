@@ -24,6 +24,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "ADS131M04.h"
+#include "microsd_fz.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -51,6 +52,14 @@ TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
 ADS131M04_ADCValue adcValue;
+/*
+things to do for MicroSD card:
+1. copy the user_diskio_spi.c and user_diskio_spi.h files to Core/Src and Core/Inc directories respectively.
+2. define the SPI handle for the MicroSD card in main.h
+3. remember the initial state of the SD_CS is HIGH!
+*/
+uint8_t data2write[10] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A};
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -106,8 +115,44 @@ int main(void)
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
 
-  ADS131M04_Init();
-  HAL_GPIO_WritePin(GPIOB, PIN_LED1_Pin, GPIO_PIN_SET); // Set the reset pin high to exit reset state
+  // ADS131M04_Init();
+  // HAL_GPIO_WritePin(GPIOB, PIN_LED1_Pin, GPIO_PIN_SET); // Set the reset pin high to exit reset state
+
+  if (mount_sd_card() == FR_OK) {
+    HAL_GPIO_WritePin(PIN_LED2_GPIO_Port, PIN_LED2_Pin, GPIO_PIN_SET); // Indicate success with LED
+    printf("SD card mounted!\n");
+  } else {
+    HAL_GPIO_WritePin(PIN_LED2_GPIO_Port, PIN_LED2_Pin, GPIO_PIN_RESET); // Indicate error with LED
+    printf("SD card mount failed!\n");
+    while (1) {;}
+  }
+
+  DWORD free_clusters, free_sectors, total_sectors = 0;
+
+  if (get_statistics(&free_clusters, &free_sectors, &total_sectors) == FR_OK) {
+    printf("Free clusters: %lu, Free sectors: %lu, Total sectors: %lu\n",
+          free_clusters, free_sectors, total_sectors);
+  } else {
+    printf("Failed to get SD card statistics!\n");
+  }
+
+  if (open_file("test.hs") == FR_OK) {
+    printf("File opened successfully!\n");
+  } else {
+    printf("Failed to open file!\n");
+  }
+
+  if (write_data_to_file("test.hs", data2write, sizeof(data2write)) == FR_OK) {
+    printf("Data written to file successfully!\n");
+  } else {
+    printf("Failed to write data to file!\n");
+  }
+
+  if (close_file() == FR_OK) {
+    printf("File closed successfully!\n");
+  } else {
+    printf("Failed to close file!\n");
+  }
 
   /* USER CODE END 2 */
 
@@ -118,11 +163,11 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    if (ADS_data_ready) {
-      ADS_data_ready = false; // Reset the flag
-      ADS131M04_readADC(&adcValue);
-      HAL_GPIO_TogglePin(PIN_LED2_GPIO_Port, PIN_LED2_Pin); // Toggle the LED to indicate data read
-    }
+    // if (ADS_data_ready) {
+    //   ADS_data_ready = false; // Reset the flag
+    //   ADS131M04_readADC(&adcValue);
+    //   HAL_GPIO_TogglePin(PIN_LED2_GPIO_Port, PIN_LED2_Pin); // Toggle the LED to indicate data read
+    // }
   }
   /* USER CODE END 3 */
 }
@@ -381,7 +426,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, ADS_CS_Pin|LORA_RESET_Pin|PIN_LED2_Pin|SD_CS_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, ADS_CS_Pin|LORA_RESET_Pin|PIN_LED2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, LORA_CS_Pin|UWB_CS_Pin, GPIO_PIN_SET);
@@ -391,6 +436,9 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, PIN_LED1_Pin|ADS_CLK_Pin|ADS_SYNC_RST_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(SD_CS_GPIO_Port, SD_CS_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pins : ADS_CS_Pin LORA_RESET_Pin SD_CS_Pin */
   GPIO_InitStruct.Pin = ADS_CS_Pin|LORA_RESET_Pin|SD_CS_Pin;
