@@ -142,7 +142,7 @@ int main(void)
     printf("Failed to open file!\n");
   }
 
-  if (write_data_to_file("test.hs", data2write, sizeof(data2write)) == FR_OK) {
+  if (write_data_to_file("test.txt", data2write, sizeof(data2write)) == FR_OK) {
     printf("Data written to file successfully!\n");
   } else {
     printf("Failed to write data to file!\n");

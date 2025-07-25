@@ -83,6 +83,7 @@ FRESULT write_data_to_file
   // Open the file for writing
   FRESULT fres = f_open(&fil, filename, FA_WRITE | FA_OPEN_ALWAYS);
   if (fres != FR_OK) {
+    printf("Failed to open file for writing: %s\n", filename);
     return fres; // Return error if file opening fails
   }
 
@@ -94,6 +95,7 @@ FRESULT write_data_to_file
   fres = f_write(&fil, data, data_len, &bytes_written);
 
   if (fres != FR_OK || bytes_written < data_len) {
+    printf("Failed to write data to file: %s\n", filename);
     return fres; // Return error if write fails
   }
 
