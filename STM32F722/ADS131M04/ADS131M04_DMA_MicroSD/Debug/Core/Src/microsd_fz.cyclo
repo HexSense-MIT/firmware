@@ -1,5 +1,5 @@
 ../Core/Src/microsd_fz.c:14:9:mount_sd_card	1
-../Core/Src/microsd_fz.c:27:9:get_statistics	1
-../Core/Src/microsd_fz.c:40:9:close_file	1
-../Core/Src/microsd_fz.c:52:9:open_file	3
-../Core/Src/microsd_fz.c:77:9:write_data_to_file	4
+../Core/Src/microsd_fz.c:20:9:eject_sd_card	1
+../Core/Src/microsd_fz.c:33:9:get_statistics	1
+../Core/Src/microsd_fz.c:46:9:close_file	1
+../Core/Src/microsd_fz.c:85:9:write_data_to_file	4

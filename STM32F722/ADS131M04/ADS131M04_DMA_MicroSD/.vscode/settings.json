@@ -5,6 +5,8 @@
         "stdbool.h": "c",
         "main.h": "c",
         "stddef.h": "c",
-        "microsd_fz.h": "c"
+        "microsd_fz.h": "c",
+        "stdarg.h": "c",
+        "fatfs.h": "c"
     }
 }

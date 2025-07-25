@@ -25,6 +25,7 @@
 /* USER CODE BEGIN Includes */
 #include "ADS131M04.h"
 #include "microsd_fz.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -138,28 +139,11 @@ int main(void)
     printf("Failed to get SD card statistics!\n");
   }
 
-  // if (open_file("test.txt") == FR_OK) {
-  //   printf("File opened successfully!\n");
-  // } else {
-  //   printf("Failed to open file!\n");
-  // }
-
-  if (write_data_to_file("test.txt", data2write, sizeof(data2write)) == FR_OK) {
-    printf("Data written to file successfully!\n");
-  } else {
-    printf("Failed to write data to file!\n");
-  }
-
-  if (close_file() == FR_OK) {
-    printf("File closed successfully!\n");
-  } else {
-    printf("Failed to close file!\n");
-  }
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  int i = 0;
 
   while (1) {
     /* USER CODE END WHILE */
@@ -170,10 +154,25 @@ int main(void)
     //   ADS131M04_readADC(&adcValue);
     //   HAL_GPIO_TogglePin(PIN_LED2_GPIO_Port, PIN_LED2_Pin); // Toggle the LED to indicate data read
     // }
+    while (i < 10) {
+      if (write_data_to_file("hexsense.txt", data2write, sizeof(data2write)) == FR_OK) {
+        printf("Data written to file successfully!\n");
+      } else {
+        printf("Failed to write data to file!\n");
+      }
+
+      if (close_file() == FR_OK) {
+        printf("File closed successfully!\n");
+      } else {
+        printf("Failed to close file!\n");
+      }
+      i++;
+      if (i == 10) eject_sd_card();
+    }
     HAL_GPIO_WritePin(PIN_LED1_GPIO_Port, PIN_LED1_Pin, GPIO_PIN_SET);
-    HAL_Delay(500);
+    HAL_Delay(10);
     HAL_GPIO_WritePin(PIN_LED1_GPIO_Port, PIN_LED1_Pin, GPIO_PIN_RESET);
-    HAL_Delay(500);
+    HAL_Delay(990);
   }
   /* USER CODE END 3 */
 }

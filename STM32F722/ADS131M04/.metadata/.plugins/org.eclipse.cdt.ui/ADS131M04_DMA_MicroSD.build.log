@@ -1,10 +1,18 @@
-16:49:37 **** Incremental Build of configuration Debug for project ADS131M04_DMA_MicroSD ****
+17:13:36 **** Incremental Build of configuration Debug for project ADS131M04_DMA_MicroSD ****
 make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/microsd_fz.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../FATFS/Target -I../FATFS/App -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/Third_Party/FatFs/src -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.3/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/microsd_fz.d" -MT"Core/Src/microsd_fz.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/microsd_fz.o"
+arm-none-eabi-gcc -o "ADS131M04_DMA_MicroSD.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADS131M04_DMA_MicroSD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ADS131M04_DMA_MicroSD.elf
+ 
 arm-none-eabi-size  ADS131M04_DMA_MicroSD.elf 
+arm-none-eabi-objdump -h -S ADS131M04_DMA_MicroSD.elf  > "ADS131M04_DMA_MicroSD.list"
    text	   data	    bss	    dec	    hex	filename
-  57292	    396	  10068	  67756	  108ac	ADS131M04_DMA_MicroSD.elf
+  56196	    396	  10068	  66660	  10464	ADS131M04_DMA_MicroSD.elf
 Finished building: default.size.stdout
  
+Finished building: ADS131M04_DMA_MicroSD.list
+ 
 
-16:49:37 Build Finished. 0 errors, 0 warnings. (took 265ms)
+17:13:37 Build Finished. 0 errors, 0 warnings. (took 1s.183ms)
 

@@ -17,6 +17,12 @@ FRESULT mount_sd_card(void) {
   return fres;
 }
 
+FRESULT eject_sd_card(void) {
+  // Unmount the SD card
+  FRESULT fres = f_mount(NULL, "", 1); //1 = unmount now
+  return fres;
+}
+
 /**
  * @brief Get the statistics of the SD card.
  * 
@@ -49,6 +55,7 @@ FRESULT close_file(void) {
  * @param buffer_size 
  * @return FRESULT 
  */
+/*
 FRESULT open_file (
   const char *filename
 ) {
@@ -66,6 +73,7 @@ FRESULT open_file (
 
   return FR_OK; // Return success
 }
+ */
 
 /**
  * @brief Write data to a file.
@@ -81,21 +89,16 @@ FRESULT write_data_to_file
   UINT       data_len
 ) {
   // Open the file for writing
-  FRESULT fres = f_open(&fil, filename, FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
+  FRESULT fres = f_open(&fil, filename, FA_WRITE | FA_OPEN_APPEND);
   if (fres != FR_OK) {
-    printf("Failed to open file for writing: %s\n", filename);
     return fres; // Return error if file opening fails
   }
-
-  // Move the file pointer to the end of the file
-  f_lseek(&fil, f_size(&fil));
 
   // Write data to the file
   UINT bytes_written;
   fres = f_write(&fil, data, data_len, &bytes_written);
 
   if (fres != FR_OK || bytes_written < data_len) {
-    printf("Failed to write data to file: %s\n", filename);
     return fres; // Return error if write fails
   }
 
