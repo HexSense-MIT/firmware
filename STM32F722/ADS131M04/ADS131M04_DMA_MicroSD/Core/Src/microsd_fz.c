@@ -81,7 +81,7 @@ FRESULT write_data_to_file
   UINT       data_len
 ) {
   // Open the file for writing
-  FRESULT fres = f_open(&fil, filename, FA_WRITE | FA_OPEN_ALWAYS);
+  FRESULT fres = f_open(&fil, filename, FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
   if (fres != FR_OK) {
     printf("Failed to open file for writing: %s\n", filename);
     return fres; // Return error if file opening fails

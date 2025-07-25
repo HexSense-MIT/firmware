@@ -1,10 +1,10 @@
-16:16:47 **** Incremental Build of configuration Debug for project ADS131M04_DMA_MicroSD ****
+16:49:37 **** Incremental Build of configuration Debug for project ADS131M04_DMA_MicroSD ****
 make -j15 all 
 arm-none-eabi-size  ADS131M04_DMA_MicroSD.elf 
    text	   data	    bss	    dec	    hex	filename
-  57476	    396	  10068	  67940	  10964	ADS131M04_DMA_MicroSD.elf
+  57292	    396	  10068	  67756	  108ac	ADS131M04_DMA_MicroSD.elf
 Finished building: default.size.stdout
  
 
-16:16:47 Build Finished. 0 errors, 0 warnings. (took 278ms)
+16:49:37 Build Finished. 0 errors, 0 warnings. (took 265ms)
 

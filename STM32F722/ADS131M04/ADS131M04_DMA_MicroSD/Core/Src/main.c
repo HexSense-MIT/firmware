@@ -115,15 +115,17 @@ int main(void)
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
 
+  HAL_Delay(1000); // Delay for stability
+
   // ADS131M04_Init();
   // HAL_GPIO_WritePin(GPIOB, PIN_LED1_Pin, GPIO_PIN_SET); // Set the reset pin high to exit reset state
 
   if (mount_sd_card() == FR_OK) {
     HAL_GPIO_WritePin(PIN_LED2_GPIO_Port, PIN_LED2_Pin, GPIO_PIN_SET); // Indicate success with LED
-    printf("SD card mounted!\n");
+    // printf("SD card mounted!\n");
   } else {
     HAL_GPIO_WritePin(PIN_LED2_GPIO_Port, PIN_LED2_Pin, GPIO_PIN_RESET); // Indicate error with LED
-    printf("SD card mount failed!\n");
+    // printf("SD card mount failed!\n");
     while (1) {;}
   }
 
@@ -136,11 +138,11 @@ int main(void)
     printf("Failed to get SD card statistics!\n");
   }
 
-  if (open_file("test.hs") == FR_OK) {
-    printf("File opened successfully!\n");
-  } else {
-    printf("Failed to open file!\n");
-  }
+  // if (open_file("test.txt") == FR_OK) {
+  //   printf("File opened successfully!\n");
+  // } else {
+  //   printf("Failed to open file!\n");
+  // }
 
   if (write_data_to_file("test.txt", data2write, sizeof(data2write)) == FR_OK) {
     printf("Data written to file successfully!\n");
@@ -168,6 +170,10 @@ int main(void)
     //   ADS131M04_readADC(&adcValue);
     //   HAL_GPIO_TogglePin(PIN_LED2_GPIO_Port, PIN_LED2_Pin); // Toggle the LED to indicate data read
     // }
+    HAL_GPIO_WritePin(PIN_LED1_GPIO_Port, PIN_LED1_Pin, GPIO_PIN_SET);
+    HAL_Delay(500);
+    HAL_GPIO_WritePin(PIN_LED1_GPIO_Port, PIN_LED1_Pin, GPIO_PIN_RESET);
+    HAL_Delay(500);
   }
   /* USER CODE END 3 */
 }
