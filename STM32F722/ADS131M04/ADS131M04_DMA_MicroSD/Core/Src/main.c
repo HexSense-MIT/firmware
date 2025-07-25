@@ -60,7 +60,7 @@ things to do for MicroSD card:
 3. remember the initial state of the SD_CS is HIGH!
 */
 uint8_t data2write[10] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A};
-
+const char *HS_FILE_NAME = "hexsense#1.txt"; // Default filename for operations
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -139,6 +139,13 @@ int main(void)
     printf("Failed to get SD card statistics!\n");
   }
 
+  // file name needs to be 8 + 3 format, e.g., "hexsense.txt"
+  if (open_file("HS1.txt") == FR_OK) {
+    printf("File opened successfully!\n");
+  } else {
+    printf("Failed to open file!\n");
+  }
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -155,19 +162,21 @@ int main(void)
     //   HAL_GPIO_TogglePin(PIN_LED2_GPIO_Port, PIN_LED2_Pin); // Toggle the LED to indicate data read
     // }
     while (i < 10) {
-      if (write_data_to_file("hexsense.txt", data2write, sizeof(data2write)) == FR_OK) {
+      if (write_data_to_file(data2write, sizeof(data2write)) == FR_OK) {
         printf("Data written to file successfully!\n");
       } else {
         printf("Failed to write data to file!\n");
       }
 
-      if (close_file() == FR_OK) {
-        printf("File closed successfully!\n");
-      } else {
-        printf("Failed to close file!\n");
-      }
       i++;
-      if (i == 10) eject_sd_card();
+      if (i == 10) {
+        if (close_file() == FR_OK) {
+          printf("File closed successfully!\n");
+        } else {
+          printf("Failed to close file!\n");
+        }
+        eject_sd_card();
+      }
     }
     HAL_GPIO_WritePin(PIN_LED1_GPIO_Port, PIN_LED1_Pin, GPIO_PIN_SET);
     HAL_Delay(10);
