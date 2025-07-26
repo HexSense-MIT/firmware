@@ -284,6 +284,13 @@ typedef struct {
 
 #define FRAME_LEN 6 // 6 words in a frame
 
+#define BUFFERE_BYTE_CNT 3000
+
+extern uint8_t ADS_data_buffer1[FRAME_LEN * BUFFERE_BYTE_CNT];
+extern uint8_t ADS_data_buffer2[FRAME_LEN * BUFFERE_BYTE_CNT];
+
+extern void ADS_CS_LOW(void);
+
 extern void ADS131M04_Init(void);
 extern int8_t ADS131M04_isDataReadySoft(uint8_t channel);
 extern bool ADS131M04_isDataReady(void);
@@ -307,6 +314,8 @@ void     ADS131M04_Transmitword(uint16_t word, uint8_t *rxBytes);
 extern uint16_t ADS131M04_WriteRegister(uint8_t address, uint16_t value, bool with_reply);
 extern uint16_t ADS131M04_ReadRegister(uint8_t address);
 extern void     ADS131M04_writeRegisterMasked(uint8_t address, uint16_t value, uint16_t mask);
+
+extern void ADS131M04_read_ADC_data(uint8_t *rxBytes);
 
 #endif /* INC_ADS131M04_H_ */
 

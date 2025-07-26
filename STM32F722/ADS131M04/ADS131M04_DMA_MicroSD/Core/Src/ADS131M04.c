@@ -9,6 +9,9 @@
 
 bool ADS_data_ready = false;
 
+// uint8_t ADS_data_buffer[FRAME_LEN * ADS131M04_WORD_LENGTH] = {0};
+// uint8_t dummy_tx[FRAME_LEN * ADS131M04_WORD_LENGTH] = {0};
+
 // static int32_t signExtend(const uint8_t *dataBytes);
 //static uint8_t spiTransmitReceiveByte(uint8_t tx);
 static void spiTransmitReceiveBytes(const uint8_t txBytes[], uint8_t rxBytes[], uint8_t byteCount);
@@ -429,6 +432,10 @@ void ADS131M04_readADC(ADS131M04_ADCValue *adcValue) {
   ADS_CS_HIGH();
 }
 
+void ADS131M04_read_ADC_data(uint8_t *rxBytes) {
+  HAL_SPI_Receive(&ADS131M04_SPI_HANDLE, rxBytes, 18, 0xFFFF);
+}
+
 // bool ADS131M04_isDataReady() {
 //   if (digitalRead(ADS131M04_DRDY_PIN) == HIGH)
 //   {
@@ -490,9 +497,13 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
   UNUSED(GPIO_Pin); // Prevent unused variable warning
 
   if (GPIO_Pin == ADS_DRDY_Pin) {
-    ADS_data_ready = true;
+	  ADS_data_ready = true;
+//	if (HAL_SPI_GetState(&ADS131M04_SPI_HANDLE) == HAL_SPI_STATE_READY) {
+//	  HAL_SPI_TransmitReceive_DMA(&ADS131M04_SPI_HANDLE, dummy_tx, ADS_data_buffer, 18);
+//    }
   }
 }
+
 
 /*
 static int32_t twoscom(int32_t value) {

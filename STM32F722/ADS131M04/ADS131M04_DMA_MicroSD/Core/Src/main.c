@@ -48,24 +48,31 @@
 SPI_HandleTypeDef hspi1;
 SPI_HandleTypeDef hspi2;
 SPI_HandleTypeDef hspi3;
+DMA_HandleTypeDef hdma_spi3_rx;
 
 TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
 ADS131M04_ADCValue adcValue;
+uint8_t ADS_data_buffer[18] = {0};
 /*
 things to do for MicroSD card:
 1. copy the user_diskio_spi.c and user_diskio_spi.h files to Core/Src and Core/Inc directories respectively.
 2. define the SPI handle for the MicroSD card in main.h
 3. remember the initial state of the SD_CS is HIGH!
+4. open a file multiple times will cause problems
+5. make sure the file name is in 8.3 format, e.g., "hexsense.txt", no special characters
 */
-uint8_t data2write[10] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A};
-const char *HS_FILE_NAME = "hexsense#1.txt"; // Default filename for operations
+const char *HS_FILE_NAME = "HS1.txt"; // Default filename for operations
+
+#define DATALEN2REC 30000
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_DMA_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_SPI2_Init(void);
 static void MX_SPI3_Init(void);
@@ -108,6 +115,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_SPI1_Init();
   MX_SPI2_Init();
   MX_FATFS_Init();
@@ -118,8 +126,8 @@ int main(void)
 
   HAL_Delay(1000); // Delay for stability
 
-  // ADS131M04_Init();
-  // HAL_GPIO_WritePin(GPIOB, PIN_LED1_Pin, GPIO_PIN_SET); // Set the reset pin high to exit reset state
+  ADS131M04_Init();
+  HAL_GPIO_WritePin(GPIOB, PIN_LED1_Pin, GPIO_PIN_SET); // Set the reset pin high to exit reset state
 
   if (mount_sd_card() == FR_OK) {
     HAL_GPIO_WritePin(PIN_LED2_GPIO_Port, PIN_LED2_Pin, GPIO_PIN_SET); // Indicate success with LED
@@ -150,38 +158,35 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int i = 0;
+  ADS_CS_LOW();
+  uint32_t i = 0;
 
   while (1) {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    // if (ADS_data_ready) {
-    //   ADS_data_ready = false; // Reset the flag
-    //   ADS131M04_readADC(&adcValue);
-    //   HAL_GPIO_TogglePin(PIN_LED2_GPIO_Port, PIN_LED2_Pin); // Toggle the LED to indicate data read
-    // }
-    while (i < 10) {
-      if (write_data_to_file(data2write, sizeof(data2write)) == FR_OK) {
-        printf("Data written to file successfully!\n");
-      } else {
-        printf("Failed to write data to file!\n");
-      }
+    if (i < DATALEN2REC) {
+      if (ADS_data_ready) {
+        ADS_data_ready = false;
+        ADS131M04_read_ADC_data(ADS_data_buffer);
 
-      i++;
-      if (i == 10) {
-        if (close_file() == FR_OK) {
-          printf("File closed successfully!\n");
-        } else {
-          printf("Failed to close file!\n");
+        write_data_to_file(ADS_data_buffer, 18);
+
+        i++;
+
+        if (i == DATALEN2REC) {
+          close_file();
+          eject_sd_card();
         }
-        eject_sd_card();
       }
     }
-    HAL_GPIO_WritePin(PIN_LED1_GPIO_Port, PIN_LED1_Pin, GPIO_PIN_SET);
-    HAL_Delay(10);
-    HAL_GPIO_WritePin(PIN_LED1_GPIO_Port, PIN_LED1_Pin, GPIO_PIN_RESET);
-    HAL_Delay(990);
+
+    HAL_GPIO_WritePin(PIN_LED2_GPIO_Port, PIN_LED2_Pin, GPIO_PIN_RESET); // Indicate end of data collection with LED
+
+    // HAL_GPIO_WritePin(PIN_LED1_GPIO_Port, PIN_LED1_Pin, GPIO_PIN_SET);
+    // HAL_Delay(10);
+    // HAL_GPIO_WritePin(PIN_LED1_GPIO_Port, PIN_LED1_Pin, GPIO_PIN_RESET);
+    // HAL_Delay(990);
   }
   /* USER CODE END 3 */
 }
@@ -418,6 +423,22 @@ static void MX_TIM3_Init(void)
 
   /* USER CODE END TIM3_Init 2 */
   HAL_TIM_MspPostInit(&htim3);
+
+}
+
+/**
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void)
+{
+
+  /* DMA controller clock enable */
+  __HAL_RCC_DMA1_CLK_ENABLE();
+
+  /* DMA interrupt init */
+  /* DMA1_Stream0_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Stream0_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Stream0_IRQn);
 
 }
 
