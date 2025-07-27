@@ -59,12 +59,12 @@ FRESULT open_file (
   const char *filename
 ) {
   // Open the file for writing
-  FRESULT fres = f_open(&fil, filename, FA_WRITE | FA_OPEN_APPEND);
+  FRESULT fres = f_open(&fil, filename, FA_WRITE | FA_OPEN_ALWAYS);
 
   // FA_CREATE_ALWAYS is used to create a new file, overwriting any existing file with the same name.
   // FA_CREATE_NEW is used to create a new file, but it will fail if the file already exists.
   if (fres != FR_OK) { // If the file does not exist, create it
-    fres = f_open(&fil, filename, FA_WRITE | FA_OPEN_APPEND | FA_CREATE_ALWAYS);
+    fres = f_open(&fil, filename, FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
     if (fres != FR_OK) {
       return fres; // Return error if file creation fails
     }

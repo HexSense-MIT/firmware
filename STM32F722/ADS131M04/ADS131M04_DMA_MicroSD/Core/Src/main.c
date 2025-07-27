@@ -66,8 +66,10 @@ things to do for MicroSD card:
 */
 const char *HS_FILE_NAME = "HS1.txt"; // Default filename for operations
 
-#define DATALEN2REC 30000
+uint32_t rec_i = 0;
+uint32_t i     = 0;
 
+#define TIMES2REC 10 // Number of times to record data before stopping
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -127,30 +129,30 @@ int main(void)
 
   HAL_Delay(1000); // Delay for stability
 
-//   if (mount_sd_card() == FR_OK) {
-//     HAL_GPIO_WritePin(PIN_LED2_GPIO_Port, PIN_LED2_Pin, GPIO_PIN_SET); // Indicate success with LED
-//     // printf("SD card mounted!\n");
-//   } else {
-//     HAL_GPIO_WritePin(PIN_LED2_GPIO_Port, PIN_LED2_Pin, GPIO_PIN_RESET); // Indicate error with LED
-//     // printf("SD card mount failed!\n");
-//     while (1) {;}
-//   }
-//
-//   DWORD free_clusters, free_sectors, total_sectors = 0;
-//
-//   if (get_statistics(&free_clusters, &free_sectors, &total_sectors) == FR_OK) {
-//     printf("Free clusters: %lu, Free sectors: %lu, Total sectors: %lu\n",
-//           free_clusters, free_sectors, total_sectors);
-//   } else {
-//     printf("Failed to get SD card statistics!\n");
-//   }
-//
-//   // file name needs to be 8 + 3 format, e.g., "hexsense.txt"
-//   if (open_file("HS1.txt") == FR_OK) {
-//     printf("File opened successfully!\n");
-//   } else {
-//     printf("Failed to open file!\n");
-//   }
+  if (mount_sd_card() == FR_OK) {
+    HAL_GPIO_WritePin(PIN_LED2_GPIO_Port, PIN_LED2_Pin, GPIO_PIN_SET); // Indicate success with LED
+    // printf("SD card mounted!\n");
+  } else {
+    HAL_GPIO_WritePin(PIN_LED2_GPIO_Port, PIN_LED2_Pin, GPIO_PIN_RESET); // Indicate error with LED
+    // printf("SD card mount failed!\n");
+    while (1) {;}
+  }
+
+  DWORD free_clusters, free_sectors, total_sectors = 0;
+
+  if (get_statistics(&free_clusters, &free_sectors, &total_sectors) == FR_OK) {
+    printf("Free clusters: %lu, Free sectors: %lu, Total sectors: %lu\n",
+          free_clusters, free_sectors, total_sectors);
+  } else {
+    printf("Failed to get SD card statistics!\n");
+  }
+
+  // file name needs to be 8 + 3 format, e.g., "hexsense.txt"
+  if (open_file("HS1.txt") == FR_OK) {
+    printf("File opened successfully!\n");
+  } else {
+    printf("Failed to open file!\n");
+  }
 
   /* USER CODE END 2 */
 
@@ -167,26 +169,29 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-//     if (i < DATALEN2REC) {
-      // if (ADS_data_ready) {
-      //   ADS_data_ready = false;
-      //   ADS131M04_read_ADC_data(ADS_data_buffer);
+    if (i < TIMES2REC) {
+      if (ADS_data_ready) {
+        ADS_data_ready = false;
+        rec_i += BYTES_PER_FRAME;
 
-//         write_data_to_file(ADS_data_buffer, 18);
-//
-//         i++;
-//
-//         if (i == DATALEN2REC) {
-//           close_file();
-//           eject_sd_card();
-//         }
-      //  }
-//    }
+        if (rec_i == BYTES_PER_FRAME * 1000) {
+          rec_i = 0; // Reset the index if it exceeds the buffer size
+          ADS_data_buffer2rec = ADS_data_buffer;
+          ADS_data_buffer = (ADS_data_buffer == ADS_data_buffer_1) ? ADS_data_buffer_2 : ADS_data_buffer_1; // Switch buffers
 
-    // HAL_GPIO_WritePin(PIN_LED1_GPIO_Port, PIN_LED1_Pin, GPIO_PIN_SET);
-    // HAL_Delay(10);
-    // HAL_GPIO_WritePin(PIN_LED1_GPIO_Port, PIN_LED1_Pin, GPIO_PIN_RESET);
-    // HAL_Delay(990);
+          write_data_to_file(ADS_data_buffer2rec, BYTES_PER_FRAME * 1000);
+
+          i++;
+
+          if (i == TIMES2REC) {
+            ADS_CS_HIGH(); // Set CS high to stop communication
+            close_file();
+            eject_sd_card();
+            HAL_GPIO_WritePin(PIN_LED2_GPIO_Port, PIN_LED2_Pin, GPIO_PIN_RESET);
+          }
+        }
+      }
+    }
   }
   /* USER CODE END 3 */
 }

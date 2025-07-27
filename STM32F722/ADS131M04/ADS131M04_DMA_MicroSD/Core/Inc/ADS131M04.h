@@ -315,6 +315,14 @@ extern uint16_t ADS131M04_WriteRegister(uint8_t address, uint16_t value, bool wi
 extern uint16_t ADS131M04_ReadRegister(uint8_t address);
 extern void     ADS131M04_writeRegisterMasked(uint8_t address, uint16_t value, uint16_t mask);
 
+#define BYTES_PER_FRAME (FRAME_LEN * ADS131M04_WORD_LENGTH)
+
+extern uint32_t rec_i;
+
+extern uint8_t *ADS_data_buffer;
+extern uint8_t *ADS_data_buffer2rec;
+extern uint8_t ADS_data_buffer_1[BYTES_PER_FRAME * 2000];
+extern uint8_t ADS_data_buffer_2[BYTES_PER_FRAME * 2000];
 extern void ADS131M04_read_ADC_data(uint8_t *rxBytes);
 
 #endif /* INC_ADS131M04_H_ */

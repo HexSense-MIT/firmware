@@ -9,10 +9,11 @@
 
 bool ADS_data_ready = false;
 
-uint8_t ADS_data_buffer[FRAME_LEN * ADS131M04_WORD_LENGTH * 1000] = {0};
-uint8_t dummy_tx[FRAME_LEN * ADS131M04_WORD_LENGTH] = {0};
-
-uint32_t rec_i = 0;
+uint8_t ADS_data_buffer_1[BYTES_PER_FRAME * 2000] = {0};
+uint8_t ADS_data_buffer_2[BYTES_PER_FRAME * 2000] = {0};
+uint8_t dummy_tx[BYTES_PER_FRAME] = {0};
+uint8_t *ADS_data_buffer = ADS_data_buffer_1; // Default buffer
+uint8_t *ADS_data_buffer2rec = ADS_data_buffer_1; // Second buffer for receiving data
 
 // static int32_t signExtend(const uint8_t *dataBytes);
 //static uint8_t spiTransmitReceiveByte(uint8_t tx);
@@ -500,16 +501,20 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
   if (GPIO_Pin == ADS_DRDY_Pin) {
 	  ADS_data_ready = true;
-	if (HAL_SPI_GetState(&ADS131M04_SPI_HANDLE) == HAL_SPI_STATE_READY) {
-	  HAL_SPI_TransmitReceive_DMA(&ADS131M04_SPI_HANDLE, dummy_tx, &ADS_data_buffer[rec_i], 18);
-    }
+//	if (HAL_SPI_GetState(&ADS131M04_SPI_HANDLE) == HAL_SPI_STATE_READY) {
+	  HAL_SPI_TransmitReceive_DMA(&ADS131M04_SPI_HANDLE, dummy_tx, ADS_data_buffer + rec_i, 18);
+//    }
   }
 }
 
 void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi) {
-	if (rec_i <= FRAME_LEN * ADS131M04_WORD_LENGTH * 1000 - 8) {
-	 rec_i += 8;
-	}
+	ADS_data_ready = true;
+  // rec_i += BYTES_PER_FRAME;
+
+  // if (rec_i >= BYTES_PER_FRAME * 1000) {
+  //   rec_i = 0; // Reset the index if it exceeds the buffer size
+  //   ADS_data_buffer = (ADS_data_buffer == ADS_data_buffer_1) ? ADS_data_buffer_2 : ADS_data_buffer_1; // Switch buffers
+  // }
 }
 
 /*
