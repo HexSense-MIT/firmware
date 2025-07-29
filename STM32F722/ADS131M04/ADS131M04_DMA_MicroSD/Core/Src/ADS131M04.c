@@ -126,11 +126,11 @@ uint16_t ADS131M04_ReadRegister(uint8_t addr) {
 
   ADS_CS_LOW();
   ADS131M04_TransmitCommand(opcode);
-  // ADS_CS_HIGH();
+  ADS_CS_HIGH();
 
-  // delay_us(5);
+  delay_us(5);
 
-  // ADS_CS_LOW();
+  ADS_CS_LOW();
   data = ADS131M04_TransmitCommand(ADS131M04_OPCODE_NULL);
   ADS_CS_HIGH();
 
@@ -187,17 +187,23 @@ void ADS131M04_Init(void) {
    * FIFOs, or quickly read two data packets when data are read for the first time or after a gap in reading data.
    * This process ensures predictable DRDY pin behavior.
    */
-  ADS_RST_LOW();
-  HAL_Delay(10); // Reset
   ADS_RST_HIGH();
-  HAL_Delay(10); // Wait for reset to complete
+  HAL_Delay(20); // Reset
+  ADS_RST_LOW();
+  HAL_Delay(20); // Reset
+  ADS_RST_HIGH();
+  HAL_Delay(20); // Wait for reset to complete
 
-  ADS131M04_ReadRegister(REG_ID); // Reset the ID register
-  ADS131M04_ReadRegister(REG_STATUS); // Reset the ID register
+  ADS131M04_ReadRegister(REG_ID);
+  ADS131M04_setOsr(OSR_256);
 
-  ADS131M04_setOsr(OSR_512); // 8 kSPS
+  ADS131M04_ReadRegister(REG_STATUS);
+  ADS131M04_ReadRegister(REG_CLOCK);
+  ADS131M04_ReadRegister(REG_GAIN);
+  ADS131M04_ReadRegister(REG_CFG);
+  ADS131M04_ReadRegister(REG_MODE);
 
-  // Wait for SPI ready to make sure the ADS131M04 is ready
+  // // Wait for SPI ready to make sure the ADS131M04 is ready
   while (!ADS_READ_DRDY()) {
     HAL_Delay(1);
   }

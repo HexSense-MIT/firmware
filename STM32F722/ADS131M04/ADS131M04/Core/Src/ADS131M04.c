@@ -189,7 +189,7 @@ void ADS131M04_Init(void) {
   ADS131M04_ReadRegister(REG_ID); // Reset the ID register
   ADS131M04_ReadRegister(REG_STATUS); // Reset the ID register
 
-  ADS131M04_setOsr(OSR_512); // 8 kSPS
+  ADS131M04_setOsr(OSR_512);
 
   // Wait for SPI ready to make sure the ADS131M04 is ready
   while (!ADS_READ_DRDY()) {

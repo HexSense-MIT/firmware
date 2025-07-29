@@ -323,8 +323,9 @@ extern uint8_t *ADS_data_buffer;
 extern uint8_t *ADS_data_buffer2rec;
 extern uint8_t ADS_data_buffer_1[BYTES_PER_FRAME * 2000];
 extern uint8_t ADS_data_buffer_2[BYTES_PER_FRAME * 2000];
-extern void ADS131M04_read_ADC_data(uint8_t *rxBytes);
 
+extern void ADS131M04_read_ADC_data(uint8_t *rxBytes);
+extern void ADS_CS_HIGH(void);
 #endif /* INC_ADS131M04_H_ */
 
 

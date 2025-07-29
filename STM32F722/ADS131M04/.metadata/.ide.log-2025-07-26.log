@@ -1,0 +1,827 @@
+2025-07-26 00:07:04,016 [INFO] WebApp:194 - Connection lost
+2025-07-26 00:07:08,347 [INFO] WebApp:191 - Connection restablished
+2025-07-26 02:07:18,170 [INFO] WebApp:194 - Connection lost
+2025-07-26 02:07:24,062 [INFO] WebApp:191 - Connection restablished
+2025-07-26 04:07:40,859 [INFO] WebApp:194 - Connection lost
+2025-07-26 04:07:46,339 [INFO] WebApp:191 - Connection restablished
+2025-07-26 05:00:07,588 [INFO] WebApp:194 - Connection lost
+2025-07-26 05:00:13,574 [INFO] WebApp:191 - Connection restablished
+2025-07-26 07:00:29,637 [INFO] WebApp:194 - Connection lost
+2025-07-26 07:00:35,522 [INFO] WebApp:191 - Connection restablished
+2025-07-26 07:53:41,624 [INFO] WebApp:194 - Connection lost
+2025-07-26 07:53:47,511 [INFO] WebApp:191 - Connection restablished
+2025-07-26 08:04:42,638 [INFO] WebApp:194 - Connection lost
+2025-07-26 09:54:47,853 [INFO] WebApp:191 - Connection restablished
+2025-07-26 10:55:45,638 [INFO] WebApp:194 - Connection lost
+2025-07-26 10:55:52,013 [INFO] WebApp:191 - Connection restablished
+2025-07-26 11:56:46,565 [INFO] WebApp:194 - Connection lost
+2025-07-26 11:56:50,190 [INFO] WebApp:191 - Connection restablished
+2025-07-26 12:57:47,566 [INFO] WebApp:194 - Connection lost
+2025-07-26 13:13:15,546 [INFO] WebApp:191 - Connection restablished
+2025-07-26 13:58:49,558 [INFO] WebApp:194 - Connection lost
+2025-07-26 13:58:53,530 [INFO] WebApp:191 - Connection restablished
+2025-07-26 14:59:50,484 [INFO] WebApp:194 - Connection lost
+2025-07-26 14:59:54,482 [INFO] WebApp:191 - Connection restablished
+2025-07-26 16:00:50,315 [INFO] WebApp:194 - Connection lost
+2025-07-26 16:18:08,147 [INFO] WebApp:191 - Connection restablished
+2025-07-26 19:38:51,764 [INFO] WebApp:194 - Connection lost
+2025-07-26 19:38:56,817 [INFO] WebApp:191 - Connection restablished
+2025-07-26 19:39:43,001 [INFO] WebApp:194 - Connection lost
+2025-07-26 19:39:49,679 [INFO] WebApp:191 - Connection restablished
+2025-07-26 19:41:05,625 [INFO] WebApp:194 - Connection lost
+2025-07-26 19:41:18,338 [INFO] WebApp:191 - Connection restablished
+2025-07-26 19:57:13,528 [INFO] WebApp:194 - Connection lost
+2025-07-26 19:58:20,055 [INFO] WebApp:191 - Connection restablished
+2025-07-26 21:21:33,673 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,757x703,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2025-07-26 21:23:44,368 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2025-07-26 21:24:00,717 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 543756768 Bytes (1073741824)
+2025-07-26 21:24:00,876 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 565254624 Bytes (1073741824)
+2025-07-26 21:24:01,582 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 614537696 Bytes (1073741824)
+2025-07-26 21:24:02,014 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-26 21:24:02,014 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-26 21:24:02,014 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-26 21:24:02,015 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: TIM1_8F7
+2025-07-26 21:24:02,015 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_DEVICE
+2025-07-26 21:24:02,015 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2025-07-26 21:24:02,015 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2025-07-26 21:24:02,015 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_OTG_FS
+2025-07-26 21:24:02,015 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2025-07-26 21:24:02,015 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: DMA
+2025-07-26 21:24:02,016 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2025-07-26 21:24:02,017 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: FATFS
+2025-07-26 21:24:02,017 [INFO] CodeGenerator:892 - code generatio: config db path: /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.common.mx_6.15.0.202507011659//db/
+2025-07-26 21:24:02,061 [INFO] Argument:325 - Argument : hdmavalue: null
+2025-07-26 21:24:02,061 [INFO] Argument:327 - 	 sub Args: 
+2025-07-26 21:24:02,061 [INFO] Argument:325 - Argument : Instancevalue: DMA1_Stream0
+2025-07-26 21:24:02,062 [INFO] Argument:335 - Argument : Instancevalue: DMA1_Stream0
+2025-07-26 21:24:02,062 [INFO] Argument:325 - Argument : Initvalue: null
+2025-07-26 21:24:02,062 [INFO] Argument:327 - 	 sub Args: 
+2025-07-26 21:24:02,062 [INFO] Argument:325 - Argument : Channelvalue: DMA_CHANNEL_0
+2025-07-26 21:24:02,062 [INFO] Argument:335 - Argument : Channelvalue: DMA_CHANNEL_0
+2025-07-26 21:24:02,062 [INFO] Argument:325 - Argument : Directionvalue: DMA_PERIPH_TO_MEMORY
+2025-07-26 21:24:02,063 [INFO] Argument:335 - Argument : Directionvalue: DMA_PERIPH_TO_MEMORY
+2025-07-26 21:24:02,063 [INFO] Argument:325 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2025-07-26 21:24:02,063 [INFO] Argument:335 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2025-07-26 21:24:02,063 [INFO] Argument:325 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2025-07-26 21:24:02,063 [INFO] Argument:335 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2025-07-26 21:24:02,063 [INFO] Argument:325 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2025-07-26 21:24:02,063 [INFO] Argument:335 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2025-07-26 21:24:02,063 [INFO] Argument:325 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2025-07-26 21:24:02,063 [INFO] Argument:335 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2025-07-26 21:24:02,063 [INFO] Argument:325 - Argument : Modevalue: DMA_CIRCULAR
+2025-07-26 21:24:02,064 [INFO] Argument:335 - Argument : Modevalue: DMA_CIRCULAR
+2025-07-26 21:24:02,064 [INFO] Argument:325 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2025-07-26 21:24:02,064 [INFO] Argument:335 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2025-07-26 21:24:02,064 [INFO] Argument:325 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2025-07-26 21:24:02,064 [INFO] Argument:335 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2025-07-26 21:24:02,064 [INFO] Argument:325 - Argument : FIFOThresholdvalue: null
+2025-07-26 21:24:02,064 [INFO] Argument:335 - Argument : FIFOThresholdvalue: null
+2025-07-26 21:24:02,064 [INFO] Argument:325 - Argument : MemBurstvalue: null
+2025-07-26 21:24:02,064 [INFO] Argument:335 - Argument : MemBurstvalue: null
+2025-07-26 21:24:02,064 [INFO] Argument:325 - Argument : PeriphBurstvalue: null
+2025-07-26 21:24:02,064 [INFO] Argument:335 - Argument : PeriphBurstvalue: null
+2025-07-26 21:24:02,064 [INFO] Argument:325 - Argument : Lockvalue: null
+2025-07-26 21:24:02,065 [INFO] Argument:335 - Argument : Lockvalue: null
+2025-07-26 21:24:02,065 [INFO] Argument:325 - Argument : Statevalue: null
+2025-07-26 21:24:02,065 [INFO] Argument:335 - Argument : Statevalue: null
+2025-07-26 21:24:02,065 [INFO] Argument:325 - Argument : Parentvalue: null
+2025-07-26 21:24:02,065 [INFO] Argument:335 - Argument : Parentvalue: null
+2025-07-26 21:24:02,065 [INFO] Argument:325 - Argument : XferCpltCallbackvalue: null
+2025-07-26 21:24:02,065 [INFO] Argument:335 - Argument : XferCpltCallbackvalue: null
+2025-07-26 21:24:02,065 [INFO] Argument:325 - Argument : XferHalfCpltCallbackvalue: null
+2025-07-26 21:24:02,065 [INFO] Argument:335 - Argument : XferHalfCpltCallbackvalue: null
+2025-07-26 21:24:02,065 [INFO] Argument:325 - Argument : XferM1CpltCallbackvalue: null
+2025-07-26 21:24:02,065 [INFO] Argument:335 - Argument : XferM1CpltCallbackvalue: null
+2025-07-26 21:24:02,065 [INFO] Argument:325 - Argument : XferErrorCallbackvalue: null
+2025-07-26 21:24:02,065 [INFO] Argument:335 - Argument : XferErrorCallbackvalue: null
+2025-07-26 21:24:02,065 [INFO] Argument:325 - Argument : ErrorCodevalue: null
+2025-07-26 21:24:02,066 [INFO] Argument:335 - Argument : ErrorCodevalue: null
+2025-07-26 21:24:02,075 [WARN] IP:2250 - DEVICE_SERIAL0_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-26 21:24:02,076 [WARN] IP:2250 - DEVICE_SERIAL1_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-26 21:24:02,076 [WARN] IP:2250 - DEVICE_SERIAL2_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-26 21:24:02,161 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/license.tmp_save
+2025-07-26 21:24:02,483 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/license.tmp
+2025-07-26 21:24:02,605 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/gpio.tmp_save
+2025-07-26 21:24:02,775 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/gpio.tmp
+2025-07-26 21:24:02,932 [WARN] IPConfigManager:3238 - Warning: the RefConfig PWREx_EnableUSBVoltageDetector is not available in your config.xml file
+2025-07-26 21:24:02,939 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_vars.tmp_save
+2025-07-26 21:24:03,071 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_vars.tmp
+2025-07-26 21:24:03,075 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_inc.tmp_save
+2025-07-26 21:24:03,231 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_inc.tmp
+2025-07-26 21:24:03,233 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_HalInit.tmp_save
+2025-07-26 21:24:03,368 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_HalInit.tmp
+2025-07-26 21:24:03,370 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_Msp.tmp_save
+2025-07-26 21:24:03,524 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_Msp.tmp
+2025-07-26 21:24:04,309 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-26 21:24:04,314 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-26 21:24:04,425 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-26 21:24:04,428 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-26 21:24:04,536 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_vars.tmp
+2025-07-26 21:24:04,539 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-26 21:24:04,646 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-26 21:24:04,648 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-26 21:24:04,760 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_inc.tmp
+2025-07-26 21:24:04,789 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-26 21:24:04,795 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/cortex.tmp_save
+2025-07-26 21:24:04,909 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/cortex.tmp
+2025-07-26 21:24:04,966 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/dma.tmp_save
+2025-07-26 21:24:05,082 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/dma.tmp
+2025-07-26 21:24:05,084 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/dma_GV.tmp_save
+2025-07-26 21:24:05,147 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/dma_GV.tmp
+2025-07-26 21:24:05,152 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-26 21:24:05,156 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-26 21:24:05,217 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-26 21:24:05,220 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-26 21:24:05,278 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_vars.tmp
+2025-07-26 21:24:05,281 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-26 21:24:05,339 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-26 21:24:05,342 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-26 21:24:05,399 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_inc.tmp
+2025-07-26 21:24:05,402 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/ffconf.h_save
+2025-07-26 21:24:05,467 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/ffconf.h
+2025-07-26 21:24:05,470 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/user_diskio.c_save
+2025-07-26 21:24:05,538 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/user_diskio.c
+2025-07-26 21:24:05,542 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/user_diskio.h_save
+2025-07-26 21:24:05,598 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/user_diskio.h
+2025-07-26 21:24:05,601 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/App/fatfs.c_save
+2025-07-26 21:24:05,660 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/App/fatfs.c
+2025-07-26 21:24:05,662 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/App/fatfs.h_save
+2025-07-26 21:24:05,716 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/App/fatfs.h
+2025-07-26 21:24:05,733 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-26 21:24:05,741 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usb_device.c_save
+2025-07-26 21:24:05,804 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usb_device.c
+2025-07-26 21:24:05,807 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usb_device.h_save
+2025-07-26 21:24:05,865 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usb_device.h
+2025-07-26 21:24:05,869 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/Target/usbd_conf.h_save
+2025-07-26 21:24:05,925 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/Target/usbd_conf.h
+2025-07-26 21:24:05,928 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/Target/usbd_conf.c_save
+2025-07-26 21:24:05,989 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/Target/usbd_conf.c
+2025-07-26 21:24:05,992 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_desc.h_save
+2025-07-26 21:24:06,048 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_desc.h
+2025-07-26 21:24:06,051 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_desc.c_save
+2025-07-26 21:24:06,126 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_desc.c
+2025-07-26 21:24:06,129 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_cdc_if.h_save
+2025-07-26 21:24:06,183 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_cdc_if.h
+2025-07-26 21:24:06,186 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_cdc_if.c_save
+2025-07-26 21:24:06,253 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_cdc_if.c
+2025-07-26 21:24:06,263 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/stm32f7xx_it.c_save
+2025-07-26 21:24:06,421 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/stm32f7xx_it.c
+2025-07-26 21:24:06,425 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/stm32f7xx_it.h_save
+2025-07-26 21:24:06,484 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/stm32f7xx_it.h
+2025-07-26 21:24:06,498 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/stm32f7xx_hal_msp.c_save
+2025-07-26 21:24:06,610 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/stm32f7xx_hal_msp.c
+2025-07-26 21:24:06,614 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/system.tmp_save
+2025-07-26 21:24:06,668 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/system.tmp
+2025-07-26 21:24:06,676 [INFO] CodeEngine:321 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/stm32f7xx_hal_conf.h_save
+2025-07-26 21:24:06,737 [INFO] CodeEngine:345 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/stm32f7xx_hal_conf.h
+2025-07-26 21:24:06,764 [WARN] IPConfigManager:3811 - IP not found : TIM
+2025-07-26 21:24:06,765 [WARN] CodeGenerator:4259 - IP not found : null
+2025-07-26 21:24:06,773 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/main.h_save
+2025-07-26 21:24:06,858 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/main.h
+2025-07-26 21:24:06,861 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/main.c_save
+2025-07-26 21:24:06,963 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/main.c
+2025-07-26 21:24:07,155 [INFO] ProjectBuilder:3606 - Time for Copy HAL[2] : 1mS.
+2025-07-26 21:24:07,164 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
+2025-07-26 21:24:07,264 [INFO] ConfigFileManager:1595 - The Die is : DIE452
+2025-07-26 21:24:08,056 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 892mS.
+2025-07-26 21:24:08,056 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-07-26 21:24:08,058 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-07-26 21:27:33,056 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2025-07-26 21:27:35,411 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2025-07-26 21:27:45,016 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 626567464 Bytes (1073741824)
+2025-07-26 21:27:45,138 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 648065320 Bytes (1073741824)
+2025-07-26 21:27:45,529 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 721987880 Bytes (1073741824)
+2025-07-26 21:27:45,664 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-26 21:27:45,664 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-26 21:27:45,664 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-26 21:27:45,664 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: TIM1_8F7
+2025-07-26 21:27:45,664 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_DEVICE
+2025-07-26 21:27:45,664 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2025-07-26 21:27:45,664 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2025-07-26 21:27:45,664 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_OTG_FS
+2025-07-26 21:27:45,664 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2025-07-26 21:27:45,664 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: DMA
+2025-07-26 21:27:45,664 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2025-07-26 21:27:45,665 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: FATFS
+2025-07-26 21:27:45,665 [INFO] CodeGenerator:892 - code generatio: config db path: /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.common.mx_6.15.0.202507011659//db/
+2025-07-26 21:27:45,691 [INFO] Argument:325 - Argument : hdmavalue: null
+2025-07-26 21:27:45,691 [INFO] Argument:327 - 	 sub Args: 
+2025-07-26 21:27:45,691 [INFO] Argument:325 - Argument : Instancevalue: DMA1_Stream0
+2025-07-26 21:27:45,691 [INFO] Argument:335 - Argument : Instancevalue: DMA1_Stream0
+2025-07-26 21:27:45,691 [INFO] Argument:325 - Argument : Initvalue: null
+2025-07-26 21:27:45,691 [INFO] Argument:327 - 	 sub Args: 
+2025-07-26 21:27:45,691 [INFO] Argument:325 - Argument : Channelvalue: DMA_CHANNEL_0
+2025-07-26 21:27:45,691 [INFO] Argument:335 - Argument : Channelvalue: DMA_CHANNEL_0
+2025-07-26 21:27:45,691 [INFO] Argument:325 - Argument : Directionvalue: DMA_PERIPH_TO_MEMORY
+2025-07-26 21:27:45,691 [INFO] Argument:335 - Argument : Directionvalue: DMA_PERIPH_TO_MEMORY
+2025-07-26 21:27:45,691 [INFO] Argument:325 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2025-07-26 21:27:45,691 [INFO] Argument:335 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2025-07-26 21:27:45,691 [INFO] Argument:325 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2025-07-26 21:27:45,691 [INFO] Argument:335 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2025-07-26 21:27:45,691 [INFO] Argument:325 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2025-07-26 21:27:45,691 [INFO] Argument:335 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2025-07-26 21:27:45,691 [INFO] Argument:325 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2025-07-26 21:27:45,691 [INFO] Argument:335 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2025-07-26 21:27:45,691 [INFO] Argument:325 - Argument : Modevalue: DMA_CIRCULAR
+2025-07-26 21:27:45,691 [INFO] Argument:335 - Argument : Modevalue: DMA_CIRCULAR
+2025-07-26 21:27:45,691 [INFO] Argument:325 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2025-07-26 21:27:45,692 [INFO] Argument:335 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2025-07-26 21:27:45,692 [INFO] Argument:325 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2025-07-26 21:27:45,692 [INFO] Argument:335 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2025-07-26 21:27:45,692 [INFO] Argument:325 - Argument : FIFOThresholdvalue: null
+2025-07-26 21:27:45,692 [INFO] Argument:335 - Argument : FIFOThresholdvalue: null
+2025-07-26 21:27:45,692 [INFO] Argument:325 - Argument : MemBurstvalue: null
+2025-07-26 21:27:45,692 [INFO] Argument:335 - Argument : MemBurstvalue: null
+2025-07-26 21:27:45,692 [INFO] Argument:325 - Argument : PeriphBurstvalue: null
+2025-07-26 21:27:45,692 [INFO] Argument:335 - Argument : PeriphBurstvalue: null
+2025-07-26 21:27:45,692 [INFO] Argument:325 - Argument : Lockvalue: null
+2025-07-26 21:27:45,692 [INFO] Argument:335 - Argument : Lockvalue: null
+2025-07-26 21:27:45,692 [INFO] Argument:325 - Argument : Statevalue: null
+2025-07-26 21:27:45,692 [INFO] Argument:335 - Argument : Statevalue: null
+2025-07-26 21:27:45,692 [INFO] Argument:325 - Argument : Parentvalue: null
+2025-07-26 21:27:45,692 [INFO] Argument:335 - Argument : Parentvalue: null
+2025-07-26 21:27:45,692 [INFO] Argument:325 - Argument : XferCpltCallbackvalue: null
+2025-07-26 21:27:45,692 [INFO] Argument:335 - Argument : XferCpltCallbackvalue: null
+2025-07-26 21:27:45,692 [INFO] Argument:325 - Argument : XferHalfCpltCallbackvalue: null
+2025-07-26 21:27:45,692 [INFO] Argument:335 - Argument : XferHalfCpltCallbackvalue: null
+2025-07-26 21:27:45,692 [INFO] Argument:325 - Argument : XferM1CpltCallbackvalue: null
+2025-07-26 21:27:45,692 [INFO] Argument:335 - Argument : XferM1CpltCallbackvalue: null
+2025-07-26 21:27:45,692 [INFO] Argument:325 - Argument : XferErrorCallbackvalue: null
+2025-07-26 21:27:45,692 [INFO] Argument:335 - Argument : XferErrorCallbackvalue: null
+2025-07-26 21:27:45,692 [INFO] Argument:325 - Argument : ErrorCodevalue: null
+2025-07-26 21:27:45,692 [INFO] Argument:335 - Argument : ErrorCodevalue: null
+2025-07-26 21:27:45,693 [INFO] Argument:325 - Argument : hdmavalue: null
+2025-07-26 21:27:45,693 [INFO] Argument:327 - 	 sub Args: 
+2025-07-26 21:27:45,693 [INFO] Argument:325 - Argument : Instancevalue: DMA1_Stream5
+2025-07-26 21:27:45,693 [INFO] Argument:335 - Argument : Instancevalue: DMA1_Stream5
+2025-07-26 21:27:45,693 [INFO] Argument:325 - Argument : Initvalue: null
+2025-07-26 21:27:45,693 [INFO] Argument:327 - 	 sub Args: 
+2025-07-26 21:27:45,693 [INFO] Argument:325 - Argument : Channelvalue: DMA_CHANNEL_0
+2025-07-26 21:27:45,693 [INFO] Argument:335 - Argument : Channelvalue: DMA_CHANNEL_0
+2025-07-26 21:27:45,693 [INFO] Argument:325 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2025-07-26 21:27:45,693 [INFO] Argument:335 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2025-07-26 21:27:45,693 [INFO] Argument:325 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2025-07-26 21:27:45,693 [INFO] Argument:335 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2025-07-26 21:27:45,693 [INFO] Argument:325 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2025-07-26 21:27:45,693 [INFO] Argument:335 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2025-07-26 21:27:45,693 [INFO] Argument:325 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2025-07-26 21:27:45,693 [INFO] Argument:335 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2025-07-26 21:27:45,693 [INFO] Argument:325 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2025-07-26 21:27:45,693 [INFO] Argument:335 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2025-07-26 21:27:45,693 [INFO] Argument:325 - Argument : Modevalue: DMA_NORMAL
+2025-07-26 21:27:45,693 [INFO] Argument:335 - Argument : Modevalue: DMA_NORMAL
+2025-07-26 21:27:45,693 [INFO] Argument:325 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2025-07-26 21:27:45,693 [INFO] Argument:335 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2025-07-26 21:27:45,693 [INFO] Argument:325 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2025-07-26 21:27:45,693 [INFO] Argument:335 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2025-07-26 21:27:45,693 [INFO] Argument:325 - Argument : FIFOThresholdvalue: null
+2025-07-26 21:27:45,693 [INFO] Argument:335 - Argument : FIFOThresholdvalue: null
+2025-07-26 21:27:45,693 [INFO] Argument:325 - Argument : MemBurstvalue: null
+2025-07-26 21:27:45,693 [INFO] Argument:335 - Argument : MemBurstvalue: null
+2025-07-26 21:27:45,693 [INFO] Argument:325 - Argument : PeriphBurstvalue: null
+2025-07-26 21:27:45,693 [INFO] Argument:335 - Argument : PeriphBurstvalue: null
+2025-07-26 21:27:45,693 [INFO] Argument:325 - Argument : Lockvalue: null
+2025-07-26 21:27:45,694 [INFO] Argument:335 - Argument : Lockvalue: null
+2025-07-26 21:27:45,694 [INFO] Argument:325 - Argument : Statevalue: null
+2025-07-26 21:27:45,694 [INFO] Argument:335 - Argument : Statevalue: null
+2025-07-26 21:27:45,694 [INFO] Argument:325 - Argument : Parentvalue: null
+2025-07-26 21:27:45,694 [INFO] Argument:335 - Argument : Parentvalue: null
+2025-07-26 21:27:45,694 [INFO] Argument:325 - Argument : XferCpltCallbackvalue: null
+2025-07-26 21:27:45,694 [INFO] Argument:335 - Argument : XferCpltCallbackvalue: null
+2025-07-26 21:27:45,694 [INFO] Argument:325 - Argument : XferHalfCpltCallbackvalue: null
+2025-07-26 21:27:45,694 [INFO] Argument:335 - Argument : XferHalfCpltCallbackvalue: null
+2025-07-26 21:27:45,694 [INFO] Argument:325 - Argument : XferM1CpltCallbackvalue: null
+2025-07-26 21:27:45,694 [INFO] Argument:335 - Argument : XferM1CpltCallbackvalue: null
+2025-07-26 21:27:45,694 [INFO] Argument:325 - Argument : XferErrorCallbackvalue: null
+2025-07-26 21:27:45,694 [INFO] Argument:335 - Argument : XferErrorCallbackvalue: null
+2025-07-26 21:27:45,694 [INFO] Argument:325 - Argument : ErrorCodevalue: null
+2025-07-26 21:27:45,694 [INFO] Argument:335 - Argument : ErrorCodevalue: null
+2025-07-26 21:27:45,701 [WARN] IP:2250 - DEVICE_SERIAL0_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-26 21:27:45,701 [WARN] IP:2250 - DEVICE_SERIAL1_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-26 21:27:45,701 [WARN] IP:2250 - DEVICE_SERIAL2_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-26 21:27:45,769 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/license.tmp_save
+2025-07-26 21:27:45,824 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/license.tmp
+2025-07-26 21:27:45,887 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/gpio.tmp_save
+2025-07-26 21:27:45,943 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/gpio.tmp
+2025-07-26 21:27:46,069 [WARN] IPConfigManager:3238 - Warning: the RefConfig PWREx_EnableUSBVoltageDetector is not available in your config.xml file
+2025-07-26 21:27:46,074 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_vars.tmp_save
+2025-07-26 21:27:46,124 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_vars.tmp
+2025-07-26 21:27:46,126 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_inc.tmp_save
+2025-07-26 21:27:46,177 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_inc.tmp
+2025-07-26 21:27:46,179 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_HalInit.tmp_save
+2025-07-26 21:27:46,238 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_HalInit.tmp
+2025-07-26 21:27:46,241 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_Msp.tmp_save
+2025-07-26 21:27:46,313 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_Msp.tmp
+2025-07-26 21:27:46,924 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-26 21:27:46,928 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-26 21:27:46,984 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-26 21:27:46,986 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-26 21:27:47,041 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_vars.tmp
+2025-07-26 21:27:47,043 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-26 21:27:47,097 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-26 21:27:47,099 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-26 21:27:47,221 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_inc.tmp
+2025-07-26 21:27:47,237 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-26 21:27:47,242 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/cortex.tmp_save
+2025-07-26 21:27:47,292 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/cortex.tmp
+2025-07-26 21:27:47,340 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/dma.tmp_save
+2025-07-26 21:27:47,392 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/dma.tmp
+2025-07-26 21:27:47,394 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/dma_GV.tmp_save
+2025-07-26 21:27:47,442 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/dma_GV.tmp
+2025-07-26 21:27:47,446 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-26 21:27:47,449 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-26 21:27:47,498 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-26 21:27:47,500 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-26 21:27:47,549 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_vars.tmp
+2025-07-26 21:27:47,551 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-26 21:27:47,601 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-26 21:27:47,603 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-26 21:27:47,653 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_inc.tmp
+2025-07-26 21:27:47,656 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/ffconf.h_save
+2025-07-26 21:27:47,714 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/ffconf.h
+2025-07-26 21:27:47,717 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/user_diskio.c_save
+2025-07-26 21:27:47,772 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/user_diskio.c
+2025-07-26 21:27:47,775 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/user_diskio.h_save
+2025-07-26 21:27:47,824 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/user_diskio.h
+2025-07-26 21:27:47,827 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/App/fatfs.c_save
+2025-07-26 21:27:47,876 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/App/fatfs.c
+2025-07-26 21:27:47,878 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/App/fatfs.h_save
+2025-07-26 21:27:47,927 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/App/fatfs.h
+2025-07-26 21:27:47,942 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-26 21:27:47,947 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usb_device.c_save
+2025-07-26 21:27:48,004 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usb_device.c
+2025-07-26 21:27:48,006 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usb_device.h_save
+2025-07-26 21:27:48,058 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usb_device.h
+2025-07-26 21:27:48,061 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/Target/usbd_conf.h_save
+2025-07-26 21:27:48,112 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/Target/usbd_conf.h
+2025-07-26 21:27:48,115 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/Target/usbd_conf.c_save
+2025-07-26 21:27:48,172 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/Target/usbd_conf.c
+2025-07-26 21:27:48,175 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_desc.h_save
+2025-07-26 21:27:48,226 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_desc.h
+2025-07-26 21:27:48,228 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_desc.c_save
+2025-07-26 21:27:48,285 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_desc.c
+2025-07-26 21:27:48,287 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_cdc_if.h_save
+2025-07-26 21:27:48,336 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_cdc_if.h
+2025-07-26 21:27:48,339 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_cdc_if.c_save
+2025-07-26 21:27:48,397 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_cdc_if.c
+2025-07-26 21:27:48,405 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/stm32f7xx_it.c_save
+2025-07-26 21:27:48,465 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/stm32f7xx_it.c
+2025-07-26 21:27:48,467 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/stm32f7xx_it.h_save
+2025-07-26 21:27:48,515 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/stm32f7xx_it.h
+2025-07-26 21:27:48,527 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/stm32f7xx_hal_msp.c_save
+2025-07-26 21:27:48,611 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/stm32f7xx_hal_msp.c
+2025-07-26 21:27:48,614 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/system.tmp_save
+2025-07-26 21:27:48,662 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/system.tmp
+2025-07-26 21:27:48,667 [INFO] CodeEngine:321 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/stm32f7xx_hal_conf.h_save
+2025-07-26 21:27:48,724 [INFO] CodeEngine:345 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/stm32f7xx_hal_conf.h
+2025-07-26 21:27:48,741 [WARN] IPConfigManager:3811 - IP not found : TIM
+2025-07-26 21:27:48,749 [WARN] CodeGenerator:4259 - IP not found : null
+2025-07-26 21:27:48,753 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/main.h_save
+2025-07-26 21:27:48,812 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/main.h
+2025-07-26 21:27:48,815 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/main.c_save
+2025-07-26 21:27:48,906 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/main.c
+2025-07-26 21:27:49,070 [INFO] ProjectBuilder:3606 - Time for Copy HAL[2] : 0mS.
+2025-07-26 21:27:49,074 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
+2025-07-26 21:27:49,155 [INFO] ConfigFileManager:1595 - The Die is : DIE452
+2025-07-26 21:27:49,691 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 617mS.
+2025-07-26 21:27:49,691 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-07-26 21:27:49,692 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-07-26 21:59:26,077 [INFO] WebApp:194 - Connection lost
+2025-07-26 21:59:32,522 [INFO] WebApp:191 - Connection restablished
+2025-07-26 22:00:03,263 [INFO] WebApp:194 - Connection lost
+2025-07-26 22:00:16,894 [INFO] WebApp:191 - Connection restablished
+2025-07-26 22:02:12,043 [INFO] WebApp:194 - Connection lost
+2025-07-26 22:02:16,744 [INFO] WebApp:191 - Connection restablished
+2025-07-26 22:02:44,992 [INFO] WebApp:194 - Connection lost
+2025-07-26 22:03:55,953 [INFO] WebApp:191 - Connection restablished
+2025-07-26 22:05:31,036 [INFO] WebApp:194 - Connection lost
+2025-07-26 22:05:57,761 [INFO] WebApp:191 - Connection restablished
+2025-07-26 22:07:04,946 [INFO] WebApp:194 - Connection lost
+2025-07-26 22:08:50,583 [INFO] WebApp:191 - Connection restablished
+2025-07-26 22:10:55,113 [INFO] WebApp:194 - Connection lost
+2025-07-26 22:11:14,366 [INFO] WebApp:191 - Connection restablished
+2025-07-26 22:12:10,765 [INFO] WebApp:194 - Connection lost
+2025-07-26 22:12:15,631 [INFO] WebApp:191 - Connection restablished
+2025-07-26 22:25:49,066 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2025-07-26 22:25:53,352 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 579581240 Bytes (1073741824)
+2025-07-26 22:25:53,513 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 599504344 Bytes (1073741824)
+2025-07-26 22:25:54,392 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 746713696 Bytes (1073741824)
+2025-07-26 22:25:54,553 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-26 22:25:54,553 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-26 22:25:54,553 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-26 22:25:54,553 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: TIM1_8F7
+2025-07-26 22:25:54,553 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_DEVICE
+2025-07-26 22:25:54,553 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2025-07-26 22:25:54,553 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2025-07-26 22:25:54,553 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_OTG_FS
+2025-07-26 22:25:54,553 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2025-07-26 22:25:54,553 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: DMA
+2025-07-26 22:25:54,554 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2025-07-26 22:25:54,554 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: FATFS
+2025-07-26 22:25:54,554 [INFO] CodeGenerator:892 - code generatio: config db path: /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.common.mx_6.15.0.202507011659//db/
+2025-07-26 22:25:54,589 [INFO] Argument:325 - Argument : hdmavalue: null
+2025-07-26 22:25:54,590 [INFO] Argument:327 - 	 sub Args: 
+2025-07-26 22:25:54,590 [INFO] Argument:325 - Argument : Instancevalue: DMA1_Stream0
+2025-07-26 22:25:54,590 [INFO] Argument:335 - Argument : Instancevalue: DMA1_Stream0
+2025-07-26 22:25:54,590 [INFO] Argument:325 - Argument : Initvalue: null
+2025-07-26 22:25:54,590 [INFO] Argument:327 - 	 sub Args: 
+2025-07-26 22:25:54,590 [INFO] Argument:325 - Argument : Channelvalue: DMA_CHANNEL_0
+2025-07-26 22:25:54,590 [INFO] Argument:335 - Argument : Channelvalue: DMA_CHANNEL_0
+2025-07-26 22:25:54,590 [INFO] Argument:325 - Argument : Directionvalue: DMA_PERIPH_TO_MEMORY
+2025-07-26 22:25:54,590 [INFO] Argument:335 - Argument : Directionvalue: DMA_PERIPH_TO_MEMORY
+2025-07-26 22:25:54,590 [INFO] Argument:325 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2025-07-26 22:25:54,590 [INFO] Argument:335 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2025-07-26 22:25:54,590 [INFO] Argument:325 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2025-07-26 22:25:54,590 [INFO] Argument:335 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2025-07-26 22:25:54,590 [INFO] Argument:325 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2025-07-26 22:25:54,590 [INFO] Argument:335 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2025-07-26 22:25:54,590 [INFO] Argument:325 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2025-07-26 22:25:54,590 [INFO] Argument:335 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2025-07-26 22:25:54,590 [INFO] Argument:325 - Argument : Modevalue: DMA_CIRCULAR
+2025-07-26 22:25:54,590 [INFO] Argument:335 - Argument : Modevalue: DMA_CIRCULAR
+2025-07-26 22:25:54,590 [INFO] Argument:325 - Argument : Priorityvalue: DMA_PRIORITY_VERY_HIGH
+2025-07-26 22:25:54,590 [INFO] Argument:335 - Argument : Priorityvalue: DMA_PRIORITY_VERY_HIGH
+2025-07-26 22:25:54,590 [INFO] Argument:325 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2025-07-26 22:25:54,590 [INFO] Argument:335 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2025-07-26 22:25:54,590 [INFO] Argument:325 - Argument : FIFOThresholdvalue: null
+2025-07-26 22:25:54,590 [INFO] Argument:335 - Argument : FIFOThresholdvalue: null
+2025-07-26 22:25:54,590 [INFO] Argument:325 - Argument : MemBurstvalue: null
+2025-07-26 22:25:54,590 [INFO] Argument:335 - Argument : MemBurstvalue: null
+2025-07-26 22:25:54,590 [INFO] Argument:325 - Argument : PeriphBurstvalue: null
+2025-07-26 22:25:54,590 [INFO] Argument:335 - Argument : PeriphBurstvalue: null
+2025-07-26 22:25:54,590 [INFO] Argument:325 - Argument : Lockvalue: null
+2025-07-26 22:25:54,590 [INFO] Argument:335 - Argument : Lockvalue: null
+2025-07-26 22:25:54,590 [INFO] Argument:325 - Argument : Statevalue: null
+2025-07-26 22:25:54,590 [INFO] Argument:335 - Argument : Statevalue: null
+2025-07-26 22:25:54,591 [INFO] Argument:325 - Argument : Parentvalue: null
+2025-07-26 22:25:54,591 [INFO] Argument:335 - Argument : Parentvalue: null
+2025-07-26 22:25:54,591 [INFO] Argument:325 - Argument : XferCpltCallbackvalue: null
+2025-07-26 22:25:54,591 [INFO] Argument:335 - Argument : XferCpltCallbackvalue: null
+2025-07-26 22:25:54,591 [INFO] Argument:325 - Argument : XferHalfCpltCallbackvalue: null
+2025-07-26 22:25:54,591 [INFO] Argument:335 - Argument : XferHalfCpltCallbackvalue: null
+2025-07-26 22:25:54,591 [INFO] Argument:325 - Argument : XferM1CpltCallbackvalue: null
+2025-07-26 22:25:54,591 [INFO] Argument:335 - Argument : XferM1CpltCallbackvalue: null
+2025-07-26 22:25:54,591 [INFO] Argument:325 - Argument : XferErrorCallbackvalue: null
+2025-07-26 22:25:54,591 [INFO] Argument:335 - Argument : XferErrorCallbackvalue: null
+2025-07-26 22:25:54,591 [INFO] Argument:325 - Argument : ErrorCodevalue: null
+2025-07-26 22:25:54,591 [INFO] Argument:335 - Argument : ErrorCodevalue: null
+2025-07-26 22:25:54,592 [INFO] Argument:325 - Argument : hdmavalue: null
+2025-07-26 22:25:54,592 [INFO] Argument:327 - 	 sub Args: 
+2025-07-26 22:25:54,592 [INFO] Argument:325 - Argument : Instancevalue: DMA1_Stream5
+2025-07-26 22:25:54,592 [INFO] Argument:335 - Argument : Instancevalue: DMA1_Stream5
+2025-07-26 22:25:54,592 [INFO] Argument:325 - Argument : Initvalue: null
+2025-07-26 22:25:54,592 [INFO] Argument:327 - 	 sub Args: 
+2025-07-26 22:25:54,592 [INFO] Argument:325 - Argument : Channelvalue: DMA_CHANNEL_0
+2025-07-26 22:25:54,592 [INFO] Argument:335 - Argument : Channelvalue: DMA_CHANNEL_0
+2025-07-26 22:25:54,592 [INFO] Argument:325 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2025-07-26 22:25:54,592 [INFO] Argument:335 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2025-07-26 22:25:54,592 [INFO] Argument:325 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2025-07-26 22:25:54,592 [INFO] Argument:335 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2025-07-26 22:25:54,592 [INFO] Argument:325 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2025-07-26 22:25:54,592 [INFO] Argument:335 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2025-07-26 22:25:54,592 [INFO] Argument:325 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2025-07-26 22:25:54,592 [INFO] Argument:335 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2025-07-26 22:25:54,592 [INFO] Argument:325 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2025-07-26 22:25:54,592 [INFO] Argument:335 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2025-07-26 22:25:54,592 [INFO] Argument:325 - Argument : Modevalue: DMA_NORMAL
+2025-07-26 22:25:54,592 [INFO] Argument:335 - Argument : Modevalue: DMA_NORMAL
+2025-07-26 22:25:54,592 [INFO] Argument:325 - Argument : Priorityvalue: DMA_PRIORITY_VERY_HIGH
+2025-07-26 22:25:54,592 [INFO] Argument:335 - Argument : Priorityvalue: DMA_PRIORITY_VERY_HIGH
+2025-07-26 22:25:54,592 [INFO] Argument:325 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2025-07-26 22:25:54,592 [INFO] Argument:335 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2025-07-26 22:25:54,592 [INFO] Argument:325 - Argument : FIFOThresholdvalue: null
+2025-07-26 22:25:54,592 [INFO] Argument:335 - Argument : FIFOThresholdvalue: null
+2025-07-26 22:25:54,592 [INFO] Argument:325 - Argument : MemBurstvalue: null
+2025-07-26 22:25:54,592 [INFO] Argument:335 - Argument : MemBurstvalue: null
+2025-07-26 22:25:54,592 [INFO] Argument:325 - Argument : PeriphBurstvalue: null
+2025-07-26 22:25:54,593 [INFO] Argument:335 - Argument : PeriphBurstvalue: null
+2025-07-26 22:25:54,593 [INFO] Argument:325 - Argument : Lockvalue: null
+2025-07-26 22:25:54,593 [INFO] Argument:335 - Argument : Lockvalue: null
+2025-07-26 22:25:54,593 [INFO] Argument:325 - Argument : Statevalue: null
+2025-07-26 22:25:54,593 [INFO] Argument:335 - Argument : Statevalue: null
+2025-07-26 22:25:54,593 [INFO] Argument:325 - Argument : Parentvalue: null
+2025-07-26 22:25:54,593 [INFO] Argument:335 - Argument : Parentvalue: null
+2025-07-26 22:25:54,593 [INFO] Argument:325 - Argument : XferCpltCallbackvalue: null
+2025-07-26 22:25:54,593 [INFO] Argument:335 - Argument : XferCpltCallbackvalue: null
+2025-07-26 22:25:54,593 [INFO] Argument:325 - Argument : XferHalfCpltCallbackvalue: null
+2025-07-26 22:25:54,593 [INFO] Argument:335 - Argument : XferHalfCpltCallbackvalue: null
+2025-07-26 22:25:54,593 [INFO] Argument:325 - Argument : XferM1CpltCallbackvalue: null
+2025-07-26 22:25:54,593 [INFO] Argument:335 - Argument : XferM1CpltCallbackvalue: null
+2025-07-26 22:25:54,593 [INFO] Argument:325 - Argument : XferErrorCallbackvalue: null
+2025-07-26 22:25:54,593 [INFO] Argument:335 - Argument : XferErrorCallbackvalue: null
+2025-07-26 22:25:54,593 [INFO] Argument:325 - Argument : ErrorCodevalue: null
+2025-07-26 22:25:54,593 [INFO] Argument:335 - Argument : ErrorCodevalue: null
+2025-07-26 22:25:54,603 [WARN] IP:2250 - DEVICE_SERIAL0_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-26 22:25:54,603 [WARN] IP:2250 - DEVICE_SERIAL1_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-26 22:25:54,603 [WARN] IP:2250 - DEVICE_SERIAL2_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-26 22:25:54,684 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/license.tmp_save
+2025-07-26 22:25:54,796 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/license.tmp
+2025-07-26 22:25:54,895 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/gpio.tmp_save
+2025-07-26 22:25:54,963 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/gpio.tmp
+2025-07-26 22:25:55,135 [WARN] IPConfigManager:3238 - Warning: the RefConfig PWREx_EnableUSBVoltageDetector is not available in your config.xml file
+2025-07-26 22:25:55,140 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_vars.tmp_save
+2025-07-26 22:25:55,200 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_vars.tmp
+2025-07-26 22:25:55,203 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_inc.tmp_save
+2025-07-26 22:25:55,253 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_inc.tmp
+2025-07-26 22:25:55,256 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_HalInit.tmp_save
+2025-07-26 22:25:55,321 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_HalInit.tmp
+2025-07-26 22:25:55,323 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_Msp.tmp_save
+2025-07-26 22:25:55,393 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_Msp.tmp
+2025-07-26 22:25:56,330 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-26 22:25:56,334 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-26 22:25:56,386 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-26 22:25:56,389 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-26 22:25:56,439 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_vars.tmp
+2025-07-26 22:25:56,442 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-26 22:25:56,490 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-26 22:25:56,493 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-26 22:25:56,543 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_inc.tmp
+2025-07-26 22:25:56,563 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-26 22:25:56,567 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/cortex.tmp_save
+2025-07-26 22:25:56,620 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/cortex.tmp
+2025-07-26 22:25:56,669 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/dma.tmp_save
+2025-07-26 22:25:56,724 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/dma.tmp
+2025-07-26 22:25:56,726 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/dma_GV.tmp_save
+2025-07-26 22:25:56,776 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/dma_GV.tmp
+2025-07-26 22:25:56,789 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-26 22:25:56,792 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-26 22:25:56,845 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-26 22:25:56,847 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-26 22:25:56,898 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_vars.tmp
+2025-07-26 22:25:56,900 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-26 22:25:56,951 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-26 22:25:56,953 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-26 22:25:57,005 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_inc.tmp
+2025-07-26 22:25:57,007 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/ffconf.h_save
+2025-07-26 22:25:57,070 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/ffconf.h
+2025-07-26 22:25:57,073 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/user_diskio.c_save
+2025-07-26 22:25:57,131 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/user_diskio.c
+2025-07-26 22:25:57,134 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/user_diskio.h_save
+2025-07-26 22:25:57,185 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/user_diskio.h
+2025-07-26 22:25:57,188 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/App/fatfs.c_save
+2025-07-26 22:25:57,239 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/App/fatfs.c
+2025-07-26 22:25:57,242 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/App/fatfs.h_save
+2025-07-26 22:25:57,297 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/App/fatfs.h
+2025-07-26 22:25:57,314 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-26 22:25:57,319 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usb_device.c_save
+2025-07-26 22:25:57,375 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usb_device.c
+2025-07-26 22:25:57,379 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usb_device.h_save
+2025-07-26 22:25:57,434 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usb_device.h
+2025-07-26 22:25:57,438 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/Target/usbd_conf.h_save
+2025-07-26 22:25:57,490 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/Target/usbd_conf.h
+2025-07-26 22:25:57,492 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/Target/usbd_conf.c_save
+2025-07-26 22:25:57,562 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/Target/usbd_conf.c
+2025-07-26 22:25:57,566 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_desc.h_save
+2025-07-26 22:25:57,623 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_desc.h
+2025-07-26 22:25:57,627 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_desc.c_save
+2025-07-26 22:25:57,686 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_desc.c
+2025-07-26 22:25:57,689 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_cdc_if.h_save
+2025-07-26 22:25:57,740 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_cdc_if.h
+2025-07-26 22:25:57,744 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_cdc_if.c_save
+2025-07-26 22:25:57,810 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_cdc_if.c
+2025-07-26 22:25:57,819 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/stm32f7xx_it.c_save
+2025-07-26 22:25:57,963 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/stm32f7xx_it.c
+2025-07-26 22:25:57,966 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/stm32f7xx_it.h_save
+2025-07-26 22:25:58,018 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/stm32f7xx_it.h
+2025-07-26 22:25:58,029 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/stm32f7xx_hal_msp.c_save
+2025-07-26 22:25:58,121 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/stm32f7xx_hal_msp.c
+2025-07-26 22:25:58,124 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/system.tmp_save
+2025-07-26 22:25:58,175 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/system.tmp
+2025-07-26 22:25:58,181 [INFO] CodeEngine:321 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/stm32f7xx_hal_conf.h_save
+2025-07-26 22:25:58,240 [INFO] CodeEngine:345 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/stm32f7xx_hal_conf.h
+2025-07-26 22:25:58,262 [WARN] IPConfigManager:3811 - IP not found : TIM
+2025-07-26 22:25:58,263 [WARN] CodeGenerator:4259 - IP not found : null
+2025-07-26 22:25:58,267 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/main.h_save
+2025-07-26 22:25:58,355 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/main.h
+2025-07-26 22:25:58,359 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/main.c_save
+2025-07-26 22:25:58,489 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/main.c
+2025-07-26 22:25:58,696 [INFO] ProjectBuilder:3606 - Time for Copy HAL[2] : 1mS.
+2025-07-26 22:25:58,701 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
+2025-07-26 22:25:58,786 [INFO] ConfigFileManager:1595 - The Die is : DIE452
+2025-07-26 22:25:59,416 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 715mS.
+2025-07-26 22:25:59,416 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-07-26 22:25:59,418 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-07-26 22:31:51,748 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2025-07-26 22:31:54,202 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2025-07-26 22:31:56,479 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 983911400 Bytes (1073741824)
+2025-07-26 22:31:56,601 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 1005409256 Bytes (1073741824)
+2025-07-26 22:31:57,524 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 614790160 Bytes (1073741824)
+2025-07-26 22:31:57,691 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-26 22:31:57,691 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-26 22:31:57,691 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SPI
+2025-07-26 22:31:57,691 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: TIM1_8F7
+2025-07-26 22:31:57,691 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_DEVICE
+2025-07-26 22:31:57,691 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2025-07-26 22:31:57,692 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2025-07-26 22:31:57,692 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USB_OTG_FS
+2025-07-26 22:31:57,692 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2025-07-26 22:31:57,692 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: DMA
+2025-07-26 22:31:57,692 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2025-07-26 22:31:57,692 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: FATFS
+2025-07-26 22:31:57,693 [INFO] CodeGenerator:892 - code generatio: config db path: /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.common.mx_6.15.0.202507011659//db/
+2025-07-26 22:31:57,730 [INFO] Argument:325 - Argument : hdmavalue: null
+2025-07-26 22:31:57,730 [INFO] Argument:327 - 	 sub Args: 
+2025-07-26 22:31:57,730 [INFO] Argument:325 - Argument : Instancevalue: DMA1_Stream0
+2025-07-26 22:31:57,730 [INFO] Argument:335 - Argument : Instancevalue: DMA1_Stream0
+2025-07-26 22:31:57,730 [INFO] Argument:325 - Argument : Initvalue: null
+2025-07-26 22:31:57,730 [INFO] Argument:327 - 	 sub Args: 
+2025-07-26 22:31:57,730 [INFO] Argument:325 - Argument : Channelvalue: DMA_CHANNEL_0
+2025-07-26 22:31:57,730 [INFO] Argument:335 - Argument : Channelvalue: DMA_CHANNEL_0
+2025-07-26 22:31:57,730 [INFO] Argument:325 - Argument : Directionvalue: DMA_PERIPH_TO_MEMORY
+2025-07-26 22:31:57,730 [INFO] Argument:335 - Argument : Directionvalue: DMA_PERIPH_TO_MEMORY
+2025-07-26 22:31:57,730 [INFO] Argument:325 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2025-07-26 22:31:57,730 [INFO] Argument:335 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2025-07-26 22:31:57,730 [INFO] Argument:325 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2025-07-26 22:31:57,730 [INFO] Argument:335 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2025-07-26 22:31:57,730 [INFO] Argument:325 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2025-07-26 22:31:57,730 [INFO] Argument:335 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2025-07-26 22:31:57,730 [INFO] Argument:325 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2025-07-26 22:31:57,730 [INFO] Argument:335 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2025-07-26 22:31:57,731 [INFO] Argument:325 - Argument : Modevalue: DMA_CIRCULAR
+2025-07-26 22:31:57,731 [INFO] Argument:335 - Argument : Modevalue: DMA_CIRCULAR
+2025-07-26 22:31:57,731 [INFO] Argument:325 - Argument : Priorityvalue: DMA_PRIORITY_VERY_HIGH
+2025-07-26 22:31:57,731 [INFO] Argument:335 - Argument : Priorityvalue: DMA_PRIORITY_VERY_HIGH
+2025-07-26 22:31:57,731 [INFO] Argument:325 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2025-07-26 22:31:57,731 [INFO] Argument:335 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2025-07-26 22:31:57,731 [INFO] Argument:325 - Argument : FIFOThresholdvalue: null
+2025-07-26 22:31:57,731 [INFO] Argument:335 - Argument : FIFOThresholdvalue: null
+2025-07-26 22:31:57,731 [INFO] Argument:325 - Argument : MemBurstvalue: null
+2025-07-26 22:31:57,731 [INFO] Argument:335 - Argument : MemBurstvalue: null
+2025-07-26 22:31:57,731 [INFO] Argument:325 - Argument : PeriphBurstvalue: null
+2025-07-26 22:31:57,731 [INFO] Argument:335 - Argument : PeriphBurstvalue: null
+2025-07-26 22:31:57,731 [INFO] Argument:325 - Argument : Lockvalue: null
+2025-07-26 22:31:57,731 [INFO] Argument:335 - Argument : Lockvalue: null
+2025-07-26 22:31:57,731 [INFO] Argument:325 - Argument : Statevalue: null
+2025-07-26 22:31:57,731 [INFO] Argument:335 - Argument : Statevalue: null
+2025-07-26 22:31:57,731 [INFO] Argument:325 - Argument : Parentvalue: null
+2025-07-26 22:31:57,731 [INFO] Argument:335 - Argument : Parentvalue: null
+2025-07-26 22:31:57,731 [INFO] Argument:325 - Argument : XferCpltCallbackvalue: null
+2025-07-26 22:31:57,731 [INFO] Argument:335 - Argument : XferCpltCallbackvalue: null
+2025-07-26 22:31:57,731 [INFO] Argument:325 - Argument : XferHalfCpltCallbackvalue: null
+2025-07-26 22:31:57,731 [INFO] Argument:335 - Argument : XferHalfCpltCallbackvalue: null
+2025-07-26 22:31:57,731 [INFO] Argument:325 - Argument : XferM1CpltCallbackvalue: null
+2025-07-26 22:31:57,731 [INFO] Argument:335 - Argument : XferM1CpltCallbackvalue: null
+2025-07-26 22:31:57,731 [INFO] Argument:325 - Argument : XferErrorCallbackvalue: null
+2025-07-26 22:31:57,731 [INFO] Argument:335 - Argument : XferErrorCallbackvalue: null
+2025-07-26 22:31:57,731 [INFO] Argument:325 - Argument : ErrorCodevalue: null
+2025-07-26 22:31:57,731 [INFO] Argument:335 - Argument : ErrorCodevalue: null
+2025-07-26 22:31:57,732 [INFO] Argument:325 - Argument : hdmavalue: null
+2025-07-26 22:31:57,732 [INFO] Argument:327 - 	 sub Args: 
+2025-07-26 22:31:57,732 [INFO] Argument:325 - Argument : Instancevalue: DMA1_Stream5
+2025-07-26 22:31:57,732 [INFO] Argument:335 - Argument : Instancevalue: DMA1_Stream5
+2025-07-26 22:31:57,732 [INFO] Argument:325 - Argument : Initvalue: null
+2025-07-26 22:31:57,732 [INFO] Argument:327 - 	 sub Args: 
+2025-07-26 22:31:57,732 [INFO] Argument:325 - Argument : Channelvalue: DMA_CHANNEL_0
+2025-07-26 22:31:57,732 [INFO] Argument:335 - Argument : Channelvalue: DMA_CHANNEL_0
+2025-07-26 22:31:57,732 [INFO] Argument:325 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2025-07-26 22:31:57,732 [INFO] Argument:335 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2025-07-26 22:31:57,732 [INFO] Argument:325 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2025-07-26 22:31:57,732 [INFO] Argument:335 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2025-07-26 22:31:57,732 [INFO] Argument:325 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2025-07-26 22:31:57,732 [INFO] Argument:335 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2025-07-26 22:31:57,732 [INFO] Argument:325 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2025-07-26 22:31:57,732 [INFO] Argument:335 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_BYTE
+2025-07-26 22:31:57,732 [INFO] Argument:325 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2025-07-26 22:31:57,733 [INFO] Argument:335 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_BYTE
+2025-07-26 22:31:57,733 [INFO] Argument:325 - Argument : Modevalue: DMA_CIRCULAR
+2025-07-26 22:31:57,733 [INFO] Argument:335 - Argument : Modevalue: DMA_CIRCULAR
+2025-07-26 22:31:57,733 [INFO] Argument:325 - Argument : Priorityvalue: DMA_PRIORITY_VERY_HIGH
+2025-07-26 22:31:57,733 [INFO] Argument:335 - Argument : Priorityvalue: DMA_PRIORITY_VERY_HIGH
+2025-07-26 22:31:57,733 [INFO] Argument:325 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2025-07-26 22:31:57,733 [INFO] Argument:335 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2025-07-26 22:31:57,733 [INFO] Argument:325 - Argument : FIFOThresholdvalue: null
+2025-07-26 22:31:57,733 [INFO] Argument:335 - Argument : FIFOThresholdvalue: null
+2025-07-26 22:31:57,733 [INFO] Argument:325 - Argument : MemBurstvalue: null
+2025-07-26 22:31:57,733 [INFO] Argument:335 - Argument : MemBurstvalue: null
+2025-07-26 22:31:57,733 [INFO] Argument:325 - Argument : PeriphBurstvalue: null
+2025-07-26 22:31:57,733 [INFO] Argument:335 - Argument : PeriphBurstvalue: null
+2025-07-26 22:31:57,733 [INFO] Argument:325 - Argument : Lockvalue: null
+2025-07-26 22:31:57,733 [INFO] Argument:335 - Argument : Lockvalue: null
+2025-07-26 22:31:57,733 [INFO] Argument:325 - Argument : Statevalue: null
+2025-07-26 22:31:57,733 [INFO] Argument:335 - Argument : Statevalue: null
+2025-07-26 22:31:57,733 [INFO] Argument:325 - Argument : Parentvalue: null
+2025-07-26 22:31:57,733 [INFO] Argument:335 - Argument : Parentvalue: null
+2025-07-26 22:31:57,733 [INFO] Argument:325 - Argument : XferCpltCallbackvalue: null
+2025-07-26 22:31:57,733 [INFO] Argument:335 - Argument : XferCpltCallbackvalue: null
+2025-07-26 22:31:57,733 [INFO] Argument:325 - Argument : XferHalfCpltCallbackvalue: null
+2025-07-26 22:31:57,733 [INFO] Argument:335 - Argument : XferHalfCpltCallbackvalue: null
+2025-07-26 22:31:57,733 [INFO] Argument:325 - Argument : XferM1CpltCallbackvalue: null
+2025-07-26 22:31:57,733 [INFO] Argument:335 - Argument : XferM1CpltCallbackvalue: null
+2025-07-26 22:31:57,733 [INFO] Argument:325 - Argument : XferErrorCallbackvalue: null
+2025-07-26 22:31:57,733 [INFO] Argument:335 - Argument : XferErrorCallbackvalue: null
+2025-07-26 22:31:57,733 [INFO] Argument:325 - Argument : ErrorCodevalue: null
+2025-07-26 22:31:57,733 [INFO] Argument:335 - Argument : ErrorCodevalue: null
+2025-07-26 22:31:57,743 [WARN] IP:2250 - DEVICE_SERIAL0_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-26 22:31:57,743 [WARN] IP:2250 - DEVICE_SERIAL1_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-26 22:31:57,743 [WARN] IP:2250 - DEVICE_SERIAL2_CDC_FS not found: check if there is a RefParameter without a condition.
+2025-07-26 22:31:57,819 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/license.tmp_save
+2025-07-26 22:31:57,889 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/license.tmp
+2025-07-26 22:31:57,954 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/gpio.tmp_save
+2025-07-26 22:31:58,045 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/gpio.tmp
+2025-07-26 22:31:58,178 [WARN] IPConfigManager:3238 - Warning: the RefConfig PWREx_EnableUSBVoltageDetector is not available in your config.xml file
+2025-07-26 22:31:58,183 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_vars.tmp_save
+2025-07-26 22:31:58,233 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_vars.tmp
+2025-07-26 22:31:58,235 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_inc.tmp_save
+2025-07-26 22:31:58,284 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_inc.tmp
+2025-07-26 22:31:58,286 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_HalInit.tmp_save
+2025-07-26 22:31:58,343 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_HalInit.tmp
+2025-07-26 22:31:58,345 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_Msp.tmp_save
+2025-07-26 22:31:58,409 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/usb_otg_fs_Msp.tmp
+2025-07-26 22:31:59,041 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-26 22:31:59,045 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-26 22:31:59,095 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-26 22:31:59,097 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-26 22:31:59,147 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_vars.tmp
+2025-07-26 22:31:59,149 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-26 22:31:59,196 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-26 22:31:59,198 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-26 22:31:59,247 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_inc.tmp
+2025-07-26 22:31:59,261 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-26 22:31:59,265 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/cortex.tmp_save
+2025-07-26 22:31:59,314 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/cortex.tmp
+2025-07-26 22:31:59,363 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/dma.tmp_save
+2025-07-26 22:31:59,418 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/dma.tmp
+2025-07-26 22:31:59,420 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/dma_GV.tmp_save
+2025-07-26 22:31:59,469 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/dma_GV.tmp
+2025-07-26 22:31:59,473 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-26 22:31:59,477 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_HalInit.tmp_save
+2025-07-26 22:31:59,525 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_HalInit.tmp
+2025-07-26 22:31:59,528 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_vars.tmp_save
+2025-07-26 22:31:59,575 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_vars.tmp
+2025-07-26 22:31:59,577 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_ext_vars.tmp_save
+2025-07-26 22:31:59,623 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_ext_vars.tmp
+2025-07-26 22:31:59,625 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_inc.tmp_save
+2025-07-26 22:31:59,675 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/fatfs_inc.tmp
+2025-07-26 22:31:59,678 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/ffconf.h_save
+2025-07-26 22:31:59,736 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/ffconf.h
+2025-07-26 22:31:59,739 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/user_diskio.c_save
+2025-07-26 22:31:59,794 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/user_diskio.c
+2025-07-26 22:31:59,796 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/user_diskio.h_save
+2025-07-26 22:31:59,893 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/Target/user_diskio.h
+2025-07-26 22:31:59,896 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/App/fatfs.c_save
+2025-07-26 22:31:59,947 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/App/fatfs.c
+2025-07-26 22:31:59,950 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/App/fatfs.h_save
+2025-07-26 22:32:00,001 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/FATFS/App/fatfs.h
+2025-07-26 22:32:00,021 [INFO] Middleware:1452 - No code input for Bsp Dependency
+2025-07-26 22:32:00,027 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usb_device.c_save
+2025-07-26 22:32:00,087 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usb_device.c
+2025-07-26 22:32:00,090 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usb_device.h_save
+2025-07-26 22:32:00,142 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usb_device.h
+2025-07-26 22:32:00,145 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/Target/usbd_conf.h_save
+2025-07-26 22:32:00,198 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/Target/usbd_conf.h
+2025-07-26 22:32:00,200 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/Target/usbd_conf.c_save
+2025-07-26 22:32:00,257 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/Target/usbd_conf.c
+2025-07-26 22:32:00,260 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_desc.h_save
+2025-07-26 22:32:00,311 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_desc.h
+2025-07-26 22:32:00,314 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_desc.c_save
+2025-07-26 22:32:00,369 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_desc.c
+2025-07-26 22:32:00,373 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_cdc_if.h_save
+2025-07-26 22:32:00,423 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_cdc_if.h
+2025-07-26 22:32:00,426 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_cdc_if.c_save
+2025-07-26 22:32:00,485 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/USB_DEVICE/App/usbd_cdc_if.c
+2025-07-26 22:32:00,495 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/stm32f7xx_it.c_save
+2025-07-26 22:32:00,558 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/stm32f7xx_it.c
+2025-07-26 22:32:00,561 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/stm32f7xx_it.h_save
+2025-07-26 22:32:00,613 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/stm32f7xx_it.h
+2025-07-26 22:32:00,625 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/stm32f7xx_hal_msp.c_save
+2025-07-26 22:32:00,713 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/stm32f7xx_hal_msp.c
+2025-07-26 22:32:00,715 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/system.tmp_save
+2025-07-26 22:32:00,764 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/MXTmpFiles/system.tmp
+2025-07-26 22:32:00,769 [INFO] CodeEngine:321 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/stm32f7xx_hal_conf.h_save
+2025-07-26 22:32:00,826 [INFO] CodeEngine:345 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/stm32f7xx_hal_conf.h
+2025-07-26 22:32:00,842 [WARN] IPConfigManager:3811 - IP not found : TIM
+2025-07-26 22:32:00,843 [WARN] CodeGenerator:4259 - IP not found : null
+2025-07-26 22:32:00,848 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/main.h_save
+2025-07-26 22:32:00,910 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Inc/main.h
+2025-07-26 22:32:00,913 [INFO] CodeEngine:265 - oldGeneratedFile, /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/main.c_save
+2025-07-26 22:32:01,002 [INFO] CodeEngine:289 - Generated code: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/ADS131M04/ADS131M04_DMA_MicroSD/Core/Src/main.c
+2025-07-26 22:32:01,185 [INFO] ProjectBuilder:3606 - Time for Copy HAL[2] : 0mS.
+2025-07-26 22:32:01,189 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
+2025-07-26 22:32:01,288 [INFO] ConfigFileManager:1595 - The Die is : DIE452
+2025-07-26 22:32:01,835 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 646mS.
+2025-07-26 22:32:01,835 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-07-26 22:32:01,836 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2025-07-26 23:41:45,673 [INFO] WebApp:194 - Connection lost
+2025-07-26 23:41:48,182 [INFO] WebApp:191 - Connection restablished
+2025-07-26 23:42:36,340 [INFO] WebApp:194 - Connection lost
+2025-07-26 23:42:41,249 [INFO] WebApp:191 - Connection restablished
+2025-07-26 23:43:14,107 [INFO] WebApp:194 - Connection lost
+2025-07-26 23:43:18,933 [INFO] WebApp:191 - Connection restablished
+2025-07-26 23:44:04,443 [INFO] WebApp:194 - Connection lost
+2025-07-26 23:44:09,152 [INFO] WebApp:191 - Connection restablished
+2025-07-26 23:44:48,373 [INFO] WebApp:194 - Connection lost
+2025-07-26 23:44:53,299 [INFO] WebApp:191 - Connection restablished
+2025-07-26 23:45:33,753 [INFO] WebApp:194 - Connection lost
+2025-07-26 23:45:38,603 [INFO] WebApp:191 - Connection restablished
+2025-07-26 23:46:23,947 [INFO] WebApp:194 - Connection lost
+2025-07-26 23:46:28,788 [INFO] WebApp:191 - Connection restablished
+2025-07-26 23:47:12,074 [INFO] WebApp:194 - Connection lost
+2025-07-26 23:47:17,097 [INFO] WebApp:191 - Connection restablished
+2025-07-26 23:47:51,275 [INFO] WebApp:194 - Connection lost
+2025-07-26 23:47:56,769 [INFO] WebApp:191 - Connection restablished
+2025-07-26 23:48:58,658 [INFO] WebApp:194 - Connection lost
+2025-07-26 23:49:03,867 [INFO] WebApp:191 - Connection restablished
+2025-07-26 23:49:46,653 [INFO] WebApp:194 - Connection lost
+2025-07-26 23:52:30,885 [INFO] WebApp:191 - Connection restablished
+2025-07-26 23:53:24,473 [INFO] WebApp:194 - Connection lost
+2025-07-26 23:56:50,053 [INFO] WebApp:191 - Connection restablished
