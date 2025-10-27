@@ -3,12 +3,20 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
-		<item value="ADS131M04_readRegister"/>
-		<item value="signExtend"/>
-		<item value="byte"/>
-		<item value="ADS131M04_SPI_HANDLE"/>
-		<item value="int32_t"/>
-		<item value="int32"/>
-		<item value="uint32_t"/>
+		<item value="ADS_data_buffer"/>
+		<item value="dummy_tx"/>
+		<item value="hspi2"/>
+		<item value="hspi3"/>
+		<item value="HAL_SPI_MspInit()"/>
+		<item value="HAL_SPI_MspInit"/>
+		<item value="msp"/>
+		<item value="hdma_spi3_rx"/>
+		<item value="hdma"/>
+		<item value="linkdma"/>
+		<item value="ADS_CS_HIGH"/>
+		<item value="CS_HIGH"/>
+		<item value="ADS_data_ready"/>
+		<item value="dma"/>
+		<item value="user"/>
 	</list>
 </section>

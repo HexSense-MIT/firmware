@@ -69,7 +69,7 @@ const char *HS_FILE_NAME = "HS1.txt"; // Default filename for operations
 uint32_t rec_i = 0;
 uint32_t i     = 0;
 
-#define TIMES2REC 10 // Number of times to record data before stopping
+#define TIMES2REC 20 // Number of times to record data before stopping
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
