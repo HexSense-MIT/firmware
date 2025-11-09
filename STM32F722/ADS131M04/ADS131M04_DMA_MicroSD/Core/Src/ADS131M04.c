@@ -195,13 +195,13 @@ void ADS131M04_Init(void) {
   HAL_Delay(20); // Wait for reset to complete
 
   ADS131M04_ReadRegister(REG_ID);
-  ADS131M04_setOsr(OSR_256);
+  ADS131M04_setOsr(OSR_512);
 
-  ADS131M04_ReadRegister(REG_STATUS);
-  ADS131M04_ReadRegister(REG_CLOCK);
-  ADS131M04_ReadRegister(REG_GAIN);
-  ADS131M04_ReadRegister(REG_CFG);
-  ADS131M04_ReadRegister(REG_MODE);
+  // ADS131M04_ReadRegister(REG_STATUS);
+  // ADS131M04_ReadRegister(REG_CLOCK);
+  // ADS131M04_ReadRegister(REG_GAIN);
+  // ADS131M04_ReadRegister(REG_CFG);
+  // ADS131M04_ReadRegister(REG_MODE);
 
   // // Wait for SPI ready to make sure the ADS131M04 is ready
   while (!ADS_READ_DRDY()) {
