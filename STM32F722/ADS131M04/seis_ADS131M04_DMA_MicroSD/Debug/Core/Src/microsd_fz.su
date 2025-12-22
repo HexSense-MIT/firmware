@@ -1,0 +1,6 @@
+../Core/Src/microsd_fz.c:14:9:mount_sd_card	16	static
+../Core/Src/microsd_fz.c:20:9:eject_sd_card	16	static
+../Core/Src/microsd_fz.c:33:9:get_statistics	32	static
+../Core/Src/microsd_fz.c:46:9:close_file	8	static
+../Core/Src/microsd_fz.c:58:9:open_file	24	static
+../Core/Src/microsd_fz.c:83:9:write_data_to_file	24	static

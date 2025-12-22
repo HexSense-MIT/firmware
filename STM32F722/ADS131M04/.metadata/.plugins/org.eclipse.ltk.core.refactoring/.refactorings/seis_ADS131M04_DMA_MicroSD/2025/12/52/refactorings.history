@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;seis_ADS131M04_DMA_MicroSD/ADS131M04_DMA_MicroSD.ioc&apos; to &apos;seis_ADS131M04_DMA_MicroSD.ioc&apos;" description="Rename resource &apos;ADS131M04_DMA_MicroSD.ioc&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="ADS131M04_DMA_MicroSD.ioc" name="seis_ADS131M04_DMA_MicroSD.ioc" stamp="1766364829446" updateReferences="true"/>
+</session>
