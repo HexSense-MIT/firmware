@@ -8,3 +8,4 @@ org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:ADS131M04\ Debug/activeLaunchTa
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:ADS131M04_DMA_MicroSD\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:ADS131M04_DMA_MicroSD\ Debug/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:microsd_spi_fatfs\ Debug/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:seis_ADS131M04_DMA_MicroSD/activeLaunchMode=run
