@@ -35,17 +35,17 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  15 .debug_rnglists 0000147b  00000000  00000000  000353a0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00029221  00000000  00000000  0003681b  2**0
+ 16 .debug_macro  00029209  00000000  00000000  0003681b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00026494  00000000  00000000  0005fa3c  2**0
+ 17 .debug_line   00026496  00000000  00000000  0005fa24  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000e2bc4  00000000  00000000  00085ed0  2**0
+ 18 .debug_str    000e2b95  00000000  00000000  00085eba  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  00168a94  2**0
+ 19 .comment      00000043  00000000  00000000  00168a4f  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  000076ac  00000000  00000000  00168ad8  2**2
+ 20 .debug_frame  000076ac  00000000  00000000  00168a94  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000009c  00000000  00000000  00170184  2**0
+ 21 .debug_line_str 0000009c  00000000  00000000  00170140  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1037,12 +1037,12 @@ void ADS131M04_Init(void) {
  80009ce:	d0f7      	beq.n	80009c0 <ADS131M04_Init+0x34>
   }
 
-  TIM3->CCR1 = 15; // Set the PWM duty cycle to 50%
+  TIM3->CCR2 = 15; // Set the PWM duty cycle to 50%
  80009d0:	4b04      	ldr	r3, [pc, #16]	@ (80009e4 <ADS131M04_Init+0x58>)
  80009d2:	220f      	movs	r2, #15
- 80009d4:	635a      	str	r2, [r3, #52]	@ 0x34
-  HAL_TIM_PWM_Start(&ADS131M04_CLKIN_TIM, TIM_CHANNEL_1);
- 80009d6:	2100      	movs	r1, #0
+ 80009d4:	639a      	str	r2, [r3, #56]	@ 0x38
+  HAL_TIM_PWM_Start(&ADS131M04_CLKIN_TIM, TIM_CHANNEL_2);
+ 80009d6:	2104      	movs	r1, #4
  80009d8:	4803      	ldr	r0, [pc, #12]	@ (80009e8 <ADS131M04_Init+0x5c>)
  80009da:	f005 faff 	bl	8005fdc <HAL_TIM_PWM_Start>
 }
@@ -1205,7 +1205,7 @@ int main(void)
   /* Configure the system clock */
   SystemClock_Config();
  8000aa6:	f000 f8cf 	bl	8000c48 <SystemClock_Config>
-  /* USER CODE BEGIN SysInit */
+  // SD_ON(); // Turn on the SD card
 
   /* USER CODE END SysInit */
 
@@ -1991,9 +1991,9 @@ static void MX_TIM3_Init(void)
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
  8000f54:	2300      	movs	r3, #0
  8000f56:	613b      	str	r3, [r7, #16]
-  if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+  if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
  8000f58:	463b      	mov	r3, r7
- 8000f5a:	2200      	movs	r2, #0
+ 8000f5a:	2204      	movs	r2, #4
  8000f5c:	4619      	mov	r1, r3
  8000f5e:	4807      	ldr	r0, [pc, #28]	@ (8000f7c <MX_TIM3_Init+0xe4>)
  8000f60:	f005 f936 	bl	80061d0 <HAL_TIM_PWM_ConfigChannel>
@@ -2172,9 +2172,9 @@ static void MX_GPIO_Init(void)
  800107a:	f001 fb23 	bl	80026c4 <HAL_GPIO_WritePin>
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, PIN_LED1_Pin|SD_EN_Pin|ADS_CLK_Pin|ADS_SYNC_RST_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, PIN_LED1_Pin|SD_EN_Pin|ADS_SYNC_RST_Pin, GPIO_PIN_RESET);
  800107e:	2200      	movs	r2, #0
- 8001080:	f240 1125 	movw	r1, #293	@ 0x125
+ 8001080:	f240 1105 	movw	r1, #261	@ 0x105
  8001084:	485c      	ldr	r0, [pc, #368]	@ (80011f8 <MX_GPIO_Init+0x228>)
  8001086:	f001 fb1d 	bl	80026c4 <HAL_GPIO_WritePin>
 
@@ -2300,9 +2300,9 @@ static void MX_GPIO_Init(void)
  800113e:	482c      	ldr	r0, [pc, #176]	@ (80011f0 <MX_GPIO_Init+0x220>)
  8001140:	f001 f90c 	bl	800235c <HAL_GPIO_Init>
 
-  /*Configure GPIO pins : PIN_LED1_Pin SD_EN_Pin ADS_CLK_Pin ADS_SYNC_RST_Pin */
-  GPIO_InitStruct.Pin = PIN_LED1_Pin|SD_EN_Pin|ADS_CLK_Pin|ADS_SYNC_RST_Pin;
- 8001144:	f240 1325 	movw	r3, #293	@ 0x125
+  /*Configure GPIO pins : PIN_LED1_Pin SD_EN_Pin ADS_SYNC_RST_Pin */
+  GPIO_InitStruct.Pin = PIN_LED1_Pin|SD_EN_Pin|ADS_SYNC_RST_Pin;
+ 8001144:	f240 1305 	movw	r3, #261	@ 0x105
  8001148:	617b      	str	r3, [r7, #20]
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
  800114a:	2301      	movs	r3, #1
@@ -3163,10 +3163,10 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef* htim)
  8001686:	60bb      	str	r3, [r7, #8]
  8001688:	68bb      	ldr	r3, [r7, #8]
     /**TIM3 GPIO Configuration
-    PB4     ------> TIM3_CH1
+    PB5     ------> TIM3_CH2
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_4;
- 800168a:	2310      	movs	r3, #16
+    GPIO_InitStruct.Pin = GPIO_PIN_5;
+ 800168a:	2320      	movs	r3, #32
  800168c:	60fb      	str	r3, [r7, #12]
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
  800168e:	2302      	movs	r3, #2
@@ -3174,8 +3174,8 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef* htim)
     GPIO_InitStruct.Pull = GPIO_NOPULL;
  8001692:	2300      	movs	r3, #0
  8001694:	617b      	str	r3, [r7, #20]
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
- 8001696:	2300      	movs	r3, #0
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+ 8001696:	2302      	movs	r3, #2
  8001698:	61bb      	str	r3, [r7, #24]
     GPIO_InitStruct.Alternate = GPIO_AF2_TIM3;
  800169a:	2302      	movs	r3, #2

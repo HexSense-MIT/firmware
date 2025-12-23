@@ -87,8 +87,6 @@ void Error_Handler(void);
 #define UWB_CS_GPIO_Port GPIOA
 #define FE_EN_Pin GPIO_PIN_2
 #define FE_EN_GPIO_Port GPIOD
-#define ADS_CLK_Pin GPIO_PIN_5
-#define ADS_CLK_GPIO_Port GPIOB
 #define ADS_SYNC_RST_Pin GPIO_PIN_8
 #define ADS_SYNC_RST_GPIO_Port GPIOB
 #define ADS_DRDY_Pin GPIO_PIN_9

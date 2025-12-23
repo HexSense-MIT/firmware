@@ -1446,3 +1446,15 @@ java.io.FileNotFoundException: /Users/liufangzheng/Documents/Lab/github/HexSense
 
 !ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-12-22 15:48:56.951
 !MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-12-22 16:07:31.649
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 27 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-12-22 16:07:31.649
+!MESSAGE Existing sessions are:
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-12-22 16:07:31.650
+!MESSAGE Error - No active DSF-Session. tmpSessionId = 27 (contextManager row 121)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2025-12-22 16:07:31.650
+!MESSAGE Existing sessions are:

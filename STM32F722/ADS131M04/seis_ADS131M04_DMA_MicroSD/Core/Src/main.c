@@ -115,6 +115,11 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
+  // if (HAL_GPIO_ReadPin(SD_CD_GPIO_Port, SD_CD_Pin) == GPIO_PIN_SET) {
+  //   printf("SD card not detected!\n");
+  //   while (1) {;}
+  // }
+  // SD_ON(); // Turn on the SD card
 
   /* USER CODE END SysInit */
 
@@ -427,7 +432,7 @@ static void MX_TIM3_Init(void)
   sConfigOC.Pulse = 0;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+  if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
   {
     Error_Handler();
   }
@@ -486,7 +491,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(UWB_RST_GPIO_Port, UWB_RST_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, PIN_LED1_Pin|SD_EN_Pin|ADS_CLK_Pin|ADS_SYNC_RST_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, PIN_LED1_Pin|SD_EN_Pin|ADS_SYNC_RST_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(SD_CS_GPIO_Port, SD_CS_Pin, GPIO_PIN_SET);
@@ -534,8 +539,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(PIN_LED2_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PIN_LED1_Pin SD_EN_Pin ADS_CLK_Pin ADS_SYNC_RST_Pin */
-  GPIO_InitStruct.Pin = PIN_LED1_Pin|SD_EN_Pin|ADS_CLK_Pin|ADS_SYNC_RST_Pin;
+  /*Configure GPIO pins : PIN_LED1_Pin SD_EN_Pin ADS_SYNC_RST_Pin */
+  GPIO_InitStruct.Pin = PIN_LED1_Pin|SD_EN_Pin|ADS_SYNC_RST_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
