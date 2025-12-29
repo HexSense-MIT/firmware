@@ -27,25 +27,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  0000d18c  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00015210  00000000  00000000  0000d1bc  2**0
+ 12 .debug_info   00015218  00000000  00000000  0000d1bc  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00003c79  00000000  00000000  000223cc  2**0
+ 13 .debug_abbrev 00003c79  00000000  00000000  000223d4  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 000012c0  00000000  00000000  00026048  2**3
+ 14 .debug_aranges 000012c0  00000000  00000000  00026050  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 00000df1  00000000  00000000  00027308  2**0
+ 15 .debug_rnglists 00000df1  00000000  00000000  00027310  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00005e90  00000000  00000000  000280f9  2**0
+ 16 .debug_macro  00005e9a  00000000  00000000  00028101  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00019a74  00000000  00000000  0002df89  2**0
+ 17 .debug_line   00019a81  00000000  00000000  0002df9b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000e9d4c  00000000  00000000  000479fd  2**0
+ 18 .debug_str    000e9d5c  00000000  00000000  00047a1c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  00131749  2**0
+ 19 .comment      00000043  00000000  00000000  00131778  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00005478  00000000  00000000  0013178c  2**2
+ 20 .debug_frame  00005478  00000000  00000000  001317bc  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000083  00000000  00000000  00136c04  2**0
+ 21 .debug_line_str 00000083  00000000  00000000  00136c34  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -5144,8 +5144,8 @@ int main(void)
     while (1);
  8002292:	bf00      	nop
  8002294:	e7fd      	b.n	8002292 <main+0x14e>
-  while (1)
-  {
+    // dswr_print_result(&result);
+    // HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

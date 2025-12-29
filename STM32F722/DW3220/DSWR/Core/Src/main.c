@@ -25,6 +25,7 @@
 #include "DW3000_FZ.h"
 #include "DW3000_send_test_FZ.h"
 #include "DW3000_recv_test_FZ.h"
+#include "DSWR_FZ.h"
 
 /* USER CODE END Includes */
 
@@ -207,8 +208,13 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  // dswr_set_role(DSWR_ROLE_TAG);
   while (1)
   {
+    // dswr_result_t result;
+    // dswr_run_once(&result);
+    // dswr_print_result(&result);
+    // HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

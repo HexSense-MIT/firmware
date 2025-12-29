@@ -351,3 +351,181 @@ arm-none-eabi-size  DSWR.elf
   48584	    396	   8900	  57880	   e218	DSWR.elf
 Finished building: default.size.stdout
  
+14:09:47 **** Incremental Build of configuration Debug for project DSWR ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:210:3: warning: implicit declaration of function 'dswr_set_role' [-Wimplicit-function-declaration]
+  210 |   dswr_set_role(DSWR_ROLE_ANCHOR);
+      |   ^~~~~~~~~~~~~
+../Core/Src/main.c:210:17: error: 'DSWR_ROLE_ANCHOR' undeclared (first use in this function)
+  210 |   dswr_set_role(DSWR_ROLE_ANCHOR);
+      |                 ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:210:17: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:49: Core/Src/main.o] Error 1
+"make -j15 all" terminated with exit code 2. Build might be incomplete.
+14:10:04 **** Incremental Build of configuration Debug for project DSWR ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DSWR.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3220/DSWR/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DSWR.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DSWR.elf
+ 
+arm-none-eabi-size  DSWR.elf 
+arm-none-eabi-objdump -h -S DSWR.elf  > "DSWR.list"
+   text	   data	    bss	    dec	    hex	filename
+  48624	    392	   8904	  57920	   e240	DSWR.elf
+Finished building: default.size.stdout
+ 
+Finished building: DSWR.list
+ 
+14:11:04 **** Incremental Build of configuration Debug for project DSWR ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:214:20: error: 'result' undeclared (first use in this function)
+  214 |     dswr_run_once(&result);
+      |                    ^~~~~~
+../Core/Src/main.c:214:20: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:56:16: warning: 'rx_buffer' defined but not used [-Wunused-variable]
+   56 | static uint8_t rx_buffer[FRAME_LEN_MAX];
+      |                ^~~~~~~~~
+make: *** [Core/Src/subdir.mk:49: Core/Src/main.o] Error 1
+"make -j15 all" terminated with exit code 2. Build might be incomplete.
+14:12:09 **** Incremental Build of configuration Debug for project DSWR ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:56:16: warning: 'rx_buffer' defined but not used [-Wunused-variable]
+   56 | static uint8_t rx_buffer[FRAME_LEN_MAX];
+      |                ^~~~~~~~~
+arm-none-eabi-gcc -o "DSWR.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3220/DSWR/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DSWR.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DSWR.elf
+ 
+arm-none-eabi-size  DSWR.elf 
+arm-none-eabi-objdump -h -S DSWR.elf  > "DSWR.list"
+   text	   data	    bss	    dec	    hex	filename
+  51112	    380	   8772	  60264	   eb68	DSWR.elf
+Finished building: default.size.stdout
+ 
+Finished building: DSWR.list
+ 
+14:12:16 **** Incremental Build of configuration Debug for project DSWR ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DSWR.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3220/DSWR/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DSWR.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DSWR.elf
+ 
+arm-none-eabi-size  DSWR.elf 
+arm-none-eabi-objdump -h -S DSWR.elf  > "DSWR.list"
+   text	   data	    bss	    dec	    hex	filename
+  51112	    380	   8772	  60264	   eb68	DSWR.elf
+Finished building: default.size.stdout
+ 
+Finished building: DSWR.list
+ 
+14:12:59 **** Incremental Build of configuration Debug for project DSWR ****
+make -j15 all 
+arm-none-eabi-size  DSWR.elf 
+   text	   data	    bss	    dec	    hex	filename
+  51112	    380	   8772	  60264	   eb68	DSWR.elf
+Finished building: default.size.stdout
+ 
+14:14:52 **** Incremental Build of configuration Debug for project DSWR ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DSWR.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3220/DSWR/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DSWR.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DSWR.elf
+ 
+arm-none-eabi-size  DSWR.elf 
+arm-none-eabi-objdump -h -S DSWR.elf  > "DSWR.list"
+   text	   data	    bss	    dec	    hex	filename
+  51112	    380	   8772	  60264	   eb68	DSWR.elf
+Finished building: default.size.stdout
+ 
+Finished building: DSWR.list
+ 
+14:15:58 **** Incremental Build of configuration Debug for project DSWR ****
+make -j15 all 
+arm-none-eabi-size  DSWR.elf 
+   text	   data	    bss	    dec	    hex	filename
+  51112	    380	   8772	  60264	   eb68	DSWR.elf
+Finished building: default.size.stdout
+ 
+14:16:01 **** Incremental Build of configuration Debug for project DSWR ****
+make -j15 all 
+arm-none-eabi-size  DSWR.elf 
+   text	   data	    bss	    dec	    hex	filename
+  51112	    380	   8772	  60264	   eb68	DSWR.elf
+Finished building: default.size.stdout
+ 
+14:16:44 **** Incremental Build of configuration Debug for project DSWR ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DSWR.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3220/DSWR/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DSWR.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DSWR.elf
+ 
+arm-none-eabi-size  DSWR.elf 
+arm-none-eabi-objdump -h -S DSWR.elf  > "DSWR.list"
+   text	   data	    bss	    dec	    hex	filename
+  51112	    380	   8772	  60264	   eb68	DSWR.elf
+Finished building: default.size.stdout
+ 
+Finished building: DSWR.list
+ 
+14:20:33 **** Incremental Build of configuration Debug for project DSWR ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:252:14: error: 'rx_buffer' undeclared (first use in this function); did you mean 'setbuffer'?
+  252 |       memset(rx_buffer, 0, sizeof(rx_buffer));
+      |              ^~~~~~~~~
+      |              setbuffer
+../Core/Src/main.c:252:14: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:49: Core/Src/main.o] Error 1
+"make -j15 all" terminated with exit code 2. Build might be incomplete.
+14:20:40 **** Incremental Build of configuration Debug for project DSWR ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:252:14: error: 'rx_buffer' undeclared (first use in this function); did you mean 'setbuffer'?
+  252 |       memset(rx_buffer, 0, sizeof(rx_buffer));
+      |              ^~~~~~~~~
+      |              setbuffer
+../Core/Src/main.c:252:14: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:49: Core/Src/main.o] Error 1
+"make -j15 all" terminated with exit code 2. Build might be incomplete.
+14:20:47 **** Incremental Build of configuration Debug for project DSWR ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DSWR.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3220/DSWR/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DSWR.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DSWR.elf
+ 
+arm-none-eabi-size  DSWR.elf 
+arm-none-eabi-objdump -h -S DSWR.elf  > "DSWR.list"
+   text	   data	    bss	    dec	    hex	filename
+  48584	    392	   8904	  57880	   e218	DSWR.elf
+Finished building: default.size.stdout
+ 
+Finished building: DSWR.list
+ 
+14:20:49 **** Incremental Build of configuration Debug for project DSWR ****
+make -j15 all 
+arm-none-eabi-size  DSWR.elf 
+   text	   data	    bss	    dec	    hex	filename
+  48584	    392	   8904	  57880	   e218	DSWR.elf
+Finished building: default.size.stdout
+ 
+14:21:27 **** Incremental Build of configuration Debug for project DSWR ****
+make -j15 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F722xx -c -I../USB_DEVICE/App -I../USB_DEVICE/Target -I../Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/CMSIS/Device/ST/STM32F7xx/Include -I/Users/liufangzheng/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DSWR.elf" @"objects.list"   -mcpu=cortex-m7 -T"/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/STM32F722/DW3220/DSWR/STM32F722RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DSWR.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DSWR.elf
+ 
+arm-none-eabi-size  DSWR.elf 
+arm-none-eabi-objdump -h -S DSWR.elf  > "DSWR.list"
+   text	   data	    bss	    dec	    hex	filename
+  48584	    396	   8900	  57880	   e218	DSWR.elf
+Finished building: default.size.stdout
+ 
+Finished building: DSWR.list
+ 
