@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;DSWR/Core/Inc/dw3000_regs.h&apos;" deleteContents="false" description="Delete resource &apos;DSWR/Core/Inc/dw3000_regs.h&apos;" element1="/DSWR/Core/Inc/dw3000_regs.h" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1767031011195"/>
+</session>

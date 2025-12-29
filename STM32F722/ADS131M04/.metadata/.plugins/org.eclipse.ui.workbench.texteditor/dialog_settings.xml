@@ -3,6 +3,7 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
+		<item value="ads_clk"/>
 		<item value="ADS_data_buffer"/>
 		<item value="dummy_tx"/>
 		<item value="hspi2"/>
@@ -17,6 +18,5 @@
 		<item value="CS_HIGH"/>
 		<item value="ADS_data_ready"/>
 		<item value="dma"/>
-		<item value="user"/>
 	</list>
 </section>

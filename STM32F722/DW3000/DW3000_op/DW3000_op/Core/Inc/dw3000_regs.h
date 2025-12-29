@@ -10,7 +10,7 @@
  */
 
 #ifndef __DECA_REGS_H
-#define __DECA_REGS_H                         1
+#define __DECA_REGS_H
 
 #ifdef __cplusplus
 extern "C" {
