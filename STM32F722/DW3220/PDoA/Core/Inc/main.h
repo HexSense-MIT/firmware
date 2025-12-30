@@ -83,7 +83,7 @@ void Error_Handler(void);
 #define LORA_RST_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
-
+#define UWB_SPI_HANDLE hspi1
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

@@ -1,0 +1,3 @@
+../Core/Src/DW3000_send_test_FZ.c:19:6:DW3000_writetxdata_FZ	16	static
+../Core/Src/DW3000_send_test_FZ.c:28:6:DW3000_txcmd_FZ	16	static
+../Core/Src/DW3000_send_test_FZ.c:37:9:DW3000_TXdone_FZ	8	static

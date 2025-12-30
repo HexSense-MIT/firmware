@@ -1184,8 +1184,7 @@ void main()
 
     LED_TRIS = 0;
     LED_LAT = 1;
-    
- 
+
 // serial port
     TXSTA = 0b00100100;
 // disable receive

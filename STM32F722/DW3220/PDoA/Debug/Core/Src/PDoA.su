@@ -1,0 +1,14 @@
+../Core/Src/PDoA.c:29:17:read_tx_ts	8	static
+../Core/Src/PDoA.c:33:17:read_rx_ts	8	static
+../Core/Src/PDoA.c:37:17:get_frame_len	8	static
+../Core/Src/PDoA.c:41:13:pack_u32le	16	static
+../Core/Src/PDoA.c:48:17:unpack_u32le	16	static
+../Core/Src/PDoA.c:55:12:wait_tx_done	24	static
+../Core/Src/PDoA.c:73:12:send_frame	16	static
+../Core/Src/PDoA.c:81:12:wait_for_rx	40	static
+../Core/Src/PDoA.c:117:6:dswr_set_role	16	static
+../Core/Src/PDoA.c:121:13:dswr_get_role	4	static
+../Core/Src/PDoA.c:125:12:anchor_exchange	80	static
+../Core/Src/PDoA.c:179:12:tag_exchange	64	static
+../Core/Src/PDoA.c:226:5:dswr_run_once	16	static
+../Core/Src/PDoA.c:233:6:dswr_print_result	16	static

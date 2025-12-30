@@ -211,7 +211,7 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   dswr_set_role(dswr_role);
-
+  
   while (1)
   {
     dswr_result_t result = {0};
