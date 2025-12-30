@@ -3,11 +3,11 @@
  *
  * Double-sided wireless ranging helper (poll/resp) with selectable role.
  */
-#include <math.h>
-#include <errno.h>
 
 #include "DSWR_FZ.h"
 #include "dw3000_deca_regs.h"
+#include <math.h>
+#include <errno.h>
 
 // Frame types
 #define DSWR_FRAME_POLL     0xE1
@@ -65,7 +65,7 @@ static int wait_tx_done(uint32_t timeout_ms) {
       DW3000_clear_IRQ();
     }
     if ((HAL_GetTick() - start) > timeout_ms) {
-      return ETIMEDOUT;
+      return -ETIMEDOUT;
     }
   }
 }
@@ -106,7 +106,7 @@ static int wait_for_rx(uint8_t *rx_buf,
       }
       // RX error of some kind
       DW3000_clear_IRQ();
-      return EIO;
+      return -EIO;
     }
     if (timeout_ms > 0 && (HAL_GetTick() - start) > timeout_ms) {
       return -ETIMEDOUT;
@@ -114,11 +114,13 @@ static int wait_for_rx(uint8_t *rx_buf,
   }
 }
 
-void dswr_set_role(dswr_role_t role) {
+void dswr_set_role(dswr_role_t role)
+{
   dswr_role = role;
 }
 
-dswr_role_t dswr_get_role(void) {
+dswr_role_t dswr_get_role(void)
+{
   return dswr_role;
 }
 
@@ -130,8 +132,6 @@ static int anchor_exchange(dswr_result_t *result) {
   uint16_t resp_ts_len = 0;
   uint32_t poll_tx_ts = 0;
   uint32_t resp_rx_ts = 0;
-
-  dwt_configuretxrf(0x34, 0xfdfdfdfd, 0x00);
 
   if (send_frame(poll, sizeof(poll)) != 0) {
     return -EIO;
@@ -194,8 +194,6 @@ static int tag_exchange(void) {
 
   uint8_t seq = poll_buf[1];
 
-  Delay_us(10);
-
   // Quick response so anchor can timestamp arrival.
   resp_buf[0] = DSWR_FRAME_RESP;
   resp_buf[1] = seq;
@@ -205,8 +203,6 @@ static int tag_exchange(void) {
   }
 
   uint32_t resp_tx_ts = read_tx_ts();
-
-  HAL_Delay(2);
 
   // Send the timestamps captured for the previous response frame.
   resp_ts_buf[0] = DSWR_FRAME_RESP_TS;
@@ -235,5 +231,8 @@ void dswr_print_result(const dswr_result_t *result) {
     printf("DSWR: no valid result\r\n");
     return;
   }
-  printf("distance: %.3f m\r\n", result->distance_m);
+  printf("DSWR seq=%u tof_dtu=%lu distance=%.3f m\r\n",
+         (unsigned)result->seq,
+         (unsigned long)result->tof_dtu,
+         (double)result->distance_m);
 }

@@ -12,6 +12,8 @@
 #include <stdbool.h>
 
 #include "DW3000_FZ.h"
+#include "DW3000_send_test_FZ.h"
+#include "DW3000_recv_test_FZ.h"
 
 typedef enum {
   DSWR_ROLE_ANCHOR = 0,

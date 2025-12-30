@@ -214,14 +214,17 @@ int main(void)
 
   while (1)
   {
-    dswr_result_t result = {0};
     if (dswr_role == DSWR_ROLE_ANCHOR) {
-      dswr_run_once(&result);
+      dswr_result_t result = {0};
+      // int rc = dswr_run_once(&result);
+      anchor_exchange(&result);
       dswr_print_result(&result);
       HAL_Delay(200);
     }
     else {
-      dswr_run_once(&result);
+      tag_exchange();
+      // dswr_result_t result = {0};
+      // dswr_run_once(&result);
     }
     /* USER CODE END WHILE */
 

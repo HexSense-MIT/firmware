@@ -22,7 +22,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <errno.h>
 #include "DW3000_FZ.h"
 #include "DW3000_send_test_FZ.h"
 #include "DW3000_recv_test_FZ.h"
@@ -54,7 +53,7 @@ static dwt_config_t config = {
 
 // https://gist.github.com/egnor/455d510e11c22deafdec14b09da5bf54
 node_type current_node = rx_node; // current node type, default is TX node
-//static uint8_t rx_buffer[FRAME_LEN_MAX];
+static uint8_t rx_buffer[FRAME_LEN_MAX];
 #define FCS_LEN 2
 /* Hold copy of status register state here for reference so that it can be examined at a debug breakpoint. */
 uint32_t status_reg;
@@ -92,7 +91,7 @@ static void MX_SPI2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-dswr_role_t dswr_role = DSWR_ROLE_ANCHOR;
+
 /* USER CODE END 0 */
 
 /**
@@ -179,15 +178,14 @@ int main(void)
     while (100) {;}
   }
 
-  DW3000_irq_for_txrx_done();
-  // if (current_node == tx_node) {
-  //   DW3000_irq_for_tx_done(); // enable the IRQ for TX done
-  //   /* Configure the TX spectrum parameters (power PG delay and PG Count) */
-  //   dwt_configuretxrf(0x34, 0xfdfdfdfd, 0x00);
-  // }
-  // if (current_node == rx_node) {
-  //   DW3000_irq_for_rx_done(); // enable the IRQ for RX done
-  // }
+  if (current_node == tx_node) {
+    DW3000_irq_for_tx_done(); // enable the IRQ for TX done
+    /* Configure the TX spectrum parameters (power PG delay and PG Count) */
+    dwt_configuretxrf(0x34, 0xfdfdfdfd, 0x00);
+  }
+  if (current_node == rx_node) {
+    DW3000_irq_for_rx_done(); // enable the IRQ for RX done
+  }
 
   if(DW3000check_IDLE_RC()) {
     DW3000enter_IDLE_PLL(); // enter PLL mode
@@ -210,19 +208,13 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  dswr_set_role(dswr_role);
-
+  dswr_set_role(DSWR_ROLE_TAG);
   while (1)
   {
-    dswr_result_t result = {0};
-    if (dswr_role == DSWR_ROLE_ANCHOR) {
-      dswr_run_once(&result);
-      dswr_print_result(&result);
-      HAL_Delay(200);
-    }
-    else {
-      dswr_run_once(&result);
-    }
+    dswr_result_t result;
+    dswr_run_once(&result);
+    dswr_print_result(&result);
+    HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

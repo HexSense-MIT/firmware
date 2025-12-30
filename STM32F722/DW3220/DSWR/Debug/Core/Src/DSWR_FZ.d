@@ -33,6 +33,7 @@ Core/Src/DSWR_FZ.o: ../Core/Src/DSWR_FZ.c ../Core/Inc/DSWR_FZ.h \
  C:/Users/l1534/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd_ex.h \
  ../Core/Inc/main.h ../Core/Inc/dw3000_deca_regs.h \
  ../Core/Inc/dw3000_deca_vals.h ../Core/Inc/HS_system.h \
+ ../Core/Inc/DW3000_send_test_FZ.h ../Core/Inc/DW3000_recv_test_FZ.h \
  ../Core/Inc/dw3000_deca_regs.h
 ../Core/Inc/DSWR_FZ.h:
 ../Core/Inc/DW3000_FZ.h:
@@ -71,4 +72,6 @@ C:/Users/l1534/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HA
 ../Core/Inc/dw3000_deca_regs.h:
 ../Core/Inc/dw3000_deca_vals.h:
 ../Core/Inc/HS_system.h:
+../Core/Inc/DW3000_send_test_FZ.h:
+../Core/Inc/DW3000_recv_test_FZ.h:
 ../Core/Inc/dw3000_deca_regs.h:

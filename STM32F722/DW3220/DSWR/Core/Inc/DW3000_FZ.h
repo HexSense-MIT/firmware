@@ -104,6 +104,7 @@ extern void DW3000_clear_all_events(void);
 extern void DW3000_writefastCMD_FZ(uint8_t cmd);
 extern void DW3000_irq_for_tx_done(void);
 extern void DW3000_irq_for_rx_done(void);
+extern void DW3000_irq_for_txrx_done(void);
 
 extern void DW3000_disable_RX_timeout(void);
 extern void DW3000_set_max_sfd_timeout(void);

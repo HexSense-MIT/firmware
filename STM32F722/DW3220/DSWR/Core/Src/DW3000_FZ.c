@@ -412,6 +412,13 @@ void DW3000_irq_for_rx_done(void) {
   DW3000writereg(SYS_ENABLE_LO_ID, (uint8_t*)&sys_enable, SYS_ENABLE_LO_LEN);
 }
 
+void DW3000_irq_for_txrx_done(void) {
+  uint32_t sys_enable = DW3000readreg(SYS_ENABLE_LO_ID, 4);
+  sys_enable |= ((1 << SYS_ENABLE_LO_TXFRS_ENABLE_BIT_OFFSET)  |
+                 (1 << SYS_ENABLE_LO_RXFR_ENABLE_BIT_OFFSET)); // Enable TX and RX done interrupt
+  DW3000writereg(SYS_ENABLE_LO_ID, (uint8_t*)&sys_enable, SYS_ENABLE_LO_LEN);
+}
+
 void DW3000_disable_RX_timeout(void) {
   ;
 }
@@ -2026,23 +2033,20 @@ void dwt_configuretxrf(
   uint32_t  power,
   uint16_t  PGcount)
 {
-    if (PGcount == 0)
-  {
-        // Configure RF TX PG_DELAY
-        dwt_write8bitoffsetreg(TX_CTRL_HI_ID, 0, PGdly);
+  if (PGcount == 0) {
+    // Configure RF TX PG_DELAY
+    dwt_write8bitoffsetreg(TX_CTRL_HI_ID, 0, PGdly);
+  }
+  else {
+    uint8_t channel = 5;
+    if (dwt_read8bitoffsetreg(CHAN_CTRL_ID, 0) & 0x1) {
+        channel = 9;
     }
-    else
-    {
-        uint8_t channel = 5;
-        if (dwt_read8bitoffsetreg(CHAN_CTRL_ID, 0) & 0x1)
-        {
-            channel = 9;
-        }
-        dwt_calcbandwidthadj(PGcount, channel);
-    }
+    dwt_calcbandwidthadj(PGcount, channel);
+  }
 
-    // Configure TX power
-    dwt_write32bitreg(TX_POWER_ID, power);
+  // Configure TX power
+  dwt_write32bitreg(TX_POWER_ID, power);
 }
 
 /*! ------------------------------------------------------------------------------------------------------------------
