@@ -52,7 +52,7 @@ static dwt_config_t config = {
 //static uint8_t rx_buffer[FRAME_LEN_MAX];
 
 // https://gist.github.com/egnor/455d510e11c22deafdec14b09da5bf54
-node_type current_node = rx_node; // current node type, default is TX node
+node_type current_node = tx_node; // current node type, default is TX node
 static uint8_t rx_buffer[FRAME_LEN_MAX];
 #define FCS_LEN 2
 /* Hold copy of status register state here for reference so that it can be examined at a debug breakpoint. */
@@ -234,13 +234,13 @@ int main(void)
         HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_SET);
         HAL_Delay(50);
         HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_RESET);
-        HAL_Delay(950);
+        HAL_Delay(448);
       } else {
         printf("TX failed, SYS_STATUS: 0x%08lX\r\n", current_status);
         // clear the IRQ flags
         DW3000_clear_IRQ();
         HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_RESET);
-        HAL_Delay(1000);
+        HAL_Delay(500);
       }
     }
     if (current_node == rx_node) {

@@ -855,4 +855,7 @@ int dwt_writetxdata(uint16_t txDataLength, uint8_t *txDataBytes, uint16_t txBuff
  */
 void dwt_writetxfctrl(uint16_t txFrameLength, uint16_t txBufferOffset, uint8_t ranging);
 
+int dwt_readstsquality(int16_t* rxStsQualityIndex);
+int16_t dwt_readpdoa(void);
+
 #endif /* INC_DW3000_FZ_H_ */

@@ -23,7 +23,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <errno.h>
-#include <PDoA.h>
+
+#include "PDoA_FZ.h"
 #include "DW3000_FZ.h"
 #include "DW3000_send_test_FZ.h"
 #include "DW3000_recv_test_FZ.h"
@@ -44,9 +45,9 @@ static dwt_config_t config = {
   DWT_PHRMODE_STD, /* PHY header mode. */
   DWT_PHRRATE_STD, /* PHY header rate. */
   (129 + 8 - 8),   /* SFD timeout (preamble length + 1 + SFD length - PAC size). Used in RX only. */
-  DWT_STS_MODE_OFF,
-  DWT_STS_LEN_64, /* STS length, see allowed values in Enum dwt_sts_lengths_e */
-  DWT_PDOA_M0     /* PDOA mode off */
+  (DWT_STS_MODE_1 | DWT_STS_MODE_SDC),
+  DWT_STS_LEN_256, /* STS length, see allowed values in Enum dwt_sts_lengths_e. USE 128 for PDoA mode 3 */
+  DWT_PDOA_M3      /* PDOA mode 3 */
 };
 
 /* Buffer to store received frame. See NOTE 1 below. */
@@ -55,7 +56,7 @@ static dwt_config_t config = {
 // https://gist.github.com/egnor/455d510e11c22deafdec14b09da5bf54
 node_type current_node = rx_node; // current node type, default is TX node
 //static uint8_t rx_buffer[FRAME_LEN_MAX];
-#define FCS_LEN 2
+
 /* Hold copy of status register state here for reference so that it can be examined at a debug breakpoint. */
 uint32_t status_reg;
 /* Hold copy of frame length of frame received (if good) so that it can be examined at a debug breakpoint. */
@@ -86,13 +87,20 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_SPI2_Init(void);
+
 /* USER CODE BEGIN PFP */
+#define BIAS_CTRL_BIAS_MASK 0x1F
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-dswr_role_t dswr_role = DSWR_ROLE_ANCHOR;
+pdoa_role_t pdoa_role = PDOA_ROLE_ANCHOR;
+// pdoa_role_t pdoa_role = PDOA_ROLE_TAG;
+
+uint8_t     seq_num = 0;
+uint8_t     pdoa_data2send[4] = {0, 1, 2, 3};
+uint8_t     pdoa_datareceived[10] = {0};
 /* USER CODE END 0 */
 
 /**
@@ -144,17 +152,6 @@ int main(void)
     HAL_Delay(10);
   }
 
-  // check if the DW3220 is present
-  uint32_t dev_id = dwt_read32bitoffsetreg(DEV_ID_ID, 0);
-
-  if (dev_id == (uint32_t)DWT_DW3000_PDOA_DEV_ID) {
-    printf("DW3220 Device ID: 0x%08lX\r\n", dev_id);
-    blink_led(PIN_LED1_GPIO_Port, PIN_LED1_Pin, 50);
-  } else {
-    printf("Wrong Device ID: 0x%08lX\r\n", dev_id);
-    while (1);
-  }
-
   HAL_Delay(10);
 
   if(DW3000check_IDLE_RC()) {
@@ -202,86 +199,63 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  dswr_set_role(dswr_role);
-  
+  // uint16_t frame_len = 0;
+ int16_t   pdoa_val  = 0;
+
   while (1)
   {
-    dswr_result_t result = {0};
-    if (dswr_role == DSWR_ROLE_ANCHOR) {
-      dswr_run_once(&result);
-      dswr_print_result(&result);
-      HAL_Delay(200);
+    // tag keeps transmitting, and anchor keeps listening and measuring PDoA
+    if (pdoa_role == PDOA_ROLE_ANCHOR) {
+      DW3000_clear_IRQ(); // clear the IRQ flags, reset the IRQ pin.
+      DW3000_start_receiver_FZ(); // start the receiver
+
+      while (!DW3000_IRQ_flag) {;}
+
+      DW3000_IRQ_flag = false;
+      int16_t cpqual;
+
+      /* Checking STS quality see note 4 */
+      if (dwt_readstsquality(&cpqual)) {
+        pdoa_val = dwt_readpdoa();
+      }
+
+      printf("PDoA value: %d\r\n", pdoa_val);
+      uint32_t current_status = DW3000readreg(SYS_STATUS_ID, 4);
+
+      if (current_status & SYS_STATUS_RXFR_BIT_MASK) {
+        DW3000_clear_IRQ();
+        dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_RXFCG_BIT_MASK);
+      } else {
+        DW3000_clear_IRQ();
+      }
     }
     else {
-      dswr_run_once(&result);
+      DW3000_clear_IRQ(); // clear the IRQ flags, reset the IRQ pin.
+      DW3000_writetxdata_FZ(pdoa_data2send, sizeof(pdoa_data2send));
+      dwt_writetxfctrl(6, 0, 0); /* Zero offset in TX buffer, no ranging. */
+      DW3000_txcmd_FZ(0);
+
+      // wait for the IRQ to be triggered
+      while (!DW3000_IRQ_flag) {;}
+
+      DW3000_IRQ_flag = false; // reset the flag
+      uint32_t current_status = DW3000readreg(SYS_STATUS_ID, 4);
+
+      if (current_status & SYS_STATUS_TXFRS_BIT_MASK) {
+        printf("TX done\r\n");
+        DW3000_clear_IRQ();
+        HAL_Delay(50);
+      } else {
+        printf("TX failed, SYS_STATUS: 0x%08lX\r\n", current_status);
+        // clear the IRQ flags
+        DW3000_clear_IRQ();
+        // HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_RESET);
+        HAL_Delay(50);
+      }
     }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    // if (current_node == tx_node) {
-    //   // send data
-    //   DW3000_clear_IRQ(); // clear the IRQ flags, reset the IRQ pin.
-    //   DW3000_writetxdata_FZ(data2send, 10);
-    //   dwt_writetxfctrl(12, 0, 0); /* Zero offset in TX buffer, no ranging. */
-    //   DW3000_txcmd_FZ(0);
-
-    //   // wait for the IRQ to be triggered
-    //   while (!DW3000_IRQ_flag) {;}
-
-    //   DW3000_IRQ_flag = false; // reset the flag
-    //   uint32_t current_status = DW3000readreg(SYS_STATUS_ID, 4);
-
-    //   if (current_status & SYS_STATUS_TXFRS_BIT_MASK) {
-    //     printf("TX done, SYS_STATUS: 0x%08lX\r\n", current_status);
-    //     // clear the IRQ flags
-    //     DW3000_clear_IRQ();
-    //     HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_SET);
-    //     HAL_Delay(50);
-    //     HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_RESET);
-    //     HAL_Delay(950);
-    //   } else {
-    //     printf("TX failed, SYS_STATUS: 0x%08lX\r\n", current_status);
-    //     // clear the IRQ flags
-    //     DW3000_clear_IRQ();
-    //     HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_RESET);
-    //     HAL_Delay(1000);
-    //   }
-    // }
-    // if (current_node == rx_node) {
-    //   // receive data
-    //   memset(rx_buffer, 0, sizeof(rx_buffer));
-    //   DW3000_clear_IRQ(); // clear the IRQ flags, reset the IRQ pin.
-    //   DW3000_start_receiver_FZ(); // start the receiver
-    //   // DW3000_set_max_sfd_timeout(); // set the maximum SFD timeout
-
-    //   // wait for the IRQ to be triggered
-    //   while (!DW3000_IRQ_flag) {;}
-
-    //   DW3000_IRQ_flag = false; // reset the flag
-    //   uint32_t current_status = DW3000readreg(SYS_STATUS_ID, 4);
-
-    //   if (current_status & SYS_STATUS_RXFR_BIT_MASK) {
-    //     DW3000_clear_IRQ();
-    //     HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_SET);
-    //     HAL_Delay(50);
-    //     HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_RESET);
-    //     frame_len = dwt_read32bitreg(RX_FINFO_ID) & RX_FINFO_RXFLEN_BIT_MASK;
-    //     dwt_readrxdata(rx_buffer, frame_len - FCS_LEN, 0); /* No need to read the FCS/CRC. */
-    //     dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_RXFCG_BIT_MASK);
-    //     printf("RX OK, length %d bytes: ", frame_len);
-    //     for (size_t i = 0; i < frame_len; i++) {
-    //       printf("0x%02X ", rx_buffer[i]);
-    //     }
-    //     printf("\r\n");
-        
-    //   } else {
-    //     DW3000_clear_IRQ();
-    //     HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_SET);
-    //     HAL_Delay(50);
-    //     HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_RESET);
-    //     printf("RX failed, SYS_STATUS: 0x%08lX\r\n", current_status);
-    //   }
-    // }
   }
   /* USER CODE END 3 */
 }

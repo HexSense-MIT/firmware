@@ -2,7 +2,7 @@
 "./Core/Src/DW3000_recv_test_FZ.o"
 "./Core/Src/DW3000_send_test_FZ.o"
 "./Core/Src/HS_system.o"
-"./Core/Src/PDoA.o"
+"./Core/Src/PDoA_FZ.o"
 "./Core/Src/main.o"
 "./Core/Src/stm32f7xx_hal_msp.o"
 "./Core/Src/stm32f7xx_it.o"

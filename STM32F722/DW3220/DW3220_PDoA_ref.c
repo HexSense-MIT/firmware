@@ -916,7 +916,6 @@ void init_radio()
 
     if (ldo_low != 0 && ldo_high != 0 && bias_tune != 0) {
         write(0x11, 0x1F, bias_tune);
-
         write(0x0B, 0x08, 0x0100);
     }
 
@@ -928,10 +927,9 @@ void init_radio()
 
     write(FS_CTRL_REG, XTAL_TRIM, xtrim_value);
 
-// writeSysConfig begin.  page 77
-    uint32_t usr_cfg = ((uint32_t)STDRD_SYS_CONFIG & 0xFFF) | 
-        (PHR_MODE << 3) | 
-        (PHR_RATE << 4);
+    // writeSysConfig begin.  page 77
+    uint32_t usr_cfg = ((uint32_t)STDRD_SYS_CONFIG & 0xFFF) | (PHR_MODE << 3) | (PHR_RATE << 4);
+
 #ifdef ENABLE_PDOA
 #if (BOARD == BASE)
     usr_cfg |= (((uint32_t)3) << 16); // Enable PDOA mode.  page 80

@@ -32,7 +32,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  C:/Users/l1534/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd_ex.h \
  ../USB_DEVICE/App/usb_device.h \
  C:/Users/l1534/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
- ../USB_DEVICE/Target/usbd_conf.h ../Core/Inc/PDoA.h \
+ ../USB_DEVICE/Target/usbd_conf.h ../Core/Inc/PDoA_FZ.h \
  ../Core/Inc/DW3000_FZ.h ../Core/Inc/main.h \
  ../Core/Inc/dw3000_deca_regs.h ../Core/Inc/dw3000_deca_vals.h \
  ../Core/Inc/HS_system.h ../Core/Inc/DW3000_send_test_FZ.h \
@@ -73,7 +73,7 @@ C:/Users/l1534/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Drivers/STM32F7xx_HA
 ../USB_DEVICE/App/usb_device.h:
 C:/Users/l1534/STM32Cube/Repository/STM32Cube_FW_F7_V1.17.4/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
 ../USB_DEVICE/Target/usbd_conf.h:
-../Core/Inc/PDoA.h:
+../Core/Inc/PDoA_FZ.h:
 ../Core/Inc/DW3000_FZ.h:
 ../Core/Inc/main.h:
 ../Core/Inc/dw3000_deca_regs.h:
