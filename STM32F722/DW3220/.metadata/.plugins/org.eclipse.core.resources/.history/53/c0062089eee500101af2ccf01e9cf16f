@@ -17,7 +17,7 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
-#include <main.h>
+#include "main.h"
 #include "usb_device.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -215,7 +215,7 @@ int main(void)
       int16_t cpqual;
 
       /* Checking STS quality see note 4 */
-      if (dwt_readstsquality(&cpqual) >= 0) {
+      if (dwt_readstsquality(&cpqual)) {
         pdoa_val = dwt_readpdoa();
       }
 
@@ -246,13 +246,13 @@ int main(void)
       if (current_status & SYS_STATUS_TXFRS_BIT_MASK) {
         printf("TX done\r\n");
         DW3000_clear_IRQ();
-        HAL_Delay(200);
+        HAL_Delay(50);
       } else {
         printf("TX failed, SYS_STATUS: 0x%08lX\r\n", current_status);
         // clear the IRQ flags
         DW3000_clear_IRQ();
         // HAL_GPIO_WritePin(GPIOC, PIN_LED2_Pin, GPIO_PIN_RESET);
-        HAL_Delay(200);
+        HAL_Delay(50);
       }
     }
     /* USER CODE END WHILE */

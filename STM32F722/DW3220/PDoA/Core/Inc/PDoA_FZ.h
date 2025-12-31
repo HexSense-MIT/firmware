@@ -15,6 +15,8 @@
 #include "DW3000_send_test_FZ.h"
 #include "DW3000_recv_test_FZ.h"
 
+#define M_PI		3.14159265358979323846
+
 #define FCS_LEN 2
 
 typedef enum {
