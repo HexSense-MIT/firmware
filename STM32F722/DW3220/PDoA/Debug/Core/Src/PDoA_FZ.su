@@ -1,4 +1,0 @@
-../Core/Src/PDoA_FZ.c:12:12:wait_tx_done	24	static
-../Core/Src/PDoA_FZ.c:31:12:send_frame	16	static
-../Core/Src/PDoA_FZ.c:39:6:pdoa_tx_frame	16	static
-../Core/Src/PDoA_FZ.c:45:6:pdoa_rx_frame	16	static
