@@ -1,0 +1,2 @@
+../Core/Src/HS_system.c:17:6:blink_led	2
+../Core/Src/HS_system.c:30:6:Delay_us	2

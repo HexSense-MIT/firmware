@@ -8,3 +8,4 @@ org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:DSWR\ Debug/activeLaunchMode=ru
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:DSWR\ Debug/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:DW3000_op\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:DW3000_op\ Debug/activeLaunchTarget=null\:---
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:PDoA\ Debug/activeLaunchMode=run
