@@ -95,8 +95,8 @@ static void MX_SPI2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-//pdoa_role_t pdoa_role = PDOA_ROLE_ANCHOR;
- pdoa_role_t pdoa_role = PDOA_ROLE_TAG;
+pdoa_role_t pdoa_role = PDOA_ROLE_ANCHOR;
+// pdoa_role_t pdoa_role = PDOA_ROLE_TAG;
 
 uint8_t     seq_num = 0;
 uint8_t     pdoa_data2send[4] = {0, 1, 2, 3};
@@ -219,7 +219,7 @@ int main(void)
       if (dwt_readstsquality(&cpqual) >= 0) {
         pdoa_val = dwt_readpdoa();
         float pdoa_deg = ((float)pdoa_val / (1 << 11)) * 180 / M_PI;
-        printf("PDoA value:%f\n", pdoa_deg);
+        printf("%f\n", pdoa_deg);
       } else {
     	printf("Bad STS quality...\r\n");
       }

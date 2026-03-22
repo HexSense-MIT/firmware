@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<item key="hasShownOverlayPopupBefore" value="true"/>
@@ -8,3 +9,14 @@
 		<item value="PDOA_ROLE_TAG"/>
 	</list>
 </section>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="hasShownOverlayPopupBefore" value="true"/>
+	<item key="replaceBarOpen" value="false"/>
+	<list key="searchhistory">
+		<item value="printf"/>
+		<item value="PDOA_ROLE_ANCHOR"/>
+	</list>
+</section>
+>>>>>>> 7da535d (mac: working on esp32 firmware for thesis camera)
