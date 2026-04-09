@@ -27,14 +27,18 @@ void setup() {
 }
 
 void loop() {
-  update_comm();
+  // if (update_comm()) {
+  //   handle_cmd();
+  // }
   // camadapter_pwr_on(); // Power on the camera adapter
   turn_on_a_camera(current_cam_num);
   Serial.print("Camera ");  Serial.print(current_cam_num);
   Serial.println(" turned on. Taking photos...");
-  photo_data_len = take_photos(3);
+
+  photo_data_len = take_photos(6);
   Serial.print("Photo data length: ");
   Serial.println(photo_data_len);
+
   turn_off_a_camera(current_cam_num);
   Serial.println("Photo capture complete.");
 

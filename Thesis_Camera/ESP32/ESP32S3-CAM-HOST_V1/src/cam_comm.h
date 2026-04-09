@@ -4,6 +4,8 @@
 #include <HardwareSerial.h>
 #include <esp_heap_caps.h>
 
+#define CMD_LEN           10
+
 #define WRONG_CMD_CODE    0xFF
 
 #define CAPTURE_CMD       0x01

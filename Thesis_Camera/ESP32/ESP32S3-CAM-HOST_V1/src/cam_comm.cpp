@@ -11,8 +11,8 @@
 
 volatile bool recv_cmd_flag = false;
 
-uint8_t recv_cmd[5] = {0, 0, 0, 0, 0};
-uint8_t reply_data[9] = {0xAA, 0, 0, 0, 0, 0, 0, 0, 0};
+uint8_t recv_cmd[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+uint8_t reply_data[10] = {0xEB, 0x91, 0, 0, 0, 0, 0, 0, 0, 0};
 
 uint8_t cam_num = 0;
 uint8_t cam_data = 0;
@@ -33,12 +33,12 @@ void img2sd(const char* filename, uint8_t* data, uint64_t len) {
 }
 
 void pack_ack(uint8_t ack_code) {
-  reply_data[1] = cam_num;
-  reply_data[2] = ack_code; // Set the acknowledgment code
+  reply_data[2] = ack_code;
+  reply_data[3] = cam_num; 
 }
 
 void pack_error(uint8_t error_code) {
-  reply_data[1] = error_code;
+  reply_data[2] = error_code;
 }
 
 void pack_data(uint8_t* data, uint64_t len) {
@@ -57,7 +57,7 @@ int update_comm(void) {
     recv_cmd[i++] = Serial.read();
   }
 
-  if (recv_cmd[0] == 0xAA && i == 5) {
+  if (recv_cmd[0] == 0xEB && recv_cmd[1] == 0x90 && i == CMD_LEN) {
     recv_cmd_flag = true;
   }
   else {
@@ -65,7 +65,6 @@ int update_comm(void) {
   }
 
   return i; // Return the number of bytes read
-
 }
 
 void handle_cmd(void) {
@@ -76,7 +75,7 @@ void handle_cmd(void) {
       turnoffallcams(); // Ensure all cameras are off before turning on a specific one
       delay(10);
 
-      cam_num = recv_cmd[1]; // Get the camera number from the command
+      cam_num = recv_cmd[3]; // Get the camera number from the command
 
       if (cam_num < 6) {
         turnoncam(cam_num + 1); // Call the function to turn on the camera
@@ -85,35 +84,34 @@ void handle_cmd(void) {
         delay(1000);    // Wait for 1 second to ensure the camera is powered on
         flush_buffer(); // Flush the serial buffer to clear any remaining data
       }
-      else if (cam_num == 6) { // turn on all cameras
-        for (int i = 0; i < 6; i++) {
-          turnoncam(i + 1); // Call the function to turn on each camera
-        }
-        pack_ack(TURN_ON_CAM_CODE); // Pack acknowledgment for successful operation
-        send_reply(reply_data, sizeof(reply_data)); // Send acknowledgment reply
-        delay(1000);    // Wait for 1 second to ensure all cameras are powered on
-        flush_buffer(); // Flush the serial buffer to clear any remaining data
-      }
+      // else if (cam_num == 6) { // turn on all cameras
+      //   for (int i = 0; i < 6; i++) {
+      //     turnoncam(i + 1); // Call the function to turn on each camera
+      //   }
+      //   pack_ack(TURN_ON_CAM_CODE); // Pack acknowledgment for successful operation
+      //   send_reply(reply_data, sizeof(reply_data)); // Send acknowledgment reply
+      //   delay(1000);    // Wait for 1 second to ensure all cameras are powered on
+      //   flush_buffer(); // Flush the serial buffer to clear any remaining data
+      // }
       else { // not allowed to turn on all cameras at once
         pack_error(WRONG_CMD_CODE); // Pack error for invalid camera number
         send_reply(reply_data, sizeof(reply_data)); // Send error reply
       }
     }
     else if (recv_cmd[2] == TURN_OFF_CAM_CODE) { // turn off the camera
-      cam_num = recv_cmd[1]; // Get the camera number from the command
+      cam_num = recv_cmd[3]; // Get the camera number from the command
 
       if (cam_num < 6) {
-        turnoffcam(cam_num + 1); // Call the function to turn off the camera
-        pack_ack(TURN_OFF_CAM_CODE); // Pack acknowledgment for successful operation
-        send_reply(reply_data, sizeof(reply_data)); // Send acknowledgment reply
-      }
-      else if (cam_num == 6) { // turn off all cameras
         turnoffallcams(); // Call the function to turn off all cameras
         pack_ack(TURN_OFF_CAM_CODE); // Pack acknowledgment for successful operation
         send_reply(reply_data, sizeof(reply_data)); // Send acknowledgment reply
       }
+      // else if (cam_num == 6) { // turn off all cameras
+      //   turnoffallcams(); // Call the function to turn off all cameras
+      //   pack_ack(TURN_OFF_CAM_CODE); // Pack acknowledgment for successful operation
+      //   send_reply(reply_data, sizeof(reply_data)); // Send acknowledgment reply
+      // }
       else {
-        // Serial.println("Invalid camera number. Must be between 0 and 5.");
         pack_error(WRONG_CMD_CODE); // Pack error for invalid camera number
         send_reply(reply_data, sizeof(reply_data)); // Send error reply
         return;
@@ -145,18 +143,6 @@ void handle_cmd(void) {
           img_buffer[recv_data_i++] = Serial1.read();
         }
       }
-
-      // cam_num to filename
-      char filename[20];
-      sprintf(filename, "/cam%d.jpg", cam_num);
-      img2sd(filename, img_buffer, data_len);
-      Serial.write(GRAB_DATA_CAM_CODE);
-
-      // recv_data_i = 0;
-      // while (recv_data_i < data_len) {
-      //   Serial.write(img_buffer[recv_data_i]);
-      //   recv_data_i++;
-      // }
     }
     else {
       // Serial.println("Invalid command received.");
@@ -165,7 +151,6 @@ void handle_cmd(void) {
     }
   }
   else { // command is not correct length
-    // Serial.println("Invalid command length received.");
     pack_error(WRONG_CMD_CODE); // Pack error for invalid camera number
     send_reply(reply_data, sizeof(reply_data)); // Send error reply
   }
@@ -180,15 +165,63 @@ void turn_on_a_camera(uint8_t cam_num) {
   delay(100);                 // Wait for 1 second to ensure the camera is powered on
 }
 
+void print_img_for_tst(uint8_t* data, uint64_t len) {
+  Serial1.setTimeout(150); // slightly above the 100ms inter-chunk gap
+  Serial1.write(SEND_CAM_DATA_CMD);
+  Serial1.flush();
+
+  recv_data_i = 0;
+
+  while (!Serial1.available()) {;}  // wait for first byte
+  size_t total = 0;
+  while (total < len) {
+    size_t chunk = Serial1.readBytes(data + total, min((size_t)(len - total), (size_t)100));
+    if (chunk == 0) break; // timeout — no more data
+    total += chunk;
+  }
+  len = total;
+
+  char hex_chunk[201]; // 100 bytes * 2 hex chars + null terminator
+  while (recv_data_i < len) {
+    size_t chunk_size = min((uint64_t)100, len - recv_data_i);
+    for (size_t j = 0; j < chunk_size; j++) {
+      sprintf(hex_chunk + j * 2, "%02X", data[recv_data_i++]);
+    }
+    hex_chunk[chunk_size * 2] = '\0';
+    Serial.print(hex_chunk);
+  }
+
+  // while (recv_data_i < len) {
+  //   if (Serial1.available()) {
+  //     char hex_str[3];
+  //     sprintf(hex_str, "%02X", Serial1.read());
+  //     Serial.print(hex_str);
+  //     recv_data_i++;
+  //   }
+  // }
+
+  // recv_data_i = 0;
+  // while (recv_data_i < data_len) {
+  //   Serial.print(img_buffer[recv_data_i]);
+  //   recv_data_i++;
+  // }
+
+  Serial.println();
+}
+
 uint64_t take_photos(int times) {
   uint64_t img_data_len = 0;
   for (int i = 0; i < times; i++) {
     Serial1.write(CAPTURE_CMD);
     Serial1.flush();
 
-    Serial.println("Photo capture command sent");
-    while (!Serial1.available()) {;}
-    Serial.println("Got ACK");
+    uint32_t t0 = millis();
+    while (!Serial1.available()) {
+      if (millis() - t0 > 5000) {
+        Serial.println("Timeout waiting for camera response.");
+        return 0;
+      }
+    }
 
     recv_data_i = 0;
     while (Serial1.available()) {
@@ -197,8 +230,10 @@ uint64_t take_photos(int times) {
     }
     img_data_len = reply_data[1] | (reply_data[2] << 8) | (reply_data[3] << 16) | (reply_data[4] << 24);
 
-    delay(100); // Short delay between captures
+    // delay(10); // Short delay between captures
   }
+
+  print_img_for_tst(img_buffer, img_data_len); // Print the image data for testing
 
   return img_data_len;
 }
