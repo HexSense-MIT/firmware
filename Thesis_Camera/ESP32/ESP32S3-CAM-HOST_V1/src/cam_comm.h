@@ -29,6 +29,6 @@ void send_reply(uint8_t* data, uint64_t len);
 void send_photo(uint8_t* data, uint64_t len);
 
 void turn_on_a_camera(uint8_t cam_num);
-void take_photos(int times);
+uint64_t take_photos(int times);
 void turn_off_a_camera(uint8_t cam_num);
-// void store_img2sd(const char* filename);
+// extern void store_img2sd(const char* filename);

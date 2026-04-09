@@ -12,7 +12,7 @@ static void burning_OFF(void) {
   delay(100); // Allow some time for the burning system to power down
 }
 
-static void burning(int side_num, int delay_ms) {
+extern void burning(int side_num, int delay_ms) {
   burning_ON();
   io_bur.digitalWrite(side_num, HIGH);
   delay(delay_ms);
@@ -20,7 +20,7 @@ static void burning(int side_num, int delay_ms) {
   burning_OFF();
 }
 
-void burning_init(void) {
+extern void burning_init(void) {
   pinMode(BUR_EN, OUTPUT); // Set the burning enable pin as OUTPUT
   burning_ON(); // Power on the burning system
 
@@ -30,6 +30,11 @@ void burning_init(void) {
   if (io_bur.begin(PCA9554_ADDRESS_BUR_20) == false) {
     Serial.println("Burning PCA95xx not detected. Please check wiring. Freezing...");
     while (true);
+  }
+
+  // Set all camera pins to OUTPUT mode
+  for (int i = 0; i < 8; i++) {
+    io_bur.pinMode(i, OUTPUT);
   }
 
   Serial.println("Burning system initialized.");

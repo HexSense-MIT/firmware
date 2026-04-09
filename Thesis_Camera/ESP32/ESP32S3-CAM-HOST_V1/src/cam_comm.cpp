@@ -172,30 +172,35 @@ void handle_cmd(void) {
 }
 
 void turn_on_a_camera(uint8_t cam_num) {
-  turnoffallcams();  // Turn all cameras off at the start of each loop
-  delay(100);    // Wait for 1 second to ensure the camera is powered on
-  turnoncam(cam_num);
-  delay(1000);    // Wait for 1 second to ensure the camera is powered on
-  flush_buffer(); // Flush the serial buffer to clear any remaining data
-  delay(100);    // Wait for 1 second to ensure the camera is powered on
+  turnoffallcams();           // Turn all cameras off at the start of each loop
+  delay(100);                 // Wait for 1 second to ensure the camera is powered on
+  turnoncam(cam_num);    // Call the function to turn on the specified camera (cam_num is 1-indexed)
+  delay(1000);                // Wait for 1 second to ensure the camera is powered on
+  flush_buffer();             // Flush the serial buffer to clear any remaining data
+  delay(100);                 // Wait for 1 second to ensure the camera is powered on
 }
 
-void take_photos(int times) {
+uint64_t take_photos(int times) {
+  uint64_t img_data_len = 0;
   for (int i = 0; i < times; i++) {
     Serial1.write(CAPTURE_CMD);
     Serial1.flush();
 
+    Serial.println("Photo capture command sent");
     while (!Serial1.available()) {;}
+    Serial.println("Got ACK");
 
     recv_data_i = 0;
     while (Serial1.available()) {
       cam_data = Serial1.read();
       reply_data[recv_data_i++] = cam_data; // Store the length of the data
     }
-    data_len = reply_data[1] | (reply_data[2] << 8) | (reply_data[3] << 16) | (reply_data[4] << 24);
+    img_data_len = reply_data[1] | (reply_data[2] << 8) | (reply_data[3] << 16) | (reply_data[4] << 24);
 
     delay(100); // Short delay between captures
   }
+
+  return img_data_len;
 }
 
 // void store_img2sd(const char* filename) {

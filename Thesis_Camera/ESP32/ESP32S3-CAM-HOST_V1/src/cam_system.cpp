@@ -7,12 +7,12 @@ void system_init(void) {
   while (!Serial)  delay(10);
   while (!Serial1) delay(10);
 
-  burning_init(); // Initialize the burning system
-  // burning(0, 5000); // Burn side 0 for 5 s
+  // burning_init(); // Initialize the burning system
+  // burning(0, 30000); // Burn side 0 for 10 s
 
   camadapter_init(); // Initialize the camera adapter
   turnoffallcams();  // Ensure all cameras are off at startup
-  camadapter_pwr_off(); // Power off the camera adapter to save power until needed
+  // camadapter_pwr_off(); // Power off the camera adapter to save power until needed
 
   // flush Serial1 to clear any initial data
   while (Serial1.available()) {

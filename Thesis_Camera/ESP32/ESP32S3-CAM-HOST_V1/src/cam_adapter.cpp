@@ -2,17 +2,17 @@
 
 SFE_PCA95XX io; // Global instance of the PCA95XX I2C expander
 
-void camadapter_pwr_on(void) {
+extern void camadapter_pwr_on(void) {
   digitalWrite(CAM_ADP_EN, HIGH); // Set the enable pin HIGH to power on the camera adapter
   delay(100); // Allow some time for the camera adapter to power up
 }
 
-void camadapter_pwr_off(void) {
+extern void camadapter_pwr_off(void) {
   digitalWrite(CAM_ADP_EN, LOW); // Set the enable pin LOW to power off the camera adapter
   delay(100); // Allow some time for the camera adapter to power down
 }
 
-void camadapter_init(void) {
+extern void camadapter_init(void) {
   pinMode(CAM_ADP_EN, OUTPUT); // Set the enable pin as OUTPUT
   camadapter_pwr_on(); // Power on the camera adapter
 
@@ -32,7 +32,7 @@ void camadapter_init(void) {
   Serial.println("Camera adapter initialized.");
 }
 
-void turnoncam(uint8_t cam) {
+extern void turnoncam(uint8_t cam) {
   if (cam < 0 || cam >= 8) {
     // Serial.println("Invalid camera index. Must be between 0 and 7.");
     return;
@@ -42,7 +42,7 @@ void turnoncam(uint8_t cam) {
   io.digitalWrite(cam, HIGH);
 }
 
-void turnoffcam(uint8_t cam) {
+extern void turnoffcam(uint8_t cam) {
   if (cam < 0 || cam >= 8) {
     // Serial.println("Invalid camera index. Must be between 0 and 7.");
     return;
@@ -52,14 +52,14 @@ void turnoffcam(uint8_t cam) {
   io.digitalWrite(cam, LOW);
 }
 
-void turnoffallcams(void) {
+extern void turnoffallcams(void) {
   // Turn off all cameras by setting all pins to LOW
   for (int i = 0; i < 8; i++) {
     io.digitalWrite(i, LOW);
   }
 }
 
-void flush_buffer(void) {
+extern void flush_buffer(void) {
   while (Serial1.available()) {
     Serial1.read(); // Read and discard all available bytes in the serial buffer
   }
