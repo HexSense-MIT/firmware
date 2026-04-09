@@ -6,7 +6,9 @@
 extern SFE_PCA95XX io; // Global instance of the PCA95XX I2C expander
 
 #define PCA9554_ADDRESS_21 0x21 // I2C address for PCA9554 expander
+
 #define CAM_ADP_EN  1
+
 #define CAM_SDA_PIN 39
 #define CAM_SCL_PIN 43
 

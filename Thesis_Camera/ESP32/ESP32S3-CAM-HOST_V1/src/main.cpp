@@ -26,28 +26,6 @@ void setup() {
 
 void loop() {
   update_comm();
-
-  // turnoffallcams();
-  // enter_light_sleep(LIGHT_SLEEP_US);
-
-  // current_cam_num = 1;
-
-  // while (current_cam_num < 7) {
-  //   turn_on_a_camera(current_cam_num);
-  //   take_photos(5);
-
-  //   char filename[20];
-  //   sprintf(filename, "/%d.jpg", file_name_num);
-  //   // Ensure unique filename
-  //   while (SD.exists(filename)) {
-  //     file_name_num ++;
-  //     sprintf(filename, "/%d.jpg", file_name_num);
-  //   }
-
-  //   turn_off_a_camera(current_cam_num);
-
-  //   current_cam_num ++;
-  // }
 }
 
 
