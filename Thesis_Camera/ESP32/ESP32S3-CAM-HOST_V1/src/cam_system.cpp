@@ -1,7 +1,7 @@
 #include "cam_system.h"
 
 void system_init(void) {
-  Serial.begin(500000);
+  Serial.begin(921600);
   Serial1.begin(500000, SERIAL_8N1, CAM_RX_PIN, CAM_TX_PIN);
 
   while (!Serial)  delay(10);

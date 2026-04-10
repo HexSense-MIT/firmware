@@ -9,6 +9,8 @@
 #include "cam_adapter.h"
 #include <cstdio>
 
+#define CHUNK_SIZE 100
+
 volatile bool recv_cmd_flag = false;
 
 uint8_t recv_cmd[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -175,15 +177,15 @@ void print_img_for_tst(uint8_t* data, uint64_t len) {
   while (!Serial1.available()) {;}  // wait for first byte
   size_t total = 0;
   while (total < len) {
-    size_t chunk = Serial1.readBytes(data + total, min((size_t)(len - total), (size_t)100));
+    size_t chunk = Serial1.readBytes(data + total, min((size_t)(len - total), (size_t)CHUNK_SIZE));
     if (chunk == 0) break; // timeout — no more data
     total += chunk;
   }
   len = total;
 
-  char hex_chunk[201]; // 100 bytes * 2 hex chars + null terminator
+  char hex_chunk[2 * CHUNK_SIZE + 1]; // CHUNK_SIZE bytes * 2 hex chars + null terminator
   while (recv_data_i < len) {
-    size_t chunk_size = min((uint64_t)100, len - recv_data_i);
+    size_t chunk_size = min((uint64_t)CHUNK_SIZE, len - recv_data_i);
     for (size_t j = 0; j < chunk_size; j++) {
       sprintf(hex_chunk + j * 2, "%02X", data[recv_data_i++]);
     }
