@@ -57,7 +57,6 @@ int update_comm(void) {
   if (received_cmd) {
     received_cmd = false;
     parse_cmd(cmd_raw, &cmdpkg_recv);
-    // cmd_recv = (CMD_TYPE)cmdpkg_recv.cmd;
     handle_cmd(&cmdpkg_recv);
   }
 
