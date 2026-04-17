@@ -21,7 +21,7 @@
 #define IMG_SIZE 1024 * 500  // 100 KB buffer for image data
 
 extern int update_comm(void);
-extern void handle_cmd(void);
+extern void handle_cmd(CommandPacket *cmdpck);
 
 void pack_ack(uint8_t ack_code);
 void pack_error(uint8_t error_code);
