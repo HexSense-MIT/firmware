@@ -41,6 +41,16 @@ enum CMD_TYPE {
   IDLE
 };
 
+extern CMD_TYPE cmd_recv;
+
+#define CMD_LENGTH sizeof(CommandPacket)
+
+extern volatile bool received_cmd;
+extern uint8_t cmd_raw[sizeof(CommandPacket) + 1];
+
+extern CommandPacket cmdpkg_recv;
+
 void onReceive(const uint8_t *mac_addr, const uint8_t *data, int len);
 
+extern void parse_cmd(uint8_t *data, CommandPacket *cmd);
 extern void ESPNOW_comm_init(void);

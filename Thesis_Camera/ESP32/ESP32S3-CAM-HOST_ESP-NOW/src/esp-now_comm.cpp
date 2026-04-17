@@ -1,6 +1,10 @@
 #include "esp-now_comm.h"
 #include <cstdio>
 
+CMD_TYPE cmd_recv = IDLE;
+volatile bool received_cmd = false;
+uint8_t cmd_raw[CMD_LENGTH + 1];
+
 int cobs_decode(const uint8_t *input, size_t length, uint8_t *output, size_t &output_length) {
   size_t in_index  = 0;
   size_t out_index = 0;
@@ -51,21 +55,28 @@ int cobs_encode(const uint8_t *input, size_t length, uint8_t *output, size_t &ou
   return 1;
 }
 
+void parse_cmd(uint8_t *data, CommandPacket *cmd) {
+  uint8_t cmd_buffer[CMD_LENGTH];
+  size_t  cmd_decode_len = 0;
+
+  cobs_decode(data, CMD_LENGTH + 1, cmd_buffer, cmd_decode_len);
+
+  memcpy((uint8_t*)cmd, cmd_buffer, cmd_decode_len);
+
+  // printf("received cmd: ");
+  // printf("0x%02X ", cmd->header[0]);
+  // printf("0x%02X ", cmd->header[1]);
+  // printf("0x%02X ", cmd->cmd);
+  // printf("0x%02X ", cmd->camera_index);
+  // printf("0x%02X ", cmd->crc);
+  // printf("\n");
+}
+
 void onReceive(const uint8_t *mac_addr, const uint8_t *data, int len) {
-  int i = 0;
+  if (len != (CMD_LENGTH + 2)) return;
 
-  printf("Get cmd from mac: ");
-  for (i = 0; i < 6; i ++) {
-    printf("0x%02X ", *(mac_addr+i));
-  }
-  printf("\n");
-
-  printf("Get data length = %d\n", len);
-  printf("Get cmd: ");
-  for (i = 0; i < len; i ++) {
-    printf("0x%02X ", *(data+i));
-  }
-  printf("\n");
+  memcpy(cmd_raw, data, len - 1); // get rid of the 0x00 at the end
+  received_cmd = true;
 }
 
 void ESPNOW_comm_init(void) {

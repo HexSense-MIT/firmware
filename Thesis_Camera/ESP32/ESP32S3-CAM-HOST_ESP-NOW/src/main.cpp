@@ -19,6 +19,7 @@ void setup() {
 }
 
 void loop() {
+  update_comm();
   // turn_on_a_camera(current_cam_num);
   // Serial.print("Camera ");  Serial.print(current_cam_num);
   // Serial.println(" turned on. Taking photos...");

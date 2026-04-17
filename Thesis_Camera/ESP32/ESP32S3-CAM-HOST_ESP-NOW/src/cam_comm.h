@@ -4,6 +4,8 @@
 #include <HardwareSerial.h>
 #include <esp_heap_caps.h>
 
+#include "esp-now_comm.h"
+
 #define CMD_LEN           10
 
 #define WRONG_CMD_CODE    0xFF
@@ -17,8 +19,6 @@
 #define GRAB_DATA_CAM_CODE  0x04
 
 #define IMG_SIZE 1024 * 500  // 100 KB buffer for image data
-
-extern volatile bool recv_cmd_flag;
 
 extern int update_comm(void);
 extern void handle_cmd(void);

@@ -12,6 +12,7 @@
 #define CHUNK_SIZE 100
 
 volatile bool recv_cmd_flag = false;
+CommandPacket cmdpkg_recv;
 
 uint8_t recv_cmd[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 uint8_t reply_data[10] = {0xEB, 0x91, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -53,20 +54,18 @@ void send_reply(uint8_t* data, uint64_t len) {
 }
 
 int update_comm(void) {
-  int i = 0;
+  if (received_cmd) {
+    received_cmd = false;
+    parse_cmd(cmd_raw, &cmdpkg_recv);
+    cmd_recv = (CMD_TYPE)cmdpkg_recv.cmd;
+    printf("received cmd: ");
+    printf("0x%02X ", cmd_recv);
+    printf("\n");
 
-  while (Serial.available()) {
-    recv_cmd[i++] = Serial.read();
+    // handle_cmd();
   }
 
-  if (recv_cmd[0] == 0xEB && recv_cmd[1] == 0x90 && i == CMD_LEN) {
-    recv_cmd_flag = true;
-  }
-  else {
-    recv_cmd_flag = false; // Reset the flag if the command is not valid
-  }
-
-  return i; // Return the number of bytes read
+  return 1;
 }
 
 void handle_cmd(void) {
@@ -160,11 +159,11 @@ void handle_cmd(void) {
 
 void turn_on_a_camera(uint8_t cam_num) {
   turnoffallcams();           // Turn all cameras off at the start of each loop
-  delay(100);                 // Wait for 1 second to ensure the camera is powered on
+  delay(10);                 // Wait for 1 second to ensure the camera is powered on
   turnoncam(cam_num);    // Call the function to turn on the specified camera (cam_num is 1-indexed)
-  delay(1000);                // Wait for 1 second to ensure the camera is powered on
+  delay(100);                // Wait for 1 second to ensure the camera is powered on
   flush_buffer();             // Flush the serial buffer to clear any remaining data
-  delay(100);                 // Wait for 1 second to ensure the camera is powered on
+  delay(10);                 // Wait for 1 second to ensure the camera is powered on
 }
 
 void print_img_for_tst(uint8_t* data, uint64_t len) {
