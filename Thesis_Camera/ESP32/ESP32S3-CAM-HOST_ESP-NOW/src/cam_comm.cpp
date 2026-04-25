@@ -8,6 +8,11 @@
 #include "cam_comm.h"
 #include "cam_adapter.h"
 #include <cstdio>
+#include <cstdio>
+
+CMD_TYPE cmd_recv = IDLE;
+volatile bool received_cmd = false;
+uint8_t cmd_raw[CMD_LENGTH + 1];
 
 #define CHUNK_SIZE 100
 
@@ -27,18 +32,98 @@ uint64_t data_len = 0; // Length of the data to be sent
 uint64_t recv_data_i = 0;
 uint64_t img_data_len = 0;
 
-void img2sd(const char* filename, uint8_t* data, uint64_t len) {
-  File file = SD.open(filename, FILE_WRITE);
-  if (file) {
-    // Write raw JPEG bytes
-    file.write(data, len);  // raw JPEG buffer to SD
-    file.close();
+AckPacket ackpkg_send;
+
+int cobs_decode(const uint8_t *input, size_t length, uint8_t *output, size_t &output_length) {
+  size_t in_index  = 0;
+  size_t out_index = 0;
+
+  while (in_index < length) {
+    uint8_t code = input[in_index++];
+    if (code == 0 || in_index + code - 1 > length) {
+      // Invalid COBS encoding
+      output_length = 0;
+      return 0;
+    }
+    for (uint8_t i = 1; i < code; i++) {
+      output[out_index++] = input[in_index++];
+    }
+    if (code < 0xFF && in_index < length) {
+      output[out_index++] = 0; // Insert zero byte
+    }
   }
+  output_length = out_index;
+  return 1;
 }
 
-void pack_ack(uint8_t ack_code) {
-  reply_data[2] = ack_code;
-  reply_data[3] = cam_num; 
+int cobs_encode(const uint8_t *input, size_t length, uint8_t *output, size_t &output_length) {
+  size_t in_index  = 0;
+  size_t out_index = 0;
+  size_t code_pos  = out_index++;  // reserve slot for first code byte
+  uint8_t code     = 1;
+
+  while (in_index < length) {
+    if (input[in_index] == 0x00) {
+      output[code_pos] = code;     // write code at its actual position
+      code_pos = out_index++;      // reserve next code byte slot
+      code = 1;
+      in_index++;
+    } else {
+      output[out_index++] = input[in_index++];
+      code++;
+      if (code == 0xFF) {          // max run length reached
+        output[code_pos] = code;
+        code_pos = out_index++;
+        code = 1;
+      }
+    }
+  }
+  output[code_pos] = code;        // write final code byte
+  output[out_index++] = 0x00;     // frame delimiter
+  output_length = out_index;
+  return 1;
+}
+
+void parse_cmd(uint8_t *data, CommandPacket *cmd) {
+  uint8_t cmd_buffer[CMD_LENGTH];
+  size_t  cmd_decode_len = 0;
+
+  cobs_decode(data, CMD_LENGTH + 1, cmd_buffer, cmd_decode_len);
+
+  memcpy((uint8_t*)cmd, cmd_buffer, cmd_decode_len);
+}
+
+void onReceive(const uint8_t *mac_addr, const uint8_t *data, int len) {
+  if (len != (CMD_LENGTH + 2)) return;
+
+  memcpy(cmd_raw, data, len - 1); // get rid of the 0x00 at the end
+  received_cmd = true;
+}
+
+void ESPNOW_comm_init(void) {
+  WiFi.mode(WIFI_STA);
+
+  esp_now_init();
+  esp_now_register_recv_cb(onReceive);
+
+  esp_now_peer_info_t peer = {};
+  memcpy(peer.peer_addr, central_addr, 6);
+  esp_now_add_peer(&peer);
+}
+
+void pack_ack(uint8_t cmd, uint8_t camera_index, uint32_t img_size) {
+  ackpkg_send.header[0] = 0xEB;
+  ackpkg_send.header[1] = 0x91;
+  ackpkg_send.cmd = cmd;
+  ackpkg_send.camera_index = camera_index;
+  *(uint32_t*)ackpkg_send.image_size = img_size;
+  // calculate checksum
+  uint8_t crc = 0;
+  uint8_t* ptr = (uint8_t*)&ackpkg_send;
+  for (size_t i = 0; i < sizeof(ackpkg_send) - 1; i++) {
+    crc ^= ptr[i];
+  }
+  ackpkg_send.crc = crc;
 }
 
 void pack_error(uint8_t error_code) {
@@ -49,9 +134,12 @@ void pack_data(uint8_t* data, uint64_t len) {
   memcpy(reply_data + 1, data, len);
 }
 
-void send_reply(uint8_t* data, uint64_t len) {
-  Serial.write(reply_data, len); // Send the reply data including the header
-  Serial.flush(); // Ensure the data is sent immediately
+void send_ack(AckPacket*ack) {
+  // COBS encode the ackpkg_send and send it via ESP-NOW
+  uint8_t encoded_buf[sizeof(AckPacket) * 2]; // Worst case buffer size for COBS encoding
+  size_t encoded_length = 0;
+  cobs_encode((uint8_t*)ack, sizeof(AckPacket), encoded_buf, encoded_length);
+  esp_now_send(central_addr, encoded_buf, encoded_length);
 }
 
 int update_comm(void) {
@@ -64,24 +152,6 @@ int update_comm(void) {
   return 1;
 }
 
-// turn_on_a_camera(current_cam_num);
-// Serial.print("Camera ");  Serial.print(current_cam_num);
-// Serial.println(" turned on. Taking photos...");
-
-// photo_data_len = take_photos(6);
-// Serial.print("Photo data length: ");
-// Serial.println(photo_data_len);
-
-// turn_off_a_camera(current_cam_num);
-// Serial.println("Photo capture complete.");
-
-// delay(1000); // Short delay before the next command
-
-// current_cam_num ++;
-// if (current_cam_num > 6) {
-//   current_cam_num = 1;
-// }
-
 void handle_cmd(CommandPacket *cmdpck) {
   if (cmdpck->cmd == CAM_ON) { // turn on the camera
     turnoffallcams(); // Ensure all cameras are off before turning on a specific one
@@ -92,8 +162,8 @@ void handle_cmd(CommandPacket *cmdpck) {
     if (cam_num < 6) {
       printf("Camera ON: %d\n", cam_num);
       turnoncam(cam_num + 1); // Call the function to turn on the camera
-      // pack_ack(TURN_ON_CAM_CODE); // Pack acknowledgment for successful operation
-      // send_reply(reply_data, sizeof(reply_data)); // Send acknowledgment reply
+      pack_ack(CAM_ON, cam_num, 0); // Pack acknowledgment for successful operation
+      send_ack(&ackpkg_send); // Send acknowledgment reply
       delay(1000);    // Wait for 1 second to ensure the camera is powered on
       flush_buffer(); // Flush the serial buffer to clear any remaining data
     }
@@ -104,8 +174,8 @@ void handle_cmd(CommandPacket *cmdpck) {
     if (cam_num < 6) {
       printf("Camera OFF: %d\n", cam_num);
       turnoffallcams(); // Call the function to turn off all cameras
-      // pack_ack(TURN_OFF_CAM_CODE); // Pack acknowledgment for successful operation
-      // send_reply(reply_data, sizeof(reply_data)); // Send acknowledgment reply
+      pack_ack(CAM_OFF, cam_num, 0); // Pack acknowledgment for successful operation
+      send_ack(&ackpkg_send); // Send acknowledgment reply
     }
   }
   else if (cmdpck->cmd == TAKE_PHOTO) { // take a photo
@@ -129,8 +199,9 @@ void handle_cmd(CommandPacket *cmdpck) {
         reply_data[recv_data_i++] = cam_data; // Store the length of the data
       }
       img_data_len = reply_data[1] | (reply_data[2] << 8) | (reply_data[3] << 16) | (reply_data[4] << 24);
-      // send_reply(reply_data, sizeof(reply_data)); // Send acknowledgment reply
     }
+    pack_ack(TAKE_PHOTO, cmdpck->camera_index, img_data_len); // Pack acknowledgment with image size
+    send_ack(&ackpkg_send); // Send acknowledgment reply
     printf("Photo taken. Data length: %llu bytes\n", img_data_len);
   }
   else if (cmdpck->cmd == SEND_DATA) { // send photo data

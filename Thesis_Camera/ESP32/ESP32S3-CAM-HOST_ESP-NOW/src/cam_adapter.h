@@ -12,8 +12,6 @@ extern SFE_PCA95XX io; // Global instance of the PCA95XX I2C expander
 #define CAM_SDA_PIN 39
 #define CAM_SCL_PIN 43
 
-#define CAM_TAKE_PHOTO_TIMES 6
-
 extern void camadapter_init(void);
 extern void camadapter_pwr_on(void);
 extern void camadapter_pwr_off(void);

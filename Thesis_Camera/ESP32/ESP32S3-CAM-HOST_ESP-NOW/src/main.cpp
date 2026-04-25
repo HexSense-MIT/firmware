@@ -4,7 +4,6 @@
 
 #include "cam_system.h"
 #include "cam_comm.h"
-#include "esp-now_comm.h"
 
 void setup() {
   system_init();

@@ -39,7 +39,6 @@ struct AckPacket {
   uint8_t header[2];
   uint8_t cmd;
   uint8_t camera_index;
-  uint8_t mac[6];
   uint8_t image_size[4];
   uint8_t crc;
 } __attribute__((packed));
@@ -64,7 +63,7 @@ enum CMD_TYPE {
 };
 
 #define ESPNOW_RECV_BUF_SIZE 250
-#define ESPNOW_ACK_TIMEOUT_MS 2000
+#define ESPNOW_ACK_TIMEOUT_MS 5000
 
 extern volatile bool   espnow_recv_ready;
 extern volatile int    espnow_recv_len;

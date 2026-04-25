@@ -105,6 +105,11 @@ void handle_short_ack(CMD_TYPE &cmd, AckPacket* ack) {
   espnow_recv_ready = false;
 
   printf("handle_short_ack: cmd=0x%02X cam=%d\n", ack->cmd, ack->camera_index);
+
+  if (ack->cmd == TAKE_PHOTO) {
+    uint32_t image_size = (ack->image_size[0] << 24) | (ack->image_size[1] << 16) | (ack->image_size[2] << 8) | ack->image_size[3];
+    printf("Image size: %u bytes\n", image_size);
+  }
 }
 
 void handle_long_ack(DataPacket* ack) {
