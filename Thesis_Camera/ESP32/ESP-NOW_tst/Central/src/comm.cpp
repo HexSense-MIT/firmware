@@ -174,7 +174,12 @@ void handle_long_ack(DataPacket* ack) {
   uint32_t print_size = (image_size > 0 && image_size <= IMAGE_BUFFER_SIZE) ? image_size : total_written;
 
   printf("handle_long_ack: done, sending %u bytes via serial\n", print_size);
-  Serial.write(image_data_buf, print_size);
+  // Serial.write(image_data_buf, print_size);
+  // print all the bytes in image_data_buf
+  // for (uint32_t i = 0; i < print_size; i++) {
+  //   printf("%02X", image_data_buf[i]);
+  // }
+  // printf("\n\n");
 }
 
 void handle_cmd(const uint8_t *cmd_buf, size_t count) {
@@ -203,15 +208,15 @@ void handle_cmd(const uint8_t *cmd_buf, size_t count) {
 
     esp_err_t status = esp_now_send(dest_mac, encoded_buf, encoded_length);
 
-    if (status == ESP_OK)                        printf("ESP_OK\n");
-    else if (status == ESP_ERR_ESPNOW_NOT_INIT)  printf("ESP_ERR_ESPNOW_NOT_INIT\n");
-    else if (status == ESP_ERR_ESPNOW_ARG)       printf("ESP_ERR_ESPNOW_ARG\n");
-    else if (status == ESP_ERR_ESPNOW_NO_MEM)    printf("ESP_ERR_ESPNOW_NO_MEM\n");
-    else if (status == ESP_ERR_ESPNOW_FULL)      printf("ESP_ERR_ESPNOW_FULL\n");
-    else if (status == ESP_ERR_ESPNOW_NOT_FOUND) printf("ESP_ERR_ESPNOW_NOT_FOUND\n");
-    else if (status == ESP_ERR_ESPNOW_INTERNAL)  printf("ESP_ERR_ESPNOW_INTERNAL\n");
-    else if (status == ESP_ERR_ESPNOW_EXIST)     printf("ESP_ERR_ESPNOW_EXIST\n");
-    else                                         printf("nothing\n");
+    // if (status == ESP_OK)                        printf("ESP_OK\n");
+    // else if (status == ESP_ERR_ESPNOW_NOT_INIT)  printf("ESP_ERR_ESPNOW_NOT_INIT\n");
+    // else if (status == ESP_ERR_ESPNOW_ARG)       printf("ESP_ERR_ESPNOW_ARG\n");
+    // else if (status == ESP_ERR_ESPNOW_NO_MEM)    printf("ESP_ERR_ESPNOW_NO_MEM\n");
+    // else if (status == ESP_ERR_ESPNOW_FULL)      printf("ESP_ERR_ESPNOW_FULL\n");
+    // else if (status == ESP_ERR_ESPNOW_NOT_FOUND) printf("ESP_ERR_ESPNOW_NOT_FOUND\n");
+    // else if (status == ESP_ERR_ESPNOW_INTERNAL)  printf("ESP_ERR_ESPNOW_INTERNAL\n");
+    // else if (status == ESP_ERR_ESPNOW_EXIST)     printf("ESP_ERR_ESPNOW_EXIST\n");
+    // else                                         printf("nothing\n");
 
     if (cmd_recv != SEND_DATA) handle_short_ack(cmd_recv, &short_ack);
     else                       handle_long_ack(&long_ack);

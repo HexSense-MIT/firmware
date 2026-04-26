@@ -164,10 +164,13 @@ void pack_data(uint8_t* data, uint64_t len, uint64_t remaining_after) {
 
 void send_data(DataPacket*data) {
   // COBS encode the datapkg_send and send it via ESP-NOW
-  uint8_t encoded_buf[sizeof(DataPacket) * 2]; // Worst case buffer size for COBS encoding
-  size_t encoded_length = 0;
-  cobs_encode((uint8_t*)data, sizeof(DataPacket), encoded_buf, encoded_length);
-  esp_now_send(central_addr, encoded_buf, encoded_length);
+  // uint8_t encoded_buf[sizeof(DataPacket) * 2]; // Worst case buffer size for COBS encoding
+  // size_t encoded_length = 0;
+  // cobs_encode((uint8_t*)data, sizeof(DataPacket), encoded_buf, encoded_length);
+  // esp_now_send(central_addr, encoded_buf, encoded_length);
+
+  // send data without COBS encoding (since we have a crc and fixed packet size, we can rely on that for integrity)
+  esp_now_send(central_addr, (uint8_t*)data, sizeof(DataPacket));
 }
 
 void send_photo(uint8_t* data, uint64_t len) {
@@ -180,6 +183,8 @@ void send_photo(uint8_t* data, uint64_t len) {
     pack_data(data + data_i, packet_len, remaining_after);
     send_data(&datapkg_send);
     data_i += packet_len;
+    // delay(200); // Short delay between packets to avoid overwhelming the receiver
+    printf("Sent data packet: seq=%d, camera_index=%d, bytes_left=%d, payload_len=%d\n", datapkg_send.seq, datapkg_send.camera_index, datapkg_send.bytes_left, packet_len);
   }
 }
 
