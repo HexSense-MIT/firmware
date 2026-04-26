@@ -110,7 +110,7 @@ void handle_short_ack(CMD_TYPE &cmd, AckPacket* ack) {
 
   espnow_recv_ready = false;
   Serial.write((uint8_t*)ack, sizeof(AckPacket));
-  Serial.write(0x00); // COBS frame delimiter
+  // Serial.write(0x00); // COBS frame delimiter
 
   // printf("handle_short_ack: cmd=0x%02X cam=%d\n", ack->cmd, ack->camera_index);
 

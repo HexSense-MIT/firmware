@@ -184,8 +184,8 @@ void send_photo(uint8_t* data, uint64_t len) {
     send_data(&datapkg_send);
     data_i += packet_len;
     // delay(200); // Short delay between packets to avoid overwhelming the receiver
-    printf("Sent data packet: seq=%d, camera_index=%d, bytes_left=%d, payload_len=%d\n", datapkg_send.seq, datapkg_send.camera_index, datapkg_send.bytes_left, packet_len);
-    delay(10); // Short delay between packets to avoid overwhelming the receiver
+    // printf("Sent data packet: seq=%d, camera_index=%d, bytes_left=%d, payload_len=%d\n", datapkg_send.seq, datapkg_send.camera_index, datapkg_send.bytes_left, packet_len);
+    delay(1); // Short delay between packets to avoid overwhelming the receiver
   }
 }
 
