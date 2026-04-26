@@ -101,13 +101,23 @@ void handle_short_ack(CMD_TYPE &cmd, AckPacket* ack) {
     return;
   }
 
-  memcpy(ack, espnow_recv_buf, sizeof(AckPacket));
+  uint8_t recv_buf_cobs_encoded[ESPNOW_RECV_BUF_SIZE] = {0};
+  uint8_t recv_buf_cobs_decoded[ESPNOW_RECV_BUF_SIZE] = {0};
+  size_t  recv_buf_decoded_len = 0;
+  memcpy(recv_buf_cobs_encoded, espnow_recv_buf, espnow_recv_len);
+  cobs_decode(recv_buf_cobs_encoded, espnow_recv_len, recv_buf_cobs_decoded, recv_buf_decoded_len);
+  memcpy(ack, recv_buf_cobs_decoded, sizeof(AckPacket));
+
+  // for (size_t i = 0; i < sizeof(AckPacket) - 1; i++) {
+  //   printf("%02X ", ((uint8_t*)ack)[i]);
+  // }
+
   espnow_recv_ready = false;
 
   printf("handle_short_ack: cmd=0x%02X cam=%d\n", ack->cmd, ack->camera_index);
 
   if (ack->cmd == TAKE_PHOTO) {
-    uint32_t image_size = (ack->image_size[0] << 24) | (ack->image_size[1] << 16) | (ack->image_size[2] << 8) | ack->image_size[3];
+    uint32_t image_size = (ack->image_size[3] << 24) | (ack->image_size[2] << 16) | (ack->image_size[1] << 8) | ack->image_size[0];
     printf("Image size: %u bytes\n", image_size);
   }
 }

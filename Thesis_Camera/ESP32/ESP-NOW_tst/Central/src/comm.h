@@ -36,7 +36,7 @@ struct CommandPacket {
 } __attribute__((packed));
 
 struct AckPacket {
-  uint8_t header[2];
+  uint8_t header[2] = {0xEB, 0x91};
   uint8_t cmd;
   uint8_t camera_index;
   uint8_t image_size[4];
