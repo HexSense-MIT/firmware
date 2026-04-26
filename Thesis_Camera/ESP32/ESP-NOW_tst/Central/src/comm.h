@@ -46,7 +46,6 @@ struct AckPacket {
 struct DataPacket {
   uint8_t  header[2] = {0xEB, 0x92};
   uint16_t seq;
-  uint8_t  mac[6];
   uint8_t  camera_index;
   uint16_t bytes_left;
   uint8_t  payload[200];

@@ -1,6 +1,6 @@
 #include "comm.h"
 
-uint8_t* image_data_buf = (uint8_t*) ps_malloc(IMAGE_BUFFER_SIZE);
+uint8_t *image_data_buf = (uint8_t*) heap_caps_malloc(IMAGE_BUFFER_SIZE*(sizeof(uint8_t)), MALLOC_CAP_SPIRAM);
 
 CMD_TYPE cmd_recv = IDLE;
 AckPacket short_ack;
@@ -123,7 +123,58 @@ void handle_short_ack(CMD_TYPE &cmd, AckPacket* ack) {
 }
 
 void handle_long_ack(DataPacket* ack) {
-  ;
+  if (!image_data_buf) {
+    printf("handle_long_ack: PSRAM buffer not allocated\n");
+    return;
+  }
+
+  receivedBytes     = 0;
+  allDone           = false;
+  newPacket         = false;
+  espnow_recv_ready = false;
+
+  uint32_t total_written = 0;
+  uint32_t start = millis();
+
+  while (!allDone) {
+    if (millis() - start > 2 * ESPNOW_ACK_TIMEOUT_MS) {
+      printf("handle_long_ack: timeout after %u bytes\n", total_written);
+      return;
+    }
+
+    if (!newPacket) continue;
+
+    newPacket         = false;
+    espnow_recv_ready = false;
+
+    memcpy(ack, espnow_recv_buf, sizeof(DataPacket));
+
+    if (ack->header[0] != 0xEB || ack->header[1] != 0x92) {
+      printf("handle_long_ack: bad header at seq %d\n", ack->seq);
+      continue;
+    }
+
+    uint32_t offset = (uint32_t)ack->seq * sizeof(ack->payload);
+    if (offset + sizeof(ack->payload) <= IMAGE_BUFFER_SIZE) {
+      memcpy(image_data_buf + offset, ack->payload, sizeof(ack->payload));
+      total_written = offset + sizeof(ack->payload);
+    } else {
+      printf("handle_long_ack: buffer overflow at seq %d (offset=%u)\n", ack->seq, offset);
+    }
+
+    start = millis();  // reset timeout on each received packet
+    printf("handle_long_ack: seq=%d bytes_left=%d\n", ack->seq, ack->bytes_left);
+  }
+
+  // Prefer the image size reported by the camera during TAKE_PHOTO, fall back to bytes written
+  uint32_t image_size = ((uint32_t)short_ack.image_size[3] << 24) |
+                        ((uint32_t)short_ack.image_size[2] << 16) |
+                        ((uint32_t)short_ack.image_size[1] <<  8) |
+                         (uint32_t)short_ack.image_size[0];
+  uint32_t print_size = (image_size > 0 && image_size <= IMAGE_BUFFER_SIZE) ? image_size : total_written;
+
+  printf("handle_long_ack: done, sending %u bytes via serial\n", print_size);
+  Serial.write(image_data_buf, print_size);
 }
 
 void handle_cmd(const uint8_t *cmd_buf, size_t count) {

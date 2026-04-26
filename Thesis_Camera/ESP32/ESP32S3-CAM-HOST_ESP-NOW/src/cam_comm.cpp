@@ -33,6 +33,10 @@ uint64_t recv_data_i = 0;
 uint64_t img_data_len = 0;
 
 AckPacket ackpkg_send;
+DataPacket datapkg_send;
+
+uint16_t data_seq = 0;
+uint8_t data_camera_index = 0;
 
 int cobs_decode(const uint8_t *input, size_t length, uint8_t *output, size_t &output_length) {
   size_t in_index  = 0;
@@ -130,16 +134,53 @@ void pack_error(uint8_t error_code) {
   reply_data[2] = error_code;
 }
 
-void pack_data(uint8_t* data, uint64_t len) {
-  memcpy(reply_data + 1, data, len);
-}
-
 void send_ack(AckPacket*ack) {
   // COBS encode the ackpkg_send and send it via ESP-NOW
   uint8_t encoded_buf[sizeof(AckPacket) * 2]; // Worst case buffer size for COBS encoding
   size_t encoded_length = 0;
   cobs_encode((uint8_t*)ack, sizeof(AckPacket), encoded_buf, encoded_length);
   esp_now_send(central_addr, encoded_buf, encoded_length);
+}
+
+void pack_data(uint8_t* data, uint64_t len, uint64_t remaining_after) {
+  size_t payload_len = min((size_t)len, sizeof(datapkg_send.payload));
+
+  datapkg_send.header[0] = 0xEB;
+  datapkg_send.header[1] = 0x92;
+  datapkg_send.seq = data_seq++;
+  datapkg_send.camera_index = data_camera_index;
+  datapkg_send.bytes_left = (remaining_after > 0xFFFF) ? 0xFFFF : (uint16_t)remaining_after;
+  memset(datapkg_send.payload, 0, sizeof(datapkg_send.payload));
+  memcpy(datapkg_send.payload, data, payload_len);
+
+  // calculate checksum
+  uint16_t crc = 0;
+  uint8_t* ptr = (uint8_t*)&datapkg_send;
+  for (size_t i = 0; i < sizeof(datapkg_send) - sizeof(datapkg_send.crc); i++) {
+    crc ^= ptr[i];
+  }
+  datapkg_send.crc = crc;
+}
+
+void send_data(DataPacket*data) {
+  // COBS encode the datapkg_send and send it via ESP-NOW
+  uint8_t encoded_buf[sizeof(DataPacket) * 2]; // Worst case buffer size for COBS encoding
+  size_t encoded_length = 0;
+  cobs_encode((uint8_t*)data, sizeof(DataPacket), encoded_buf, encoded_length);
+  esp_now_send(central_addr, encoded_buf, encoded_length);
+}
+
+void send_photo(uint8_t* data, uint64_t len) {
+  data_seq = 0;
+
+  uint64_t data_i = 0;
+  while (data_i < len) {
+    size_t packet_len = min((uint64_t)sizeof(datapkg_send.payload), len - data_i);
+    uint64_t remaining_after = len - data_i - packet_len;
+    pack_data(data + data_i, packet_len, remaining_after);
+    send_data(&datapkg_send);
+    data_i += packet_len;
+  }
 }
 
 int update_comm(void) {
@@ -214,6 +255,7 @@ void handle_cmd(CommandPacket *cmdpck) {
     recv_data_i = 0;
 
     while (!Serial1.available()) {;}  // wait for first byte
+
     size_t total = 0;
     while (total < len) {
       size_t chunk = Serial1.readBytes(img_buffer + total, min((size_t)(len - total), (size_t)CHUNK_SIZE));
@@ -221,18 +263,20 @@ void handle_cmd(CommandPacket *cmdpck) {
       total += chunk;
     }
     len = total;
+    data_camera_index = cmdpck->camera_index;
+    send_photo(img_buffer, len);
 
-    char hex_chunk[2 * CHUNK_SIZE + 1]; // CHUNK_SIZE bytes * 2 hex chars + null terminator
-    while (recv_data_i < len) {
-      size_t chunk_size = min((uint64_t)CHUNK_SIZE, len - recv_data_i);
-      for (size_t j = 0; j < chunk_size; j++) {
-        sprintf(hex_chunk + j * 2, "%02X", img_buffer[recv_data_i++]);
-      }
-      hex_chunk[chunk_size * 2] = '\0';
-      Serial.print(hex_chunk);
-    }
+    // char hex_chunk[2 * CHUNK_SIZE + 1]; // CHUNK_SIZE bytes * 2 hex chars + null terminator
+    // while (recv_data_i < len) {
+    //   size_t chunk_size = min((uint64_t)CHUNK_SIZE, len - recv_data_i);
+    //   for (size_t j = 0; j < chunk_size; j++) {
+    //     sprintf(hex_chunk + j * 2, "%02X", img_buffer[recv_data_i++]);
+    //   }
+    //   hex_chunk[chunk_size * 2] = '\0';
+    //   Serial.print(hex_chunk);
+    // }
 
-    Serial.println();
+    // Serial.println();
   }
   else {
     // Serial.println("Invalid command received.");
@@ -342,7 +386,4 @@ uint64_t take_photos(int times) {
 void turn_off_a_camera(uint8_t cam_num) {
   turnoffallcams();
 }
-
-
-
 

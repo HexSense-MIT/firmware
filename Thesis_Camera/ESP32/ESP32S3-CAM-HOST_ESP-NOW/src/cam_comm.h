@@ -28,7 +28,6 @@ struct AckPacket {
 struct DataPacket {
   uint8_t  header[2] = {0xEB, 0x92};
   uint16_t seq;
-  uint8_t  mac[6];
   uint8_t  camera_index;
   uint16_t bytes_left;
   uint8_t  payload[200];
@@ -81,6 +80,8 @@ void pack_ack(uint8_t cmd, uint8_t camera_index, uint32_t img_size);
 void pack_error(uint8_t error_code);
 void pack_data(uint8_t* data, uint64_t len);
 
+void send_ack(AckPacket* ack);
+void send_data(DataPacket* data);
 void send_reply(uint8_t* data, uint64_t len);
 void send_photo(uint8_t* data, uint64_t len);
 
