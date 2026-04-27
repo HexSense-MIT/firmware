@@ -20,7 +20,7 @@ extern void camadapter_init(void) {
 
   // Initialize the PCA95XX I2C expander
   if (io.begin(PCA9554_ADDRESS_21) == false) {
-    Serial.println("camera adapter PCA95xx not detected. Please check wiring. Freezing...");
+    // Serial.println("camera adapter PCA95xx not detected. Please check wiring. Freezing...");
     while (true);
   }
 
@@ -29,7 +29,7 @@ extern void camadapter_init(void) {
     io.pinMode(i, OUTPUT);
   }
 
-  Serial.println("Camera adapter initialized.");
+  // Serial.println("Camera adapter initialized.");
 }
 
 extern void turnoncam(uint8_t cam) {

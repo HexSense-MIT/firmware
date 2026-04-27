@@ -183,9 +183,8 @@ void send_photo(uint8_t* data, uint64_t len) {
     pack_data(data + data_i, packet_len, remaining_after);
     send_data(&datapkg_send);
     data_i += packet_len;
-    // delay(200); // Short delay between packets to avoid overwhelming the receiver
     // printf("Sent data packet: seq=%d, camera_index=%d, bytes_left=%d, payload_len=%d\n", datapkg_send.seq, datapkg_send.camera_index, datapkg_send.bytes_left, packet_len);
-    delay(1); // Short delay between packets to avoid overwhelming the receiver
+    delay(10); // Short delay between packets to avoid overwhelming the receiver
   }
 }
 
@@ -207,7 +206,8 @@ void handle_cmd(CommandPacket *cmdpck) {
     cam_num = cmdpck->camera_index; // Get the camera number from the command
 
     if (cam_num < 6) {
-      printf("Camera ON: %d\n", cam_num);
+      // printf("Camera ON: %d\n", cam_num);
+      delay(100);
       turnoncam(cam_num + 1); // Call the function to turn on the camera
       pack_ack(CAM_ON, cam_num, 0); // Pack acknowledgment for successful operation
       send_ack(&ackpkg_send); // Send acknowledgment reply
@@ -219,14 +219,16 @@ void handle_cmd(CommandPacket *cmdpck) {
     cam_num = cmdpck->camera_index; // Get the camera number from the command
 
     if (cam_num < 6) {
-      printf("Camera OFF: %d\n", cam_num);
+      // printf("Camera OFF: %d\n", cam_num);
+      delay(100);
       turnoffallcams(); // Call the function to turn off all cameras
       pack_ack(CAM_OFF, cam_num, 0); // Pack acknowledgment for successful operation
       send_ack(&ackpkg_send); // Send acknowledgment reply
     }
   }
   else if (cmdpck->cmd == TAKE_PHOTO) { // take a photo
-    printf("Take a photo with camera: %d\n", cmdpck->camera_index);
+    // printf("Take a photo with camera: %d\n", cmdpck->camera_index);
+    delay(100);
 
     for (int i = 0; i < CAM_TAKE_PHOTO_TIMES; i++) {
       Serial1.write(CAPTURE_CMD);
@@ -249,7 +251,8 @@ void handle_cmd(CommandPacket *cmdpck) {
     }
     pack_ack(TAKE_PHOTO, cmdpck->camera_index, img_data_len); // Pack acknowledgment with image size
     send_ack(&ackpkg_send); // Send acknowledgment reply
-    printf("Photo taken. Data length: %llu bytes\n", img_data_len);
+    // printf("Photo taken. Data length: %llu bytes\n", img_data_len);
+    delay(100);
   }
   else if (cmdpck->cmd == SEND_DATA) { // send photo data
     Serial1.setTimeout(150); // slightly above the 100ms inter-chunk gap
@@ -286,6 +289,7 @@ void handle_cmd(CommandPacket *cmdpck) {
   }
   else {
     // Serial.println("Invalid command received.");
+    // printf("Invalid command received.\n");
     pack_error(WRONG_CMD_CODE); // Pack error for invalid command
     // send_reply(reply_data, sizeof(reply_data)); // Send error reply
   }
