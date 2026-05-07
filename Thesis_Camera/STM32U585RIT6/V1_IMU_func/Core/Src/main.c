@@ -151,8 +151,6 @@ int main(void)
 			tud_cdc_write_flush();
 		}
 	}
-//	  printf("Hello TinyUSB\r\n");
-//	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
