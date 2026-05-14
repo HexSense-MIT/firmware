@@ -1,4 +1,4 @@
-/* * Data converted from /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/HS_ESP32_CAM_module/firmware/ESP32S3-CAM-TRANS_DATA_THR_UART/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/Thesis_camera/Camera_module/ESP32S3-CAM-TRANS_DATA_THR_UART/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 #if !defined (__APPLE__) && !defined (__linux__)

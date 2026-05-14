@@ -1,6 +1,6 @@
 /* Automatically generated file; DO NOT EDIT */
 /* Espressif IoT Development Framework Linker Script */
-/* Generated from: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/HS_ESP32_CAM_module/firmware/ESP32S3-CAM-TRANS_DATA_THR_UART/build/esp-idf/esp_system/ld/sections.ld.in */
+/* Generated from: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/Thesis_camera/Camera_module/ESP32S3-CAM-TRANS_DATA_THR_UART/build/esp-idf/esp_system/ld/sections.ld.in */
 
 /*
  * SPDX-FileCopyrightText: 2021 Espressif Systems (Shanghai) CO LTD

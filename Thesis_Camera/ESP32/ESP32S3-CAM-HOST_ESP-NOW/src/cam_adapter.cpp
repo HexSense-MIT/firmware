@@ -21,7 +21,9 @@ extern void camadapter_init(void) {
   // Initialize the PCA95XX I2C expander
   if (io.begin(PCA9554_ADDRESS_21) == false) {
     // Serial.println("camera adapter PCA95xx not detected. Please check wiring. Freezing...");
-    while (true);
+    while (true) {
+      yield();
+    }
   }
 
   // Set all camera pins to OUTPUT mode
@@ -62,5 +64,6 @@ extern void turnoffallcams(void) {
 extern void flush_buffer(void) {
   while (Serial1.available()) {
     Serial1.read(); // Read and discard all available bytes in the serial buffer
+    yield();
   }
 }

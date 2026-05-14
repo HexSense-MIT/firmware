@@ -1889,7 +1889,7 @@ rule C_STATIC_LIBRARY_LINKER____idf_esp32-camera_
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /Users/liufangzheng/.espressif/tools/cmake/3.30.2/CMake.app/Contents/bin/cmake --regenerate-during-build -S/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/HS_ESP32_CAM_module/firmware/ESP32S3-CAM-TRANS_DATA_THR_UART -B/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/HS_ESP32_CAM_module/firmware/ESP32S3-CAM-TRANS_DATA_THR_UART/build
+  command = /Users/liufangzheng/.espressif/tools/cmake/3.30.2/CMake.app/Contents/bin/cmake --regenerate-during-build -S/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/Thesis_camera/Camera_module/ESP32S3-CAM-TRANS_DATA_THR_UART -B/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/Thesis_camera/Camera_module/ESP32S3-CAM-TRANS_DATA_THR_UART/build
   description = Re-running CMake...
   generator = 1
 

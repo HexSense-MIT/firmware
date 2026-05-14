@@ -1,4 +1,4 @@
-# Install script for directory: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/HS_ESP32_CAM_module/firmware/ESP32S3-CAM-TRANS_DATA_THR_UART/main
+# Install script for directory: /Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/Thesis_camera/Camera_module/ESP32S3-CAM-TRANS_DATA_THR_UART/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

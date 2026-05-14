@@ -10,18 +10,18 @@ if(NOT EXISTS "/Users/liufangzheng/esp/esp-idf/components/bootloader/subproject"
   file(MAKE_DIRECTORY "/Users/liufangzheng/esp/esp-idf/components/bootloader/subproject")
 endif()
 file(MAKE_DIRECTORY
-  "/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/HS_ESP32_CAM_module/firmware/ESP32S3-CAM-TRANS_DATA_THR_UART/build/bootloader"
-  "/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/HS_ESP32_CAM_module/firmware/ESP32S3-CAM-TRANS_DATA_THR_UART/build/bootloader-prefix"
-  "/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/HS_ESP32_CAM_module/firmware/ESP32S3-CAM-TRANS_DATA_THR_UART/build/bootloader-prefix/tmp"
-  "/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/HS_ESP32_CAM_module/firmware/ESP32S3-CAM-TRANS_DATA_THR_UART/build/bootloader-prefix/src/bootloader-stamp"
-  "/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/HS_ESP32_CAM_module/firmware/ESP32S3-CAM-TRANS_DATA_THR_UART/build/bootloader-prefix/src"
-  "/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/HS_ESP32_CAM_module/firmware/ESP32S3-CAM-TRANS_DATA_THR_UART/build/bootloader-prefix/src/bootloader-stamp"
+  "/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/Thesis_camera/Camera_module/ESP32S3-CAM-TRANS_DATA_THR_UART/build/bootloader"
+  "/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/Thesis_camera/Camera_module/ESP32S3-CAM-TRANS_DATA_THR_UART/build/bootloader-prefix"
+  "/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/Thesis_camera/Camera_module/ESP32S3-CAM-TRANS_DATA_THR_UART/build/bootloader-prefix/tmp"
+  "/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/Thesis_camera/Camera_module/ESP32S3-CAM-TRANS_DATA_THR_UART/build/bootloader-prefix/src/bootloader-stamp"
+  "/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/Thesis_camera/Camera_module/ESP32S3-CAM-TRANS_DATA_THR_UART/build/bootloader-prefix/src"
+  "/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/Thesis_camera/Camera_module/ESP32S3-CAM-TRANS_DATA_THR_UART/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/HS_ESP32_CAM_module/firmware/ESP32S3-CAM-TRANS_DATA_THR_UART/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/Thesis_camera/Camera_module/ESP32S3-CAM-TRANS_DATA_THR_UART/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/HS_ESP32_CAM_module/firmware/ESP32S3-CAM-TRANS_DATA_THR_UART/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "/Users/liufangzheng/Documents/Lab/github/HexSense_MIT/firmware/Thesis_camera/Camera_module/ESP32S3-CAM-TRANS_DATA_THR_UART/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
 endif()

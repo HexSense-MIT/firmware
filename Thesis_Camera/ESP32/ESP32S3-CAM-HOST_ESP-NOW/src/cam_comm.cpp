@@ -185,6 +185,7 @@ void send_photo(uint8_t* data, uint64_t len) {
     data_i += packet_len;
     // printf("Sent data packet: seq=%d, camera_index=%d, bytes_left=%d, payload_len=%d\n", datapkg_send.seq, datapkg_send.camera_index, datapkg_send.bytes_left, packet_len);
     delay(10); // Short delay between packets to avoid overwhelming the receiver
+    yield();
   }
 }
 
@@ -194,6 +195,8 @@ int update_comm(void) {
     parse_cmd(cmd_raw, &cmdpkg_recv);
     handle_cmd(&cmdpkg_recv);
   }
+
+  yield(); // Yield to allow other tasks to run (important for ESP-NOW callbacks)
 
   return 1;
 }
@@ -241,6 +244,7 @@ void handle_cmd(CommandPacket *cmdpck) {
           return;
         }
       }
+      yield();
 
       recv_data_i = 0;
       while (Serial1.available()) {
@@ -263,13 +267,14 @@ void handle_cmd(CommandPacket *cmdpck) {
 
     recv_data_i = 0;
 
-    while (!Serial1.available()) {;}  // wait for first byte
+    while (!Serial1.available()) {yield();}  // wait for first byte
 
     size_t total = 0;
     while (total < len) {
       size_t chunk = Serial1.readBytes(img_buffer + total, min((size_t)(len - total), (size_t)CHUNK_SIZE));
       if (chunk == 0) break; // timeout — no more data
       total += chunk;
+      yield();
     }
     len = total;
     data_camera_index = cmdpck->camera_index;
@@ -311,7 +316,7 @@ void print_img_for_tst(uint8_t* data, uint64_t len) {
 
   recv_data_i = 0;
 
-  while (!Serial1.available()) {;}  // wait for first byte
+  while (!Serial1.available()) {yield();}  // wait for first byte
   size_t total = 0;
   while (total < len) {
     size_t chunk = Serial1.readBytes(data + total, min((size_t)(len - total), (size_t)CHUNK_SIZE));
@@ -360,6 +365,7 @@ uint64_t take_photos(int times) {
         Serial.println("Timeout waiting for camera response.");
         return 0;
       }
+      yield();
     }
 
     recv_data_i = 0;

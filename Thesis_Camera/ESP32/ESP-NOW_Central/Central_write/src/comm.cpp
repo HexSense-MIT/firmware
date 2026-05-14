@@ -255,13 +255,3 @@ void comm_init(void) {
   memcpy(peer_3.peer_addr, HexSense_addr_3, 6); esp_now_add_peer(&peer_3);
   memcpy(peer_4.peer_addr, HexSense_addr_4, 6); esp_now_add_peer(&peer_4);
 }
-
-
-
-
-
-
-
-
-
-
