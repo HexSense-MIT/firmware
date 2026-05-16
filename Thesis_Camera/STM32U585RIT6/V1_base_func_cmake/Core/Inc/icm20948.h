@@ -31,7 +31,7 @@
 typedef struct {
     float accel_x, accel_y, accel_z;  /* g     */
     float gyro_x,  gyro_y,  gyro_z;   /* dps   */
-    float temp_c;                       /* °C    */
+    float temp_c;                     /* °C    */
 } ICM20948_Data_t;
 
 HAL_StatusTypeDef ICM20948_Init(I2C_HandleTypeDef *hi2c);
