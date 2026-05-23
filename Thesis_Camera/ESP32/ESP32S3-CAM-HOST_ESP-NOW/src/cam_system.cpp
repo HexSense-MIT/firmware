@@ -7,8 +7,8 @@ void system_init(void) {
   // while (!Serial)  delay(10);
   while (!Serial1) delay(10);
 
-  // burning_init(); // Initialize the burning system
-  // burning(0, 30000); // Burn side 0 for 10 s
+  burning_init(); // Initialize the burning system
+  burning(0, 6000); // Burn side 0 for 10 s
 
   camadapter_init(); // Initialize the camera adapter
   turnoffallcams();  // Ensure all cameras are off at startup

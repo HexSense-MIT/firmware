@@ -92,6 +92,7 @@ void handle_short_ack(CMD_TYPE &cmd, AckPacket* ack) {
       cmd = IDLE;
       return;
     }
+    yield();
   }
 
   if (espnow_recv_len < (int)sizeof(AckPacket)) {
@@ -140,7 +141,9 @@ void handle_long_ack(DataPacket* ack) {
       return;
     }
 
-    if (!newPacket) continue;
+    if (!newPacket) {
+      continue;
+    }
 
     newPacket         = false;
     espnow_recv_ready = false;
