@@ -4,7 +4,7 @@ uint8_t recv_cmd_buf[20] = {0};
 size_t  recv_cmd_count   =  0 ;
 
 void setup() {
-  Serial.begin(460800);
+  Serial.begin(921600);
 
   while (!Serial) {
     delay(1); yield();
