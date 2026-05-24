@@ -8,7 +8,6 @@
 #include "cam_comm.h"
 #include "cam_adapter.h"
 #include <cstdio>
-#include <cstdio>
 
 CMD_TYPE cmd_recv = IDLE;
 volatile bool received_cmd = false;

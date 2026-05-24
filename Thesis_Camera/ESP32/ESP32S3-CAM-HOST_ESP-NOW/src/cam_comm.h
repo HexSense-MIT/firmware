@@ -4,7 +4,6 @@
 #include <WiFi.h>
 #include <esp_now.h>
 
-#include "central_address.h"
 #include <HardwareSerial.h>
 #include <esp_heap_caps.h>
 

@@ -26,7 +26,8 @@
 #include "tusb.h"
 #include "tusb_config.h"
 #include "icm20948.h"
-#include "lr2021.h"
+#include "comm.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -150,60 +151,61 @@ int main(void)
   while (1)
   {
     tud_task();
+    update_comm();
 
-    static uint32_t last_cycle = 0;
-    static uint32_t cycle = 0;
+    // static uint32_t last_cycle = 0;
+    // static uint32_t cycle = 0;
 
-    if (HAL_GetTick() - last_cycle >= 2000)
-    {
-      last_cycle = HAL_GetTick();
-      cycle++;
+    // if (HAL_GetTick() - last_cycle >= 2000)
+    // {
+    //   last_cycle = HAL_GetTick();
+    //   cycle++;
 
-      /* Step 1: LoRa — send a command packet */
-      LR2021_SetMode(&hspi2, LR2021_MODE_LORA);
+    //   /* Step 1: LoRa — send a command packet */
+    //   LR2021_SetMode(&hspi2, LR2021_MODE_LORA);
 
-      uint8_t cmd_pkt[8];
-      cmd_pkt[0] = 'C'; cmd_pkt[1] = 'M'; cmd_pkt[2] = 'D'; cmd_pkt[3] = ':';
-      cmd_pkt[4] = (uint8_t)(cycle >> 24); cmd_pkt[5] = (uint8_t)(cycle >> 16);
-      cmd_pkt[6] = (uint8_t)(cycle >> 8);  cmd_pkt[7] = (uint8_t)(cycle);
+    //   uint8_t cmd_pkt[8];
+    //   cmd_pkt[0] = 'C'; cmd_pkt[1] = 'M'; cmd_pkt[2] = 'D'; cmd_pkt[3] = ':';
+    //   cmd_pkt[4] = (uint8_t)(cycle >> 24); cmd_pkt[5] = (uint8_t)(cycle >> 16);
+    //   cmd_pkt[6] = (uint8_t)(cycle >> 8);  cmd_pkt[7] = (uint8_t)(cycle);
 
-      HAL_StatusTypeDef r = LR2021_LoRa_Send(&hspi2, cmd_pkt, sizeof(cmd_pkt));
-      if (tud_cdc_connected())
-        printf("[LoRa] CMD #%lu TX %s\r\n",
-               (unsigned long)cycle, r == HAL_OK ? "OK" : "ERR");
+    //   HAL_StatusTypeDef r = LR2021_LoRa_Send(&hspi2, cmd_pkt, sizeof(cmd_pkt));
+    //   if (tud_cdc_connected())
+    //     printf("[LoRa] CMD #%lu TX %s\r\n",
+    //            (unsigned long)cycle, r == HAL_OK ? "OK" : "ERR");
 
-      /* Step 2: LoRa — wait for ACK (300 ms window) */
-      uint8_t ack_buf[16];
-      uint8_t ack_len = 0;
-      HAL_StatusTypeDef ack = LR2021_LoRa_Receive(&hspi2, ack_buf, &ack_len, 300);
+    //   /* Step 2: LoRa — wait for ACK (300 ms window) */
+    //   uint8_t ack_buf[16];
+    //   uint8_t ack_len = 0;
+    //   HAL_StatusTypeDef ack = LR2021_LoRa_Receive(&hspi2, ack_buf, &ack_len, 300);
 
-      if (ack == HAL_OK)
-      {
-        if (tud_cdc_connected())
-          printf("[LoRa] ACK received (%u bytes)\r\n", (unsigned)ack_len);
+    //   if (ack == HAL_OK)
+    //   {
+    //     if (tud_cdc_connected())
+    //       printf("[LoRa] ACK received (%u bytes)\r\n", (unsigned)ack_len);
 
-        /* Step 3: FLRC — send bulk data */
-        LR2021_SetMode(&hspi2, LR2021_MODE_FLRC);
+    //     /* Step 3: FLRC — send bulk data */
+    //     LR2021_SetMode(&hspi2, LR2021_MODE_FLRC);
 
-        uint8_t bulk[16];
-        bulk[0] = 'H'; bulk[1] = 'E'; bulk[2] = 'X'; bulk[3] = ':';
-        bulk[4] = (uint8_t)(cycle >> 24); bulk[5] = (uint8_t)(cycle >> 16);
-        bulk[6] = (uint8_t)(cycle >> 8);  bulk[7] = (uint8_t)(cycle);
-        for (int i = 8; i < 16; i++) bulk[i] = 0x00;
+    //     uint8_t bulk[16];
+    //     bulk[0] = 'H'; bulk[1] = 'E'; bulk[2] = 'X'; bulk[3] = ':';
+    //     bulk[4] = (uint8_t)(cycle >> 24); bulk[5] = (uint8_t)(cycle >> 16);
+    //     bulk[6] = (uint8_t)(cycle >> 8);  bulk[7] = (uint8_t)(cycle);
+    //     for (int i = 8; i < 16; i++) bulk[i] = 0x00;
 
-        r = LR2021_FLRC_Send(&hspi2, bulk, sizeof(bulk));
-        if (tud_cdc_connected())
-          printf("[FLRC] Data TX %s\r\n", r == HAL_OK ? "OK" : "ERR");
+    //     r = LR2021_FLRC_Send(&hspi2, bulk, sizeof(bulk));
+    //     if (tud_cdc_connected())
+    //       printf("[FLRC] Data TX %s\r\n", r == HAL_OK ? "OK" : "ERR");
 
-        /* Step 4: return to LoRa for next cycle */
-        LR2021_SetMode(&hspi2, LR2021_MODE_LORA);
-      }
-      else
-      {
-        if (tud_cdc_connected())
-          printf("[LoRa] No ACK — skipping FLRC\r\n");
-      }
-    }
+    //     /* Step 4: return to LoRa for next cycle */
+    //     LR2021_SetMode(&hspi2, LR2021_MODE_LORA);
+    //   }
+    //   else
+    //   {
+    //     if (tud_cdc_connected())
+    //       printf("[LoRa] No ACK — skipping FLRC\r\n");
+    //   }
+    // }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
