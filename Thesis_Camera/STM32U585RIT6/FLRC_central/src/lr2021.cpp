@@ -42,11 +42,18 @@ static constexpr uint16_t OC_FIFO_WRITE        = 0x0002;
 // DIO5 is the general-purpose IRQ output on the LR2021 module
 static constexpr uint8_t DIO5 = 0x05;
 
-// FLRC pkt params constants
-// sync_word_len=1 (short/4-byte) | preamble_len_enum=3 (16 bits)
-static constexpr uint8_t FLRC_PKT_BYTE2_DEFAULT = 0x01U | (3U << 2);
-// crc=1 (2-byte) | header=1 (variable-len) | match_sw1 | tx_sw=sw1
-static constexpr uint8_t FLRC_PKT_BYTE3_DEFAULT = 0x01U | (1U << 2) | (1U << 3) | (0U << 6);
+// FLRC SetFlrcPacketParams byte encoding (Table 18-5, DS.LR2021 Rev1.1)
+// Byte2 [7:6]=rfu | [5:2]=agc_pbl_len | [1:0]=sync_len
+//   agc_pbl_len=3 → 16-bit preamble (minimum for ≥650 kbps)
+//   sync_len=2    → 32-bit (4-byte) syncword
+static constexpr uint8_t FLRC_PKT_BYTE2_DEFAULT = (3U << 2) | 2U;
+
+// Byte3 [7:6]=sync_tx | [5:3]=sync_match | [2]=pkt_format | [1:0]=Crc
+//   sync_tx=1    → transmit using syncword slot 1
+//   sync_match=1 → receive: match syncword 1 (MATCH_1)
+//   pkt_format=0 → dynamic (variable-length)
+//   Crc bits set by crc_type in cmdFLRCSetPktParams
+static constexpr uint8_t FLRC_PKT_BYTE3_DEFAULT = (1U << 6) | (1U << 3);
 
 // ============================================================
 //  Constructor

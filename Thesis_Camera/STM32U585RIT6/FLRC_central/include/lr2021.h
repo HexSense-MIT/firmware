@@ -80,16 +80,16 @@ typedef enum {
     LR2021_LORA_CR_4_8   = 0x04,
 } lr2021_lora_cr_t;
 
-// ---- FLRC bitrate / bandwidth pairs ----
+// ---- FLRC bitrate / bandwidth pairs (Table 18-1, DS.LR2021 Rev1.1) ----
 typedef enum {
     LR2021_FLRC_BR_2600_BW_2666 = 0x00,  // 2.600 Mb/s, 2.666 MHz
-    LR2021_FLRC_BR_2080_BW_2133 = 0x01,  // 2.080 Mb/s, 2.133 MHz
+    LR2021_FLRC_BR_2080_BW_2222 = 0x01,  // 2.080 Mb/s, 2.222 MHz
     LR2021_FLRC_BR_1300_BW_1333 = 0x02,  // 1.300 Mb/s, 1.333 MHz
-    LR2021_FLRC_BR_1040_BW_1067 = 0x03,  // 1.040 Mb/s, 1.067 MHz
-    LR2021_FLRC_BR_0650_BW_0667 = 0x04,  // 0.650 Mb/s, 0.667 MHz
-    LR2021_FLRC_BR_0520_BW_0533 = 0x05,  // 0.520 Mb/s, 0.533 MHz
-    LR2021_FLRC_BR_0325_BW_0333 = 0x06,  // 0.325 Mb/s, 0.333 MHz
-    LR2021_FLRC_BR_0260_BW_0307 = 0x07,  // 0.260 Mb/s, 0.307 MHz
+    LR2021_FLRC_BR_1040_BW_1333 = 0x03,  // 1.040 Mb/s, 1.333 MHz
+    LR2021_FLRC_BR_0650_BW_0888 = 0x04,  // 0.650 Mb/s, 0.888 MHz
+    LR2021_FLRC_BR_0520_BW_0769 = 0x05,  // 0.520 Mb/s, 0.769 MHz
+    LR2021_FLRC_BR_0325_BW_0444 = 0x06,  // 0.325 Mb/s, 0.444 MHz
+    LR2021_FLRC_BR_0260_BW_0444 = 0x07,  // 0.260 Mb/s, 0.444 MHz
 } lr2021_flrc_br_bw_t;
 
 // ---- FLRC coding rate ----
