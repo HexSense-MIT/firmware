@@ -19,10 +19,10 @@
 
 LR2021 radio;   // uses LR2021_DEFAULT_PIN_* from lr2021.h
 
-// ---- FLRC config — 650 kbps / 888 kHz BW, 915 MHz, CRC on ----
+// ---- FLRC config — 325 kbps / 444 kHz BW, 915 MHz, CRC on ----
 static const lr2021_flrc_config_t FLRC_CFG = {
   .freq_hz      = 915000000UL,
-  .br_bw        = LR2021_FLRC_BR_0650_BW_0888,
+  .br_bw        = LR2021_FLRC_BR_0325_BW_0444,
   .cr           = LR2021_FLRC_CR_1_2,
   .shape        = LR2021_FLRC_SHAPE_BT05,
   .syncword     = {0xDE, 0xAD, 0xBE, 0xEF},
@@ -30,17 +30,17 @@ static const lr2021_flrc_config_t FLRC_CFG = {
   .tx_power_dbm = 14,
 };
 
-// ---- LoRa config — SF7, 125 kHz, 915 MHz ----
+// ---- LoRa config — SF7, 250 kHz, 915 MHz ----
 static const lr2021_lora_config_t LORA_CFG = {
   .freq_hz          = 915000000UL,
   .sf               = LR2021_LORA_SF7,
-  .bw               = LR2021_LORA_BW_125_KHZ,
+  .bw               = LR2021_LORA_BW_250_KHZ,
   .cr               = LR2021_LORA_CR_4_5,
   .preamble_symbols = 8,
   .syncword         = LR2021_LORA_SYNCWORD_PRIVATE,
   .crc              = true,
   .iq_inverted      = false,
-  .implicit_hdr     = false,
+  .implicit_hdr     = true,
   .tx_power_dbm     = 14,
 };
 
@@ -48,7 +48,6 @@ enum class RadioMode { FLRC, LORA };
 static RadioMode current_mode = RadioMode::FLRC;
 
 static uint8_t tx_seq      = 0;
-static uint8_t mode_count  = 0;   // packets sent in current mode
 static uint8_t rx_buf[255];
 static uint8_t tx_buf[16];
 
@@ -101,44 +100,74 @@ static void lora_tx_test() {
   }
 }
 
+static void rx_test() {
+  lr2021_rx_status_t status;
+  int rx_len = radio.receive(rx_buf, sizeof(rx_buf), &status, 2000);
+
+  const char* mode_name = (current_mode == RadioMode::FLRC) ? "FLRC" : "LoRa";
+
+  if (rx_len > 0) {
+    Serial.printf("[%s RX] %d bytes  RSSI=%d dBm", mode_name, rx_len, (int)status.rssi_dbm);
+    if (current_mode == RadioMode::LORA) {
+      Serial.printf("  SNR=%d dB", (int)status.snr);
+    }
+    Serial.printf("  CRC=%s\r\n", status.crc_ok ? "OK" : "ERR");
+    Serial.print("          data:");
+    for (int i = 0; i < rx_len && i < 32; i++) Serial.printf(" %02X", rx_buf[i]);
+    Serial.println();
+  } else {
+    Serial.printf("[%s RX] timeout / no packet\r\n", mode_name);
+  }
+}
+
 // ============================================================
 void setup() {
   Serial.begin(115200);
   while (!Serial) { delay(10); }
 
   Serial.println("LR2021 driver demo — Seeed XIAO RP2040");
-  Serial.println("FLRC 650 kbps / LoRa SF7 125 kHz, 915 MHz — 3 packets per mode");
+  Serial.println("Press F for FLRC or L for LoRa within 5 seconds.");
+  Serial.println("Default is FLRC.");
 
   if (!radio.begin()) {
     Serial.println("[ERROR] LR2021 init failed — check wiring");
     while (true) delay(500);
   }
 
-  radio.configFLRC(FLRC_CFG);
-  Serial.println("[OK] Radio initialised in FLRC mode");
+  uint32_t start_ms = millis();
+  while ((millis() - start_ms) < 5000UL) {
+    if (Serial.available() > 0) {
+      char c = Serial.read();
+      if (c == 'L' || c == 'l') {
+        current_mode = RadioMode::LORA;
+        break;
+      }
+      if (c == 'F' || c == 'f') {
+        current_mode = RadioMode::FLRC;
+        break;
+      }
+    }
+    delay(10);
+  }
+
+  if (current_mode == RadioMode::FLRC) {
+    radio.configFLRC(FLRC_CFG);
+    Serial.println("[OK] Radio initialised in FLRC mode");
+  } else {
+    radio.configLoRa(LORA_CFG);
+    Serial.println("[OK] Radio initialised in LoRa mode");
+  }
 }
 
 // ============================================================
 void loop() {
-  if (current_mode == RadioMode::FLRC) {
-    flrc_tx_test();
-  } else {
-    lora_tx_test();
-  }
-
-  mode_count++;
-  if (mode_count >= 3) {
-    mode_count = 0;
-    if (current_mode == RadioMode::FLRC) {
-      current_mode = RadioMode::LORA;
-      radio.configLoRa(LORA_CFG);
-      Serial.println("--- Switched to LoRa mode ---");
-    } else {
-      current_mode = RadioMode::FLRC;
-      radio.configFLRC(FLRC_CFG);
-      Serial.println("--- Switched to FLRC mode ---");
-    }
-  }
-
-  delay(500);
+  rx_test();
+  // if (current_mode == RadioMode::FLRC) {
+  //   flrc_tx_test();
+  // } else {
+  //   lora_tx_test();
+  // }
+  // delay(1500);
 }
+
+

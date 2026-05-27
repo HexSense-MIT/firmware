@@ -7990,3 +7990,24 @@ Finished building: default.size.stdout
  
 Finished building: V1_IMU_func.list
  
+19:54:35 **** Incremental Build of configuration Debug for project V1_IMU_func ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m33 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32U585xx -c -I../Core/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc -I../Drivers/STM32U5xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32U5xx/Include -I../Drivers/CMSIS/Include -I"C:/DATA/Documents/Lab/github/HexSense_MIT/firmware/Thesis_Camera/STM32U585RIT6/V1_IMU_func/tinyusb" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "V1_IMU_func.elf" @"objects.list"   -mcpu=cortex-m33 -T"C:\DATA\Documents\Lab\github\HexSense_MIT\firmware\Thesis_Camera\STM32U585RIT6\V1_IMU_func\STM32U585RITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="V1_IMU_func.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: V1_IMU_func.elf
+ 
+arm-none-eabi-size  V1_IMU_func.elf 
+arm-none-eabi-objdump -h -S V1_IMU_func.elf  > "V1_IMU_func.list"
+   text	   data	    bss	    dec	    hex	filename
+  61660	    152	   4672	  66484	  103b4	V1_IMU_func.elf
+Finished building: default.size.stdout
+ 
+Finished building: V1_IMU_func.list
+ 
+19:54:56 **** Incremental Build of configuration Debug for project V1_IMU_func ****
+make -j16 all 
+arm-none-eabi-size  V1_IMU_func.elf 
+   text	   data	    bss	    dec	    hex	filename
+  61660	    152	   4672	  66484	  103b4	V1_IMU_func.elf
+Finished building: default.size.stdout
+ 

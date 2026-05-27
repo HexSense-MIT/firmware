@@ -26,7 +26,7 @@
 #include "tusb.h"
 #include "tusb_config.h"
 #include "icm20948.h"
-#include "comm.h"
+#include "lr2021.h"
 
 /* USER CODE END Includes */
 
@@ -37,6 +37,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define LORA_TX_INTERVAL_MS 500U
 
 /* USER CODE END PD */
 
@@ -90,6 +91,16 @@ int _write(int file, char *ptr, int len)
 
     return len;
 }
+/* LR2021 IRQ flag (set from EXTI callback) */
+volatile uint8_t lr2021_irq_flag = 0;
+
+/* EXTI callback from HAL — mark IRQ for processing in main loop */
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+  if (GPIO_Pin == LR_DIO5_Pin) {
+    lr2021_irq_flag = 1;
+  }
+}
 /* USER CODE END 0 */
 
 /**
@@ -142,70 +153,38 @@ int main(void)
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);
   HAL_Delay(10);
 
-  LR2021_Init(&hspi2);
+  if (LR2021_Init(&hspi2) != HAL_OK) {
+    Error_Handler();
+  }
+  if (LR2021_SetMode(&hspi2, LR2021_MODE_LORA) != HAL_OK) {
+    Error_Handler();
+  }
+
+  static const uint8_t lora_tx_msg[] =
+    "HELLO from STM32U585!HELLO from STM32U585!HELLO from STM32U585!";
+  uint32_t last_lora_tx_ms = HAL_GetTick() - LORA_TX_INTERVAL_MS;
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
   while (1)
   {
     tud_task();
-    update_comm();
 
-    // static uint32_t last_cycle = 0;
-    // static uint32_t cycle = 0;
+    if ((HAL_GetTick() - last_lora_tx_ms) >= LORA_TX_INTERVAL_MS) {
+      last_lora_tx_ms = HAL_GetTick();
+      lr2021_irq_flag = 0;
 
-    // if (HAL_GetTick() - last_cycle >= 2000)
-    // {
-    //   last_cycle = HAL_GetTick();
-    //   cycle++;
+      HAL_StatusTypeDef tx_status =
+        LR2021_LoRa_Send(&hspi2, lora_tx_msg, (uint8_t)(sizeof(lora_tx_msg) - 1U));
 
-    //   /* Step 1: LoRa — send a command packet */
-    //   LR2021_SetMode(&hspi2, LR2021_MODE_LORA);
+      if (tud_cdc_connected()) {
+        printf("[LoRa TX] %s\r\n", tx_status == HAL_OK ? "HELLO sent" : "TX failed");
+      }
+    }
 
-    //   uint8_t cmd_pkt[8];
-    //   cmd_pkt[0] = 'C'; cmd_pkt[1] = 'M'; cmd_pkt[2] = 'D'; cmd_pkt[3] = ':';
-    //   cmd_pkt[4] = (uint8_t)(cycle >> 24); cmd_pkt[5] = (uint8_t)(cycle >> 16);
-    //   cmd_pkt[6] = (uint8_t)(cycle >> 8);  cmd_pkt[7] = (uint8_t)(cycle);
-
-    //   HAL_StatusTypeDef r = LR2021_LoRa_Send(&hspi2, cmd_pkt, sizeof(cmd_pkt));
-    //   if (tud_cdc_connected())
-    //     printf("[LoRa] CMD #%lu TX %s\r\n",
-    //            (unsigned long)cycle, r == HAL_OK ? "OK" : "ERR");
-
-    //   /* Step 2: LoRa — wait for ACK (300 ms window) */
-    //   uint8_t ack_buf[16];
-    //   uint8_t ack_len = 0;
-    //   HAL_StatusTypeDef ack = LR2021_LoRa_Receive(&hspi2, ack_buf, &ack_len, 300);
-
-    //   if (ack == HAL_OK)
-    //   {
-    //     if (tud_cdc_connected())
-    //       printf("[LoRa] ACK received (%u bytes)\r\n", (unsigned)ack_len);
-
-    //     /* Step 3: FLRC — send bulk data */
-    //     LR2021_SetMode(&hspi2, LR2021_MODE_FLRC);
-
-    //     uint8_t bulk[16];
-    //     bulk[0] = 'H'; bulk[1] = 'E'; bulk[2] = 'X'; bulk[3] = ':';
-    //     bulk[4] = (uint8_t)(cycle >> 24); bulk[5] = (uint8_t)(cycle >> 16);
-    //     bulk[6] = (uint8_t)(cycle >> 8);  bulk[7] = (uint8_t)(cycle);
-    //     for (int i = 8; i < 16; i++) bulk[i] = 0x00;
-
-    //     r = LR2021_FLRC_Send(&hspi2, bulk, sizeof(bulk));
-    //     if (tud_cdc_connected())
-    //       printf("[FLRC] Data TX %s\r\n", r == HAL_OK ? "OK" : "ERR");
-
-    //     /* Step 4: return to LoRa for next cycle */
-    //     LR2021_SetMode(&hspi2, LR2021_MODE_LORA);
-    //   }
-    //   else
-    //   {
-    //     if (tud_cdc_connected())
-    //       printf("[LoRa] No ACK — skipping FLRC\r\n");
-    //   }
-    // }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -470,7 +449,7 @@ static void MX_SPI2_Init(void)
   hspi2.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi2.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi2.Init.NSS = SPI_NSS_SOFT;
-  hspi2.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  hspi2.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_16;
   hspi2.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi2.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi2.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
@@ -663,22 +642,53 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_RESET);  /* LR2021 LDO off */
+  HAL_GPIO_WritePin(LR_CS_GPIO_Port, LR_CS_Pin, GPIO_PIN_SET);
 
-  /*Configure GPIO pin : PD2 (ICM20948 LDO enable) */
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(LR_PWR_EN_GPIO_Port, LR_PWR_EN_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(LR_RST_GPIO_Port, LR_RST_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin : LR_BUSY_Pin */
+  GPIO_InitStruct.Pin = LR_BUSY_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(LR_BUSY_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : LR_DIO5_Pin */
+  GPIO_InitStruct.Pin = LR_DIO5_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(LR_DIO5_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : LR_CS_Pin LR_PWR_EN_Pin */
+  GPIO_InitStruct.Pin = LR_CS_Pin|LR_PWR_EN_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PD2 */
   GPIO_InitStruct.Pin = GPIO_PIN_2;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : PC8 (LR2021 LDO enable) */
-  GPIO_InitStruct.Pin = GPIO_PIN_8;
+  /*Configure GPIO pin : LR_RST_Pin */
+  GPIO_InitStruct.Pin = LR_RST_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+  HAL_GPIO_Init(LR_RST_GPIO_Port, &GPIO_InitStruct);
+
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI6_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI6_IRQn);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 
@@ -706,7 +716,7 @@ static void MX_GPIO_Init(void)
 
   /* LR2021 IRQ/DIO5 (PC6) — input, no pull; active-high from radio */
   GPIO_InitStruct.Pin  = LR2021_IRQ_PIN;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(LR2021_IRQ_PORT, &GPIO_InitStruct);
 

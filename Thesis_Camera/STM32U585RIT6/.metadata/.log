@@ -1401,3 +1401,243 @@ COM3
 
 !ENTRY com.st.stm32cube.ide.mpu.remote.serial 1 1 2026-05-07 16:31:40.867
 !MESSAGE port: COM3
+!SESSION 2026-05-26 19:53:40.733 -----------------------------------------------
+eclipse.buildId=Version 2.0.0
+java.version=21.0.8
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2026-05-26 19:53:52.107
+!MESSAGE Log4j2 initialized with config file C:\DATA\Documents\Lab\github\HexSense_MIT\firmware\Thesis_Camera\STM32U585RIT6\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2026-05-26 19:54:08.108
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mpu.remote.serial 1 1 2026-05-26 19:54:08.184
+!MESSAGE Executed PowerShell command powershell.exe -Command "Get-CimInstance -ClassName Win32_SerialPort | Select-Object -ExpandProperty DeviceID":
+COM10
+COM3
+
+
+!ENTRY com.st.stm32cube.ide.mpu.remote.serial 1 1 2026-05-26 19:54:08.185
+!MESSAGE port: COM10
+
+!ENTRY com.st.stm32cube.ide.mpu.remote.serial 1 1 2026-05-26 19:54:08.186
+!MESSAGE port: COM3
+
+!ENTRY org.eclipse.cdt.ui 4 4 2026-05-26 19:54:56.495
+!MESSAGE Error
+!STACK 1
+org.eclipse.core.runtime.CoreException: Could not write file: C:\DATA\Documents\Lab\github\HexSense_MIT\firmware\Thesis_Camera\STM32U585RIT6\.metadata\.plugins\org.eclipse.cdt.ui\V1_IMU_func.build.log.
+	at org.eclipse.core.internal.filesystem.Policy.error(Policy.java:32)
+	at org.eclipse.core.internal.filesystem.local.LocalFile.handleWriteIOException(LocalFile.java:541)
+	at org.eclipse.core.internal.filesystem.local.LocalFile.openOutputStream(LocalFile.java:514)
+	at org.eclipse.cdt.internal.ui.buildconsole.BuildConsolePartitioner.logOpen(BuildConsolePartitioner.java:197)
+	at org.eclipse.cdt.internal.ui.buildconsole.BuildConsolePartitioner.setStreamOpened(BuildConsolePartitioner.java:141)
+	at org.eclipse.cdt.internal.ui.buildconsole.BuildOutputStream.<init>(BuildOutputStream.java:41)
+	at org.eclipse.cdt.internal.ui.buildconsole.BuildConsolePartitioner.getOutputStream(BuildConsolePartitioner.java:495)
+	at org.eclipse.cdt.internal.ui.buildconsole.MultiBuildConsoleAdapter.getOutputStream(MultiBuildConsoleAdapter.java:100)
+	at org.eclipse.cdt.internal.ui.buildconsole.CBuildConsole.getOutputStream(CBuildConsole.java:66)
+	at org.eclipse.cdt.internal.core.BuildRunnerHelper.prepareStreams(BuildRunnerHelper.java:147)
+	at org.eclipse.cdt.managedbuilder.core.ExternalBuildRunner.invokeExternalBuild(ExternalBuildRunner.java:129)
+	at org.eclipse.cdt.managedbuilder.core.ExternalBuildRunner.invokeBuild(ExternalBuildRunner.java:73)
+	at com.st.stm32cube.ide.mcu.toolchain.armnone.setup.BuildRunner.invokeBuild(BuildRunner.java:81)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.build(CommonBuilder.java:783)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.build(CommonBuilder.java:530)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.build(CommonBuilder.java:471)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:1077)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:296)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:468)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:670)
+	at org.eclipse.core.internal.resources.Project$1.run(Project.java:604)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
+	at org.eclipse.core.internal.resources.Project.internalBuild(Project.java:642)
+	at org.eclipse.core.internal.resources.Project.build(Project.java:162)
+	at org.eclipse.cdt.launch.AbstractCLaunchDelegate2$1.run(AbstractCLaunchDelegate2.java:376)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2471)
+	at org.eclipse.cdt.launch.AbstractCLaunchDelegate2.buildProject(AbstractCLaunchDelegate2.java:391)
+	at org.eclipse.cdt.launch.AbstractCLaunchDelegate2.buildForLaunch(AbstractCLaunchDelegate2.java:306)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.buildForLaunch(DSFDelegate.java:228)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:780)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1054)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1257)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.io.FileNotFoundException: C:\DATA\Documents\Lab\github\HexSense_MIT\firmware\Thesis_Camera\STM32U585RIT6\.metadata\.plugins\org.eclipse.cdt.ui\V1_IMU_func.build.log (The requested operation cannot be performed on a file with a user-mapped section open)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:289)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:230)
+	at org.eclipse.core.internal.filesystem.local.LocalFile.openOutputStream(LocalFile.java:512)
+	... 33 more
+!SUBENTRY 1 org.eclipse.core.filesystem 4 272 2026-05-26 19:54:56.497
+!MESSAGE Could not write file: C:\DATA\Documents\Lab\github\HexSense_MIT\firmware\Thesis_Camera\STM32U585RIT6\.metadata\.plugins\org.eclipse.cdt.ui\V1_IMU_func.build.log.
+!STACK 0
+java.io.FileNotFoundException: C:\DATA\Documents\Lab\github\HexSense_MIT\firmware\Thesis_Camera\STM32U585RIT6\.metadata\.plugins\org.eclipse.cdt.ui\V1_IMU_func.build.log (The requested operation cannot be performed on a file with a user-mapped section open)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:289)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:230)
+	at org.eclipse.core.internal.filesystem.local.LocalFile.openOutputStream(LocalFile.java:512)
+	at org.eclipse.cdt.internal.ui.buildconsole.BuildConsolePartitioner.logOpen(BuildConsolePartitioner.java:197)
+	at org.eclipse.cdt.internal.ui.buildconsole.BuildConsolePartitioner.setStreamOpened(BuildConsolePartitioner.java:141)
+	at org.eclipse.cdt.internal.ui.buildconsole.BuildOutputStream.<init>(BuildOutputStream.java:41)
+	at org.eclipse.cdt.internal.ui.buildconsole.BuildConsolePartitioner.getOutputStream(BuildConsolePartitioner.java:495)
+	at org.eclipse.cdt.internal.ui.buildconsole.MultiBuildConsoleAdapter.getOutputStream(MultiBuildConsoleAdapter.java:100)
+	at org.eclipse.cdt.internal.ui.buildconsole.CBuildConsole.getOutputStream(CBuildConsole.java:66)
+	at org.eclipse.cdt.internal.core.BuildRunnerHelper.prepareStreams(BuildRunnerHelper.java:147)
+	at org.eclipse.cdt.managedbuilder.core.ExternalBuildRunner.invokeExternalBuild(ExternalBuildRunner.java:129)
+	at org.eclipse.cdt.managedbuilder.core.ExternalBuildRunner.invokeBuild(ExternalBuildRunner.java:73)
+	at com.st.stm32cube.ide.mcu.toolchain.armnone.setup.BuildRunner.invokeBuild(BuildRunner.java:81)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.build(CommonBuilder.java:783)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.build(CommonBuilder.java:530)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.build(CommonBuilder.java:471)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:1077)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:296)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:468)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:670)
+	at org.eclipse.core.internal.resources.Project$1.run(Project.java:604)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
+	at org.eclipse.core.internal.resources.Project.internalBuild(Project.java:642)
+	at org.eclipse.core.internal.resources.Project.build(Project.java:162)
+	at org.eclipse.cdt.launch.AbstractCLaunchDelegate2$1.run(AbstractCLaunchDelegate2.java:376)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2471)
+	at org.eclipse.cdt.launch.AbstractCLaunchDelegate2.buildProject(AbstractCLaunchDelegate2.java:391)
+	at org.eclipse.cdt.launch.AbstractCLaunchDelegate2.buildForLaunch(AbstractCLaunchDelegate2.java:306)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.buildForLaunch(DSFDelegate.java:228)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:780)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1054)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1257)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.ui 4 4 2026-05-26 19:54:56.504
+!MESSAGE Error
+!STACK 1
+org.eclipse.core.runtime.CoreException: Could not write file: C:\DATA\Documents\Lab\github\HexSense_MIT\firmware\Thesis_Camera\STM32U585RIT6\.metadata\.plugins\org.eclipse.cdt.ui\V1_IMU_func.build.log.
+	at org.eclipse.core.internal.filesystem.Policy.error(Policy.java:32)
+	at org.eclipse.core.internal.filesystem.local.LocalFile.handleWriteIOException(LocalFile.java:541)
+	at org.eclipse.core.internal.filesystem.local.LocalFile.openOutputStream(LocalFile.java:514)
+	at org.eclipse.cdt.internal.ui.buildconsole.BuildConsolePartitioner.logOpen(BuildConsolePartitioner.java:197)
+	at org.eclipse.cdt.internal.ui.buildconsole.BuildConsolePartitioner.setStreamOpened(BuildConsolePartitioner.java:141)
+	at org.eclipse.cdt.internal.ui.buildconsole.BuildOutputStream.<init>(BuildOutputStream.java:41)
+	at org.eclipse.cdt.internal.ui.buildconsole.BuildConsolePartitioner.getInfoStream(BuildConsolePartitioner.java:500)
+	at org.eclipse.cdt.internal.ui.buildconsole.MultiBuildConsoleAdapter.getInfoStream(MultiBuildConsoleAdapter.java:106)
+	at org.eclipse.cdt.internal.ui.buildconsole.CBuildConsole.getInfoStream(CBuildConsole.java:72)
+	at org.eclipse.cdt.internal.core.BuildRunnerHelper.greeting(BuildRunnerHelper.java:454)
+	at org.eclipse.cdt.internal.core.BuildRunnerHelper.greeting(BuildRunnerHelper.java:434)
+	at org.eclipse.cdt.internal.core.BuildRunnerHelper.greeting(BuildRunnerHelper.java:416)
+	at org.eclipse.cdt.managedbuilder.core.ExternalBuildRunner.invokeExternalBuild(ExternalBuildRunner.java:135)
+	at org.eclipse.cdt.managedbuilder.core.ExternalBuildRunner.invokeBuild(ExternalBuildRunner.java:73)
+	at com.st.stm32cube.ide.mcu.toolchain.armnone.setup.BuildRunner.invokeBuild(BuildRunner.java:81)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.build(CommonBuilder.java:783)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.build(CommonBuilder.java:530)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.build(CommonBuilder.java:471)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:1077)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:296)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:468)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:670)
+	at org.eclipse.core.internal.resources.Project$1.run(Project.java:604)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
+	at org.eclipse.core.internal.resources.Project.internalBuild(Project.java:642)
+	at org.eclipse.core.internal.resources.Project.build(Project.java:162)
+	at org.eclipse.cdt.launch.AbstractCLaunchDelegate2$1.run(AbstractCLaunchDelegate2.java:376)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2471)
+	at org.eclipse.cdt.launch.AbstractCLaunchDelegate2.buildProject(AbstractCLaunchDelegate2.java:391)
+	at org.eclipse.cdt.launch.AbstractCLaunchDelegate2.buildForLaunch(AbstractCLaunchDelegate2.java:306)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.buildForLaunch(DSFDelegate.java:228)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:780)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1054)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1257)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.io.FileNotFoundException: C:\DATA\Documents\Lab\github\HexSense_MIT\firmware\Thesis_Camera\STM32U585RIT6\.metadata\.plugins\org.eclipse.cdt.ui\V1_IMU_func.build.log (The requested operation cannot be performed on a file with a user-mapped section open)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:289)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:230)
+	at org.eclipse.core.internal.filesystem.local.LocalFile.openOutputStream(LocalFile.java:512)
+	... 35 more
+!SUBENTRY 1 org.eclipse.core.filesystem 4 272 2026-05-26 19:54:56.504
+!MESSAGE Could not write file: C:\DATA\Documents\Lab\github\HexSense_MIT\firmware\Thesis_Camera\STM32U585RIT6\.metadata\.plugins\org.eclipse.cdt.ui\V1_IMU_func.build.log.
+!STACK 0
+java.io.FileNotFoundException: C:\DATA\Documents\Lab\github\HexSense_MIT\firmware\Thesis_Camera\STM32U585RIT6\.metadata\.plugins\org.eclipse.cdt.ui\V1_IMU_func.build.log (The requested operation cannot be performed on a file with a user-mapped section open)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:289)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:230)
+	at org.eclipse.core.internal.filesystem.local.LocalFile.openOutputStream(LocalFile.java:512)
+	at org.eclipse.cdt.internal.ui.buildconsole.BuildConsolePartitioner.logOpen(BuildConsolePartitioner.java:197)
+	at org.eclipse.cdt.internal.ui.buildconsole.BuildConsolePartitioner.setStreamOpened(BuildConsolePartitioner.java:141)
+	at org.eclipse.cdt.internal.ui.buildconsole.BuildOutputStream.<init>(BuildOutputStream.java:41)
+	at org.eclipse.cdt.internal.ui.buildconsole.BuildConsolePartitioner.getInfoStream(BuildConsolePartitioner.java:500)
+	at org.eclipse.cdt.internal.ui.buildconsole.MultiBuildConsoleAdapter.getInfoStream(MultiBuildConsoleAdapter.java:106)
+	at org.eclipse.cdt.internal.ui.buildconsole.CBuildConsole.getInfoStream(CBuildConsole.java:72)
+	at org.eclipse.cdt.internal.core.BuildRunnerHelper.greeting(BuildRunnerHelper.java:454)
+	at org.eclipse.cdt.internal.core.BuildRunnerHelper.greeting(BuildRunnerHelper.java:434)
+	at org.eclipse.cdt.internal.core.BuildRunnerHelper.greeting(BuildRunnerHelper.java:416)
+	at org.eclipse.cdt.managedbuilder.core.ExternalBuildRunner.invokeExternalBuild(ExternalBuildRunner.java:135)
+	at org.eclipse.cdt.managedbuilder.core.ExternalBuildRunner.invokeBuild(ExternalBuildRunner.java:73)
+	at com.st.stm32cube.ide.mcu.toolchain.armnone.setup.BuildRunner.invokeBuild(BuildRunner.java:81)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.build(CommonBuilder.java:783)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.build(CommonBuilder.java:530)
+	at org.eclipse.cdt.managedbuilder.internal.core.CommonBuilder.build(CommonBuilder.java:471)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:1077)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:296)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:468)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:670)
+	at org.eclipse.core.internal.resources.Project$1.run(Project.java:604)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
+	at org.eclipse.core.internal.resources.Project.internalBuild(Project.java:642)
+	at org.eclipse.core.internal.resources.Project.build(Project.java:162)
+	at org.eclipse.cdt.launch.AbstractCLaunchDelegate2$1.run(AbstractCLaunchDelegate2.java:376)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2451)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2471)
+	at org.eclipse.cdt.launch.AbstractCLaunchDelegate2.buildProject(AbstractCLaunchDelegate2.java:391)
+	at org.eclipse.cdt.launch.AbstractCLaunchDelegate2.buildForLaunch(AbstractCLaunchDelegate2.java:306)
+	at com.st.stm32cube.ide.mcu.debug.launch.DSFDelegate.buildForLaunch(DSFDelegate.java:228)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:780)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:716)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1054)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$1.run(DebugUIPlugin.java:1257)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY com.st.stm32cube.ide.mpu.remote.serial 1 1 2026-05-26 19:55:02.032
+!MESSAGE Executed PowerShell command powershell.exe -Command "Get-CimInstance -ClassName Win32_SerialPort | Select-Object -ExpandProperty DeviceID":
+COM10
+
+
+!ENTRY com.st.stm32cube.ide.mpu.remote.serial 1 1 2026-05-26 19:55:02.034
+!MESSAGE port: COM10
+
+!ENTRY com.st.stm32cube.ide.mpu.remote.serial 1 1 2026-05-26 19:55:09.722
+!MESSAGE Executed PowerShell command powershell.exe -Command "Get-CimInstance -ClassName Win32_SerialPort | Select-Object -ExpandProperty DeviceID":
+COM10
+
+
+!ENTRY com.st.stm32cube.ide.mpu.remote.serial 1 1 2026-05-26 19:55:09.724
+!MESSAGE port: COM10
+
+!ENTRY com.st.stm32cube.ide.mpu.remote.serial 1 1 2026-05-26 19:55:10.632
+!MESSAGE Executed PowerShell command powershell.exe -Command "Get-CimInstance -ClassName Win32_SerialPort | Select-Object -ExpandProperty DeviceID":
+COM10
+
+
+!ENTRY com.st.stm32cube.ide.mpu.remote.serial 1 1 2026-05-26 19:55:10.633
+!MESSAGE port: COM10
+
+!ENTRY com.st.stm32cube.ide.mpu.remote.serial 1 1 2026-05-26 19:55:23.613
+!MESSAGE Executed PowerShell command powershell.exe -Command "Get-CimInstance -ClassName Win32_SerialPort | Select-Object -ExpandProperty DeviceID":
+COM10
+COM3
+
+
+!ENTRY com.st.stm32cube.ide.mpu.remote.serial 1 1 2026-05-26 19:55:23.615
+!MESSAGE port: COM10
+
+!ENTRY com.st.stm32cube.ide.mpu.remote.serial 1 1 2026-05-26 19:55:23.616
+!MESSAGE port: COM3

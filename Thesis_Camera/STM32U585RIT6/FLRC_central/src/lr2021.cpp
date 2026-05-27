@@ -406,7 +406,7 @@ bool LR2021::configLoRa(const lr2021_lora_config_t& cfg) {
     _lora_mode = true;
     _lora_cfg  = cfg;
 
-    cmdSetStandby(LR2021_STANDBY_RC);
+    cmdSetStandby(LR2021_STANDBY_XOSC);
     cmdSetPacketType(LR2021_PKT_TYPE_LORA);
     cmdSetRfFreq(cfg.freq_hz);
 

@@ -17,22 +17,22 @@ typedef enum {
 } comm_radio_t;
 
 struct comm_cmd_t {
-  uint8_t       node_id;
-  uint8_t       seq_num;
-  comm_cmd_id_t cmd_id;
-  uint32_t      cmd_param;
-  comm_radio_t  next_radio;
-  uint8_t       checksum;
+  uint8_t  node_id;
+  uint8_t  seq_num;
+  uint8_t  cmd_id;
+  uint32_t cmd_param;
+  uint8_t  next_radio;
+  uint8_t  checksum;
 } __attribute__((packed));
 typedef struct comm_cmd_t comm_cmd_t;
 
 struct comm_ack_t {
-  uint8_t       node_id;
-  uint8_t       seq_num;
-  comm_cmd_id_t ack_id;
-  uint32_t      cmd_param;
-  comm_radio_t  next_radio;
-  uint8_t       checksum;
+  uint8_t  node_id;
+  uint8_t  seq_num;
+  uint8_t  ack_id;
+  uint32_t cmd_param;
+  uint8_t  next_radio;
+  uint8_t  checksum;
 } __attribute__((packed));
 typedef struct comm_ack_t comm_ack_t;
 

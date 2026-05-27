@@ -41,9 +41,23 @@
 /* ------------------------------------------------------------------ */
 
 /* System */
+#define OC_CALIBRATE                    0x0122U
+#define LR2021_CMD_SET_DIO_FUNC         0x0112U
+#define LR2021_CMD_SET_DIO_IRQ_CFG      0x0115U
+#define LR2021_CMD_CLEAR_IRQ            0x0116U
+#define LR2021_CMD_GET_AND_CLR_IRQ      0x0117U  /* returns 4 bytes */
 #define LR2021_CMD_SET_STANDBY          0x0128U
 #define LR2021_STANDBY_RC               0x00U
 #define LR2021_STANDBY_XOSC             0x01U
+
+#define LR2021_CMD_SET_PA_CFG  0x0202U
+
+#define LR2021_PA_SEL_LF       0x00U  /* 915 MHz/sub-GHz PA */
+#define LR2021_LF_PA_MODE      0x00U
+#define LR2021_LF_PA_DUTY      4U
+#define LR2021_LF_PA_SLICES    7U
+#define LR2021_HF_PA_DUTY      0U
+
 /* Radio common */
 #define LR2021_CMD_SET_RF_FREQ          0x0200U  /* 4-byte Hz value */
 #define LR2021_CMD_SET_TX_PARAMS        0x0203U  /* power(half-dBm), ramp */
@@ -54,12 +68,10 @@
 /* FIFO */
 #define LR2021_CMD_READ_FIFO            0x0001U
 #define LR2021_CMD_WRITE_FIFO           0x0002U
-/* IRQ */
-#define LR2021_CMD_CFG_IRQ              0x011AU  /* 10 param bytes */
-#define LR2021_CMD_GET_AND_CLR_IRQ      0x012EU  /* returns 4 bytes */
 /* LoRa specific */
 #define LR2021_CMD_LORA_SET_MOD_PARAMS  0x0220U  /* 2 param bytes */
 #define LR2021_CMD_LORA_SET_PKT_PARAMS  0x0221U  /* 4 param bytes */
+#define LR2021_CMD_LORA_SET_SYNCWORD    0x0223U  /* 1 param byte */
 /* FLRC specific */
 #define LR2021_CMD_FLRC_SET_MOD_PARAMS  0x0248U  /* 2 param bytes */
 #define LR2021_CMD_FLRC_SET_PKT_PARAMS  0x0249U  /* 4 param bytes */
@@ -88,9 +100,12 @@
 
 /* LoRa packet params (pkt_mode<<2)|(crc<<1)|(iq) */
 #define LR2021_LORA_PKT_EXPLICIT        0x00U   /* variable-length header */
+#define LR2021_LORA_PKT_IMPLICIT        0x01U   /* fixed-length header, must set length in pkt params */    
 #define LR2021_LORA_CRC_ON              0x01U
 #define LR2021_LORA_IQ_STANDARD         0x00U
 #define LR2021_LORA_PREAMBLE_SYMBOLS    8U      /* 16-bit field */
+#define LR2021_LORA_SYNCWORD_PUBLIC     0x34U
+#define LR2021_LORA_SYNCWORD_PRIVATE    0x12U
 
 /* ------------------------------------------------------------------ */
 /* FLRC modulation                                                    */
@@ -104,33 +119,52 @@
 #define LR2021_FLRC_CR_1_2              0x00U
 #define LR2021_FLRC_PULSE_BT1           0x07U
 
-/* FLRC packet params byte 2: (sync_len<<4)|preamble_len */
+/* FLRC packet params byte 2: sync_word_len + (preamble_len<<2) */
 #define LR2021_FLRC_PREAMBLE_32B        0x07U
-#define LR2021_FLRC_SYNC_OFF            0x00U
-/* FLRC packet params byte 3: (crc<<6)|(header<<5)|(sync_match<<2)|tx_sw */
+#define LR2021_FLRC_SYNC_WORD_LEN_OFF   0x00U
+/* FLRC packet params byte 3: crc + (header<<2) + (sync_match<<3) + (tx_sw<<6) */
 #define LR2021_FLRC_HEADER_FIXED        0x01U
 #define LR2021_FLRC_CRC_2B              0x01U
+#define LR2021_FLRC_MATCH_SYNCWORD_OFF  0x00U
+#define LR2021_FLRC_TX_SYNCWORD_NONE    0x00U
 
 /* ------------------------------------------------------------------ */
 /* TX / IRQ common settings                                             */
 /* ------------------------------------------------------------------ */
 /* TX power in half-dBm steps (int8_t cast):  +13 dBm → 26 */
-#define LR2021_TX_POWER_HALF_DBM        ((int8_t)(13 * 2))
+#define LR2021_TX_POWER_HALF_DBM        ((int8_t)(20 * 2))
 #define LR2021_RAMP_16US                0x03U
 
 /* IRQ flags (32-bit) */
-#define LR2021_IRQ_RX_DONE              0x00040000UL
-#define LR2021_IRQ_TX_DONE              0x00080000UL
-#define LR2021_IRQ_TIMEOUT              0x00200000UL
+#define LR2021_IRQ_NONE                    0UL
+#define LR2021_IRQ_FIFO_RX                 (1UL << 0)
+#define LR2021_IRQ_FIFO_TX                 (1UL << 1)
+#define LR2021_IRQ_PREAMBLE_DETECTED       (1UL << 5)
+#define LR2021_IRQ_SYNC_WORD_HEADER_VALID  (1UL << 6)
+#define LR2021_IRQ_LORA_HEADER_ERROR       (1UL << 9)
+#define LR2021_IRQ_ERROR                   0x00010000UL
+#define LR2021_IRQ_CMD_ERROR               0x00020000UL
+#define LR2021_IRQ_RX_DONE                 0x00040000UL
+#define LR2021_IRQ_TX_DONE                 0x00080000UL
+#define LR2021_IRQ_TIMEOUT                 0x00200000UL
+#define LR2021_IRQ_CRC_ERROR               0x00400000UL
+#define LR2021_IRQ_LEN_ERROR               0x00800000UL
+#define LR2021_IRQ_ALL                     0xFFFFFFFFUL
+
+#define LR2021_DIO5                     0x05U
+#define LR2021_DIO_FUNC_IRQ             0x01U
+#define LR2021_DIO_DRIVE_NONE           0x00U
 
 /*
  * RTC step ≈ 30.52 µs (LR20xx, same as LR11xx architecture).
  * Converts milliseconds to 24-bit RTC timeout steps.
  */
-#define LR2021_MS_TO_RTC(ms)    ((uint32_t)((ms) * 1000UL / 30UL))
+#define LR2021_MS_TO_RTC(ms)    ((uint32_t)((ms) * 32768UL / 1000UL))
+#define LR2021_RX_CONTINUOUS_TIMEOUT_RTC 0xFFFFFFUL
 
 #define LR2021_MAX_LORA_PAYLOAD         255U
 #define LR2021_MAX_FLRC_PAYLOAD         511U
+
 
 /* ------------------------------------------------------------------ */
 /* Mode                                                                 */
@@ -154,9 +188,18 @@ HAL_StatusTypeDef LR2021_LoRa_Send(SPI_HandleTypeDef *hspi,
 HAL_StatusTypeDef LR2021_LoRa_Receive(SPI_HandleTypeDef *hspi,
                                       uint8_t *data, uint8_t *rx_len,
                                       uint32_t timeout_ms);
+HAL_StatusTypeDef LR2021_LoRa_StartReceive(SPI_HandleTypeDef *hspi,
+                                           uint32_t timeout_ms);
 
 /* FLRC: bulk data */
 HAL_StatusTypeDef LR2021_FLRC_Send(SPI_HandleTypeDef *hspi,
                                    const uint8_t *data, uint16_t len);
+
+/* Read and clear IRQ flags (called from main when EXTI triggers) */
+HAL_StatusTypeDef LR2021_HandleIRQ(SPI_HandleTypeDef *hspi, uint32_t *irq_out);
+
+/* Read received LoRa payload (after RX_DONE IRQ). Returns payload length in `rx_len`. */
+HAL_StatusTypeDef LR2021_LoRa_ReadPayload(SPI_HandleTypeDef *hspi,
+                                          uint8_t *data, uint8_t *rx_len);
 
 #endif /* LR2021_H */

@@ -57,6 +57,17 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define LR_BUSY_Pin GPIO_PIN_2
+#define LR_BUSY_GPIO_Port GPIOB
+#define LR_DIO5_Pin GPIO_PIN_6
+#define LR_DIO5_GPIO_Port GPIOC
+#define LR_DIO5_EXTI_IRQn EXTI6_IRQn
+#define LR_CS_Pin GPIO_PIN_7
+#define LR_CS_GPIO_Port GPIOC
+#define LR_PWR_EN_Pin GPIO_PIN_8
+#define LR_PWR_EN_GPIO_Port GPIOC
+#define LR_RST_Pin GPIO_PIN_7
+#define LR_RST_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
