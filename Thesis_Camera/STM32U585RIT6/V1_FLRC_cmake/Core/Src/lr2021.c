@@ -301,6 +301,9 @@ HAL_StatusTypeDef LR2021_SetMode(SPI_HandleTypeDef *hspi, LR2021_Mode_t mode)
         ret = set_rf_freq(hspi);
         if (ret != HAL_OK) return ret;
 
+        ret = set_pa_config(hspi);
+        if (ret != HAL_OK) return ret;
+
         ret = set_tx_params(hspi);
         if (ret != HAL_OK) return ret;
 
@@ -452,6 +455,8 @@ HAL_StatusTypeDef LR2021_FLRC_Send(SPI_HandleTypeDef *hspi,
         return HAL_ERROR;
 
     HAL_StatusTypeDef ret;
+
+    cmdClearIrq(hspi, LR2021_IRQ_ALL);  // clear all pending IRQs before TX
 
     /*
      * FLRC packet params (4 bytes after opcode):

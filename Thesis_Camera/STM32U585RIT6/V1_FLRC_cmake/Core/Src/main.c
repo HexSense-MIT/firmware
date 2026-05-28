@@ -159,6 +159,9 @@ int main(void)
   if (LR2021_SetMode(&hspi2, LR2021_MODE_LORA) != HAL_OK) {
     Error_Handler();
   }
+  // if (LR2021_SetMode(&hspi2, LR2021_MODE_FLRC) != HAL_OK) {
+  //   Error_Handler();
+  // }
 
   static const uint8_t lora_tx_msg[] =
     "HELLO from STM32U585!HELLO from STM32U585!HELLO from STM32U585!";
@@ -173,16 +176,14 @@ int main(void)
   {
     tud_task();
 
+    HAL_StatusTypeDef tx_status = HAL_ERROR;
+
     if ((HAL_GetTick() - last_lora_tx_ms) >= LORA_TX_INTERVAL_MS) {
       last_lora_tx_ms = HAL_GetTick();
-      lr2021_irq_flag = 0;
+      // lr2021_irq_flag = 0;
 
-      HAL_StatusTypeDef tx_status =
-        LR2021_LoRa_Send(&hspi2, lora_tx_msg, (uint8_t)(sizeof(lora_tx_msg) - 1U));
-
-      if (tud_cdc_connected()) {
-        printf("[LoRa TX] %s\r\n", tx_status == HAL_OK ? "HELLO sent" : "TX failed");
-      }
+      tx_status = LR2021_LoRa_Send(&hspi2, lora_tx_msg, (uint8_t)(sizeof(lora_tx_msg) - 1U));
+      printf("[LoRa TX] %s\r\n", tx_status == HAL_OK ? "HELLO sent" : "TX failed");
     }
 
     /* USER CODE END WHILE */
