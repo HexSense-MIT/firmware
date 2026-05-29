@@ -40,7 +40,8 @@ static const lr2021_lora_config_t LORA_CFG = {
   .syncword         = LR2021_LORA_SYNCWORD_PRIVATE,
   .crc              = true,
   .iq_inverted      = false,
-  .implicit_hdr     = true,
+  .implicit_hdr     = false,
+  .payload_len      = 0,
   .tx_power_dbm     = 14,
 };
 
@@ -102,7 +103,7 @@ static void lora_tx_test() {
 
 static void rx_test() {
   lr2021_rx_status_t status;
-  int rx_len = radio.receive(rx_buf, sizeof(rx_buf), &status, 2000);
+  int rx_len = radio.receive(rx_buf, sizeof(rx_buf), &status, 5000);
 
   const char* mode_name = (current_mode == RadioMode::FLRC) ? "FLRC" : "LoRa";
 
@@ -113,10 +114,26 @@ static void rx_test() {
     }
     Serial.printf("  CRC=%s\r\n", status.crc_ok ? "OK" : "ERR");
     Serial.print("          data:");
-    for (int i = 0; i < rx_len && i < 32; i++) Serial.printf(" %02X", rx_buf[i]);
+    for (int i = 0; i < rx_len && i < 32; i++) {
+      // print in char
+      Serial.printf(" %c", rx_buf[i]);
+    }
     Serial.println();
   } else {
-    Serial.printf("[%s RX] timeout / no packet\r\n", mode_name);
+    Serial.printf("[%s RX] no payload  len=%u", mode_name, (unsigned)status.length);
+    if (status.irq_flags == LR2021_IRQ_NONE) {
+      Serial.print("  host timeout");
+    } else {
+      Serial.printf("  IRQ=0x%08lX", (unsigned long)status.irq_flags);
+      if (status.irq_flags & LR2021_IRQ_TIMEOUT) Serial.print(" TIMEOUT");
+      if (status.irq_flags & LR2021_IRQ_CRC_ERROR) Serial.print(" CRC_ERROR");
+      if (status.irq_flags & LR2021_IRQ_LEN_ERROR) Serial.print(" LEN_ERROR");
+      if (status.irq_flags & LR2021_IRQ_LORA_HEADER_ERROR) Serial.print(" HEADER_ERROR");
+      if (status.irq_flags & LR2021_IRQ_CMD_ERROR) Serial.print(" CMD_ERROR");
+      if (status.irq_flags & LR2021_IRQ_ERROR) Serial.print(" RADIO_ERROR");
+      Serial.printf("  RSSI=%d dBm", (int)status.rssi_dbm);
+    }
+    Serial.println();
   }
 }
 
@@ -169,5 +186,3 @@ void loop() {
   // }
   // delay(1500);
 }
-
-

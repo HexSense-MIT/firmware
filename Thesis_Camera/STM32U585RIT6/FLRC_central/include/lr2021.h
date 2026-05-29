@@ -137,6 +137,7 @@ struct lr2021_lora_config_t {
     bool             crc;              // enable CRC
     bool             iq_inverted;      // invert IQ (for downlink in LoRaWAN)
     bool             implicit_hdr;     // fixed payload length
+    uint8_t          payload_len;      // expected fixed RX length when implicit_hdr=true
     int8_t           tx_power_dbm;     // output power in dBm (e.g. 14)
 };
 
@@ -240,6 +241,7 @@ private:
     void cmdSetTx(uint32_t timeout_rtc);
     void cmdSetRx(uint32_t timeout_rtc);
     uint16_t cmdGetRxPacketLen();
+    uint16_t cmdGetRxFifoLevel();
     void cmdWriteFifo(const uint8_t* data, uint16_t len);
     void cmdReadFifo(uint8_t* data, uint16_t len);
 
@@ -249,7 +251,7 @@ private:
     void cmdLoRaSetPktParams(uint16_t preamble_sym, bool implicit,
                              uint8_t payload_len, bool crc, bool iq_inv);
     void cmdLoRaSetSyncword(uint8_t syncword);
-    void cmdLoRaGetPktStatus(int16_t& rssi, int8_t& snr, bool& crc_ok);
+    uint8_t cmdLoRaGetPktStatus(int16_t& rssi, int8_t& snr, bool& crc_ok);
 
     // FLRC
     void cmdFLRCSetModParams(lr2021_flrc_br_bw_t br_bw,

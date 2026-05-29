@@ -38,6 +38,7 @@ static constexpr uint16_t OC_FLRC_GET_PKT_STAT = 0x024B;
 // FIFO
 static constexpr uint16_t OC_FIFO_READ         = 0x0001;
 static constexpr uint16_t OC_FIFO_WRITE        = 0x0002;
+static constexpr uint16_t OC_FIFO_GET_RX_LEVEL = 0x011C;
 
 // DIO5 is the general-purpose IRQ output on the LR2021 module
 static constexpr uint8_t DIO5 = 0x05;
@@ -87,15 +88,25 @@ void LR2021::halWrite(const uint8_t* cmd, uint8_t cmdLen,
     _spi->endTransaction();
 }
 
-// Write cmd[] then read data[] in a single NSS transaction.
+// LR20xx read: send cmd[] in one NSS transaction, wait BUSY, then
+// send two dummy bytes and clock out data[] in a second transaction.
 void LR2021::halRead(const uint8_t* cmd, uint8_t cmdLen,
                      uint8_t* data, uint16_t dataLen) {
     waitBusy();
     _spi->beginTransaction(SPISettings(_spi_freq, MSBFIRST, SPI_MODE0));
     digitalWrite(_pin_nss, LOW);
-    for (uint8_t i = 0; i < cmdLen; i++)   _spi->transfer(cmd[i]);
-    for (uint16_t i = 0; i < dataLen; i++)  data[i] = _spi->transfer(0x00);
+    for (uint8_t i = 0; i < cmdLen; i++) _spi->transfer(cmd[i]);
     digitalWrite(_pin_nss, HIGH);
+
+    if (dataLen > 0) {
+        waitBusy();
+        digitalWrite(_pin_nss, LOW);
+        _spi->transfer(0x00);
+        _spi->transfer(0x00);
+        for (uint16_t i = 0; i < dataLen; i++) data[i] = _spi->transfer(0x00);
+        digitalWrite(_pin_nss, HIGH);
+    }
+
     _spi->endTransaction();
 }
 
@@ -237,6 +248,14 @@ uint16_t LR2021::cmdGetRxPacketLen() {
     return (uint16_t)((uint16_t)resp[0] << 8) | resp[1];
 }
 
+uint16_t LR2021::cmdGetRxFifoLevel() {
+    const uint8_t cmd[2] = { (uint8_t)(OC_FIFO_GET_RX_LEVEL >> 8),
+                              (uint8_t)(OC_FIFO_GET_RX_LEVEL) };
+    uint8_t resp[2] = {0};
+    halRead(cmd, 2, resp, 2);
+    return (uint16_t)((uint16_t)resp[0] << 8) | resp[1];
+}
+
 void LR2021::cmdWriteFifo(const uint8_t* data, uint16_t len) {
     const uint8_t cmd[2] = { (uint8_t)(OC_FIFO_WRITE >> 8),
                               (uint8_t)(OC_FIFO_WRITE) };
@@ -285,7 +304,7 @@ void LR2021::cmdLoRaSetSyncword(uint8_t syncword) {
 }
 
 // Response: [0] crc(b4)|cr(b3:0)  [1] len  [2] snr  [3] rssi_pkt  [4] rssi_sig  [5] flags
-void LR2021::cmdLoRaGetPktStatus(int16_t& rssi, int8_t& snr, bool& crc_ok) {
+uint8_t LR2021::cmdLoRaGetPktStatus(int16_t& rssi, int8_t& snr, bool& crc_ok) {
     const uint8_t cmd[2] = { (uint8_t)(OC_LORA_GET_PKT_STAT >> 8),
                               (uint8_t)(OC_LORA_GET_PKT_STAT) };
     uint8_t resp[6] = {0};
@@ -293,6 +312,7 @@ void LR2021::cmdLoRaGetPktStatus(int16_t& rssi, int8_t& snr, bool& crc_ok) {
     crc_ok = ((resp[0] >> 4) & 0x01) == 0;  // bit4=1 means CRC error
     snr    = (int8_t)resp[2];
     rssi   = -(int16_t)resp[3];
+    return resp[1];
 }
 
 // ============================================================
@@ -412,10 +432,12 @@ bool LR2021::configLoRa(const lr2021_lora_config_t& cfg) {
 
     // LF PA for sub-GHz; duty_cycle=4, max slices=7
     cmdSetPaConfig(LR2021_PA_SEL_LF, 0x00, 4, 7, 0);
-    cmdSetTxParams(cfg.tx_power_dbm, LR2021_RAMP_32_US);
+    cmdSetTxParams(cfg.tx_power_dbm, LR2021_RAMP_16_US);
 
     cmdLoRaSetModParams(cfg.sf, cfg.bw, cfg.cr, 0);
-    cmdLoRaSetPktParams(cfg.preamble_symbols, cfg.implicit_hdr, 0, cfg.crc, cfg.iq_inverted);
+    cmdLoRaSetPktParams(cfg.preamble_symbols, cfg.implicit_hdr,
+                        cfg.implicit_hdr ? cfg.payload_len : 255,
+                        cfg.crc, cfg.iq_inverted);
     cmdLoRaSetSyncword(cfg.syncword);
 
     // Route TX_DONE, RX_DONE, TIMEOUT, CRC_ERROR to DIO5
@@ -488,6 +510,14 @@ bool LR2021::transmit(const uint8_t* data, uint8_t len, uint32_t timeout_ms) {
 
 int LR2021::receive(uint8_t* buf, uint8_t max_len,
                     lr2021_rx_status_t* status, uint32_t timeout_ms) {
+    if (status) {
+        status->rssi_dbm  = 0;
+        status->snr       = 0;
+        status->irq_flags = LR2021_IRQ_NONE;
+        status->crc_ok    = false;
+        status->length    = 0;
+    }
+
     cmdClearIrq(LR2021_IRQ_ALL);
 
     uint32_t rtc = (timeout_ms == 0) ? LR2021_RX_CONTINUOUS
@@ -501,9 +531,22 @@ int LR2021::receive(uint8_t* buf, uint8_t max_len,
     while ((millis() - t0) < wait) {
         if (digitalRead(_pin_dio) == HIGH) {
             uint32_t irq = cmdGetAndClearIrq();
+            if (status) status->irq_flags = irq;
 
             if (irq & LR2021_IRQ_RX_DONE) {
                 uint16_t pkt_len = cmdGetRxPacketLen();
+                int16_t lora_rssi = 0;
+                int8_t  lora_snr = 0;
+                bool    lora_crc_ok = true;
+
+                if (_lora_mode) {
+                    uint8_t lora_pkt_len = cmdLoRaGetPktStatus(lora_rssi, lora_snr, lora_crc_ok);
+                    if (pkt_len == 0) pkt_len = lora_pkt_len;
+                }
+
+                if ((pkt_len == 0) && (irq & LR2021_IRQ_FIFO_RX)) {
+                    pkt_len = cmdGetRxFifoLevel();
+                }
                 if (pkt_len > max_len) pkt_len = max_len;
                 cmdReadFifo(buf, pkt_len);
 
@@ -513,9 +556,9 @@ int LR2021::receive(uint8_t* buf, uint8_t max_len,
                     status->crc_ok    = !(irq & LR2021_IRQ_CRC_ERROR);
 
                     if (_lora_mode) {
-                        bool crc_ok;
-                        cmdLoRaGetPktStatus(status->rssi_dbm, status->snr, crc_ok);
-                        status->crc_ok = crc_ok;
+                        status->rssi_dbm = lora_rssi;
+                        status->snr      = lora_snr;
+                        status->crc_ok   = lora_crc_ok;
                     } else {
                         bool sync_ok;
                         cmdFLRCGetPktStatus(status->rssi_dbm, sync_ok);
@@ -529,6 +572,7 @@ int LR2021::receive(uint8_t* buf, uint8_t max_len,
             }
 
             if (irq & (LR2021_IRQ_TIMEOUT | LR2021_IRQ_CRC_ERROR | LR2021_IRQ_LEN_ERROR)) {
+                if (status) status->rssi_dbm = getRSSI();
                 cmdSetStandby(LR2021_STANDBY_RC);
                 return -1;
             }
@@ -559,6 +603,18 @@ int LR2021::readPacket(uint8_t* buf, uint8_t max_len, lr2021_rx_status_t* status
     if (!(irq & LR2021_IRQ_RX_DONE)) return -1;
 
     uint16_t pkt_len = cmdGetRxPacketLen();
+    int16_t lora_rssi = 0;
+    int8_t  lora_snr = 0;
+    bool    lora_crc_ok = true;
+
+    if (_lora_mode) {
+        uint8_t lora_pkt_len = cmdLoRaGetPktStatus(lora_rssi, lora_snr, lora_crc_ok);
+        if (pkt_len == 0) pkt_len = lora_pkt_len;
+    }
+
+    if ((pkt_len == 0) && (irq & LR2021_IRQ_FIFO_RX)) {
+        pkt_len = cmdGetRxFifoLevel();
+    }
     if (pkt_len > max_len) pkt_len = max_len;
     cmdReadFifo(buf, pkt_len);
 
@@ -568,9 +624,9 @@ int LR2021::readPacket(uint8_t* buf, uint8_t max_len, lr2021_rx_status_t* status
         status->crc_ok    = !(irq & LR2021_IRQ_CRC_ERROR);
 
         if (_lora_mode) {
-            bool crc_ok;
-            cmdLoRaGetPktStatus(status->rssi_dbm, status->snr, crc_ok);
-            status->crc_ok = crc_ok;
+            status->rssi_dbm = lora_rssi;
+            status->snr      = lora_snr;
+            status->crc_ok   = lora_crc_ok;
         } else {
             bool sync_ok;
             cmdFLRCGetPktStatus(status->rssi_dbm, sync_ok);

@@ -350,7 +350,7 @@ HAL_StatusTypeDef LR2021_LoRa_Send(SPI_HandleTypeDef *hspi,
         (uint8_t)(LR2021_LORA_PREAMBLE_SYMBOLS >> 8),
         (uint8_t)(LR2021_LORA_PREAMBLE_SYMBOLS),
         len,
-        (LR2021_LORA_PKT_IMPLICIT << 2) | (LR2021_LORA_CRC_ON << 1) | LR2021_LORA_IQ_STANDARD
+        (LR2021_LORA_PKT_EXPLICIT << 2) | (LR2021_LORA_CRC_ON << 1) | LR2021_LORA_IQ_STANDARD
     };
     ret = send_cmd(hspi, LR2021_CMD_LORA_SET_PKT_PARAMS, pkt, 4);
     if (ret != HAL_OK) return ret;
