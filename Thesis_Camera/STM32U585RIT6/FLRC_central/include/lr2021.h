@@ -86,10 +86,10 @@ typedef enum {
     LR2021_FLRC_BR_2080_BW_2222 = 0x01,  // 2.080 Mb/s, 2.222 MHz
     LR2021_FLRC_BR_1300_BW_1333 = 0x02,  // 1.300 Mb/s, 1.333 MHz
     LR2021_FLRC_BR_1040_BW_1333 = 0x03,  // 1.040 Mb/s, 1.333 MHz
-    LR2021_FLRC_BR_0650_BW_0888 = 0x04,  // 0.650 Mb/s, 0.888 MHz
-    LR2021_FLRC_BR_0520_BW_0769 = 0x05,  // 0.520 Mb/s, 0.769 MHz
-    LR2021_FLRC_BR_0325_BW_0444 = 0x06,  // 0.325 Mb/s, 0.444 MHz
-    LR2021_FLRC_BR_0260_BW_0444 = 0x07,  // 0.260 Mb/s, 0.444 MHz
+    LR2021_FLRC_BR_0650_BW_0740 = 0x04,  // 0.650 Mb/s, 0.740 MHz
+    LR2021_FLRC_BR_0520_BW_0571 = 0x05,  // 0.520 Mb/s, 0.571 MHz
+    LR2021_FLRC_BR_0325_BW_0357 = 0x06,  // 0.325 Mb/s, 0.357 MHz
+    LR2021_FLRC_BR_0260_BW_0307 = 0x07,  // 0.260 Mb/s, 0.307 MHz
 } lr2021_flrc_br_bw_t;
 
 // ---- FLRC coding rate ----
@@ -230,11 +230,13 @@ private:
     // ---- Radio commands (inline wrappers around halWrite/halRead) ----
     void cmdSetStandby(lr2021_standby_mode_t mode);
     void cmdSetPacketType(lr2021_pkt_type_t type);
+    void cmdSetRxPath(uint8_t rx_path, uint8_t rx_boost);
     void cmdSetRfFreq(uint32_t freq_hz);
     void cmdSetPaConfig(lr2021_pa_sel_t pa_sel, uint8_t lf_mode,
                         uint8_t lf_duty, uint8_t lf_slices, uint8_t hf_duty);
     void cmdSetTxParams(int8_t power_dbm, lr2021_ramp_time_t ramp);
     void cmdCalibrate(uint8_t mask);
+    void cmdSetDioFunction(uint8_t dio, uint8_t function, uint8_t drive);
     void cmdSetDioIrq(uint8_t dio, uint32_t irq_mask);
     void cmdClearIrq(uint32_t mask);
     uint32_t cmdGetAndClearIrq();
@@ -242,6 +244,7 @@ private:
     void cmdSetRx(uint32_t timeout_rtc);
     uint16_t cmdGetRxPacketLen();
     uint16_t cmdGetRxFifoLevel();
+    void cmdClearRxFifo();
     void cmdWriteFifo(const uint8_t* data, uint16_t len);
     void cmdReadFifo(uint8_t* data, uint16_t len);
 
@@ -258,5 +261,5 @@ private:
                              lr2021_flrc_cr_t cr, lr2021_flrc_shape_t shape);
     void cmdFLRCSetPktParams(uint8_t payload_len);
     void cmdFLRCSetSyncword(const uint8_t syncword[4]);
-    void cmdFLRCGetPktStatus(int16_t& rssi, bool& sync_ok);
+    uint16_t cmdFLRCGetPktStatus(int16_t& rssi, bool& sync_ok);
 };

@@ -48,7 +48,7 @@ static HAL_StatusTypeDef send_cmd(SPI_HandleTypeDef *hspi, uint16_t opcode,
     return ret;
 }
 
-/* Normal read: command phase, NSS toggle, dummy byte, then response bytes. */
+/* Normal read: command phase, NSS toggle, two dummy bytes, then response bytes. */
 static HAL_StatusTypeDef read_cmd(SPI_HandleTypeDef *hspi, uint16_t opcode,
                                   uint8_t *rx, uint16_t n)
 {
@@ -64,15 +64,12 @@ static HAL_StatusTypeDef read_cmd(SPI_HandleTypeDef *hspi, uint16_t opcode,
     ret = wait_busy();
     if (ret != HAL_OK) return ret;
 
-    // uint8_t tx[2] = {0x00, 0x00};
-    // uint8_t discard[2] = {0x00, 0x00};
-    // uint8_t dummy = 0x00;
+    uint8_t dummy[2] = {0x00, 0x00};
+    uint8_t discard[2] = {0x00, 0x00};
     cs_low();
-    ret = HAL_SPI_Receive(hspi, (uint8_t *)rx, n, SPI_TIMEOUT_MS);
-    // ret = HAL_SPI_TransmitReceive(hspi, &tx, &discard, 2, SPI_TIMEOUT_MS);
-    // for (uint16_t i = 0; ret == HAL_OK && i < n; i++) {
-    //     ret = HAL_SPI_TransmitReceive(hspi, &dummy, &rx[i], 1, SPI_TIMEOUT_MS);
-    // }
+    ret = HAL_SPI_TransmitReceive(hspi, dummy, discard, sizeof(dummy), SPI_TIMEOUT_MS);
+    if (ret == HAL_OK)
+        ret = HAL_SPI_Receive(hspi, rx, n, SPI_TIMEOUT_MS);
     cs_high();
     return ret;
 }
@@ -158,6 +155,12 @@ static HAL_StatusTypeDef set_lora_syncword(SPI_HandleTypeDef *hspi)
     return send_cmd(hspi, LR2021_CMD_LORA_SET_SYNCWORD, &syncword, 1);
 }
 
+static HAL_StatusTypeDef set_flrc_syncword(SPI_HandleTypeDef *hspi)
+{
+    const uint8_t syncword[5] = {0x01, 0xDE, 0xAD, 0xBE, 0xEF};
+    return send_cmd(hspi, LR2021_CMD_FLRC_SET_SYNCWORD, syncword, sizeof(syncword));
+}
+
 /* Route selected system IRQs to DIO5. */
 static HAL_StatusTypeDef cfg_irq(SPI_HandleTypeDef *hspi, uint32_t mask)
 {
@@ -189,12 +192,12 @@ static HAL_StatusTypeDef poll_irq(SPI_HandleTypeDef *hspi, uint32_t expect_mask,
     //     continue;
 
     /* IRQ line is high — read and atomically clear via SPI */
-    uint8_t raw[6] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    uint8_t raw[4] = {0x00, 0x00, 0x00, 0x00};
     HAL_StatusTypeDef ret = read_cmd(hspi, LR2021_CMD_GET_AND_CLR_IRQ, raw, sizeof(raw));
     if (ret != HAL_OK) return ret;
 
-    uint32_t irq = ((uint32_t)raw[2] << 24) | ((uint32_t)raw[3] << 16)
-                  | ((uint32_t)raw[4] << 8)  |  raw[5];
+    uint32_t irq = ((uint32_t)raw[0] << 24) | ((uint32_t)raw[1] << 16)
+                  | ((uint32_t)raw[2] << 8)  |  raw[3];
     if (irq & expect_mask) {
         if (irq_out) {
             *irq_out = irq;
@@ -249,7 +252,8 @@ HAL_StatusTypeDef LR2021_Init(SPI_HandleTypeDef *hspi)
   if (ret != HAL_OK) return ret;
 
   /* Default to LoRa mode (used for commands / ACKs) */
-  return LR2021_SetMode(hspi, LR2021_MODE_LORA);
+//   return LR2021_SetMode(hspi, LR2021_MODE_LORA);
+  return ret;
 }
 
 /* ------------------------------------------------------------------ */
@@ -313,10 +317,12 @@ HAL_StatusTypeDef LR2021_SetMode(SPI_HandleTypeDef *hspi, LR2021_Mode_t mode)
          *   byte 1: (CR<<4)|pulse_shape — CR 1/2, BT 1.0 → (0x00<<4)|0x07 = 0x07
          */
         uint8_t mod[2] = {
-            LR2021_FLRC_BR_BW_2_6M_2_6M,
+            LR2021_FLRC_BR_BW_650k_0_9M,
             (LR2021_FLRC_CR_1_2 << 4) | LR2021_FLRC_PULSE_BT1
         };
         ret = send_cmd(hspi, LR2021_CMD_FLRC_SET_MOD_PARAMS, mod, 2);
+
+        ret = set_flrc_syncword(hspi);
     }
 
     if (ret == HAL_OK)
@@ -467,9 +473,9 @@ HAL_StatusTypeDef LR2021_FLRC_Send(SPI_HandleTypeDef *hspi,
      *   [2:3] = payload length big-endian
      */
     uint8_t pkt[4] = {
-        LR2021_FLRC_SYNC_WORD_LEN_OFF + (LR2021_FLRC_PREAMBLE_32B << 2),
-        LR2021_FLRC_CRC_2B + (LR2021_FLRC_HEADER_FIXED << 2) +
-            (LR2021_FLRC_MATCH_SYNCWORD_OFF << 3) + (LR2021_FLRC_TX_SYNCWORD_NONE << 6),
+        LR2021_FLRC_SYNC_WORD_LEN_4B + (LR2021_FLRC_PREAMBLE_32B << 2),
+        LR2021_FLRC_CRC_2B + (LR2021_FLRC_HEADER_VARIABLE << 2) +
+            (LR2021_FLRC_MATCH_SYNCWORD_1 << 3) + (LR2021_FLRC_TX_SYNCWORD_1 << 6),
         (uint8_t)(len >> 8),
         (uint8_t)(len)
     };
@@ -490,7 +496,7 @@ HAL_StatusTypeDef LR2021_FLRC_Send(SPI_HandleTypeDef *hspi,
     ret = cfg_irq(hspi, LR2021_IRQ_TX_DONE);
     if (ret != HAL_OK) return ret;
 
-    uint8_t tx_to[3] = { 0x00, 0x00, 0x00 };
+    uint8_t tx_to[3] = { 0x05, 0x00, 0x00 };
     ret = send_cmd(hspi, LR2021_CMD_SET_TX, tx_to, 3);
     if (ret != HAL_OK) return ret;
 

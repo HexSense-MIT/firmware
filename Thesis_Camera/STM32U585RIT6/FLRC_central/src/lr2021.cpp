@@ -9,6 +9,7 @@
 static constexpr uint16_t OC_SET_SLEEP         = 0x0127;
 static constexpr uint16_t OC_SET_STANDBY       = 0x0128;
 static constexpr uint16_t OC_CALIBRATE         = 0x0122;
+static constexpr uint16_t OC_SET_DIO_FUNC      = 0x0112;
 static constexpr uint16_t OC_SET_DIO_IRQ_CFG   = 0x0115;
 static constexpr uint16_t OC_CLEAR_IRQ         = 0x0116;
 static constexpr uint16_t OC_GET_CLR_IRQ       = 0x0117;
@@ -16,6 +17,7 @@ static constexpr uint16_t OC_GET_CLR_IRQ       = 0x0117;
 // Radio common
 static constexpr uint16_t OC_SET_PKT_TYPE      = 0x0207;
 static constexpr uint16_t OC_SET_RF_FREQ       = 0x0200;
+static constexpr uint16_t OC_SET_RXPATH_CFG    = 0x0201;
 static constexpr uint16_t OC_SET_PA_CFG        = 0x0202;
 static constexpr uint16_t OC_SET_TX_PARAMS     = 0x0203;
 static constexpr uint16_t OC_SET_RX            = 0x020C;
@@ -39,9 +41,12 @@ static constexpr uint16_t OC_FLRC_GET_PKT_STAT = 0x024B;
 static constexpr uint16_t OC_FIFO_READ         = 0x0001;
 static constexpr uint16_t OC_FIFO_WRITE        = 0x0002;
 static constexpr uint16_t OC_FIFO_GET_RX_LEVEL = 0x011C;
+static constexpr uint16_t OC_FIFO_CLEAR_RX     = 0x011E;
 
 // DIO5 is the general-purpose IRQ output on the LR2021 module
 static constexpr uint8_t DIO5 = 0x05;
+static constexpr uint8_t DIO_FUNC_IRQ = 0x01;
+static constexpr uint8_t DIO_DRIVE_NONE = 0x00;
 
 // FLRC SetFlrcPacketParams byte encoding (Table 18-5, DS.LR2021 Rev1.1)
 // Byte2 [7:6]=rfu | [5:2]=agc_pbl_len | [1:0]=sync_len
@@ -55,6 +60,14 @@ static constexpr uint8_t FLRC_PKT_BYTE2_DEFAULT = (3U << 2) | 2U;
 //   pkt_format=0 → dynamic (variable-length)
 //   Crc bits set by crc_type in cmdFLRCSetPktParams
 static constexpr uint8_t FLRC_PKT_BYTE3_DEFAULT = (1U << 6) | (1U << 3);
+
+static constexpr uint8_t  LR2021_FLRC_PREAMBLE_32B        = 0x07;
+static constexpr uint8_t  LR2021_FLRC_SYNC_WORD_LEN_4B    = 0x02;
+/* FLRC packet params byte 3: crc + (header<<2) + (sync_match<<3) + (tx_sw<<6) */
+static constexpr uint8_t  LR2021_FLRC_HEADER_VARIABLE     = 0x00;
+static constexpr uint8_t  LR2021_FLRC_CRC_2B              = 0x01;
+static constexpr uint8_t  LR2021_FLRC_MATCH_SYNCWORD_1    = 0x01;
+static constexpr uint8_t  LR2021_FLRC_TX_SYNCWORD_1       = 0x01;
 
 // ============================================================
 //  Constructor
@@ -160,6 +173,14 @@ void LR2021::cmdSetRfFreq(uint32_t freq_hz) {
     halWrite(cmd, 6);
 }
 
+void LR2021::cmdSetRxPath(uint8_t rx_path, uint8_t rx_boost) {
+    const uint8_t cmd[4] = { (uint8_t)(OC_SET_RXPATH_CFG >> 8),
+                             (uint8_t)(OC_SET_RXPATH_CFG),
+                             (uint8_t)(0x00 | rx_path & 0x01),
+                             (uint8_t)(0x00 | rx_boost & 0x03) };
+    halWrite(cmd, 4);
+}
+
 // Byte2: (pa_sel<<7)|lf_mode  Byte3: (lf_duty<<4)|lf_slices  Byte4: hf_duty
 void LR2021::cmdSetPaConfig(lr2021_pa_sel_t pa_sel, uint8_t lf_mode,
                              uint8_t lf_duty, uint8_t lf_slices, uint8_t hf_duty) {
@@ -199,6 +220,14 @@ void LR2021::cmdSetDioIrq(uint8_t dio, uint32_t irq_mask) {
                               (uint8_t)(irq_mask >> 8),
                               (uint8_t)(irq_mask) };
     halWrite(cmd, 7);
+}
+
+void LR2021::cmdSetDioFunction(uint8_t dio, uint8_t function, uint8_t drive) {
+    const uint8_t cmd[4] = { (uint8_t)(OC_SET_DIO_FUNC >> 8),
+                              (uint8_t)(OC_SET_DIO_FUNC),
+                              dio,
+                              (uint8_t)((function << 4) | (drive & 0x0F)) };
+    halWrite(cmd, 4);
 }
 
 void LR2021::cmdClearIrq(uint32_t mask) {
@@ -254,6 +283,12 @@ uint16_t LR2021::cmdGetRxFifoLevel() {
     uint8_t resp[2] = {0};
     halRead(cmd, 2, resp, 2);
     return (uint16_t)((uint16_t)resp[0] << 8) | resp[1];
+}
+
+void LR2021::cmdClearRxFifo() {
+    const uint8_t cmd[2] = { (uint8_t)(OC_FIFO_CLEAR_RX >> 8),
+                              (uint8_t)(OC_FIFO_CLEAR_RX) };
+    halWrite(cmd, 2);
 }
 
 void LR2021::cmdWriteFifo(const uint8_t* data, uint16_t len) {
@@ -334,11 +369,15 @@ void LR2021::cmdFLRCSetModParams(lr2021_flrc_br_bw_t br_bw,
 // Byte3: crc_type|(header_type<<2)|(match_sw<<3)|(tx_sw<<6)
 // Byte4-5: payload_len (BE, variable-length mode uses 0)
 void LR2021::cmdFLRCSetPktParams(uint8_t payload_len) {
-    uint8_t crc_type = _flrc_cfg.crc ? 0x01U : 0x00U;
+    uint8_t crc_type = _flrc_cfg.crc ? LR2021_FLRC_CRC_2B : 0x00U;
     const uint8_t cmd[6] = { (uint8_t)(OC_FLRC_SET_PKT >> 8),
                               (uint8_t)(OC_FLRC_SET_PKT),
-                              FLRC_PKT_BYTE2_DEFAULT,
-                              (uint8_t)(crc_type | FLRC_PKT_BYTE3_DEFAULT),
+                              (uint8_t)(LR2021_FLRC_SYNC_WORD_LEN_4B
+                                      + (LR2021_FLRC_PREAMBLE_32B << 2)),
+                              (uint8_t)(crc_type
+                                      + (LR2021_FLRC_HEADER_VARIABLE << 2)
+                                      + (LR2021_FLRC_MATCH_SYNCWORD_1 << 3)
+                                      + (LR2021_FLRC_TX_SYNCWORD_1 << 6)),
                               0x00,          // payload_len high byte
                               payload_len }; // payload_len low byte
     halWrite(cmd, 6);
@@ -353,13 +392,15 @@ void LR2021::cmdFLRCSetSyncword(const uint8_t syncword[4]) {
 }
 
 // Response: [0-1] pkt_len  [2] rssi_avg  [3] rssi_sync  [4] flags
-void LR2021::cmdFLRCGetPktStatus(int16_t& rssi, bool& sync_ok) {
+uint16_t LR2021::cmdFLRCGetPktStatus(int16_t& rssi, bool& sync_ok) {
     const uint8_t cmd[2] = { (uint8_t)(OC_FLRC_GET_PKT_STAT >> 8),
                               (uint8_t)(OC_FLRC_GET_PKT_STAT) };
     uint8_t resp[5] = {0};
     halRead(cmd, 2, resp, 5);
     rssi    = -(int16_t)resp[2];
+    uint16_t pkt_len = (uint16_t)((uint16_t)resp[0] << 8) | resp[1];
     sync_ok = ((resp[4] >> 4) & 0x0F) != 0;  // syncword_index != 0 → SW detected
+    return pkt_len;
 }
 
 // ============================================================
@@ -381,7 +422,8 @@ bool LR2021::begin(uint32_t spi_freq) {
     // Full calibration (all blocks)
     cmdCalibrate(0x3F);
 
-    cmdSetStandby(LR2021_STANDBY_RC);
+    cmdSetStandby(LR2021_STANDBY_XOSC);
+
     return true;
 }
 
@@ -431,6 +473,7 @@ bool LR2021::configLoRa(const lr2021_lora_config_t& cfg) {
     cmdSetRfFreq(cfg.freq_hz);
 
     // LF PA for sub-GHz; duty_cycle=4, max slices=7
+    cmdSetRxPath(0, 0);
     cmdSetPaConfig(LR2021_PA_SEL_LF, 0x00, 4, 7, 0);
     cmdSetTxParams(cfg.tx_power_dbm, LR2021_RAMP_16_US);
 
@@ -441,6 +484,7 @@ bool LR2021::configLoRa(const lr2021_lora_config_t& cfg) {
     cmdLoRaSetSyncword(cfg.syncword);
 
     // Route TX_DONE, RX_DONE, TIMEOUT, CRC_ERROR to DIO5
+    cmdSetDioFunction(DIO5, DIO_FUNC_IRQ, DIO_DRIVE_NONE);
     cmdSetDioIrq(DIO5, LR2021_IRQ_TX_DONE | LR2021_IRQ_RX_DONE
                       | LR2021_IRQ_TIMEOUT | LR2021_IRQ_CRC_ERROR
                       | LR2021_IRQ_LEN_ERROR);
@@ -454,20 +498,23 @@ bool LR2021::configFLRC(const lr2021_flrc_config_t& cfg) {
     _lora_mode = false;
     _flrc_cfg  = cfg;
 
-    cmdSetStandby(LR2021_STANDBY_RC);
+    cmdSetStandby(LR2021_STANDBY_XOSC);
     cmdSetPacketType(LR2021_PKT_TYPE_FLRC);
     cmdSetRfFreq(cfg.freq_hz);
 
+    cmdSetRxPath(0, 0);
     cmdSetPaConfig(LR2021_PA_SEL_LF, 0x00, 4, 7, 0);
-    cmdSetTxParams(cfg.tx_power_dbm, LR2021_RAMP_32_US);
+    cmdSetTxParams(cfg.tx_power_dbm, LR2021_RAMP_16_US);
 
     cmdFLRCSetModParams(cfg.br_bw, cfg.cr, cfg.shape);
     cmdFLRCSetSyncword(cfg.syncword);
-    cmdFLRCSetPktParams(0);  // payload_len updated per TX
+    cmdFLRCSetPktParams(255);  // RX maximum; payload_len updated per TX
 
+    cmdSetDioFunction(DIO5, DIO_FUNC_IRQ, DIO_DRIVE_NONE);
     cmdSetDioIrq(DIO5, LR2021_IRQ_TX_DONE | LR2021_IRQ_RX_DONE
                       | LR2021_IRQ_TIMEOUT | LR2021_IRQ_CRC_ERROR
                       | LR2021_IRQ_LEN_ERROR);
+    cmdClearRxFifo();
     cmdClearIrq(LR2021_IRQ_ALL);
     return true;
 }
@@ -518,7 +565,9 @@ int LR2021::receive(uint8_t* buf, uint8_t max_len,
         status->length    = 0;
     }
 
+    cmdClearRxFifo();
     cmdClearIrq(LR2021_IRQ_ALL);
+    if (!_lora_mode) cmdFLRCSetPktParams(max_len);
 
     uint32_t rtc = (timeout_ms == 0) ? LR2021_RX_CONTINUOUS
                                      : LR2021_MS_TO_RTC(timeout_ms);
@@ -533,19 +582,42 @@ int LR2021::receive(uint8_t* buf, uint8_t max_len,
             uint32_t irq = cmdGetAndClearIrq();
             if (status) status->irq_flags = irq;
 
+            if (irq & (LR2021_IRQ_TIMEOUT | LR2021_IRQ_CRC_ERROR | LR2021_IRQ_LEN_ERROR
+                     | LR2021_IRQ_CMD_ERROR | LR2021_IRQ_ERROR)) {
+                if (status) status->rssi_dbm = getRSSI();
+                cmdClearRxFifo();
+                cmdSetStandby(LR2021_STANDBY_RC);
+                return -1;
+            }
+
             if (irq & LR2021_IRQ_RX_DONE) {
                 uint16_t pkt_len = cmdGetRxPacketLen();
                 int16_t lora_rssi = 0;
                 int8_t  lora_snr = 0;
                 bool    lora_crc_ok = true;
+                int16_t flrc_rssi = 0;
+                bool    flrc_sync_ok = false;
 
                 if (_lora_mode) {
                     uint8_t lora_pkt_len = cmdLoRaGetPktStatus(lora_rssi, lora_snr, lora_crc_ok);
                     if (pkt_len == 0) pkt_len = lora_pkt_len;
+                } else {
+                    uint16_t flrc_pkt_len = cmdFLRCGetPktStatus(flrc_rssi, flrc_sync_ok);
+                    if (pkt_len == 0) pkt_len = flrc_pkt_len;
                 }
 
                 if ((pkt_len == 0) && (irq & LR2021_IRQ_FIFO_RX)) {
                     pkt_len = cmdGetRxFifoLevel();
+                }
+                if ((pkt_len == 0) || (!_lora_mode && !flrc_sync_ok)) {
+                    if (status) {
+                        status->length  = pkt_len;
+                        status->crc_ok  = false;
+                        status->rssi_dbm = flrc_rssi;
+                    }
+                    cmdClearRxFifo();
+                    cmdSetStandby(LR2021_STANDBY_RC);
+                    return -1;
                 }
                 if (pkt_len > max_len) pkt_len = max_len;
                 cmdReadFifo(buf, pkt_len);
@@ -560,27 +632,21 @@ int LR2021::receive(uint8_t* buf, uint8_t max_len,
                         status->snr      = lora_snr;
                         status->crc_ok   = lora_crc_ok;
                     } else {
-                        bool sync_ok;
-                        cmdFLRCGetPktStatus(status->rssi_dbm, sync_ok);
+                        status->rssi_dbm = flrc_rssi;
                         status->snr    = 0;
-                        status->crc_ok = status->crc_ok && sync_ok;
+                        status->crc_ok = status->crc_ok && flrc_sync_ok;
                     }
                 }
 
                 cmdSetStandby(LR2021_STANDBY_RC);
                 return (int)pkt_len;
             }
-
-            if (irq & (LR2021_IRQ_TIMEOUT | LR2021_IRQ_CRC_ERROR | LR2021_IRQ_LEN_ERROR)) {
-                if (status) status->rssi_dbm = getRSSI();
-                cmdSetStandby(LR2021_STANDBY_RC);
-                return -1;
-            }
         }
         delayMicroseconds(100);
     }
 
     cmdClearIrq(LR2021_IRQ_ALL);
+    cmdClearRxFifo();
     cmdSetStandby(LR2021_STANDBY_RC);
     return -1;
 }
@@ -588,7 +654,9 @@ int LR2021::receive(uint8_t* buf, uint8_t max_len,
 // ---- Non-blocking async receive ----
 
 void LR2021::startRx(uint32_t timeout_ms) {
+    cmdClearRxFifo();
     cmdClearIrq(LR2021_IRQ_ALL);
+    if (!_lora_mode) cmdFLRCSetPktParams(255);
     uint32_t rtc = (timeout_ms == 0) ? LR2021_RX_CONTINUOUS
                                      : LR2021_MS_TO_RTC(timeout_ms);
     cmdSetRx(rtc);
@@ -606,10 +674,15 @@ int LR2021::readPacket(uint8_t* buf, uint8_t max_len, lr2021_rx_status_t* status
     int16_t lora_rssi = 0;
     int8_t  lora_snr = 0;
     bool    lora_crc_ok = true;
+    int16_t flrc_rssi = 0;
+    bool    flrc_sync_ok = false;
 
     if (_lora_mode) {
         uint8_t lora_pkt_len = cmdLoRaGetPktStatus(lora_rssi, lora_snr, lora_crc_ok);
         if (pkt_len == 0) pkt_len = lora_pkt_len;
+    } else {
+        uint16_t flrc_pkt_len = cmdFLRCGetPktStatus(flrc_rssi, flrc_sync_ok);
+        if (pkt_len == 0) pkt_len = flrc_pkt_len;
     }
 
     if ((pkt_len == 0) && (irq & LR2021_IRQ_FIFO_RX)) {
@@ -628,9 +701,9 @@ int LR2021::readPacket(uint8_t* buf, uint8_t max_len, lr2021_rx_status_t* status
             status->snr      = lora_snr;
             status->crc_ok   = lora_crc_ok;
         } else {
-            bool sync_ok;
-            cmdFLRCGetPktStatus(status->rssi_dbm, sync_ok);
-            status->snr = 0;
+            status->rssi_dbm = flrc_rssi;
+            status->snr      = 0;
+            status->crc_ok   = status->crc_ok && flrc_sync_ok;
         }
     }
 

@@ -19,12 +19,12 @@
 
 LR2021 radio;   // uses LR2021_DEFAULT_PIN_* from lr2021.h
 
-// ---- FLRC config — 325 kbps / 444 kHz BW, 915 MHz, CRC on ----
+// ---- FLRC config: 650 kbps / 740 kHz BW, 915 MHz, CRC on ----
 static const lr2021_flrc_config_t FLRC_CFG = {
   .freq_hz      = 915000000UL,
-  .br_bw        = LR2021_FLRC_BR_0325_BW_0444,
+  .br_bw        = LR2021_FLRC_BR_0650_BW_0740,
   .cr           = LR2021_FLRC_CR_1_2,
-  .shape        = LR2021_FLRC_SHAPE_BT05,
+  .shape        = LR2021_FLRC_SHAPE_BT1,
   .syncword     = {0xDE, 0xAD, 0xBE, 0xEF},
   .crc          = true,
   .tx_power_dbm = 14,

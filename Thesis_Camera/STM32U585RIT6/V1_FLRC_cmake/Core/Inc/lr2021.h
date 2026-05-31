@@ -75,7 +75,8 @@
 /* FLRC specific */
 #define LR2021_CMD_FLRC_SET_MOD_PARAMS  0x0248U  /* 2 param bytes */
 #define LR2021_CMD_FLRC_SET_PKT_PARAMS  0x0249U  /* 4 param bytes */
-
+#define LR2021_CMD_FLRC_SET_SYNCWORD    0x024CU
+#define LR2021_CMD_FLRC_GET_PKT_STAT    0x024BU
 /* ------------------------------------------------------------------ */
 /* Packet types                                                         */
 /* ------------------------------------------------------------------ */
@@ -116,6 +117,7 @@
 #define LR2021_FLRC_BR_BW_1_3M_1_3M     0x02U   /* BR = 1300kbps and BW = 1333kHz */
 #define LR2021_FLRC_BR_BW_1M_1_3M       0x03U   /* BR = 1040kbps and BW = 1333kHz */
 #define LR2021_FLRC_BR_BW_650k_0_9M     0x04U   /* BR = 650kbps and BW = 888kHz   */
+
 #define LR2021_FLRC_CR_1_2              0x00U
 #define LR2021_FLRC_PULSE_BT1           0x07U
 
@@ -127,6 +129,11 @@
 #define LR2021_FLRC_CRC_2B              0x01U
 #define LR2021_FLRC_MATCH_SYNCWORD_OFF  0x00U
 #define LR2021_FLRC_TX_SYNCWORD_NONE    0x00U
+
+#define LR2021_FLRC_SYNC_WORD_LEN_4B    0x02U
+#define LR2021_FLRC_HEADER_VARIABLE     0x00U
+#define LR2021_FLRC_MATCH_SYNCWORD_1    0x01U
+#define LR2021_FLRC_TX_SYNCWORD_1       0x01U
 
 /* ------------------------------------------------------------------ */
 /* TX / IRQ common settings                                             */
