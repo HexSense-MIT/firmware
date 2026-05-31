@@ -35,6 +35,23 @@
 #define LR2021_IRQ_LEN_ERROR               (1UL << 23)
 #define LR2021_IRQ_ALL                     0xFFFFFFFFUL
 
+#define LR2021_SYSERR_HF_XOSC_START         (1U << 0)
+#define LR2021_SYSERR_LF_XOSC_START         (1U << 1)
+#define LR2021_SYSERR_PLL_LOCK              (1U << 2)
+#define LR2021_SYSERR_LF_RC_CALIB           (1U << 3)
+#define LR2021_SYSERR_HF_RC_CALIB           (1U << 4)
+#define LR2021_SYSERR_PLL_CALIB             (1U << 5)
+#define LR2021_SYSERR_AAF_CALIB             (1U << 6)
+#define LR2021_SYSERR_IMG_CALIB             (1U << 7)
+#define LR2021_SYSERR_CHIP_BUSY             (1U << 8)
+#define LR2021_SYSERR_RXFREQ_NO_FE_CALIB    (1U << 9)
+#define LR2021_SYSERR_MU_ADC_CALIB          (1U << 10)
+#define LR2021_SYSERR_PA_OFFSET_CALIB       (1U << 11)
+#define LR2021_SYSERR_PPF_CALIB             (1U << 12)
+#define LR2021_SYSERR_SRC_CALIB             (1U << 13)
+#define LR2021_SYSERR_SRC_SATURATION_CALIB  (1U << 14)
+#define LR2021_SYSERR_SRC_TOLERANCE_CALIB   (1U << 15)
+
 // ---- Standby modes ----
 typedef enum {
     LR2021_STANDBY_RC   = 0x00,
@@ -155,7 +172,9 @@ struct lr2021_rx_status_t {
     int16_t  rssi_dbm;
     int8_t   snr;          // LoRa only; 0 for FLRC
     uint32_t irq_flags;
+    uint16_t system_errors;
     bool     crc_ok;
+    bool     flrc_sync_ok; // FLRC only; true when a configured syncword matched
     uint16_t length;
 };
 
@@ -236,6 +255,9 @@ private:
                         uint8_t lf_duty, uint8_t lf_slices, uint8_t hf_duty);
     void cmdSetTxParams(int8_t power_dbm, lr2021_ramp_time_t ramp);
     void cmdCalibrate(uint8_t mask);
+    void cmdCalibrateFrontEnd(uint32_t freq_hz);
+    uint16_t cmdGetErrors();
+    void cmdClearErrors();
     void cmdSetDioFunction(uint8_t dio, uint8_t function, uint8_t drive);
     void cmdSetDioIrq(uint8_t dio, uint32_t irq_mask);
     void cmdClearIrq(uint32_t mask);

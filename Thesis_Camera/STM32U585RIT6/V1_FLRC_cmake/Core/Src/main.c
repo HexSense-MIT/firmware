@@ -37,7 +37,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define LORA_TX_INTERVAL_MS 500U
+#define LORA_TX_INTERVAL_MS 2U
 
 /* USER CODE END PD */
 

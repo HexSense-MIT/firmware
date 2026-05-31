@@ -9,6 +9,9 @@
 static constexpr uint16_t OC_SET_SLEEP         = 0x0127;
 static constexpr uint16_t OC_SET_STANDBY       = 0x0128;
 static constexpr uint16_t OC_CALIBRATE         = 0x0122;
+static constexpr uint16_t OC_CALIBRATE_FRONT_END = 0x0123;
+static constexpr uint16_t OC_GET_ERRORS        = 0x0110;
+static constexpr uint16_t OC_CLEAR_ERRORS      = 0x0111;
 static constexpr uint16_t OC_SET_DIO_FUNC      = 0x0112;
 static constexpr uint16_t OC_SET_DIO_IRQ_CFG   = 0x0115;
 static constexpr uint16_t OC_CLEAR_IRQ         = 0x0116;
@@ -208,6 +211,30 @@ void LR2021::cmdCalibrate(uint8_t mask) {
     halWrite(cmd, 3);
     delay(5);  // calibration takes a few ms
     waitBusy(500);
+}
+
+void LR2021::cmdCalibrateFrontEnd(uint32_t freq_hz) {
+    // LF path calibration value is ceil(freq_hz / 4 MHz).
+    uint16_t freq_4mhz = (uint16_t)((freq_hz + 3999999UL) / 4000000UL);
+    const uint8_t cmd[4] = { (uint8_t)(OC_CALIBRATE_FRONT_END >> 8),
+                              (uint8_t)(OC_CALIBRATE_FRONT_END),
+                              (uint8_t)(freq_4mhz >> 8),
+                              (uint8_t)(freq_4mhz) };
+    halWrite(cmd, 4);
+}
+
+uint16_t LR2021::cmdGetErrors() {
+    const uint8_t cmd[2] = { (uint8_t)(OC_GET_ERRORS >> 8),
+                              (uint8_t)(OC_GET_ERRORS) };
+    uint8_t resp[2] = {0};
+    halRead(cmd, 2, resp, 2);
+    return (uint16_t)((uint16_t)resp[0] << 8) | resp[1];
+}
+
+void LR2021::cmdClearErrors() {
+    const uint8_t cmd[2] = { (uint8_t)(OC_CLEAR_ERRORS >> 8),
+                              (uint8_t)(OC_CLEAR_ERRORS) };
+    halWrite(cmd, 2);
 }
 
 // Route irq_mask events to the specified DIO pin.
@@ -420,7 +447,7 @@ bool LR2021::begin(uint32_t spi_freq) {
     reset();
 
     // Full calibration (all blocks)
-    cmdCalibrate(0x3F);
+    cmdCalibrate(0x6F);
 
     cmdSetStandby(LR2021_STANDBY_XOSC);
 
@@ -471,6 +498,7 @@ bool LR2021::configLoRa(const lr2021_lora_config_t& cfg) {
     cmdSetStandby(LR2021_STANDBY_XOSC);
     cmdSetPacketType(LR2021_PKT_TYPE_LORA);
     cmdSetRfFreq(cfg.freq_hz);
+    cmdCalibrateFrontEnd(cfg.freq_hz);
 
     // LF PA for sub-GHz; duty_cycle=4, max slices=7
     cmdSetRxPath(0, 0);
@@ -501,6 +529,7 @@ bool LR2021::configFLRC(const lr2021_flrc_config_t& cfg) {
     cmdSetStandby(LR2021_STANDBY_XOSC);
     cmdSetPacketType(LR2021_PKT_TYPE_FLRC);
     cmdSetRfFreq(cfg.freq_hz);
+    cmdCalibrateFrontEnd(cfg.freq_hz);
 
     cmdSetRxPath(0, 0);
     cmdSetPaConfig(LR2021_PA_SEL_LF, 0x00, 4, 7, 0);
@@ -513,8 +542,10 @@ bool LR2021::configFLRC(const lr2021_flrc_config_t& cfg) {
     cmdSetDioFunction(DIO5, DIO_FUNC_IRQ, DIO_DRIVE_NONE);
     cmdSetDioIrq(DIO5, LR2021_IRQ_TX_DONE | LR2021_IRQ_RX_DONE
                       | LR2021_IRQ_TIMEOUT | LR2021_IRQ_CRC_ERROR
-                      | LR2021_IRQ_LEN_ERROR);
+                      | LR2021_IRQ_LEN_ERROR | LR2021_IRQ_CMD_ERROR
+                      | LR2021_IRQ_ERROR);
     cmdClearRxFifo();
+    cmdClearErrors();
     cmdClearIrq(LR2021_IRQ_ALL);
     return true;
 }
@@ -561,11 +592,15 @@ int LR2021::receive(uint8_t* buf, uint8_t max_len,
         status->rssi_dbm  = 0;
         status->snr       = 0;
         status->irq_flags = LR2021_IRQ_NONE;
+        status->system_errors = 0;
         status->crc_ok    = false;
+        status->flrc_sync_ok = false;
         status->length    = 0;
     }
 
+    cmdSetStandby(LR2021_STANDBY_RC);
     cmdClearRxFifo();
+    cmdClearErrors();
     cmdClearIrq(LR2021_IRQ_ALL);
     if (!_lora_mode) cmdFLRCSetPktParams(max_len);
 
@@ -582,12 +617,34 @@ int LR2021::receive(uint8_t* buf, uint8_t max_len,
             uint32_t irq = cmdGetAndClearIrq();
             if (status) status->irq_flags = irq;
 
-            if (irq & (LR2021_IRQ_TIMEOUT | LR2021_IRQ_CRC_ERROR | LR2021_IRQ_LEN_ERROR
-                     | LR2021_IRQ_CMD_ERROR | LR2021_IRQ_ERROR)) {
+            if (irq & LR2021_IRQ_TIMEOUT) {
                 if (status) status->rssi_dbm = getRSSI();
                 cmdClearRxFifo();
                 cmdSetStandby(LR2021_STANDBY_RC);
                 return -1;
+            }
+
+            if (irq & (LR2021_IRQ_CMD_ERROR | LR2021_IRQ_ERROR)) {
+                if (status) {
+                    status->rssi_dbm = getRSSI();
+                    status->system_errors = cmdGetErrors();
+                }
+                cmdClearErrors();
+                cmdClearRxFifo();
+                cmdSetStandby(LR2021_STANDBY_RC);
+                return -1;
+            }
+
+            // A noisy channel can raise CRC/LEN errors repeatedly. Keep the
+            // receiver armed until the caller's timeout instead of returning
+            // immediately and flooding the application loop with failures.
+            if (irq & (LR2021_IRQ_CRC_ERROR | LR2021_IRQ_LEN_ERROR)) {
+                if (status) status->rssi_dbm = getRSSI();
+                cmdSetStandby(LR2021_STANDBY_RC);
+                cmdClearRxFifo();
+                cmdClearIrq(LR2021_IRQ_ALL);
+                cmdSetRx(rtc);
+                continue;
             }
 
             if (irq & LR2021_IRQ_RX_DONE) {
@@ -613,11 +670,14 @@ int LR2021::receive(uint8_t* buf, uint8_t max_len,
                     if (status) {
                         status->length  = pkt_len;
                         status->crc_ok  = false;
+                        status->flrc_sync_ok = flrc_sync_ok;
                         status->rssi_dbm = flrc_rssi;
                     }
-                    cmdClearRxFifo();
                     cmdSetStandby(LR2021_STANDBY_RC);
-                    return -1;
+                    cmdClearRxFifo();
+                    cmdClearIrq(LR2021_IRQ_ALL);
+                    cmdSetRx(rtc);
+                    continue;
                 }
                 if (pkt_len > max_len) pkt_len = max_len;
                 cmdReadFifo(buf, pkt_len);
@@ -634,6 +694,7 @@ int LR2021::receive(uint8_t* buf, uint8_t max_len,
                     } else {
                         status->rssi_dbm = flrc_rssi;
                         status->snr    = 0;
+                        status->flrc_sync_ok = flrc_sync_ok;
                         status->crc_ok = status->crc_ok && flrc_sync_ok;
                     }
                 }
@@ -703,6 +764,7 @@ int LR2021::readPacket(uint8_t* buf, uint8_t max_len, lr2021_rx_status_t* status
         } else {
             status->rssi_dbm = flrc_rssi;
             status->snr      = 0;
+            status->flrc_sync_ok = flrc_sync_ok;
             status->crc_ok   = status->crc_ok && flrc_sync_ok;
         }
     }

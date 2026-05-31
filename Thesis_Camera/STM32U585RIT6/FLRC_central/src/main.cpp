@@ -108,15 +108,17 @@ static void rx_test() {
   const char* mode_name = (current_mode == RadioMode::FLRC) ? "FLRC" : "LoRa";
 
   if (rx_len > 0) {
-    Serial.printf("[%s RX] %d bytes  RSSI=%d dBm", mode_name, rx_len, (int)status.rssi_dbm);
+    Serial.printf("[%s RX] %d bytes RSSI=%d dBm", mode_name, rx_len, (int)status.rssi_dbm);
     if (current_mode == RadioMode::LORA) {
-      Serial.printf("  SNR=%d dB", (int)status.snr);
+      Serial.printf(" SNR=%d dB", (int)status.snr);
+    } else {
+      Serial.printf(" SYNC=%s", status.flrc_sync_ok ? "OK" : "ERR");
     }
-    Serial.printf("  CRC=%s\r\n", status.crc_ok ? "OK" : "ERR");
-    Serial.print("          data:");
-    for (int i = 0; i < rx_len && i < 32; i++) {
+    Serial.printf(" CRC=%s ", status.crc_ok ? "OK" : "ERR");
+    Serial.print(" data:");
+    for (int i = 0; i < rx_len; i++) {
       // print in char
-      Serial.printf(" %c", rx_buf[i]);
+      Serial.printf("%c", rx_buf[i]);
     }
     Serial.println();
   } else {
@@ -131,6 +133,16 @@ static void rx_test() {
       if (status.irq_flags & LR2021_IRQ_LORA_HEADER_ERROR) Serial.print(" HEADER_ERROR");
       if (status.irq_flags & LR2021_IRQ_CMD_ERROR) Serial.print(" CMD_ERROR");
       if (status.irq_flags & LR2021_IRQ_ERROR) Serial.print(" RADIO_ERROR");
+      if (status.system_errors != 0) {
+        Serial.printf(" SYSERR=0x%04X", (unsigned)status.system_errors);
+        if (status.system_errors & LR2021_SYSERR_CHIP_BUSY) Serial.print(" CHIP_BUSY");
+        if (status.system_errors & LR2021_SYSERR_RXFREQ_NO_FE_CALIB) Serial.print(" NO_FE_CALIB");
+        if (status.system_errors & LR2021_SYSERR_PLL_LOCK) Serial.print(" PLL_LOCK");
+        if (status.system_errors & LR2021_SYSERR_HF_XOSC_START) Serial.print(" HF_XOSC");
+      }
+      if (current_mode == RadioMode::FLRC && (status.irq_flags & LR2021_IRQ_RX_DONE)) {
+        Serial.printf("  SYNC=%s", status.flrc_sync_ok ? "OK" : "ERR");
+      }
       Serial.printf("  RSSI=%d dBm", (int)status.rssi_dbm);
     }
     Serial.println();
