@@ -116,7 +116,7 @@
 #define LR2021_FLRC_BR_BW_2M_2_2M       0x01U   /* BR = 2080kbps and BW = 2222kHz */
 #define LR2021_FLRC_BR_BW_1_3M_1_3M     0x02U   /* BR = 1300kbps and BW = 1333kHz */
 #define LR2021_FLRC_BR_BW_1M_1_3M       0x03U   /* BR = 1040kbps and BW = 1333kHz */
-#define LR2021_FLRC_BR_BW_650k_0_9M     0x04U   /* BR = 650kbps and BW = 888kHz   */
+#define LR2021_FLRC_BR_BW_650k_0_9M     0x04U   /* BR = 650kbps  and BW = 888kHz  */
 
 #define LR2021_FLRC_CR_1_2              0x00U
 #define LR2021_FLRC_PULSE_BT1           0x07U

@@ -15,6 +15,9 @@
 #define LR2021_MS_TO_RTC(ms)      ((uint32_t)((uint64_t)(ms) * LR2021_RTC_FREQ_HZ / 1000ULL))
 #define LR2021_RX_CONTINUOUS      0xFFFFFFUL
 
+#define LR2021_MAX_LORA_PAYLOAD   255U
+#define LR2021_MAX_FLRC_PAYLOAD   511U
+
 // ---- LoRa syncwords ----
 #define LR2021_LORA_SYNCWORD_PUBLIC   0x34U
 #define LR2021_LORA_SYNCWORD_PRIVATE  0x12U
@@ -200,18 +203,18 @@ public:
     bool configFLRC(const lr2021_flrc_config_t& cfg);
 
     // Blocking transmit — returns true on TX_DONE, false on timeout / error
-    bool transmit(const uint8_t* data, uint8_t len, uint32_t timeout_ms = 5000);
+    bool transmit(const uint8_t* data, uint16_t len, uint32_t timeout_ms = 5000);
 
     // Blocking receive — returns byte count on success, -1 on timeout / CRC error
     // timeout_ms = 0 → continuous receive (blocks until a packet arrives)
-    int receive(uint8_t* buf, uint8_t max_len,
+    int receive(uint8_t* buf, uint16_t max_len,
                 lr2021_rx_status_t* status = nullptr,
                 uint32_t timeout_ms = 0);
 
     // Non-blocking async receive
     void startRx(uint32_t timeout_ms = 0);
     bool dataReady();   // true when DIO pin is asserted
-    int  readPacket(uint8_t* buf, uint8_t max_len,
+    int  readPacket(uint8_t* buf, uint16_t max_len,
                     lr2021_rx_status_t* status = nullptr);
 
     // Utility
@@ -281,7 +284,7 @@ private:
     // FLRC
     void cmdFLRCSetModParams(lr2021_flrc_br_bw_t br_bw,
                              lr2021_flrc_cr_t cr, lr2021_flrc_shape_t shape);
-    void cmdFLRCSetPktParams(uint8_t payload_len);
+    void cmdFLRCSetPktParams(uint16_t payload_len);
     void cmdFLRCSetSyncword(const uint8_t syncword[4]);
     uint16_t cmdFLRCGetPktStatus(int16_t& rssi, bool& sync_ok);
 };

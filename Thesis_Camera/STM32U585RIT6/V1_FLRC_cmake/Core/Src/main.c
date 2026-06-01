@@ -156,15 +156,15 @@ int main(void)
   if (LR2021_Init(&hspi2) != HAL_OK) {
     Error_Handler();
   }
-  // if (LR2021_SetMode(&hspi2, LR2021_MODE_LORA) != HAL_OK) {
-  //   Error_Handler();
-  // }
-  if (LR2021_SetMode(&hspi2, LR2021_MODE_FLRC) != HAL_OK) {
+  if (LR2021_SetMode(&hspi2, LR2021_MODE_LORA) != HAL_OK) {
     Error_Handler();
   }
+  // if (LR2021_SetMode(&hspi2, LR2021_MODE_FLRC) != HAL_OK) {
+  //   Error_Handler();
+  // }
 
   static const uint8_t lora_tx_msg[] =
-    "FLRC HELLO from STM32U585! FLRC HELLO from STM32U585! FLRC HELLO from STM32U585!";
+    "FLRC HELLO from STM32U585! FLRC HELLO from STM32U585! FLRC HELLO from STM32U585!FLRC HELLO from STM32U585! FLRC HELLO from STM32U585! FLRC HELLO from STM32U585!FLRC HELLO from STM32U585!";
   uint32_t last_lora_tx_ms = HAL_GetTick() - LORA_TX_INTERVAL_MS;
 
   /* USER CODE END 2 */
@@ -184,7 +184,7 @@ int main(void)
 
       // tx_status = LR2021_LoRa_Send(&hspi2, lora_tx_msg, (uint8_t)sizeof(lora_tx_msg));
       // printf("[LoRa TX] %s\r\n", tx_status == HAL_OK ? "HELLO sent" : "TX failed");
-      tx_status = LR2021_FLRC_Send(&hspi2, lora_tx_msg, (uint8_t)(sizeof(lora_tx_msg)-1U));
+      tx_status = LR2021_FLRC_Send(&hspi2, lora_tx_msg, sizeof(lora_tx_msg) - 1U);
       printf("[FLRC TX] %s\r\n", tx_status == HAL_OK ? "HELLO sent" : "TX failed");
     }
 

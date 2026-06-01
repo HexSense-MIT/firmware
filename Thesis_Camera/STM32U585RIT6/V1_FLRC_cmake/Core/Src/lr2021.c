@@ -317,7 +317,7 @@ HAL_StatusTypeDef LR2021_SetMode(SPI_HandleTypeDef *hspi, LR2021_Mode_t mode)
          *   byte 1: (CR<<4)|pulse_shape — CR 1/2, BT 1.0 → (0x00<<4)|0x07 = 0x07
          */
         uint8_t mod[2] = {
-            LR2021_FLRC_BR_BW_650k_0_9M,
+            LR2021_FLRC_BR_BW_2_6M_2_6M,
             (LR2021_FLRC_CR_1_2 << 4) | LR2021_FLRC_PULSE_BT1
         };
         ret = send_cmd(hspi, LR2021_CMD_FLRC_SET_MOD_PARAMS, mod, 2);

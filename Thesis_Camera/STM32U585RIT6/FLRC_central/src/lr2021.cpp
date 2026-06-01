@@ -395,7 +395,7 @@ void LR2021::cmdFLRCSetModParams(lr2021_flrc_br_bw_t br_bw,
 // Byte2: sync_word_len|preamble_len_enum<<2
 // Byte3: crc_type|(header_type<<2)|(match_sw<<3)|(tx_sw<<6)
 // Byte4-5: payload_len (BE, variable-length mode uses 0)
-void LR2021::cmdFLRCSetPktParams(uint8_t payload_len) {
+void LR2021::cmdFLRCSetPktParams(uint16_t payload_len) {
     uint8_t crc_type = _flrc_cfg.crc ? LR2021_FLRC_CRC_2B : 0x00U;
     const uint8_t cmd[6] = { (uint8_t)(OC_FLRC_SET_PKT >> 8),
                               (uint8_t)(OC_FLRC_SET_PKT),
@@ -405,8 +405,8 @@ void LR2021::cmdFLRCSetPktParams(uint8_t payload_len) {
                                       + (LR2021_FLRC_HEADER_VARIABLE << 2)
                                       + (LR2021_FLRC_MATCH_SYNCWORD_1 << 3)
                                       + (LR2021_FLRC_TX_SYNCWORD_1 << 6)),
-                              0x00,          // payload_len high byte
-                              payload_len }; // payload_len low byte
+                              (uint8_t)(payload_len >> 8),
+                              (uint8_t)(payload_len) };
     halWrite(cmd, 6);
 }
 
@@ -537,7 +537,7 @@ bool LR2021::configFLRC(const lr2021_flrc_config_t& cfg) {
 
     cmdFLRCSetModParams(cfg.br_bw, cfg.cr, cfg.shape);
     cmdFLRCSetSyncword(cfg.syncword);
-    cmdFLRCSetPktParams(255);  // RX maximum; payload_len updated per TX
+    cmdFLRCSetPktParams(LR2021_MAX_FLRC_PAYLOAD);
 
     cmdSetDioFunction(DIO5, DIO_FUNC_IRQ, DIO_DRIVE_NONE);
     cmdSetDioIrq(DIO5, LR2021_IRQ_TX_DONE | LR2021_IRQ_RX_DONE
@@ -552,14 +552,20 @@ bool LR2021::configFLRC(const lr2021_flrc_config_t& cfg) {
 
 // ---- Blocking transmit ----
 
-bool LR2021::transmit(const uint8_t* data, uint8_t len, uint32_t timeout_ms) {
-    cmdSetStandby(LR2021_STANDBY_RC);
+bool LR2021::transmit(const uint8_t* data, uint16_t len, uint32_t timeout_ms) {
+    if (!data || len == 0
+            || (_lora_mode && len > LR2021_MAX_LORA_PAYLOAD)
+            || (!_lora_mode && len > LR2021_MAX_FLRC_PAYLOAD)) {
+        return false;
+    }
+
+    cmdSetStandby(LR2021_STANDBY_XOSC);
     cmdClearIrq(LR2021_IRQ_ALL);
 
     // Update payload length in packet params
     if (_lora_mode) {
         cmdLoRaSetPktParams(_lora_cfg.preamble_symbols, _lora_cfg.implicit_hdr,
-                            len, _lora_cfg.crc, _lora_cfg.iq_inverted);
+                            (uint8_t)len, _lora_cfg.crc, _lora_cfg.iq_inverted);
     } else {
         cmdFLRCSetPktParams(len);
     }
@@ -586,7 +592,7 @@ bool LR2021::transmit(const uint8_t* data, uint8_t len, uint32_t timeout_ms) {
 
 // ---- Blocking receive ----
 
-int LR2021::receive(uint8_t* buf, uint8_t max_len,
+int LR2021::receive(uint8_t* buf, uint16_t max_len,
                     lr2021_rx_status_t* status, uint32_t timeout_ms) {
     if (status) {
         status->rssi_dbm  = 0;
@@ -717,7 +723,7 @@ int LR2021::receive(uint8_t* buf, uint8_t max_len,
 void LR2021::startRx(uint32_t timeout_ms) {
     cmdClearRxFifo();
     cmdClearIrq(LR2021_IRQ_ALL);
-    if (!_lora_mode) cmdFLRCSetPktParams(255);
+    if (!_lora_mode) cmdFLRCSetPktParams(LR2021_MAX_FLRC_PAYLOAD);
     uint32_t rtc = (timeout_ms == 0) ? LR2021_RX_CONTINUOUS
                                      : LR2021_MS_TO_RTC(timeout_ms);
     cmdSetRx(rtc);
@@ -727,7 +733,7 @@ bool LR2021::dataReady() {
     return digitalRead(_pin_dio) == HIGH;
 }
 
-int LR2021::readPacket(uint8_t* buf, uint8_t max_len, lr2021_rx_status_t* status) {
+int LR2021::readPacket(uint8_t* buf, uint16_t max_len, lr2021_rx_status_t* status) {
     uint32_t irq = cmdGetAndClearIrq();
     if (!(irq & LR2021_IRQ_RX_DONE)) return -1;
 
