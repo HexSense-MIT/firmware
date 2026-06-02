@@ -42,6 +42,7 @@
 
 /* System */
 #define OC_CALIBRATE                    0x0122U
+#define OC_CALIBRATE_FRONT_END          0x0123U
 #define LR2021_CMD_SET_DIO_FUNC         0x0112U
 #define LR2021_CMD_SET_DIO_IRQ_CFG      0x0115U
 #define LR2021_CMD_CLEAR_IRQ            0x0116U
@@ -60,6 +61,7 @@
 
 /* Radio common */
 #define LR2021_CMD_SET_RF_FREQ          0x0200U  /* 4-byte Hz value */
+#define OC_SET_RXPATH_CFG               0x0201U
 #define LR2021_CMD_SET_TX_PARAMS        0x0203U  /* power(half-dBm), ramp */
 #define LR2021_CMD_SET_PACKET_TYPE      0x0207U
 #define LR2021_CMD_SET_RX               0x020CU  /* 3-byte RTC timeout */
@@ -68,6 +70,7 @@
 /* FIFO */
 #define LR2021_CMD_READ_FIFO            0x0001U
 #define LR2021_CMD_WRITE_FIFO           0x0002U
+#define LR2021_CMD_CLEAR_RX_FIFO        0x011EU
 /* LoRa specific */
 #define LR2021_CMD_LORA_SET_MOD_PARAMS  0x0220U  /* 2 param bytes */
 #define LR2021_CMD_LORA_SET_PKT_PARAMS  0x0221U  /* 4 param bytes */
@@ -149,6 +152,8 @@
 #define LR2021_IRQ_PREAMBLE_DETECTED       (1UL << 5)
 #define LR2021_IRQ_SYNC_WORD_HEADER_VALID  (1UL << 6)
 #define LR2021_IRQ_LORA_HEADER_ERROR       (1UL << 9)
+
+#define LR2021_IRQ_CAD_DETECTED            0x00000080UL
 #define LR2021_IRQ_ERROR                   0x00010000UL
 #define LR2021_IRQ_CMD_ERROR               0x00020000UL
 #define LR2021_IRQ_RX_DONE                 0x00040000UL
@@ -208,5 +213,7 @@ HAL_StatusTypeDef LR2021_HandleIRQ(SPI_HandleTypeDef *hspi, uint32_t *irq_out);
 /* Read received LoRa payload (after RX_DONE IRQ). Returns payload length in `rx_len`. */
 HAL_StatusTypeDef LR2021_LoRa_ReadPayload(SPI_HandleTypeDef *hspi,
                                           uint8_t *data, uint8_t *rx_len);
+
+HAL_StatusTypeDef clear_IRQ(SPI_HandleTypeDef *hspi);
 
 #endif /* LR2021_H */

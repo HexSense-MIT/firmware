@@ -109,6 +109,22 @@ static HAL_StatusTypeDef cmdClearIrq(SPI_HandleTypeDef *hspi, uint32_t mask)
     return ret;
 }
 
+static HAL_StatusTypeDef cmdClearRxFifo(SPI_HandleTypeDef *hspi)
+{
+    return send_cmd(hspi, LR2021_CMD_CLEAR_RX_FIFO, NULL, 0);
+}
+
+static HAL_StatusTypeDef cmdCalibrateFrontEnd(SPI_HandleTypeDef *hspi, uint32_t freq_hz)
+{
+    // LF path calibration value is ceil(freq_hz / 4 MHz).
+    uint16_t freq_4mhz = (uint16_t)((freq_hz + 3999999UL) / 4000000UL);
+    uint8_t freq_4mhz_bytes[2] = { (uint8_t)(freq_4mhz >> 8), (uint8_t)(freq_4mhz) };
+
+    HAL_StatusTypeDef ret = send_cmd(hspi, OC_CALIBRATE_FRONT_END, freq_4mhz_bytes, sizeof(freq_4mhz_bytes));
+
+    return ret;
+}
+
 static HAL_StatusTypeDef cmdCalibrate(SPI_HandleTypeDef *hspi, uint8_t mask)
 {
     HAL_StatusTypeDef ret = send_cmd(hspi, OC_CALIBRATE, &mask, 1);
@@ -122,31 +138,40 @@ static HAL_StatusTypeDef set_standby(SPI_HandleTypeDef *hspi)
     return send_cmd(hspi, LR2021_CMD_SET_STANDBY, &p, 1);
 }
 
-static HAL_StatusTypeDef set_rf_freq(SPI_HandleTypeDef *hspi)
+static HAL_StatusTypeDef set_rf_freq(SPI_HandleTypeDef *hspi, uint32_t freq_hz)
 {
-    uint32_t f = LR2021_FREQ_HZ;
+    uint32_t f = freq_hz;
     uint8_t freq[4] = {
         (uint8_t)(f >> 24), (uint8_t)(f >> 16),
         (uint8_t)(f >> 8),  (uint8_t)(f)
     };
+
     return send_cmd(hspi, LR2021_CMD_SET_RF_FREQ, freq, 4);
 }
 
-static HAL_StatusTypeDef set_pa_config(SPI_HandleTypeDef *hspi)
-{
-    uint8_t p[3] = {
-        (uint8_t)((LR2021_PA_SEL_LF << 7) | LR2021_LF_PA_MODE),
-        (uint8_t)((LR2021_LF_PA_DUTY << 4) | LR2021_LF_PA_SLICES),
-        LR2021_HF_PA_DUTY
-    };
+static HAL_StatusTypeDef set_rx_path(SPI_HandleTypeDef *hspi, uint8_t rx_path, uint8_t rx_boost) {
+    const uint8_t parameters[2] = { (uint8_t)(0x00 | (rx_path & 0x01)),
+                            (uint8_t)(0x00 | (rx_boost & 0x03)) };
 
-    return send_cmd(hspi, LR2021_CMD_SET_PA_CFG, p, sizeof(p));
+    return send_cmd(hspi, OC_SET_RXPATH_CFG, parameters, sizeof(parameters));
 }
 
-static HAL_StatusTypeDef set_tx_params(SPI_HandleTypeDef *hspi)
+static HAL_StatusTypeDef set_pa_config(SPI_HandleTypeDef *hspi, uint8_t pa_sel, uint8_t lf_mode,
+                             uint8_t lf_duty, uint8_t lf_slices, uint8_t hf_duty)
 {
-    uint8_t p[2] = { (uint8_t)LR2021_TX_POWER_HALF_DBM, LR2021_RAMP_16US };
-    return send_cmd(hspi, LR2021_CMD_SET_TX_PARAMS, p, 2);
+    uint8_t parameters[3] = {
+        ((uint8_t)pa_sel << 7) | (lf_mode & 0x7F),
+        (lf_duty << 4) | (lf_slices & 0x0F),
+        hf_duty
+    };
+
+    return send_cmd(hspi, LR2021_CMD_SET_PA_CFG, parameters, sizeof(parameters));
+}
+
+static HAL_StatusTypeDef set_tx_params(SPI_HandleTypeDef *hspi, uint8_t power_half_dbm, uint8_t ramp)
+{
+    uint8_t parameters[2] = { power_half_dbm, ramp };
+    return send_cmd(hspi, LR2021_CMD_SET_TX_PARAMS, parameters, sizeof(parameters));
 }
 
 static HAL_StatusTypeDef set_lora_syncword(SPI_HandleTypeDef *hspi)
@@ -273,13 +298,19 @@ HAL_StatusTypeDef LR2021_SetMode(SPI_HandleTypeDef *hspi, LR2021_Mode_t mode)
         ret = send_cmd(hspi, LR2021_CMD_SET_PACKET_TYPE, &pt, 1);
         if (ret != HAL_OK) return ret;
 
-        ret = set_rf_freq(hspi);
+        ret = set_rf_freq(hspi, LR2021_FREQ_HZ);
         if (ret != HAL_OK) return ret;
 
-        ret = set_pa_config(hspi);
+        ret = cmdCalibrateFrontEnd(hspi, LR2021_FREQ_HZ);
         if (ret != HAL_OK) return ret;
 
-        ret = set_tx_params(hspi);
+        ret = set_rx_path(hspi, 0, 0); // rx_path: LF, rx_boost: LF
+        if (ret != HAL_OK) return ret;
+
+        ret = set_pa_config(hspi, LR2021_PA_SEL_LF, 0x00, 4, 7, 0);
+        if (ret != HAL_OK) return ret;
+
+        ret = set_tx_params(hspi, LR2021_TX_POWER_HALF_DBM, LR2021_RAMP_16US);
         if (ret != HAL_OK) return ret;
 
         /*
@@ -296,19 +327,30 @@ HAL_StatusTypeDef LR2021_SetMode(SPI_HandleTypeDef *hspi, LR2021_Mode_t mode)
 
         ret = set_lora_syncword(hspi);
 
+        cfg_irq(hspi, LR2021_IRQ_RX_DONE | LR2021_IRQ_TIMEOUT | LR2021_IRQ_TX_DONE | LR2021_IRQ_CAD_DETECTED |
+                        LR2021_IRQ_CRC_ERROR | LR2021_IRQ_LEN_ERROR);
+
+        cmdClearIrq(hspi, LR2021_IRQ_ALL);  // clear all pending IRQs before TX
+
     } else {
         /* Packet type: FLRC */
         uint8_t pt = LR2021_PKT_TYPE_FLRC;
         ret = send_cmd(hspi, LR2021_CMD_SET_PACKET_TYPE, &pt, 1);
         if (ret != HAL_OK) return ret;
 
-        ret = set_rf_freq(hspi);
+        ret = set_rf_freq(hspi, LR2021_FREQ_HZ);
         if (ret != HAL_OK) return ret;
 
-        ret = set_pa_config(hspi);
+        ret = cmdCalibrateFrontEnd(hspi, LR2021_FREQ_HZ);
         if (ret != HAL_OK) return ret;
 
-        ret = set_tx_params(hspi);
+        ret = set_rx_path(hspi, 0, 0); // rx_path: LF, rx_boost: LF
+        if (ret != HAL_OK) return ret;
+
+        ret = set_pa_config(hspi, LR2021_PA_SEL_LF, 0x00, 4, 7, 0);
+        if (ret != HAL_OK) return ret;
+
+        ret = set_tx_params(hspi, LR2021_TX_POWER_HALF_DBM, LR2021_RAMP_16US);
         if (ret != HAL_OK) return ret;
 
         /*
@@ -323,6 +365,11 @@ HAL_StatusTypeDef LR2021_SetMode(SPI_HandleTypeDef *hspi, LR2021_Mode_t mode)
         ret = send_cmd(hspi, LR2021_CMD_FLRC_SET_MOD_PARAMS, mod, 2);
 
         ret = set_flrc_syncword(hspi);
+
+        cfg_irq(hspi, LR2021_IRQ_RX_DONE | LR2021_IRQ_TIMEOUT | LR2021_IRQ_TX_DONE |
+                        LR2021_IRQ_CRC_ERROR | LR2021_IRQ_LEN_ERROR);
+
+        cmdClearIrq(hspi, LR2021_IRQ_ALL);  // clear all pending IRQs before TX
     }
 
     if (ret == HAL_OK)
@@ -443,6 +490,12 @@ HAL_StatusTypeDef LR2021_LoRa_StartReceive(SPI_HandleTypeDef *hspi,
                         LR2021_IRQ_CRC_ERROR | LR2021_IRQ_LEN_ERROR);
     if (ret != HAL_OK) return ret;
 
+    ret = cmdClearRxFifo(hspi);
+    if (ret != HAL_OK) return ret;
+
+    ret = cmdClearIrq(hspi, LR2021_IRQ_ALL);
+    if (ret != HAL_OK) return ret;
+
     uint32_t rtc = rx_timeout_ms_to_rtc(timeout_ms);
     uint8_t rx_to[3] = {
         (uint8_t)(rtc >> 16), (uint8_t)(rtc >> 8), (uint8_t)(rtc)
@@ -540,4 +593,8 @@ HAL_StatusTypeDef LR2021_LoRa_ReadPayload(SPI_HandleTypeDef *hspi,
 
     ret = read_fifo(hspi, data, *rx_len);
     return ret;
+}
+
+HAL_StatusTypeDef clear_IRQ(SPI_HandleTypeDef *hspi) {
+  return cmdClearIrq(hspi, LR2021_IRQ_ALL);
 }

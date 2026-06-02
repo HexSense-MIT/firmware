@@ -516,7 +516,9 @@ bool LR2021::configLoRa(const lr2021_lora_config_t& cfg) {
     cmdSetDioIrq(DIO5, LR2021_IRQ_TX_DONE | LR2021_IRQ_RX_DONE
                       | LR2021_IRQ_TIMEOUT | LR2021_IRQ_CRC_ERROR
                       | LR2021_IRQ_LEN_ERROR);
+
     cmdClearIrq(LR2021_IRQ_ALL);
+
     return true;
 }
 

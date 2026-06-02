@@ -115,7 +115,7 @@ uint8_t tx_buf[100];
 // ============================================================
 void flrc_tx_test(const uint8_t *data, uint16_t len) {
   if (data && len > 0) {
-    radio.transmit(data, len, 10);
+    radio.transmit(data, len, 100);
     return;
   } else {
     tx_buf[0] = tx_seq++;
@@ -124,13 +124,13 @@ void flrc_tx_test(const uint8_t *data, uint16_t len) {
     len = 8;
   }
 
-  bool ok = radio.transmit(tx_buf, len, 10);
+  bool ok = radio.transmit(tx_buf, len, 100);
 }
 
 // ============================================================
 void lora_tx_test(const uint8_t *data, uint16_t len) {
   if (data && len > 0) {
-    radio.transmit(data, len, 10);
+    radio.transmit(data, len, 100);
     return;
   } else {
     tx_buf[0] = tx_seq ++;
@@ -139,7 +139,7 @@ void lora_tx_test(const uint8_t *data, uint16_t len) {
     len = 100;
   }
 
-  bool ok = radio.transmit(tx_buf, len, 10);
+  bool ok = radio.transmit(tx_buf, len, 100);
 }
 
 void rx_test() {

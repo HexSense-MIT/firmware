@@ -23,10 +23,12 @@
 /* USER CODE BEGIN Includes */
 #include <stdlib.h>
 #include <stdio.h>
+
 #include "tusb.h"
 #include "tusb_config.h"
 #include "icm20948.h"
 #include "lr2021.h"
+#include "comm.h"
 
 /* USER CODE END Includes */
 
@@ -38,6 +40,7 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 #define LORA_TX_INTERVAL_MS 2U
+#define LR2021_IRQ_POLL_INTERVAL_MS 20U
 
 /* USER CODE END PD */
 
@@ -92,13 +95,13 @@ int _write(int file, char *ptr, int len)
     return len;
 }
 /* LR2021 IRQ flag (set from EXTI callback) */
-volatile uint8_t lr2021_irq_flag = 0;
+volatile bool lr2021_irq_flag = false;
 
 /* EXTI callback from HAL — mark IRQ for processing in main loop */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
   if (GPIO_Pin == LR_DIO5_Pin) {
-    lr2021_irq_flag = 1;
+    lr2021_irq_flag = true;
   }
 }
 /* USER CODE END 0 */
@@ -159,13 +162,19 @@ int main(void)
   if (LR2021_SetMode(&hspi2, LR2021_MODE_LORA) != HAL_OK) {
     Error_Handler();
   }
+
+  if (LR2021_LoRa_StartReceive(&hspi2, 0) != HAL_OK) {
+    Error_Handler();
+  }
+
+  uint32_t last_irq_poll_ms = HAL_GetTick();
   // if (LR2021_SetMode(&hspi2, LR2021_MODE_FLRC) != HAL_OK) {
   //   Error_Handler();
   // }
 
-  static const uint8_t lora_tx_msg[] =
-    "FLRC HELLO from STM32U585! FLRC HELLO from STM32U585! FLRC HELLO from STM32U585!FLRC HELLO from STM32U585! FLRC HELLO from STM32U585! FLRC HELLO from STM32U585!FLRC HELLO from STM32U585!";
-  uint32_t last_lora_tx_ms = HAL_GetTick() - LORA_TX_INTERVAL_MS;
+  // static const uint8_t lora_tx_msg[] =
+  //   "FLRC HELLO from STM32U585! FLRC HELLO from STM32U585! FLRC HELLO from STM32U585!FLRC HELLO from STM32U585! FLRC HELLO from STM32U585! FLRC HELLO from STM32U585!FLRC HELLO from STM32U585!";
+  // uint32_t last_lora_tx_ms = HAL_GetTick() - LORA_TX_INTERVAL_MS;
 
   /* USER CODE END 2 */
 
@@ -176,17 +185,61 @@ int main(void)
   {
     tud_task();
 
-    HAL_StatusTypeDef tx_status = HAL_ERROR;
-
-    if ((HAL_GetTick() - last_lora_tx_ms) >= LORA_TX_INTERVAL_MS) {
-      last_lora_tx_ms = HAL_GetTick();
-      // lr2021_irq_flag = 0;
-
-      // tx_status = LR2021_LoRa_Send(&hspi2, lora_tx_msg, (uint8_t)sizeof(lora_tx_msg));
-      // printf("[LoRa TX] %s\r\n", tx_status == HAL_OK ? "HELLO sent" : "TX failed");
-      tx_status = LR2021_FLRC_Send(&hspi2, lora_tx_msg, sizeof(lora_tx_msg) - 1U);
-      printf("[FLRC TX] %s\r\n", tx_status == HAL_OK ? "HELLO sent" : "TX failed");
+    if (lr2021_irq_flag) {
+      lr2021_irq_flag = false;
     }
+
+    if ((HAL_GetTick() - last_irq_poll_ms) >= LR2021_IRQ_POLL_INTERVAL_MS) {
+      last_irq_poll_ms = HAL_GetTick();
+
+      uint32_t irq_status = LR2021_IRQ_NONE;
+      HAL_StatusTypeDef irq_ret = LR2021_HandleIRQ(&hspi2, &irq_status);
+      if (irq_ret != HAL_OK) {
+        printf("[LR2021 IRQ poll] read failed: %u\r\n", (unsigned)irq_ret);
+      } else if (irq_status != LR2021_IRQ_NONE) {
+        printf("[LR2021 IRQ poll] status=0x%08lX\r\n", (unsigned long)irq_status);
+
+        if (irq_status & LR2021_IRQ_RX_DONE) {
+          uint8_t rx_payload[LR2021_MAX_LORA_PAYLOAD];
+          uint8_t rx_len = 0;
+          HAL_StatusTypeDef rx_ret = LR2021_LoRa_ReadPayload(&hspi2, rx_payload, &rx_len);
+
+          if (rx_ret == HAL_OK) {
+            printf("[LoRa RX] len=%u hex:", (unsigned)rx_len);
+            for (uint8_t i = 0; i < rx_len; i++) {
+              printf(" %02X", rx_payload[i]);
+            }
+            printf(" ascii:");
+            for (uint8_t i = 0; i < rx_len; i++) {
+              uint8_t c = rx_payload[i];
+              printf("%c", (c >= 32U && c <= 126U) ? (char)c : '.');
+            }
+            printf("\r\n");
+          } else {
+            printf("[LoRa RX] payload read failed: %u\r\n", (unsigned)rx_ret);
+          }
+        }
+
+        if (irq_status & (LR2021_IRQ_RX_DONE | LR2021_IRQ_TIMEOUT |
+                          LR2021_IRQ_CRC_ERROR | LR2021_IRQ_LEN_ERROR)) {
+          if (LR2021_LoRa_StartReceive(&hspi2, 0) != HAL_OK) {
+            printf("[LoRa RX] restart failed\r\n");
+          }
+        }
+      }
+    }
+
+    // HAL_StatusTypeDef tx_status = HAL_ERROR;
+
+    // if ((HAL_GetTick() - last_lora_tx_ms) >= LORA_TX_INTERVAL_MS) {
+    //   last_lora_tx_ms = HAL_GetTick();
+    //   lr2021_irq_flag = 0;
+
+    //   tx_status = LR2021_LoRa_Send(&hspi2, lora_tx_msg, (uint8_t)sizeof(lora_tx_msg));
+    //   printf("[LoRa TX] %s\r\n", tx_status == HAL_OK ? "HELLO sent" : "TX failed");
+    //   // tx_status = LR2021_FLRC_Send(&hspi2, lora_tx_msg, sizeof(lora_tx_msg) - 1U);
+    //   // printf("[FLRC TX] %s\r\n", tx_status == HAL_OK ? "HELLO sent" : "TX failed");
+    // }
 
     /* USER CODE END WHILE */
 

@@ -45,7 +45,41 @@ bool comm_store_received_cmd(const uint8_t *payload, uint8_t payload_len) {
   return true;
 }
 
-void update_comm(void) {
+void update_comm(bool irq_flag) {
+  bool restart_rx = false;
+
+  if (irq_flag) {
+    uint32_t irq = LR2021_IRQ_NONE;
+    HAL_StatusTypeDef ret = LR2021_HandleIRQ(&hspi2, &irq);
+    if (ret != HAL_OK) {
+      printf("[LR2021 IRQ] read failed: %u\r\n", (unsigned)ret);
+      return;
+    }
+
+    if (irq == LR2021_IRQ_NONE) {
+      return;
+    }
+
+    printf("[LR2021 IRQ] status=0x%08lX\r\n", (unsigned long)irq);
+
+    if (irq & LR2021_IRQ_RX_DONE) {
+      uint8_t payload[LR2021_MAX_LORA_PAYLOAD];
+      uint8_t payload_len = 0;
+
+      ret = LR2021_LoRa_ReadPayload(&hspi2, payload, &payload_len);
+      if (ret != HAL_OK) {
+        printf("[LoRa RX] payload read failed: %u\r\n", (unsigned)ret);
+      } else if (!comm_store_received_cmd(payload, payload_len)) {
+        printf("[LoRa RX] ignored invalid command: %u bytes\r\n", (unsigned)payload_len);
+      }
+    }
+
+    if (irq & (LR2021_IRQ_RX_DONE | LR2021_IRQ_TIMEOUT |
+               LR2021_IRQ_CRC_ERROR | LR2021_IRQ_LEN_ERROR)) {
+      restart_rx = true;
+    }
+  }
+
   if (g_new_cmd_received) {
     g_new_cmd_received = false;
 
@@ -58,6 +92,11 @@ void update_comm(void) {
     }
 
     LR2021_SetMode(&hspi2, LR2021_MODE_LORA);
+    LR2021_LoRa_StartReceive(&hspi2, 0);
+    restart_rx = false;
+  }
+
+  if (restart_rx) {
     LR2021_LoRa_StartReceive(&hspi2, 0);
   }
 }
@@ -113,4 +152,8 @@ void send_data(uint16_t frame_seq_num, uint16_t frame_left, uint32_t bytes_left,
   printf("DATA: node=%u seq=%u frame_left=%u bytes_left=%lu payload_len=%u checksum=%u\r\n",
          (unsigned)g_last_data.node_id, (unsigned)g_last_data.frame_seq_num, (unsigned)g_last_data.frame_left,
          (unsigned long)g_last_data.bytes_left, (unsigned)payload_len, (unsigned)g_last_data.checksum);
+}
+
+void clear_irq_status(void) {
+  clear_IRQ(&hspi2);
 }
