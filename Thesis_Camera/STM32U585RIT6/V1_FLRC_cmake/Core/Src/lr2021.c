@@ -132,9 +132,9 @@ static HAL_StatusTypeDef cmdCalibrate(SPI_HandleTypeDef *hspi, uint8_t mask)
     return ret;
 }
 
-static HAL_StatusTypeDef set_standby(SPI_HandleTypeDef *hspi)
+static HAL_StatusTypeDef set_standby_mode(SPI_HandleTypeDef *hspi, uint8_t mode)
 {
-    uint8_t p = LR2021_STANDBY_XOSC;
+    uint8_t p = mode;
     return send_cmd(hspi, LR2021_CMD_SET_STANDBY, &p, 1);
 }
 
@@ -189,11 +189,14 @@ static HAL_StatusTypeDef set_flrc_syncword(SPI_HandleTypeDef *hspi)
 /* Route selected system IRQs to DIO5. */
 static HAL_StatusTypeDef cfg_irq(SPI_HandleTypeDef *hspi, uint32_t mask)
 {
+    HAL_StatusTypeDef ret = set_standby_mode(hspi, LR2021_STANDBY_RC);
+    if (ret != HAL_OK) return ret;
+
     uint8_t dio_func[2] = {
         LR2021_DIO5,
-        (uint8_t)((LR2021_DIO_FUNC_IRQ << 4) | LR2021_DIO_DRIVE_NONE)
+        (uint8_t)((LR2021_DIO_FUNC_IRQ << 4) | LR2021_DIO_SLEEP_PULL_UP)
     };
-    HAL_StatusTypeDef ret = send_cmd(hspi, LR2021_CMD_SET_DIO_FUNC, dio_func, sizeof(dio_func));
+    ret = send_cmd(hspi, LR2021_CMD_SET_DIO_FUNC, dio_func, sizeof(dio_func));
     if (ret != HAL_OK) return ret;
 
     uint8_t dio_irq[5] = {
@@ -201,7 +204,10 @@ static HAL_StatusTypeDef cfg_irq(SPI_HandleTypeDef *hspi, uint32_t mask)
         (uint8_t)(mask >> 24), (uint8_t)(mask >> 16),
         (uint8_t)(mask >> 8),  (uint8_t)(mask)
     };
-    return send_cmd(hspi, LR2021_CMD_SET_DIO_IRQ_CFG, dio_irq, sizeof(dio_irq));
+    ret = send_cmd(hspi, LR2021_CMD_SET_DIO_IRQ_CFG, dio_irq, sizeof(dio_irq));
+    if (ret != HAL_OK) return ret;
+
+    return set_standby_mode(hspi, LR2021_STANDBY_XOSC);
 }
 
 static HAL_StatusTypeDef poll_irq(SPI_HandleTypeDef *hspi, uint32_t expect_mask,
@@ -273,8 +279,10 @@ HAL_StatusTypeDef LR2021_Init(SPI_HandleTypeDef *hspi)
   HAL_StatusTypeDef ret = cmdCalibrate(hspi, 0x3F);  // all calibrations
   if (ret != HAL_OK) return ret;
 
-  ret = set_standby(hspi);
+  ret = set_standby_mode(hspi, LR2021_STANDBY_RC);
   if (ret != HAL_OK) return ret;
+
+
 
   /* Default to LoRa mode (used for commands / ACKs) */
 //   return LR2021_SetMode(hspi, LR2021_MODE_LORA);
@@ -289,7 +297,7 @@ HAL_StatusTypeDef LR2021_SetMode(SPI_HandleTypeDef *hspi, LR2021_Mode_t mode)
 {
     HAL_StatusTypeDef ret;
 
-    ret = set_standby(hspi);
+    ret = set_standby_mode(hspi, LR2021_STANDBY_XOSC);
     if (ret != HAL_OK) return ret;
 
     if (mode == LR2021_MODE_LORA) {
@@ -435,7 +443,7 @@ HAL_StatusTypeDef LR2021_LoRa_Send(SPI_HandleTypeDef *hspi,
     ret = poll_irq(hspi, LR2021_IRQ_TX_DONE, 200U, NULL);
     if (ret != HAL_OK) return ret;
 
-    return set_standby(hspi);
+    return set_standby_mode(hspi, LR2021_STANDBY_XOSC);
 }
 
 /* ------------------------------------------------------------------ */
@@ -458,26 +466,26 @@ HAL_StatusTypeDef LR2021_LoRa_Receive(SPI_HandleTypeDef *hspi,
     ret = poll_irq(hspi, rx_mask,
                    timeout_ms + 100U, &irq);
     if (ret != HAL_OK) {
-        set_standby(hspi);
+        set_standby_mode(hspi, LR2021_STANDBY_XOSC);
         return ret;
     }
 
     if (irq & LR2021_IRQ_TIMEOUT) {
-        set_standby(hspi);
+        set_standby_mode(hspi, LR2021_STANDBY_XOSC);
         return HAL_TIMEOUT;
     }
     if (irq & (LR2021_IRQ_CRC_ERROR | LR2021_IRQ_LEN_ERROR)) {
-        set_standby(hspi);
+        set_standby_mode(hspi, LR2021_STANDBY_XOSC);
         return HAL_ERROR;
     }
 
     ret = LR2021_LoRa_ReadPayload(hspi, data, rx_len);
     if (ret != HAL_OK) {
-        set_standby(hspi);
+        set_standby_mode(hspi, LR2021_STANDBY_XOSC);
         return ret;
     }
 
-    return set_standby(hspi);
+    return set_standby_mode(hspi, LR2021_STANDBY_XOSC);
 }
 
 HAL_StatusTypeDef LR2021_LoRa_StartReceive(SPI_HandleTypeDef *hspi,
@@ -556,7 +564,7 @@ HAL_StatusTypeDef LR2021_FLRC_Send(SPI_HandleTypeDef *hspi,
     ret = poll_irq(hspi, LR2021_IRQ_TX_DONE, 500U, NULL);
     if (ret != HAL_OK) return ret;
 
-    return set_standby(hspi);
+    return set_standby_mode(hspi, LR2021_STANDBY_XOSC);
 }
 
 /* ------------------------------------------------------------------ */

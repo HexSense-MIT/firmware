@@ -40,7 +40,7 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 #define LORA_TX_INTERVAL_MS 2U
-#define LR2021_IRQ_POLL_INTERVAL_MS 20U
+#define LR2021_IRQ_POLL_INTERVAL_MS 100U
 
 /* USER CODE END PD */
 
@@ -187,6 +187,7 @@ int main(void)
 
     if (lr2021_irq_flag) {
       lr2021_irq_flag = false;
+      printf("lr2021_irq_flag triggered\r\n");
     }
 
     if ((HAL_GetTick() - last_irq_poll_ms) >= LR2021_IRQ_POLL_INTERVAL_MS) {
@@ -207,7 +208,7 @@ int main(void)
           if (rx_ret == HAL_OK) {
             printf("[LoRa RX] len=%u hex:", (unsigned)rx_len);
             for (uint8_t i = 0; i < rx_len; i++) {
-              printf(" %02X", rx_payload[i]);
+              printf("[%u] %02X | ", i, rx_payload[i]);
             }
             printf(" ascii:");
             for (uint8_t i = 0; i < rx_len; i++) {

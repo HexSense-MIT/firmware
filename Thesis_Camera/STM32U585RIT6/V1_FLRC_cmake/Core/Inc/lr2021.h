@@ -166,6 +166,7 @@
 #define LR2021_DIO5                     0x05U
 #define LR2021_DIO_FUNC_IRQ             0x01U
 #define LR2021_DIO_DRIVE_NONE           0x00U
+#define LR2021_DIO_SLEEP_PULL_UP        0x02U
 
 /*
  * RTC step ≈ 30.52 µs (LR20xx, same as LR11xx architecture).
