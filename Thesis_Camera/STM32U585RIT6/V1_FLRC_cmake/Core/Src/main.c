@@ -98,7 +98,7 @@ int _write(int file, char *ptr, int len)
 volatile bool lr2021_irq_flag = false;
 
 /* EXTI callback from HAL — mark IRQ for processing in main loop */
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+void HAL_GPIO_EXTI_Rising_Callback(uint16_t GPIO_Pin)
 {
   if (GPIO_Pin == LR_DIO5_Pin) {
     lr2021_irq_flag = true;
@@ -167,7 +167,7 @@ int main(void)
     Error_Handler();
   }
 
-  uint32_t last_irq_poll_ms = HAL_GetTick();
+  // uint32_t last_irq_poll_ms = HAL_GetTick();
   // if (LR2021_SetMode(&hspi2, LR2021_MODE_FLRC) != HAL_OK) {
   //   Error_Handler();
   // }
@@ -187,9 +187,12 @@ int main(void)
 
     if (lr2021_irq_flag) {
       lr2021_irq_flag = false;
+      uint32_t irq_status = LR2021_IRQ_NONE;
+      LR2021_HandleIRQ(&hspi2, &irq_status);
       printf("lr2021_irq_flag triggered\r\n");
     }
 
+    /*
     if ((HAL_GetTick() - last_irq_poll_ms) >= LR2021_IRQ_POLL_INTERVAL_MS) {
       last_irq_poll_ms = HAL_GetTick();
 
@@ -229,6 +232,7 @@ int main(void)
         }
       }
     }
+    */
 
     // HAL_StatusTypeDef tx_status = HAL_ERROR;
 

@@ -47,9 +47,10 @@ static constexpr uint16_t OC_FIFO_GET_RX_LEVEL = 0x011C;
 static constexpr uint16_t OC_FIFO_CLEAR_RX     = 0x011E;
 
 // DIO5 is the general-purpose IRQ output on the LR2021 module
-static constexpr uint8_t DIO5 = 0x05;
-static constexpr uint8_t DIO_FUNC_IRQ = 0x01;
-static constexpr uint8_t DIO_DRIVE_NONE = 0x00;
+static constexpr uint8_t DIO5              = 0x05;
+static constexpr uint8_t DIO_FUNC_IRQ      = 0x01;
+static constexpr uint8_t DIO_DRIVE_NONE    = 0x00;
+static constexpr uint8_t DIO_DRIVE_PULL_UP = 0x02;
 
 // FLRC SetFlrcPacketParams byte encoding (Table 18-5, DS.LR2021 Rev1.1)
 // Byte2 [7:6]=rfu | [5:2]=agc_pbl_len | [1:0]=sync_len
@@ -449,7 +450,7 @@ bool LR2021::begin(uint32_t spi_freq) {
     // Full calibration (all blocks)
     cmdCalibrate(0x6F);
 
-    cmdSetStandby(LR2021_STANDBY_XOSC);
+    cmdSetStandby(LR2021_STANDBY_RC);
 
     return true;
 }
@@ -495,7 +496,7 @@ bool LR2021::configLoRa(const lr2021_lora_config_t& cfg) {
     _lora_mode = true;
     _lora_cfg  = cfg;
 
-    cmdSetStandby(LR2021_STANDBY_XOSC);
+    cmdSetStandby(LR2021_STANDBY_RC);
     cmdSetPacketType(LR2021_PKT_TYPE_LORA);
     cmdSetRfFreq(cfg.freq_hz);
     cmdCalibrateFrontEnd(cfg.freq_hz);
@@ -512,7 +513,7 @@ bool LR2021::configLoRa(const lr2021_lora_config_t& cfg) {
     cmdLoRaSetSyncword(cfg.syncword);
 
     // Route TX_DONE, RX_DONE, TIMEOUT, CRC_ERROR to DIO5
-    cmdSetDioFunction(DIO5, DIO_FUNC_IRQ, DIO_DRIVE_NONE);
+    cmdSetDioFunction(DIO5, DIO_FUNC_IRQ, DIO_DRIVE_PULL_UP);
     cmdSetDioIrq(DIO5, LR2021_IRQ_TX_DONE | LR2021_IRQ_RX_DONE
                       | LR2021_IRQ_TIMEOUT | LR2021_IRQ_CRC_ERROR
                       | LR2021_IRQ_LEN_ERROR);
