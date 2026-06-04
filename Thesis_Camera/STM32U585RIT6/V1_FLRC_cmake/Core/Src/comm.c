@@ -12,19 +12,71 @@ comm_data_t g_last_data   = {0}; /* global variable to hold the data packet to b
 
 volatile bool g_new_cmd_received = false; /* flag to indicate a new command has been received */
 
+static uint16_t cobs_encode(const uint8_t* input, uint16_t length, uint8_t* output) {
+  uint16_t read_index = 0;
+  uint16_t write_index = 1;
+  uint8_t code = 1;
+
+  while (read_index < length) {
+    if (input[read_index] == 0) {
+      output[write_index - code] = code;
+      code = 1;
+      write_index++;
+      read_index++;
+    } else {
+      output[write_index] = input[read_index];
+      write_index++;
+      read_index++;
+      code++;
+      if (code == 0xFF) {
+        output[write_index - code] = code;
+        code = 1;
+        write_index++;
+      }
+    }
+  }
+  output[write_index - code] = code;
+  return write_index;
+}
+
+static uint16_t cobs_decode(const uint8_t* input, uint16_t length,
+                     uint8_t* output, uint16_t output_capacity) {
+  uint16_t read_index = 0;
+  uint16_t write_index = 0;
+
+  while (read_index < length) {
+    uint8_t code = input[read_index++];
+    if (code == 0 || read_index + code - 1U > length) {
+      return 0; // Invalid COBS data
+    }
+
+    for (uint8_t i = 1; i < code; i++) {
+      if (write_index >= output_capacity) {
+        return 0;
+      }
+      output[write_index] = input[read_index];
+      write_index++;
+      read_index++;
+    }
+
+    if (code != 0xFF && read_index < length) {
+      if (write_index >= output_capacity) {
+        return 0;
+      }
+      output[write_index] = 0;
+      write_index++;
+    }
+  }
+  return write_index;
+}
+
 static uint8_t checksum_cmd(const comm_cmd_t *cmd) {
-  uint32_t sum = cmd->node_id + cmd->seq_num + cmd->cmd_id +
-                 (cmd->cmd_param & 0xFFU) + ((cmd->cmd_param >> 8) & 0xFFU) +
-                 ((cmd->cmd_param >> 16) & 0xFFU) + ((cmd->cmd_param >> 24) & 0xFFU) +
-                 cmd->next_radio;
+  uint32_t sum = cmd->node_id + cmd->seq_num + cmd->cmd_id;
   return (uint8_t)(sum & 0xFFU);
 }
 
 static uint8_t checksum_ack(const comm_ack_t *ack) {
-  uint32_t sum = ack->node_id + ack->seq_num + ack->ack_id +
-                 (ack->cmd_param & 0xFFU) + ((ack->cmd_param >> 8) & 0xFFU) +
-                 ((ack->cmd_param >> 16) & 0xFFU) + ((ack->cmd_param >> 24) & 0xFFU) +
-                 ack->next_radio;
+  uint32_t sum = ack->node_id + ack->seq_num + ack->ack_id;
   return (uint8_t)(sum & 0xFFU);
 }
 
@@ -45,67 +97,57 @@ bool comm_store_received_cmd(const uint8_t *payload, uint8_t payload_len) {
   return true;
 }
 
-void update_comm(bool irq_flag) {
-  bool restart_rx = false;
+void update_comm(volatile bool *irq_flag) {
+  if (*irq_flag) {
+    *irq_flag = false;
 
-  if (irq_flag) {
-    uint32_t irq = LR2021_IRQ_NONE;
-    HAL_StatusTypeDef ret = LR2021_HandleIRQ(&hspi2, &irq);
-    if (ret != HAL_OK) {
-      printf("[LR2021 IRQ] read failed: %u\r\n", (unsigned)ret);
-      return;
-    }
+    uint32_t irq_status = LR2021_IRQ_NONE;
+    LR2021_HandleIRQ(&hspi2, &irq_status);
 
-    if (irq == LR2021_IRQ_NONE) {
-      return;
-    }
+    uint8_t rx_payload[LR2021_MAX_LORA_PAYLOAD];
+    uint8_t rx_len = 0;
 
-    printf("[LR2021 IRQ] status=0x%08lX\r\n", (unsigned long)irq);
+    // receiveed a command
+    if (irq_status & LR2021_IRQ_RX_DONE) {
+      HAL_StatusTypeDef rx_ret = LR2021_LoRa_ReadPayload(&hspi2, rx_payload, &rx_len);
 
-    if (irq & LR2021_IRQ_RX_DONE) {
-      uint8_t payload[LR2021_MAX_LORA_PAYLOAD];
-      uint8_t payload_len = 0;
+      if (rx_ret == HAL_OK) {
+        uint16_t decoded_len = cobs_decode(rx_payload, rx_len - 1, (uint8_t *)&g_received_cmd, sizeof(g_received_cmd));
 
-      ret = LR2021_LoRa_ReadPayload(&hspi2, payload, &payload_len);
-      if (ret != HAL_OK) {
-        printf("[LoRa RX] payload read failed: %u\r\n", (unsigned)ret);
-      } else if (!comm_store_received_cmd(payload, payload_len)) {
-        printf("[LoRa RX] ignored invalid command: %u bytes\r\n", (unsigned)payload_len);
+        if (decoded_len > 0) {
+          handle_cmd(&g_received_cmd);
+        }
       }
     }
-
-    if (irq & (LR2021_IRQ_RX_DONE | LR2021_IRQ_TIMEOUT |
-               LR2021_IRQ_CRC_ERROR | LR2021_IRQ_LEN_ERROR)) {
-      restart_rx = true;
-    }
-  }
-
-  if (g_new_cmd_received) {
-    g_new_cmd_received = false;
-
-    // only handle commands addressed to this node (LOCAL_NODE_ID)
-    if (g_received_cmd.node_id == LOCAL_NODE_ID) {
-      handle_cmd(&g_received_cmd);
-      send_ack((comm_cmd_id_t)g_received_cmd.cmd_id, g_received_cmd.cmd_param,
-               (comm_radio_t)g_received_cmd.next_radio);
-      send_data(1, 0, 100, (uint8_t *)"Hello, World!", 13);
-    }
-
-    LR2021_SetMode(&hspi2, LR2021_MODE_LORA);
-    LR2021_LoRa_StartReceive(&hspi2, 0);
-    restart_rx = false;
-  }
-
-  if (restart_rx) {
-    LR2021_LoRa_StartReceive(&hspi2, 0);
   }
 }
 
 void handle_cmd(comm_cmd_t *cmd) {
   /* For demo: just print the received command */
-  printf("Received CMD: node=%u seq=%u id=%u param=%lu next_radio=%u\r\n",
-         (unsigned)cmd->node_id, (unsigned)cmd->seq_num, (unsigned)cmd->cmd_id,
-         (unsigned long)cmd->cmd_param, (unsigned)cmd->next_radio);
+  if (cmd->node_id == LOCAL_NODE_ID) {
+    HAL_Delay(200); /* simulate some processing delay */
+    switch (cmd->cmd_id) {
+      case COMM_CMD_ID_PING:
+        send_ack(COMM_CMD_ID_PING, cmd->cmd_param[0], COMM_RADIO_LORA);
+        break;
+      case COMM_CMD_ID_TURN_ON_CAM:
+        send_ack(COMM_CMD_ID_TURN_ON_CAM, cmd->cmd_param[0], COMM_RADIO_LORA);
+        break;
+      case COMM_CMD_ID_TURN_OFF_CAM:
+        send_ack(COMM_CMD_ID_TURN_OFF_CAM, cmd->cmd_param[0], COMM_RADIO_LORA);
+        break;
+      case COMM_CMD_ID_TAKE_PHOTO:
+        send_ack(COMM_CMD_ID_TAKE_PHOTO, cmd->cmd_param[0], COMM_RADIO_LORA);
+        break;
+      case COMM_CMD_ID_SEND_DATA:
+        send_ack(COMM_CMD_ID_SEND_DATA, cmd->cmd_param[0], COMM_RADIO_LORA);
+        break;
+      default:
+        printf("Unknown command ID: %u\r\n", (unsigned)cmd->cmd_id);
+        break;
+    }
+    LR2021_LoRa_StartReceive(&hspi2, 0);
+  }
 }
 
 void send_ack(comm_cmd_id_t ack_id, uint32_t cmd_param, comm_radio_t next_radio) {
@@ -114,18 +156,12 @@ void send_ack(comm_cmd_id_t ack_id, uint32_t cmd_param, comm_radio_t next_radio)
   g_last_ack.node_id = LOCAL_NODE_ID;
   g_last_ack.seq_num = seq_num++;
   g_last_ack.ack_id = (uint8_t)ack_id;  /* ACK for the received command ID */
-  g_last_ack.cmd_param = cmd_param;  /* Echo back the command param in ACK */
-  g_last_ack.next_radio = (uint8_t)next_radio;
+  // g_last_ack.cmd_param = cmd_param;  /* Echo back the command param in ACK */
+  // g_last_ack.next_radio = (uint8_t)next_radio;
   g_last_ack.checksum = checksum_ack(&g_last_ack);
 
   LR2021_SetMode(&hspi2, LR2021_MODE_LORA);
-  HAL_StatusTypeDef tx_status =
-      LR2021_LoRa_Send(&hspi2, (const uint8_t *)&g_last_ack, sizeof(g_last_ack));
-
-  printf("ACK: node=%u seq=%u id=%u param=%lu next_radio=%u tx=%s\r\n",
-         (unsigned)g_last_ack.node_id, (unsigned)g_last_ack.seq_num, (unsigned)g_last_ack.ack_id,
-         (unsigned long)g_last_ack.cmd_param, (unsigned)g_last_ack.next_radio,
-         tx_status == HAL_OK ? "OK" : "ERR");
+  LR2021_LoRa_Send(&hspi2, (const uint8_t *)&g_last_ack, sizeof(g_last_ack));
 }
 
 void send_data(uint16_t frame_seq_num, uint16_t frame_left, uint32_t bytes_left,

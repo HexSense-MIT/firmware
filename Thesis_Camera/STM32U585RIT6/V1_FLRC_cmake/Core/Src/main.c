@@ -172,10 +172,6 @@ int main(void)
   //   Error_Handler();
   // }
 
-  // static const uint8_t lora_tx_msg[] =
-  //   "FLRC HELLO from STM32U585! FLRC HELLO from STM32U585! FLRC HELLO from STM32U585!FLRC HELLO from STM32U585! FLRC HELLO from STM32U585! FLRC HELLO from STM32U585!FLRC HELLO from STM32U585!";
-  // uint32_t last_lora_tx_ms = HAL_GetTick() - LORA_TX_INTERVAL_MS;
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -185,12 +181,13 @@ int main(void)
   {
     tud_task();
 
-    if (lr2021_irq_flag) {
-      lr2021_irq_flag = false;
-      uint32_t irq_status = LR2021_IRQ_NONE;
-      LR2021_HandleIRQ(&hspi2, &irq_status);
-      printf("lr2021_irq_flag triggered\r\n");
-    }
+    update_comm(&lr2021_irq_flag);
+    // if (lr2021_irq_flag) {
+    //   lr2021_irq_flag = false;
+    //   uint32_t irq_status = LR2021_IRQ_NONE;
+    //   LR2021_HandleIRQ(&hspi2, &irq_status);
+    //   printf("lr2021_irq_flag triggered\r\n");
+    // }
 
     /*
     if ((HAL_GetTick() - last_irq_poll_ms) >= LR2021_IRQ_POLL_INTERVAL_MS) {

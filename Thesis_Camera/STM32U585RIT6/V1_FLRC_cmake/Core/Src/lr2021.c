@@ -81,13 +81,13 @@ static HAL_StatusTypeDef read_fifo(SPI_HandleTypeDef *hspi, uint8_t *rx, uint16_
     if (ret != HAL_OK) return ret;
 
     uint8_t op[2] = { (uint8_t)(LR2021_CMD_READ_FIFO >> 8), (uint8_t)(LR2021_CMD_READ_FIFO) };
-    uint8_t tx = 0;
+
     cs_low();
     ret = HAL_SPI_Transmit(hspi, op, 2, SPI_TIMEOUT_MS);
-    for (uint16_t i = 0; ret == HAL_OK && i < n; i++) {
-        tx = 0;
-        ret = HAL_SPI_TransmitReceive(hspi, &tx, &rx[i], 1, SPI_TIMEOUT_MS);
-    }
+    // for (uint16_t i = 0; ret == HAL_OK && i < n; i++) {
+    //     ret = HAL_SPI_Receive(hspi, &rx[i], 1, SPI_TIMEOUT_MS);
+    // }
+    ret = HAL_SPI_Receive(hspi, rx, n, SPI_TIMEOUT_MS);
     cs_high();
     return ret;
 }
@@ -282,8 +282,6 @@ HAL_StatusTypeDef LR2021_Init(SPI_HandleTypeDef *hspi)
   ret = set_standby_mode(hspi, LR2021_STANDBY_RC);
   if (ret != HAL_OK) return ret;
 
-
-
   /* Default to LoRa mode (used for commands / ACKs) */
 //   return LR2021_SetMode(hspi, LR2021_MODE_LORA);
   return ret;
@@ -335,8 +333,9 @@ HAL_StatusTypeDef LR2021_SetMode(SPI_HandleTypeDef *hspi, LR2021_Mode_t mode)
 
         ret = set_lora_syncword(hspi);
 
-        cfg_irq(hspi, LR2021_IRQ_RX_DONE | LR2021_IRQ_TIMEOUT | LR2021_IRQ_TX_DONE | LR2021_IRQ_CAD_DETECTED |
-                        LR2021_IRQ_CRC_ERROR | LR2021_IRQ_LEN_ERROR);
+        // cfg_irq(hspi, LR2021_IRQ_RX_DONE | LR2021_IRQ_TIMEOUT | LR2021_IRQ_TX_DONE | LR2021_IRQ_CAD_DETECTED |
+        //                 LR2021_IRQ_CRC_ERROR | LR2021_IRQ_LEN_ERROR);
+        cfg_irq(hspi, LR2021_IRQ_RX_DONE | LR2021_IRQ_TX_DONE | LR2021_IRQ_CAD_DETECTED);
 
         cmdClearIrq(hspi, LR2021_IRQ_ALL);  // clear all pending IRQs before TX
 
@@ -374,8 +373,9 @@ HAL_StatusTypeDef LR2021_SetMode(SPI_HandleTypeDef *hspi, LR2021_Mode_t mode)
 
         ret = set_flrc_syncword(hspi);
 
-        cfg_irq(hspi, LR2021_IRQ_RX_DONE | LR2021_IRQ_TIMEOUT | LR2021_IRQ_TX_DONE |
-                        LR2021_IRQ_CRC_ERROR | LR2021_IRQ_LEN_ERROR);
+        // cfg_irq(hspi, LR2021_IRQ_RX_DONE | LR2021_IRQ_TIMEOUT | LR2021_IRQ_TX_DONE |
+        //                 LR2021_IRQ_CRC_ERROR | LR2021_IRQ_LEN_ERROR);
+        cfg_irq(hspi, LR2021_IRQ_RX_DONE | LR2021_IRQ_TX_DONE | LR2021_IRQ_CAD_DETECTED);
 
         cmdClearIrq(hspi, LR2021_IRQ_ALL);  // clear all pending IRQs before TX
     }
@@ -429,8 +429,9 @@ HAL_StatusTypeDef LR2021_LoRa_Send(SPI_HandleTypeDef *hspi,
     cs_high();
     if (ret != HAL_OK) return ret;
 
-    ret = cfg_irq(hspi, LR2021_IRQ_TX_DONE);
-    if (ret != HAL_OK) return ret;
+    // ret = cfg_irq(hspi, LR2021_IRQ_TX_DONE);
+    // ret = cfg_irq(hspi, LR2021_IRQ_RX_DONE | LR2021_IRQ_TX_DONE | LR2021_IRQ_CAD_DETECTED);
+    // if (ret != HAL_OK) return ret;
 
     cmdClearIrq(hspi, LR2021_IRQ_ALL);  // clear all pending IRQs before TX
 
@@ -494,9 +495,10 @@ HAL_StatusTypeDef LR2021_LoRa_StartReceive(SPI_HandleTypeDef *hspi,
     HAL_StatusTypeDef ret = configure_lora_rx_packet(hspi);
     if (ret != HAL_OK) return ret;
 
-    ret = cfg_irq(hspi, LR2021_IRQ_RX_DONE | LR2021_IRQ_TIMEOUT |
-                        LR2021_IRQ_CRC_ERROR | LR2021_IRQ_LEN_ERROR);
-    if (ret != HAL_OK) return ret;
+    // ret = cfg_irq(hspi, LR2021_IRQ_RX_DONE | LR2021_IRQ_TIMEOUT |
+    //                     LR2021_IRQ_CRC_ERROR | LR2021_IRQ_LEN_ERROR);
+    // ret = cfg_irq(hspi, LR2021_IRQ_RX_DONE | LR2021_IRQ_TX_DONE | LR2021_IRQ_CAD_DETECTED);
+    // if (ret != HAL_OK) return ret;
 
     ret = cmdClearRxFifo(hspi);
     if (ret != HAL_OK) return ret;

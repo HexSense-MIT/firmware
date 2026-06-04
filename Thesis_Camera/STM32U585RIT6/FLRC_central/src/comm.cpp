@@ -108,7 +108,7 @@ const lr2021_lora_config_t LORA_CFG = {
 
 RadioMode current_mode = RadioMode::FLRC;
 
-uint8_t tx_seq      = 0;
+uint8_t tx_seq = 0;
 uint8_t rx_buf[LR2021_MAX_FLRC_PAYLOAD];
 uint8_t tx_buf[100];
 
