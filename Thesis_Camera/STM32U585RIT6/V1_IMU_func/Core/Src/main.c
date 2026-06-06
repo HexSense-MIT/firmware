@@ -143,14 +143,14 @@ int main(void)
   {
     tud_task();
 
-	static uint32_t last_print = 0;
-	if (HAL_GetTick() - last_print >= 1000) {
-		last_print = HAL_GetTick();
-		if (tud_cdc_connected()) {
-			printf("Hello TinyUSB\r\n");
-			tud_cdc_write_flush();
-		}
-	}
+    static uint32_t last_print = 0;
+    if (HAL_GetTick() - last_print >= 1000) {
+      last_print = HAL_GetTick();
+      if (tud_cdc_connected()) {
+        printf("Hello TinyUSB\r\n");
+        tud_cdc_write_flush();
+      }
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

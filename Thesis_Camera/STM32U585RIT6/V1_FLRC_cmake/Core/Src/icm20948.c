@@ -1,7 +1,17 @@
-#include "icm20948.h"
 #include <stdio.h>
 
+#include "icm20948.h"
+
 #define TIMEOUT_MS  100U
+
+void ICM20948_PowrOn(void) {
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_SET);
+    HAL_Delay(10);
+}
+
+void ICM20948_PowrOff(void) {
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_RESET);
+}
 
 static HAL_StatusTypeDef bank_select(I2C_HandleTypeDef *hi2c, uint8_t bank)
 {

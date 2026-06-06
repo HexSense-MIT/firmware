@@ -112,6 +112,50 @@ uint8_t tx_seq = 0;
 uint8_t rx_buf[LR2021_MAX_FLRC_PAYLOAD];
 uint8_t tx_buf[100];
 
+static constexpr uint32_t LORA_ACK_TIMEOUT_MS = 1000;
+
+static bool is_cobs_ack_frame(const uint8_t* data, uint16_t len,
+                              bool* has_delimiter) {
+  *has_delimiter = (len > 0 && data[len - 1U] == 0);
+  uint16_t cobs_len = *has_delimiter ? (len - 1U) : len;
+  hs_ack_t decoded_ack = {};
+  return cobs_len > 0 &&
+         cobs_decode(data, cobs_len, (uint8_t*)&decoded_ack,
+                     sizeof(decoded_ack)) == sizeof(decoded_ack);
+}
+
+static void write_cobs_ack_to_gui(const uint8_t* ack, uint16_t ack_len) {
+  if (ack == nullptr || ack_len == 0) {
+    return;
+  }
+
+  if (ack_len == sizeof(hs_ack_t)) {
+    uint8_t encoded_ack[sizeof(hs_ack_t) + 2U];
+    uint16_t encoded_len = cobs_encode(ack, ack_len, encoded_ack);
+    encoded_ack[encoded_len++] = 0;
+    Serial.write(encoded_ack, (size_t)encoded_len);
+    return;
+  }
+
+  bool has_delimiter = false;
+  if (is_cobs_ack_frame(ack, ack_len, &has_delimiter)) {
+    Serial.write(ack, (size_t)ack_len);
+    if (!has_delimiter) {
+      const uint8_t delimiter = 0;
+      Serial.write(&delimiter, 1);
+    }
+  }
+}
+
+static void relay_lora_ack_to_gui() {
+  lr2021_rx_status_t status = {};
+  int ack_len = radio.receive(rx_buf, sizeof(rx_buf), &status,
+                              LORA_ACK_TIMEOUT_MS);
+  if (ack_len > 0) {
+    write_cobs_ack_to_gui(rx_buf, (uint16_t)ack_len);
+  }
+}
+
 // ============================================================
 void flrc_tx_test(const uint8_t *data, uint16_t len) {
   if (data && len > 0) {
@@ -244,6 +288,7 @@ void handle_cmd(const hs_cmd_t& cmd, const uint8_t* encoded_cmd, uint16_t encode
       current_mode = RadioMode::LORA; // for start, select LoRa
       radio.configLoRa(LORA_CFG);
       lora_tx_test(encoded_cmd, encoded_len);
+      relay_lora_ack_to_gui();
       break;
 
     case CMD_ID::GET_DATA:

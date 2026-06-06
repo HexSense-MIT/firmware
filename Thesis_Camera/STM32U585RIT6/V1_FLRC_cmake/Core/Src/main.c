@@ -146,12 +146,6 @@ int main(void)
   /* USER CODE BEGIN 2 */
   tusb_init();
 
-  /* Enable LDO for ICM20948 via PD2 */
-  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_SET);
-  HAL_Delay(10);
-
-  ICM20948_Init(&hi2c1);
-
   /* Enable LDO of LR2021 via PC8 */
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);
   HAL_Delay(10);
@@ -182,66 +176,6 @@ int main(void)
     tud_task();
 
     update_comm(&lr2021_irq_flag);
-    // if (lr2021_irq_flag) {
-    //   lr2021_irq_flag = false;
-    //   uint32_t irq_status = LR2021_IRQ_NONE;
-    //   LR2021_HandleIRQ(&hspi2, &irq_status);
-    //   printf("lr2021_irq_flag triggered\r\n");
-    // }
-
-    /*
-    if ((HAL_GetTick() - last_irq_poll_ms) >= LR2021_IRQ_POLL_INTERVAL_MS) {
-      last_irq_poll_ms = HAL_GetTick();
-
-      uint32_t irq_status = LR2021_IRQ_NONE;
-      HAL_StatusTypeDef irq_ret = LR2021_HandleIRQ(&hspi2, &irq_status);
-      if (irq_ret != HAL_OK) {
-        printf("[LR2021 IRQ poll] read failed: %u\r\n", (unsigned)irq_ret);
-      } else if (irq_status != LR2021_IRQ_NONE) {
-        printf("[LR2021 IRQ poll] status=0x%08lX\r\n", (unsigned long)irq_status);
-
-        if (irq_status & LR2021_IRQ_RX_DONE) {
-          uint8_t rx_payload[LR2021_MAX_LORA_PAYLOAD];
-          uint8_t rx_len = 0;
-          HAL_StatusTypeDef rx_ret = LR2021_LoRa_ReadPayload(&hspi2, rx_payload, &rx_len);
-
-          if (rx_ret == HAL_OK) {
-            printf("[LoRa RX] len=%u hex:", (unsigned)rx_len);
-            for (uint8_t i = 0; i < rx_len; i++) {
-              printf("[%u] %02X | ", i, rx_payload[i]);
-            }
-            printf(" ascii:");
-            for (uint8_t i = 0; i < rx_len; i++) {
-              uint8_t c = rx_payload[i];
-              printf("%c", (c >= 32U && c <= 126U) ? (char)c : '.');
-            }
-            printf("\r\n");
-          } else {
-            printf("[LoRa RX] payload read failed: %u\r\n", (unsigned)rx_ret);
-          }
-        }
-
-        if (irq_status & (LR2021_IRQ_RX_DONE | LR2021_IRQ_TIMEOUT |
-                          LR2021_IRQ_CRC_ERROR | LR2021_IRQ_LEN_ERROR)) {
-          if (LR2021_LoRa_StartReceive(&hspi2, 0) != HAL_OK) {
-            printf("[LoRa RX] restart failed\r\n");
-          }
-        }
-      }
-    }
-    */
-
-    // HAL_StatusTypeDef tx_status = HAL_ERROR;
-
-    // if ((HAL_GetTick() - last_lora_tx_ms) >= LORA_TX_INTERVAL_MS) {
-    //   last_lora_tx_ms = HAL_GetTick();
-    //   lr2021_irq_flag = 0;
-
-    //   tx_status = LR2021_LoRa_Send(&hspi2, lora_tx_msg, (uint8_t)sizeof(lora_tx_msg));
-    //   printf("[LoRa TX] %s\r\n", tx_status == HAL_OK ? "HELLO sent" : "TX failed");
-    //   // tx_status = LR2021_FLRC_Send(&hspi2, lora_tx_msg, sizeof(lora_tx_msg) - 1U);
-    //   // printf("[FLRC TX] %s\r\n", tx_status == HAL_OK ? "HELLO sent" : "TX failed");
-    // }
 
     /* USER CODE END WHILE */
 

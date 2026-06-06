@@ -1,10 +1,7 @@
-#include <stdio.h>
-#include <stdbool.h>
-#include <string.h>
-
 #include "comm.h"
 
 extern SPI_HandleTypeDef hspi2;
+extern I2C_HandleTypeDef hi2c1;
 
 comm_cmd_t g_received_cmd = {0}; /* global variable to hold the received command */
 comm_ack_t g_last_ack     = {0}; /* global variable to hold the ACK to be sent */
@@ -71,12 +68,25 @@ static uint16_t cobs_decode(const uint8_t* input, uint16_t length,
 }
 
 static uint8_t checksum_cmd(const comm_cmd_t *cmd) {
-  uint32_t sum = cmd->node_id + cmd->seq_num + cmd->cmd_id;
+  uint32_t sum = 0;
+  sum += cmd->node_id;
+  sum += cmd->seq_num;
+  sum += cmd->cmd_id;
+  for (size_t i = 0; i < sizeof(cmd->cmd_param); i++) {
+    sum += cmd->cmd_param[i];
+  }
   return (uint8_t)(sum & 0xFFU);
 }
 
 static uint8_t checksum_ack(const comm_ack_t *ack) {
-  uint32_t sum = ack->node_id + ack->seq_num + ack->ack_id;
+  uint32_t sum = 0;
+  sum += ack->node_id;
+  sum += ack->seq_num;
+  sum += ack->ack_id;
+  for (size_t i = 0; i < sizeof(ack->ack_param); i++) {
+    sum += ack->ack_param[i];
+  }
+
   return (uint8_t)(sum & 0xFFU);
 }
 
@@ -122,46 +132,83 @@ void update_comm(volatile bool *irq_flag) {
   }
 }
 
-void handle_cmd(comm_cmd_t *cmd) {
-  /* For demo: just print the received command */
-  if (cmd->node_id == LOCAL_NODE_ID) {
-    HAL_Delay(200); /* simulate some processing delay */
-    switch (cmd->cmd_id) {
-      case COMM_CMD_ID_PING:
-        send_ack(COMM_CMD_ID_PING, cmd->cmd_param[0], COMM_RADIO_LORA);
-        break;
-      case COMM_CMD_ID_TURN_ON_CAM:
-        send_ack(COMM_CMD_ID_TURN_ON_CAM, cmd->cmd_param[0], COMM_RADIO_LORA);
-        break;
-      case COMM_CMD_ID_TURN_OFF_CAM:
-        send_ack(COMM_CMD_ID_TURN_OFF_CAM, cmd->cmd_param[0], COMM_RADIO_LORA);
-        break;
-      case COMM_CMD_ID_TAKE_PHOTO:
-        send_ack(COMM_CMD_ID_TAKE_PHOTO, cmd->cmd_param[0], COMM_RADIO_LORA);
-        break;
-      case COMM_CMD_ID_SEND_DATA:
-        send_ack(COMM_CMD_ID_SEND_DATA, cmd->cmd_param[0], COMM_RADIO_LORA);
-        break;
-      default:
-        printf("Unknown command ID: %u\r\n", (unsigned)cmd->cmd_id);
-        break;
-    }
-    LR2021_LoRa_StartReceive(&hspi2, 0);
-  }
+void handle_ping(uint8_t *ack_param) {
+  ICM20948_Data_t sensor_data = {0};
+
+  ICM20948_PowrOn();
+  ICM20948_Init(&hi2c1);
+  HAL_Delay(50);
+  ICM20948_ReadAll(&hi2c1, &sensor_data);
+  ICM20948_PowrOff();
+
+  float gravity = sqrtf(sensor_data.accel_x * sensor_data.accel_x +
+                        sensor_data.accel_y * sensor_data.accel_y +
+                        sensor_data.accel_z * sensor_data.accel_z);
+
+  float temperature = sensor_data.temp_c;
+
+  memcpy(ack_param, (uint8_t *)&gravity, sizeof(float));
+  memcpy(ack_param + sizeof(float), (uint8_t *)&temperature, sizeof(float));
 }
 
-void send_ack(comm_cmd_id_t ack_id, uint32_t cmd_param, comm_radio_t next_radio) {
-  static uint8_t seq_num = 0;
+void handle_cam_on_off(uint8_t *cam_param, uint8_t *ack_param, size_t n) {
+  memcpy(ack_param, cam_param, n);
+}
 
-  g_last_ack.node_id = LOCAL_NODE_ID;
-  g_last_ack.seq_num = seq_num++;
-  g_last_ack.ack_id = (uint8_t)ack_id;  /* ACK for the received command ID */
-  // g_last_ack.cmd_param = cmd_param;  /* Echo back the command param in ACK */
-  // g_last_ack.next_radio = (uint8_t)next_radio;
-  g_last_ack.checksum = checksum_ack(&g_last_ack);
+void handle_take_photo(uint8_t *cam_param, uint8_t *ack_param, size_t n) {
+  memcpy(ack_param, cam_param, n);
+}
+
+void handle_cmd(comm_cmd_t *cmd) {
+  uint8_t ack_param[11] = {0};
+
+  if (cmd->node_id == LOCAL_NODE_ID) {
+    HAL_Delay(50); /* simulate some processing delay */
+    switch (cmd->cmd_id) {
+      case COMM_CMD_ID_PING:
+        handle_ping(ack_param);
+        send_ack(cmd, ack_param);
+        break;
+
+      case COMM_CMD_ID_TURN_ON_CAM:
+        handle_cam_on_off(cmd->cmd_param, ack_param, sizeof(cmd->cmd_param));
+        send_ack(cmd, ack_param);
+        break;
+
+      case COMM_CMD_ID_TURN_OFF_CAM:
+        handle_cam_on_off(cmd->cmd_param, ack_param, sizeof(cmd->cmd_param));
+        send_ack(cmd, ack_param);
+        break;
+
+      case COMM_CMD_ID_TAKE_PHOTO:
+        handle_take_photo(cmd->cmd_param, ack_param, sizeof(cmd->cmd_param));
+        send_ack(cmd, ack_param);
+        break;
+
+      case COMM_CMD_ID_SEND_DATA:
+        // send_data(cmd, ack_param);
+        break;
+
+      default:
+        break;
+    }
+  }
+  LR2021_LoRa_StartReceive(&hspi2, 0);
+}
+
+void send_ack(comm_cmd_t *cmd, uint8_t *ack_param) {
+  g_last_ack.node_id   = LOCAL_NODE_ID;
+  g_last_ack.seq_num   = cmd->seq_num;  /* ACK the same sequence number as the received command */
+  g_last_ack.ack_id    = cmd->cmd_id;   /* ACK the same command ID as the received command */
+  memcpy(g_last_ack.ack_param, ack_param, sizeof(g_last_ack.ack_param));
+  g_last_ack.checksum  = checksum_ack(&g_last_ack);
+
+  uint8_t  encoded_ack[sizeof(g_last_ack) + 2] = {0};
+  uint16_t encoded_len = cobs_encode((const uint8_t *)&g_last_ack, sizeof(g_last_ack), encoded_ack);
+
+  LR2021_LoRa_Send(&hspi2, encoded_ack, encoded_len);
 
   LR2021_SetMode(&hspi2, LR2021_MODE_LORA);
-  LR2021_LoRa_Send(&hspi2, (const uint8_t *)&g_last_ack, sizeof(g_last_ack));
 }
 
 void send_data(uint16_t frame_seq_num, uint16_t frame_left, uint32_t bytes_left,

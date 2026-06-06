@@ -68,7 +68,7 @@ extern void ESPNOW_comm_init(void);
 #define TAKE_PHOTO_CAM_CODE 0x03
 #define GRAB_DATA_CAM_CODE  0x04
 
-#define CAM_TAKE_PHOTO_TIMES 5
+#define CAM_TAKE_PHOTO_TIMES 3
 
 #define IMG_SIZE 1024 * 500  // 100 KB buffer for image data
 

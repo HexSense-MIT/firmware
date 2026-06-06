@@ -34,6 +34,8 @@ typedef struct {
     float temp_c;                     /* °C    */
 } ICM20948_Data_t;
 
+void              ICM20948_PowrOn(void);
+void              ICM20948_PowrOff(void);
 HAL_StatusTypeDef ICM20948_Init(I2C_HandleTypeDef *hi2c);
 HAL_StatusTypeDef ICM20948_ReadAll(I2C_HandleTypeDef *hi2c, ICM20948_Data_t *data);
 void              ICM20948_PrintData(const ICM20948_Data_t *data);

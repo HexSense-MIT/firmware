@@ -401,4 +401,3 @@ uint64_t take_photos(int times) {
 void turn_off_a_camera(uint8_t cam_num) {
   turnoffallcams();
 }
-
